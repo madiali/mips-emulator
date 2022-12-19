@@ -26,6 +26,34 @@ public class Mips {
         Pc = val;
     }
 
+    public InstructionMemory GetInstrMem() {
+        return InstrMem;
+    }
+
+    public MemoryMapper GetMemory() {
+        return Memory;
+    }
+
+    public Registers GetReg() {
+        return Reg;
+    }
+
+    public String GetName() {
+        return Name;
+    }
+
+    public void SetName(String newName) {
+        Name = newName;
+    }
+
+    public float GetClockSpeed() {
+        return ClockSpeed;
+    }
+
+    public void SetClockSpeed(float newClockSpeed) {
+        ClockSpeed = newClockSpeed;
+    }
+
 	public void ExecuteNext() {
 		InstrMem.GetInstruction(pc).Execute(Memory, Reg);
 	}
