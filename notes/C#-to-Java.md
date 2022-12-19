@@ -47,13 +47,10 @@ from `SpriteMemory.cs`
 
 * The original code uses C#'s `uint` (32-bit) a lot.
 * Java doesn't support unsigned integers.
-* We *usually* use Java's `long` (64-bit) in place of `uint` to ensure that we can handle the same range of data as the original code.
-    * This is probably not necessary because the signed `int` type is sufficiently large.
-* However, there could be trouble when sign-extending immediates in instructions.
-    * TODO: Figure out what to do about that.
-* However, Java does not allow array subscription with `long`.
-    * Example: `arr[(long) size]` causes a compiler error.
-* In this situation, we cast the `long`  to an `int`, which defeats the purpose of using `long`, now that I think about it. 🤔
+* We instead use Java's `int` (signed 32-bit) in place of `uint`.
+* Using `long` to support the full range of `uint` doesn't work out
+  * For example, Java arrays can't be subscripted by a `long` type. So if we were to use `long`, we'd have to cast to an `int` anyway.
+* The numbers are small enough that the halved range (0-2000000) should be fine.
 
 ## Passing value by reference
 
@@ -66,3 +63,8 @@ from `SpriteMemory.cs`
 
 * Java doesn't have namespaces.
 * We use `package` at the top of classes.
+
+## `readonly`
+
+* Java doesn't have the `readonly` keyword.
+* We use `final` instead.

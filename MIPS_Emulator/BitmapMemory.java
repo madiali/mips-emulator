@@ -1,52 +1,50 @@
 public class BitmapMemory implements MemoryUnit{
-    private long _wordSize;
-    private final long[] _memory;
+    private int wordSize;
+    private final int[] memory;
 
-    // Java doesn't like it if the size is declared as long since it's used as an array subscript
-    // Have to keep it an int then
-    public BitmapMemory(int size, long wordSize) {
-        _memory = new long[size];
-        _wordSize = wordSize;
+    public BitmapMemory(int size, int wordSize) {
+        this.memory = new int[size];
+        this.wordSize = wordSize;
     }
 
     public BitmapMemory(int size) {
-        _memory = new long[size];
-        _wordSize = 4;
+        this.memory = new int[size];
+        this.wordSize = 4;
     }
 
-    public BitmapMemory(long[] memory, long wordSize) {
-        _memory = memory;
-        _wordSize = wordSize;
+    public BitmapMemory(int[] memory, int wordSize) {
+        this.memory = memory;
+        this.wordSize = wordSize;
     }
 
-    public BitmapMemory(long[] memory) {
-        _memory = memory;
-        _wordSize = 4;
+    public BitmapMemory(int[] memory) {
+        this.memory = memory;
+        this.wordSize = 4;
     }
 
     @Override
-    public long getMemoryUnit(long index) {
-        if (index % _wordSize == 0)
-            return _memory[(int) (index / _wordSize)];
+    public int getMemoryUnit(int index) {
+        if (index % this.wordSize == 0)
+            return this.memory[(int) (index / this.wordSize)];
         else
-            throw new IllegalArgumentException(String.format("Index (%d) into bitmap memory is not a multiple of word size (%d)", index, _wordSize));
+            throw new IllegalArgumentException(String.format("Index (%d) into bitmap memory is not a multiple of word size (%d)", index, this.wordSize));
     }
 
     @Override
-    public void setMemoryUnit(long index, int value) {
-        if (index % _wordSize == 0)
-            _memory[(int) (index / _wordSize)] = value;
+    public void setMemoryUnit(int index, int value) {
+        if (index % this.wordSize == 0)
+            this.memory[(int) (index / this.wordSize)] = value;
         else
-            throw new IllegalArgumentException(String.format("Index (%d) into bitmap memory is not a multiple of word size (%d)", index, _wordSize));
+            throw new IllegalArgumentException(String.format("Index (%d) into bitmap memory is not a multiple of word size (%d)", index, this.wordSize));
     }
 
     @Override
-    public long getSize() {
-        return (long) _memory.length * _wordSize;
+    public int getSize() {
+        return this.memory.length * this.wordSize;
     }
 
     @Override
-    public long getWordSize() {
-        return _wordSize;
+    public int getWordSize() {
+        return this.wordSize;
     }
 }

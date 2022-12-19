@@ -1,6 +1,6 @@
 public class SpriteBitmapMemory extends BitmapMemory {
 
-    public SpriteBitmapMemory(int size, long wordSize) {
+    public SpriteBitmapMemory(int size, int wordSize) {
         super(size, wordSize);
     }
 
@@ -8,11 +8,11 @@ public class SpriteBitmapMemory extends BitmapMemory {
         super(size);
     }
 
-    public SpriteBitmapMemory(long[] memory, long wordSize) {
+    public SpriteBitmapMemory(int[] memory, int wordSize) {
         super(memory, wordSize);
     }
 
-    public SpriteBitmapMemory(long[] memory) {
+    public SpriteBitmapMemory(int[] memory) {
         super(memory);
     }
 }

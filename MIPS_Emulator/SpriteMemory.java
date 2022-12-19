@@ -1,44 +1,44 @@
 public class SpriteMemory implements MemoryUnit{
 
-    private long _spriteX;
-    private long _spriteY;
+    private int spriteX;
+    private int spriteY;
 
-    public long getSpriteX() {
-        return _spriteX;
+    public int getSpriteX() {
+        return this.spriteX;
     }
 
-    private void setSpriteX(long spriteX) {
-        _spriteX = spriteX;
+    private void setSpriteX(int spriteX) {
+        this.spriteX = spriteX;
     }
 
-    public long getSpriteY() {
-        return _spriteY;
+    public int getSpriteY() {
+        return this.spriteY;
     }
 
-    private void setSpriteY(long spriteY) {
-        _spriteY = spriteY;
-    }
-
-    @Override
-    public long getMemoryUnit(long index) {
-        return index == 0 ? _spriteY : _spriteX;
+    private void setSpriteY(int spriteY) {
+        this.spriteY = spriteY;
     }
 
     @Override
-    public void setMemoryUnit(long index, int value) {
+    public int getMemoryUnit(int index) {
+        return index == 0 ? this.spriteY : this.spriteX;
+    }
+
+    @Override
+    public void setMemoryUnit(int index, int value) {
         if (index == 0)
-            _spriteY = value;
+            this.spriteY = value;
         else
-            _spriteX = value;
+            this.spriteX = value;
     }
 
     @Override
-    public long getSize() {
+    public int getSize() {
         return 8;
     }
 
     @Override
-    public long getWordSize() {
+    public int getWordSize() {
         return 4;
     }
 
@@ -47,13 +47,13 @@ public class SpriteMemory implements MemoryUnit{
     //      creates a constructor with no arguments and sets fields to default (in the language) values.
     // The above doesn't apply here, i.e. I don't think a constructor with no body gets an automatically generated body.
     // Leaving this constructor without a body...
-    public SpriteMemory(long size, long wordSize) {
+    public SpriteMemory(int size, int wordSize) {
 
     }
 
     // Original constructor has default value 4 for wordSize
     // No default values in Java, so overload the constructor
-    public SpriteMemory(long size) {
+    public SpriteMemory(int size) {
 
     }
 }
