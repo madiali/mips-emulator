@@ -3,6 +3,9 @@ public class ScreenMemory extends DataMemory {
     super(size, wordSize);
   }
 
+  /**
+   * wordSize default value 4 in superclass constructor
+   */
   public ScreenMemory(int size) {
     super(size);
   }
@@ -14,6 +17,9 @@ public class ScreenMemory extends DataMemory {
   // This is not in the original code, which doesn't give wordSize a default value of 4
   // But I'm keeping this here since it isn't already used anywhere else so shouldn't affect
   // anything
+  /**
+   * wordSize default value 4 in superclass constructor
+   */
   public ScreenMemory(int[] memory) {
     super(memory);
   }

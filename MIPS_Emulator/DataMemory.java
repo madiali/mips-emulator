@@ -7,6 +7,9 @@ public class DataMemory implements MemoryUnit {
     this.wordSize = wordSize;
   }
 
+  /**
+   * wordSize default value 4
+   */
   public DataMemory(int size) {
     this.memory = new int[size];
     this.wordSize = 4;
@@ -17,6 +20,9 @@ public class DataMemory implements MemoryUnit {
     this.wordSize = wordSize;
   }
 
+  /**
+   * wordSize default value 4
+   */
   public DataMemory(int[] memory) {
     this.memory = memory;
     this.wordSize = 4;

@@ -33,11 +33,17 @@ public class SpriteMemory implements MemoryUnit {
     }
   }
 
+  /**
+   * @return 8
+   */
   @Override
   public int getSize() {
     return 8;
   }
 
+  /**
+   * @return 4
+   */
   @Override
   public int getWordSize() {
     return 4;

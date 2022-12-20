@@ -4,6 +4,9 @@ public class SpriteBitmapMemory extends BitmapMemory {
     super(size, wordSize);
   }
 
+  /**
+   * wordSize default value 4 in superclass constructor
+   */
   public SpriteBitmapMemory(int size) {
     super(size);
   }
@@ -12,6 +15,9 @@ public class SpriteBitmapMemory extends BitmapMemory {
     super(memory, wordSize);
   }
 
+  /**
+   * wordSize default value 4 in superclass constructor
+   */
   public SpriteBitmapMemory(int[] memory) {
     super(memory);
   }

@@ -34,6 +34,7 @@ from `SpriteMemory.cs`
 * Java does not support default values in constructors.
 * Instead, we overload the constructor.
 * One has parameters `size, wordSize`, and the other just has the parameter `size` and sets `wordSize` to 4.
+* Preferably, we should list the default values of parameters in a docstring above the function so we know what the values are if we call it.
 
 ## Empty constructor
 
