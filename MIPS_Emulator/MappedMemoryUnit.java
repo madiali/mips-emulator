@@ -14,7 +14,7 @@ public class MappedMemoryUnit {
         this.memUnit = memUnit;
         this.startAddr = startAddr;
         this.endAddr = endAddr;
-        this.name = (name == null) ? memUnit.getClass().getName() : name;
+        this.name = (name == null) ? ((memUnit == null) ? null : memUnit.getClass().getName()) : name;
     }
 
     /**

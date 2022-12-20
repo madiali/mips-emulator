@@ -32,7 +32,7 @@ public MIPS_Emulator.SpriteMemory(uint size, uint wordSize = 4) {
 from `MIPS_Emulator.SpriteMemory.cs`
 
 * Java does not support default values in constructors.
-* Instead, we overload the constructor.
+* Instead, we overload the constructor and use [constructor chaining](https://www.geeksforgeeks.org/constructor-chaining-java-examples/) where convenient.
 * One has parameters `size, wordSize`, and the other just has the parameter `size` and sets `wordSize` to 4.
 * Preferably, we should list the default values of parameters in a docstring above the function so we know what the values are if we call it.
 
@@ -67,7 +67,6 @@ from `MIPS_Emulator.SpriteMemory.cs`
 
 * Java doesn't have namespaces.
 * We use `package` at the top of classes.
-* *Note*: I (Jesse) can't figure out how to turn folders into packages in IntelliJ?? I'll add in the `package` keyword later when I figure that out.
 
 ## [`readonly`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/readonly)
 
@@ -176,17 +175,18 @@ Same as Java's [`Integer.compare(x, y)`](https://www.geeksforgeeks.org/java-inte
 
 * From `MemoryMapper`
 * `this.memUnits = new ArrayList<MappedMemoryUnit>();`
-  * Unfortunately, this makes it a little less generic. But should be fine.
+  * Can't type `new List()` like the original since `List` is abstract.
+  * Unfortunately, this makes it less generic. But should be fine.
 * `this.memUnits.add(mappedMem);`
 
-## [`"0x{address:X8}"`]
+## `"0x{address:X8}"`
 
 * As seen in [`MemoryMapper.cs`](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/MemoryMapper.cs) and some other file that I forget, but Ctrl-F for "X8" to find it
-* In an f-string, convert the `uint` address to an 8-digit hex value
-* We use `String.format("0x%08X", address)`
+* In an f-string, this syntax converts the `uint` address to an 8-digit hex value.
+* Instead, we use `String.format("0x%08X", address)`.
 * The `08`, instead of just `8`, is important. Otherwise, leading 0's aren't displayed (instead, blank spaces take the spot of leading 0's).
 
-## [Custom exceptions]
+## Custom exceptions
 
-* In [`MemoryMapper.cs`](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/MemoryMapper.cs), they create a custom exception within the same file.
+* In [`MemoryMapper.cs`](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/MemoryMapper.cs), there is a custom exception class within the same file.
 * Per Java convention, we create separate classes for custom Exceptions.
