@@ -50,20 +50,20 @@ class Program {
         case 'n':
           mips.executeNext();
           System.out.println(
-              "PC: " + mips.Pc + "\t Instr: " + mips.InstrMem.GetInstruction(mips.Pc));
+              "PC: " + mips.getPC() + "\t Instr: " + mips.InstrMem.GetInstruction(mips.Pc));
           break;
         case 'r':
           System.out.println("Register Contents:");
           for (int i = 0; i < 32; i++) {
             // Use "" + ... to make sure the values are treated as Strings and concatenated
-            System.out.println("" + Registers.RegisterToName(i) + "\t" + mips.Reg[i]);
+            System.out.println("" + Registers.registerToName(i) + "\t" + mips.getReg().getRegister(i));
           }
           break;
         case 'i':
           System.out.println("Instruction Memory Contents:");
           for (int i = 0; i < mips.InstrMem.Size; i += mips.InstrMem.wordSize) {
             System.out.println(
-                (mips.getPc() == i)
+                (mips.getPC() == i)
                     ? ">"
                     : " "
                         + "0x"
