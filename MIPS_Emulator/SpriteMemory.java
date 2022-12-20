@@ -1,3 +1,5 @@
+package MIPS_Emulator;
+
 public class SpriteMemory implements MemoryUnit {
 
   private int spriteX;

@@ -1,3 +1,5 @@
+package MIPS_Emulator;
+
 public class BitmapMemory implements MemoryUnit {
   private int wordSize;
   private final int[] memory;
@@ -7,9 +9,7 @@ public class BitmapMemory implements MemoryUnit {
     this.wordSize = wordSize;
   }
 
-  /**
-   * wordSize default value 4
-   */
+  /** wordSize default value 4 */
   public BitmapMemory(int size) {
     this.memory = new int[size];
     this.wordSize = 4;
@@ -20,9 +20,7 @@ public class BitmapMemory implements MemoryUnit {
     this.wordSize = wordSize;
   }
 
-  /**
-   * wordSize default value 4
-   */
+  /** wordSize default value 4 */
   public BitmapMemory(int[] memory) {
     this.memory = memory;
     this.wordSize = 4;

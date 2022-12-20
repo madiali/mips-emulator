@@ -1,3 +1,5 @@
+package MIPS_Emulator;
+
 public class Registers {
   private final int[] registers;
 
@@ -21,9 +23,7 @@ public class Registers {
     } else if (regNumber == 1) {
       return "$at";
     } else if (regNumber <= 3) {
-      return "$v"
-          + (regNumber
-              - 2); // This automatically converts the int to a String in C# and Java, so it's fine
+      return "$v" + (regNumber - 2);
     } else if (regNumber <= 7) {
       return "$a" + (regNumber - 4);
     } else if (regNumber <= 15) {

@@ -1,8 +1,10 @@
-/*
- * Note: The Program class is declared as internal in the original code.
- * From https://stackoverflow.com/questions/5981107/is-there-anything-like-an-internal-class-in-java, the Java equivalent is not using an access modifier.
- * Also, this code definitely isn't complete because it relies on ProgramLoader and Mips.
- * Specifically, we need to use getter methods in the while loop around line 40, but Mips.java needs to be completed first.
+package MIPS_Emulator;
+/**
+ * Note: The MIPS_Emulator2.Program class is declared as internal in the original code. From
+ * https://stackoverflow.com/questions/5981107/is-there-anything-like-an-internal-class-in-java, the
+ * Java equivalent is not using an access modifier. Also, this code definitely isn't complete
+ * because it relies on ProgramLoader and Mips. Specifically, we need to use getter methods in the
+ * while loop around line 40, but Mips.java needs to be completed first.
  */
 import java.util.Scanner;
 import java.io.File;
@@ -57,9 +59,8 @@ class Program {
                 ""
                     + Registers.RegisterToName(i)
                     + "\t"
-                    + mips.Reg[
-                        i]); // Use "" + to ensure that the values are treated as strings and
-                             // concatenated
+                    + mips.Reg[i]); // Use "" + to ensure that the values are treated as strings and
+            // concatenated
           }
           break;
         case 'i':

@@ -1,3 +1,5 @@
+package MIPS_Emulator;
+
 public class DataMemory implements MemoryUnit {
   private int wordSize;
   private final int[] memory;
@@ -7,9 +9,7 @@ public class DataMemory implements MemoryUnit {
     this.wordSize = wordSize;
   }
 
-  /**
-   * wordSize default value 4
-   */
+  /** wordSize default value 4 */
   public DataMemory(int size) {
     this.memory = new int[size];
     this.wordSize = 4;
@@ -20,9 +20,7 @@ public class DataMemory implements MemoryUnit {
     this.wordSize = wordSize;
   }
 
-  /**
-   * wordSize default value 4
-   */
+  /** wordSize default value 4 */
   public DataMemory(int[] memory) {
     this.memory = memory;
     this.wordSize = 4;
@@ -33,9 +31,8 @@ public class DataMemory implements MemoryUnit {
     if (index % this.wordSize == 0) {
       return this.memory[
           index
-              / this
-                  .wordSize]; // This is always an integer since result of mod is 0, don't need to
-                              // cast or floor
+              / this.wordSize]; // This is always an integer since result of mod is 0, don't need to
+      // cast or floor
     } else {
       throw new IllegalArgumentException(
           String.format(
