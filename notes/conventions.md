@@ -5,4 +5,4 @@ Generally, we follow [Google's style guide](https://google.github.io/styleguide/
 ### Jesse
 
 * I do not `_` before field names (though it's my personal preference) and use `this` instead.
-* I don't use braces after an if/else/while if the body is only one line.
+* I use optional braces after an if/else/while even if the body is only one line, following the style guide.

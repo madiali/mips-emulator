@@ -96,6 +96,7 @@ from `SpriteMemory.cs`
 * This will not be fine when we get to game implementation, and we'll need to use a workaround, which exists.
 * [StackOverflow](https://stackoverflow.com/questions/1066318/how-to-read-a-single-char-from-the-console-in-java-as-the-user-types-it) and [information from 68 upvote answer](https://darkcoding.net/software/non-blocking-console-io-is-not-possible/).
 * I (Jesse) haven't read it too carefully since it's not necessary *yet*.
+* It must be possible to get non-blocking input in Java since [Mars.jar](https://courses.missouristate.edu/kenvollmar/mars/download.htm) is able to do it.
 
 ## [`FileInfo` class](https://www.javatpoint.com/c-sharp-fileinfo)
 
