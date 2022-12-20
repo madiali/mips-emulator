@@ -132,12 +132,12 @@ public uint Pc => pc;
 * Null-coalescing operator
 * Bruh what is this syntax
  
-## [`GetType().Name`]
+## `GetType().Name`
 
 * As seen in [MemoryMappedUnit.cs](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/MappedMemoryUnit.cs)
 * Java's `.getClass().getName()` does the same thing
 
-## [String formatting stuff]
+## String formatting stuff
 
 * `.Trim()` -> `.trim()`
 * `.ToLower()` -> `.toLowerCase()`
@@ -145,3 +145,8 @@ public uint Pc => pc;
 * `Convert.ToUInt32(String, radix)` -> `Integer.parseInt(String, radix)`
   * Oh crap it's possible this might actually cause issues since `Integer` is signed.
   * TODO: Check this!!!
+
+## [`Regex`](https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=net-7.0)
+
+* We use `Pattern` and `Matcher` instead.
+ 

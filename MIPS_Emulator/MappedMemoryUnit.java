@@ -45,6 +45,13 @@ public class MappedMemoryUnit {
         this(memUnit, startAddr, null);
     }
 
+    /**
+     * DANGER REGARDING BITMASK, READ BELOW
+     * @param memUnit
+     * @param bitmask If this bitmask is the full 32 bits AND the 31'th bit is 1, then there will be undefined behavior.
+     *                This is due to implementation (Integer.parseInt) and uint vs. int.
+     * @param name
+     */
     public MappedMemoryUnit(MemoryUnit memUnit, String bitmask, String name) {
         String cleanedBitmask = bitmask.trim().toLowerCase().replace("_", "");
         Matcher matcher = bitmaskFormat.matcher(cleanedBitmask);
@@ -59,10 +66,12 @@ public class MappedMemoryUnit {
     }
 
     /**
+     * WARNING REGARDING BITMASK, READ BELOW
      * Overloaded constructor
      * If the only args are memUnit and bitmask, then String name is null
      * @param memUnit
-     * @param bitmask
+     * @param bitmask If this bitmask is the full 32 bits AND the 31'th bit is 1, then there will be undefined behavior.
+     *                This is due to implementation (Integer.parseInt) and uint vs. int.
      */
     public MappedMemoryUnit(MemoryUnit memUnit, String bitmask) {
         this(memUnit, bitmask, null);
