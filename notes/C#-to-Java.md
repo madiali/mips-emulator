@@ -115,7 +115,7 @@ from `MIPS_Emulator.SpriteMemory.cs`
 * ChatGPT uses [`Class`](https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html) to replace `Type`, so I'll go with that for now.
 * The above *seems* to match the Microsoft article about `Type` in C#.
 
-## Lambda expression getter??
+## [Expression-bodied members](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members)
 
 * As seen in [Mips.cs](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/Mips.cs)
 
