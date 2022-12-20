@@ -1,4 +1,4 @@
-# Some notes regarding C# ==> Java peculiarities:
+# Some notes regarding C# ==> Java peculiarities
 
 ## [Indexer](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers/indexers-in-interfaces)
 
@@ -40,7 +40,7 @@ from `SpriteMemory.cs`
 * Note in the above example that the constructor body is empty, which is weird.
 * After some googling, I don't think C# automatically generates a body for the constructor.
 * So when I've seen a constructor with empty body, I left the Java constructor with an empty body also.
-* But note that in C#, if there is no constructor or a constructor with no parameters, C# does automatically generate a parameter-less constructor, and all fields are set to default values (in the language).
+* But note that in C#, if there is no constructor or a constructor with no parameters, C# does automatically generate a parameter-less constructor, and all fields are set to default values (e.g. 0 for `uint`).
 * [StackOverflow](https://stackoverflow.com/questions/2963742/empty-constructor-or-no-constructor)
 
 ## Signed vs. unsigned
@@ -51,6 +51,9 @@ from `SpriteMemory.cs`
 * Using `long` to support the full range of `uint` doesn't work out
   * For example, Java arrays can't be subscripted by a `long` type. So if we were to use `long`, we'd have to cast to an `int` anyway.
 * The numbers are small enough that the halved range (0-2000000) should be fine.
+* *Note*: `Registers.cs` has two constructors with signatures `RegisterToName(int regNumber)` and `RegisterToName(uint regNumber)`.
+  * The second one is one line of code, `return RegisterToName((int)regNumber);`
+* Since we're just using signed `int`s anyway, I *think* it's fine to leave out the second constructor.
 
 ## Passing value by reference
 
@@ -63,8 +66,9 @@ from `SpriteMemory.cs`
 
 * Java doesn't have namespaces.
 * We use `package` at the top of classes.
+* *Note*: I (Jesse) can't figure out how to turn folders into packages in IntelliJ?? I'll add in the `package` keyword later when I figure that out.
 
-## `readonly`
+## [`readonly`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/readonly)
 
 * Java doesn't have the `readonly` keyword.
 * We use `final` instead.
