@@ -2,7 +2,6 @@ package MIPS_Emulator.Instructions.IType;
 
 import MIPS_Emulator.Instructions.Instruction;
 import MIPS_Emulator.MemoryMapper;
-import MIPS_Emulator.Mips;
 import MIPS_Emulator.Registers;
 
 public abstract class ITypeInstruction implements Instruction {
