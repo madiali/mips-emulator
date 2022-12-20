@@ -58,12 +58,12 @@ public class Mips {
     }
 
 	public void executeNext() {
-		InstrMem.getInstruction(pc).execute(memory, reg);
+		pc = InstrMem.getInstruction(pc).execute(pc, memory, reg);
 	}
 
 	public void executeAll() {
 		while (pc < InstrMem.size) {
-			InstrMem.getInstruction(pc).execute(memory, reg);
+			pc = InstrMem.getInstruction(pc).execute(pc, memory, reg);
 		}
 	}
 }
