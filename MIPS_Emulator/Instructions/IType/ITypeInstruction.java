@@ -25,6 +25,6 @@ public abstract class ITypeInstruction implements Instruction {
 
     @Override
     public String toString() {
-        return name + " " + Registers.registerToName(t) + ", " + Registers.registerToName(s) + ", " + immediate;
+        return name + " " + Registers.registerToName(t) + ", " + Registers.registerToName(s) + ", " + String.format("0x%08X", immediate);
     }
 }
