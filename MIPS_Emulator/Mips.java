@@ -3,7 +3,7 @@ package MIPS_Emulator;
 import java.util.*;
 
 public class Mips {
-    private int pc;
+    private ProgramCounter pc;
 	public Map<Class, List<MemoryUnit>> memDict;
 	public InstructionMemory instrMem;
 	public MemoryMapper memory;
@@ -12,7 +12,7 @@ public class Mips {
 	public float clockSpeed;
 
 	public Mips(int pc, Map<Class, List<MemoryUnit>> memDict, Registers reg, String name, float clockSpeed) {
-		this.pc = pc;
+		this.pc = new ProgramCounter(pc);
 		this.memDict = memDict;
 		this.instrMem = (InstructionMemory) memDict[typeof(InstructionMemory)][0];
 		this.memory = (MemoryMapper) memDict[typeof(MemoryMapper)][0];
@@ -22,11 +22,11 @@ public class Mips {
 	}
 
     public int getPC() {
-       return pc;
+       return pc.getPC();
     }
 
     public void setPC(int newPC) {
-        pc = newPC;
+        pc.setPC(newPC);
     }
 
     public InstructionMemory getInstrMem() {
@@ -58,12 +58,12 @@ public class Mips {
     }
 
 	public void executeNext() {
-		pc = InstrMem.getInstruction(pc).execute(pc, memory, reg);
+		InstrMem.getInstruction(pc).execute(pc, memory, reg);
 	}
 
 	public void executeAll() {
 		while (pc < InstrMem.size) {
-			pc = InstrMem.getInstruction(pc).execute(pc, memory, reg);
+			InstrMem.getInstruction(pc).execute(pc, memory, reg);
 		}
 	}
 }
