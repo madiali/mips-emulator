@@ -71,7 +71,6 @@ from `MIPS_Emulator.SpriteMemory.cs`
 ## [`readonly`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/readonly)
 
 * Java doesn't have the `readonly` keyword.
-* We use `final` instead.
 
 ## [`internal class`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/internal)
 

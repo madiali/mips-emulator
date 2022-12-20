@@ -1,5 +1,8 @@
 package MIPS_Emulator.Instructions;
 
+import MIPS_Emulator.MemoryMapper;
+import MIPS_Emulator.Registers;
+
 public interface Instruction {
-    void Execute(MemoryMapper mem, Registers reg);
+    void execute(MemoryMapper mem, Registers reg);
 }
