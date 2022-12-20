@@ -2,6 +2,7 @@ package MIPS_Emulator.Instructions.IType;
 
 import MIPS_Emulator.Instructions.Instruction;
 import MIPS_Emulator.MemoryMapper;
+import MIPS_Emulator.ProgramCounter;
 import MIPS_Emulator.Registers;
 
 public abstract class ITypeInstruction implements Instruction {
@@ -26,7 +27,8 @@ public abstract class ITypeInstruction implements Instruction {
         return immediate;
     }
 
-    public abstract int execute(int pc, MemoryMapper mem, Registers reg);
+    @Override
+    public abstract void execute(ProgramCounter pc, MemoryMapper mem, Registers reg);
 
     protected static int signExtend(int immediate) {
         int sign = (immediate >> 15) & 0b1;
