@@ -46,7 +46,7 @@ public class MappedMemoryUnit {
     }
 
     /**
-     * DANGER REGARDING BITMASK, READ BELOW
+     * WARNING REGARDING BITMASK, READ BELOW
      * @param memUnit
      * @param bitmask If this bitmask is the full 32 bits AND the 31'th bit is 1, then there will be undefined behavior.
      *                This is due to implementation (Integer.parseInt) and uint vs. int.
@@ -61,7 +61,13 @@ public class MappedMemoryUnit {
         }
         this.memUnit = memUnit;
         this.startAddr = Integer.parseInt(cleanedBitmask.replace("x", "0"), 2);
+        if (this.startAddr < 0) {
+            throw new ArithmeticException("StartAddr is negative in MappedMemoryUnit.java. Its value is " + this.startAddr);
+        }
         this.endAddr = Integer.parseInt(cleanedBitmask.replace("x", "1"), 2);
+        if (this.endAddr < 0) {
+            throw new ArithmeticException("EndAddr is negative in MappedMemoryUnit.java. Its value is " + this.endAddr);
+        }
         this.name = (name == null) ? memUnit.getClass().getName() : name;
     }
 
