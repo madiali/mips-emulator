@@ -4,65 +4,66 @@ import java.util.*;
 
 public class Mips {
     private int pc;
-	public Map<Class, List<MemoryUnit>> MemDict;
+	public Map<Class, List<MemoryUnit>> memDict;
+	public InstructionMemory instrMem;
+	public MemoryMapper memory;
+	public Registers reg;
+	public String name;
+	public float clockSpeed;
 
-	public int Pc;
-	public InstructionMemory InstrMem;
-	public MemoryMapper Memory;
-	public Registers Reg;
-	public String Name;
-	public float ClockSpeed;
-
-	public Mips(int pc, Map<Class, List<MemoryUnit>> memDict, Registers reg = null, string name = "", float clockSpeed = 0) {
+	public Mips(int pc, Map<Class, List<MemoryUnit>> memDict, Registers reg, String name, float clockSpeed) {
 		this.pc = pc;
-		this.MemDict = memDict;
-		this.InstrMem = (InstructionMemory) memDict[typeof(InstructionMemory)][0];
-		this.Memory = (MemoryMapper) memDict[typeof(MemoryMapper)][0];
-		this.Reg = reg ?? new Registers();
-		this.Name = name;
-		this.ClockSpeed = clockSpeed;
+		this.memDict = memDict;
+		this.instrMem = (InstructionMemory) memDict[typeof(InstructionMemory)][0];
+		this.memory = (MemoryMapper) memDict[typeof(MemoryMapper)][0];
+		this.reg = (reg == null) ? new Registers() : reg;
+		this.name = (name == null) ? "" : name;
+		this.clockSpeed = (clockSpeed <= 0) ? 0 : clockSpeed;
 	}
 
-    public void SetPC(int val) {
-        pc = val;
-        Pc = val;
+    public int getPC() {
+       return pc;
     }
 
-    public InstructionMemory GetInstrMem() {
-        return InstrMem;
+    public void setPC(int newPC) {
+        pc = newPC;
     }
 
-    public MemoryMapper GetMemory() {
-        return Memory;
+    public InstructionMemory getInstrMem() {
+        return instrMem;
     }
 
-    public Registers GetReg() {
-        return Reg;
+    public MemoryMapper getMemory() {
+        return memory;
     }
 
-    public String GetName() {
-        return Name;
+    public Registers getReg() {
+        return reg;
     }
 
-    public void SetName(String newName) {
-        Name = newName;
+    public String getName() {
+        return name;
     }
 
-    public float GetClockSpeed() {
-        return ClockSpeed;
+    public void setName(String newName) {
+        name = newName;
     }
 
-    public void SetClockSpeed(float newClockSpeed) {
-        ClockSpeed = newClockSpeed;
+    public float getClockSpeed() {
+        return clockSpeed;
     }
 
-	public void ExecuteNext() {
-		InstrMem.GetInstruction(pc).Execute(Memory, Reg);
+    public void setClockSpeed(float newClockSpeed) {
+        clockSpeed = newClockSpeed;
+    }
+
+	public void executeNext() {
+		InstrMem.getInstruction(pc).execute(memory, reg);
 	}
 
-	public void ExecuteAll() {
-		while (pc < InstrMem.Size) {
-			InstrMem.GetInstruction(pc).Execute(Memory, Reg);
+	public void executeAll() {
+		while (pc < InstrMem.size) {
+			InstrMem.getInstruction(pc).execute(memory, reg);
 		}
 	}
 }
