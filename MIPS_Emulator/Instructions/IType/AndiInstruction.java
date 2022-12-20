@@ -4,15 +4,15 @@ import MIPS_Emulator.MemoryMapper;
 import MIPS_Emulator.ProgramCounter;
 import MIPS_Emulator.Registers;
 
-public class AddiInstruction extends ITypeInstruction {
-    public AddiInstruction(int t, int s, int immediate) {
+public class AndiInstruction extends ITypeInstruction {
+    public AndiInstruction(int t, int s, int immediate) {
         super(t, s, immediate);
-        super.name = "ADDI";
+        super.name = "ANDI";
     }
 
     @Override
     public void execute(ProgramCounter pc, MemoryMapper mem, Registers reg) {
-        reg.setRegister(super.t, reg.getRegister(super.s) + signExtend(super.immediate));
+        reg.setRegister(super.t, super.s & super.immediate);
         pc.incrementPC(4);
     }
 }

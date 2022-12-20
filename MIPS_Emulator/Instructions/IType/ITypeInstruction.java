@@ -7,24 +7,12 @@ import MIPS_Emulator.Registers;
 
 public abstract class ITypeInstruction implements Instruction {
     protected String name = null;
-    private int t, s, immediate;
+    protected final int t, s, immediate;
 
     protected ITypeInstruction(int t, int s, int immediate) {
         this.t = t;
         this.s = s;
         this.immediate = immediate;
-    }
-
-    protected int getT() {
-        return t;
-    }
-
-    protected int getS() {
-        return s;
-    }
-
-    protected int getImmediate() {
-        return immediate;
     }
 
     @Override
