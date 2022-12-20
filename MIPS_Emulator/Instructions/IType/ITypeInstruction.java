@@ -25,7 +25,6 @@ public abstract class ITypeInstruction implements Instruction {
 
     @Override
     public String toString() {
-        return name + " "
-                $"{Name} {Registers.RegisterToName(T)}, {Registers.RegisterToName(S)}, 0x{Immediate:X4}";
+        return name + " " + Registers.registerToName(t) + ", " + Registers.registerToName(s) + ", " + immediate;
     }
 }

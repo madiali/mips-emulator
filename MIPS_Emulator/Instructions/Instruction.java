@@ -5,5 +5,5 @@ import MIPS_Emulator.Mips;
 import MIPS_Emulator.Registers;
 
 public interface Instruction {
-    void execute(Mips mips, MemoryMapper mem, Registers reg);
+    int execute(int pc, MemoryMapper mem, Registers reg);
 }
