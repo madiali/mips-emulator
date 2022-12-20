@@ -127,10 +127,16 @@ public uint Pc => pc;
 * I think this isn't two separate `pc` variables. Instead, the latter is a `getPC` method that returns `pc`.
 * Given that line of code, ChatGPT generates a getter method, so I think the above is correct.
 
-## [`??`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator)
+## [`x ?? y`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator)
 
 * Null-coalescing operator
 * Bruh what is this syntax
+* `(x == null) ? y : x`
+
+## [`x?.y`](https://stackoverflow.com/questions/37851873/what-does-mean-after-variable-in-c)
+
+* Null-conditional operator
+* Return `null` if `x` is `null`, else return `x.y`
  
 ## `GetType().Name`
 
@@ -150,3 +156,37 @@ public uint Pc => pc;
 
 * We use `Pattern` and `Matcher` instead.
  
+## [`compareTo` with ints](https://learn.microsoft.com/en-us/dotnet/api/system.string.compareto?view=net-7.0)
+
+|Condition| Return value |
+|---|--------------|
+|This precedes arg| <0           |
+|Equal| 0            |
+|This follows arg| \>0          |
+
+Same as Java's [`Integer.compare(x, y)`](https://www.geeksforgeeks.org/java-integer-compare-method/)
+
+| Condition |Return value|
+|-----------|---|
+| x < y     |<0|
+| x == y    |0|
+| x \> y    |>0|
+
+## [`MemUnits = new List<MappedMemoryUnit> {mappedMem};`](https://stackoverflow.com/questions/39548446/c-sharp-list-definition-parentheses-vs-curly-braces)
+
+* From `MemoryMapper`
+* `this.memUnits = new ArrayList<MappedMemoryUnit>();`
+  * Unfortunately, this makes it a little less generic. But should be fine.
+* `this.memUnits.add(mappedMem);`
+
+## [`"0x{address:X8}"`]
+
+* As seen in [`MemoryMapper.cs`](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/MemoryMapper.cs) and some other file that I forget, but Ctrl-F for "X8" to find it
+* In an f-string, convert the `uint` address to an 8-digit hex value
+* We use `String.format("0x%08X", address)`
+* The `08`, instead of just `8`, is important. Otherwise, leading 0's aren't displayed (instead, blank spaces take the spot of leading 0's).
+
+## [Custom exceptions]
+
+* In [`MemoryMapper.cs`](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/MemoryMapper.cs), they create a custom exception within the same file.
+* Per Java convention, we create separate classes for custom Exceptions.

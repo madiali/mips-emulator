@@ -68,7 +68,8 @@ public class MappedMemoryUnit {
         if (this.endAddr < 0) {
             throw new ArithmeticException("EndAddr is negative in MappedMemoryUnit.java. Its value is " + this.endAddr);
         }
-        this.name = (name == null) ? memUnit.getClass().getName() : name;
+        // This replaces the null coalescing (??) and null conditional (x?.y) operators in the original code
+        this.name = (name == null) ? ((memUnit == null) ? null : memUnit.getClass().getName()) : name;
     }
 
     /**
