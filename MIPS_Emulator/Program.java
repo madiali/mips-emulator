@@ -55,12 +55,8 @@ class Program {
         case 'r':
           System.out.println("Register Contents:");
           for (int i = 0; i < 32; i++) {
-            System.out.println(
-                ""
-                    + Registers.RegisterToName(i)
-                    + "\t"
-                    + mips.Reg[i]); // Use "" + to ensure that the values are treated as strings and
-            // concatenated
+            // Use "" + ... to make sure the values are treated as Strings and concatenated
+            System.out.println("" + Registers.RegisterToName(i) + "\t" + mips.Reg[i]);
           }
           break;
         case 'i':

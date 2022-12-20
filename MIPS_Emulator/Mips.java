@@ -1,8 +1,10 @@
 package MIPS_Emulator;
 
+import java.util.*;
+
 public class Mips {
     private int pc;
-	public IDictionary<Type, List<MemoryUnit>> MemDict;
+	public Map<Class, List<MemoryUnit>> MemDict;
 
 	public int Pc;
 	public InstructionMemory InstrMem;
@@ -11,7 +13,7 @@ public class Mips {
 	public String Name;
 	public float ClockSpeed;
 
-	public Mips(int pc, IDictionary<Type, List<MemoryUnit>> memDict, Registers reg = null, string name = "", float clockSpeed = 0) {
+	public Mips(int pc, Map<Class, List<MemoryUnit>> memDict, Registers reg = null, string name = "", float clockSpeed = 0) {
 		this.pc = pc;
 		this.MemDict = memDict;
 		this.InstrMem = (InstructionMemory) memDict[typeof(InstructionMemory)][0];

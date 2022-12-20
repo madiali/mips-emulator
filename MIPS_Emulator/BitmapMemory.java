@@ -1,5 +1,7 @@
 package MIPS_Emulator;
 
+import java.util.regex.*;
+
 public class BitmapMemory implements MemoryUnit {
   private int wordSize;
   private final int[] memory;
@@ -11,8 +13,7 @@ public class BitmapMemory implements MemoryUnit {
 
   /** wordSize default value 4 */
   public BitmapMemory(int size) {
-    this.memory = new int[size];
-    this.wordSize = 4;
+    this(size, 4);
   }
 
   public BitmapMemory(int[] memory, int wordSize) {
@@ -22,8 +23,7 @@ public class BitmapMemory implements MemoryUnit {
 
   /** wordSize default value 4 */
   public BitmapMemory(int[] memory) {
-    this.memory = memory;
-    this.wordSize = 4;
+    this(memory, 4);
   }
 
   @Override

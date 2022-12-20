@@ -1,0 +1,102 @@
+package MIPS_Emulator;
+
+import java.util.regex.*;
+
+public class MappedMemoryUnit {
+    private MemoryUnit memUnit;
+    private int startAddr;
+    private int endAddr;
+    private String name;
+    // The original code uses a Regex type, but that doesn't exist in Java
+    private final Pattern bitmaskFormat = Pattern.compile("^(0|1)+x*$");
+
+    public MappedMemoryUnit(MemoryUnit memUnit, int startAddr, int endAddr, String name) {
+        this.memUnit = memUnit;
+        this.startAddr = startAddr;
+        this.endAddr = endAddr;
+        this.name = (name == null) ? memUnit.getClass().getName() : name;
+    }
+
+    /**
+     * Overloaded constructor
+     * Default value of String name is null in original code
+     * @param memUnit
+     * @param startAddr
+     * @param endAddr
+     */
+    public MappedMemoryUnit(MemoryUnit memUnit, int startAddr, int endAddr) {
+        // If there is no String name argument, then null is the default value
+        // In the original class, if name is null, then this.Name is set to memUnit.getClass().getName(), so I simply pass this into the base constructor
+        // This is becoming a huge hassle... we might want to just not implement default values in constructors...
+        this(memUnit, startAddr, endAddr, null);
+    }
+
+    public MappedMemoryUnit(MemoryUnit memUnit, int startAddr, String name) {
+        this(memUnit, startAddr, startAddr + memUnit.getSize() - 1, name);
+    }
+
+    /**
+     * Overloaded constructor
+     * If the only args are memUnit and startAddr, then String name has default value null
+     * @param memUnit
+     * @param startAddr
+     */
+    public MappedMemoryUnit(MemoryUnit memUnit, int startAddr) {
+        this(memUnit, startAddr, null);
+    }
+
+    public MappedMemoryUnit(MemoryUnit memUnit, String bitmask, String name) {
+        String cleanedBitmask = bitmask.trim().toLowerCase().replace("_", "");
+        Matcher matcher = bitmaskFormat.matcher(cleanedBitmask);
+        boolean matchFound = matcher.find();
+        if (!matchFound) {
+            throw new IllegalArgumentException("Invalid bitmask: \"" + bitmask + "\", must match regex /" + bitmaskFormat.toString() + "/");
+        }
+        this.memUnit = memUnit;
+        this.startAddr = Integer.parseInt(cleanedBitmask.replace("x", "0"), 2);
+        this.endAddr = Integer.parseInt(cleanedBitmask.replace("x", "1"), 2);
+        this.name = (name == null) ? memUnit.getClass().getName() : name;
+    }
+
+    /**
+     * Overloaded constructor
+     * If the only args are memUnit and bitmask, then String name is null
+     * @param memUnit
+     * @param bitmask
+     */
+    public MappedMemoryUnit(MemoryUnit memUnit, String bitmask) {
+        this(memUnit, bitmask, null);
+    }
+
+    public int getMappedMemoryUnit(int index) {
+        return memUnit.getMemoryUnit(index);
+    }
+
+    public void setMappedMemoryUnit(int index, int value) {
+        memUnit.setMemoryUnit(index, value);
+    }
+
+    public MemoryUnit getMemUnit() {
+        return memUnit;
+    }
+
+    public int getStartAddr() {
+        return startAddr;
+    }
+
+    public int getEndAddr() {
+        return endAddr;
+    }
+
+    public int getSize() {
+        return memUnit.getSize();
+    }
+
+    public int getWordSize() {
+        return memUnit.getWordSize();
+    }
+
+    public String getName() {
+        return name;
+    }
+}

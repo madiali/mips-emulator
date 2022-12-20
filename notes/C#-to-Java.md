@@ -103,3 +103,45 @@ from `MIPS_Emulator.SpriteMemory.cs`
 
 * We use `java.io.File`, though it isn't exactly equivalent.
 * `FileInfo` seems like it doesn't have read/write methods, just information like `CreationTime`, `Directory`, `LastAccessTime`, etc.
+
+## [`IDictionary`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.idictionary-2?view=net-7.0)
+
+* We use `Map`.
+
+## [`Type`](https://learn.microsoft.com/en-us/dotnet/api/system.type?view=net-7.0)
+
+* As seen in [Mips.cs](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/Mips.cs)
+* `public IDictionary<Type, List<MemoryUnit>> MemDict;`
+* ChatGPT uses [`Class`](https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html) to replace `Type`, so I'll go with that for now.
+* The above *seems* to match the Microsoft article about `Type` in C#.
+
+## Lambda expression getter??
+
+* As seen in [Mips.cs](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/Mips.cs)
+
+```C#
+private uint pc;
+public uint Pc => pc;
+```
+
+* I think this isn't two separate `pc` variables. Instead, the latter is a `getPC` method that returns `pc`.
+* Given that line of code, ChatGPT generates a getter method, so I think the above is correct.
+
+## [`??`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator)
+
+* Null-coalescing operator
+* Bruh what is this syntax
+ 
+## [`GetType().Name`]
+
+* As seen in [MemoryMappedUnit.cs](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/MappedMemoryUnit.cs)
+* Java's `.getClass().getName()` does the same thing
+
+## [String formatting stuff]
+
+* `.Trim()` -> `.trim()`
+* `.ToLower()` -> `.toLowerCase()`
+* `.Replace(oldchar, newchar)` -> `.replace(oldchar, newchar)`
+* `Convert.ToUInt32(String, radix)` -> `Integer.parseInt(String, radix)`
+  * Oh crap it's possible this might actually cause issues since `Integer` is signed.
+  * TODO: Check this!!!
