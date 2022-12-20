@@ -72,3 +72,32 @@ from `SpriteMemory.cs`
 
 * Java doesn't have the `readonly` keyword.
 * We use `final` instead.
+
+## [`internal class`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/internal)
+
+* This is an access modifier.
+* According to [StackOverflow](https://stackoverflow.com/questions/5981107/is-there-anything-like-an-internal-class-in-java), we get equivalent behavior in Java by dropping the access modifier for the class.
+
+## [`Console.WriteLine`](https://learn.microsoft.com/en-us/dotnet/api/system.console.writeline?view=net-7.0)
+
+* We use `System.out.println`, which is [equivalent](https://zetcode.com/csharp/basics/).
+ 
+## [`Console.ReadLine`](https://learn.microsoft.com/en-us/dotnet/api/system.console.readline?view=net-7.0)
+
+* We use `Scanner.nextLine()`.
+
+## [`Console.ReadKey()`](https://learn.microsoft.com/en-us/dotnet/api/system.console.readkey?view=net-7.0)
+
+* Seen in `Program.cs`.
+* This method blocks until a key is pressed, then gets the key.
+* [Java can't handle non-blocking (i.e. user doesn't have to hit Enter) input easily](https://stackoverflow.com/questions/1066318/how-to-read-a-single-char-from-the-console-in-java-as-the-user-types-it?noredirect=1&lq=1), so we use `nextLine()`, which requires the user to hit Enter after typing something.
+* This is fine in `Program.cs`, where user input isn't fed into a game that requires non-blocking input.
+  * I use `nextLine()` and require the user to hit Enter for now... TODO need to improve this later.
+* This will not be fine when we get to game implementation, and we'll need to use a workaround, which exists.
+* [StackOverflow](https://stackoverflow.com/questions/1066318/how-to-read-a-single-char-from-the-console-in-java-as-the-user-types-it) and [information from 68 upvote answer](https://darkcoding.net/software/non-blocking-console-io-is-not-possible/).
+* I (Jesse) haven't read it too carefully since it's not necessary *yet*.
+
+## [`FileInfo` class](https://www.javatpoint.com/c-sharp-fileinfo)
+
+* We use `java.io.File`, though it isn't exactly equivalent.
+* `FileInfo` seems like it doesn't have read/write methods, just information like `CreationTime`, `Directory`, `LastAccessTime`, etc.
