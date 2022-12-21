@@ -5,14 +5,14 @@ import MIPS_Emulator.ProgramCounter;
 import MIPS_Emulator.Registers;
 
 public class NorInstruction extends RTypeInstruction {
-    public NorInstruction(int d, int s, int t) {
-        super(d, s, t);
-        this.name = "NOR";
-    }
+  public NorInstruction(int d, int s, int t) {
+    super(d, s, t);
+    this.name = "NOR";
+  }
 
-    @Override
-    public void execute(ProgramCounter pc, MemoryMapper mem, Registers reg) {
-        reg.setRegister(d, ~(reg.getRegister(s) | reg.getRegister(t)));
-        pc.incrementPC(4);
-    }
+  @Override
+  public void execute(ProgramCounter pc, MemoryMapper mem, Registers reg) {
+    reg.setRegister(d, ~(reg.getRegister(s) | reg.getRegister(t)));
+    pc.incrementPC(4);
+  }
 }

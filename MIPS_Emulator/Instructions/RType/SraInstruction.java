@@ -4,15 +4,16 @@ import MIPS_Emulator.MemoryMapper;
 import MIPS_Emulator.ProgramCounter;
 import MIPS_Emulator.Registers;
 
-public class AdduInstruction extends RTypeInstruction {
-  public AdduInstruction(int d, int s, int t) {
-    super(d, s, t);
-    this.name = "ADDU";
+public class SraInstruction extends RTypeInstruction {
+  public SraInstruction(int d, int t, int shamt) {
+    super(d, shamt, t);
+    this.name = "SRA";
   }
 
   @Override
   public void execute(ProgramCounter pc, MemoryMapper mem, Registers reg) {
-    reg.setRegister(d, reg.getRegister(s) + reg.getRegister(t));
+    int shamt = s;
+    reg.setRegister(d, reg.getRegister(t) >> shamt);
     pc.incrementPC(4);
   }
 }
