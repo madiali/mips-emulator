@@ -206,6 +206,10 @@ Same as Java's [`Integer.compare(x, y)`](https://www.geeksforgeeks.org/java-inte
 * Unsigned right shift that always pads with 0's
 * Same as Java's [`>>>`](https://www.programiz.com/java-programming/bitwise-operators)
 
+## [`enum`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum)
+
+* tl;dr they're different, and I wasted a lot of time trying to get it to work.
+
 ## Exceptions
 
 * As seen in [`InstructionMemory.cs`](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/InstructionMemory.cs) in the indexer and [InstructionFactory.cs](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/InstructionFactory.cs), C# methods that throw Exceptions (at least some types of Exceptions) don't need to specify in the method signature that they throw Exceptions.
