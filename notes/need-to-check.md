@@ -7,3 +7,4 @@ Here are some things that need to be tested:
   * Also in MemoryMapper, if the addresses exceed 2 million, that'd be bad.
 * `MemoryMapper`: should `findContainingUnit` and `resolveAddress` be `static` methods?
 * IType instructions: Access fields with this.s, this.t, this.imm, or super.s, super.t, super.imm, or no prefix all have the same behavior?
+* Registers: The original code says `registers` is `readonly` but has a setter method that modifies `registers`?

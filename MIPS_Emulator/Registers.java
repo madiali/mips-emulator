@@ -1,7 +1,9 @@
 package MIPS_Emulator;
 
 public class Registers {
-  private final int[] registers;
+  // TODO: Why is this readonly in the original code? The setter method modifies the array??
+  // For now, I'm not going to use the final keyword...
+  private int[] registers;
 
   public Registers() {
     // Default value for `uint` is 0
