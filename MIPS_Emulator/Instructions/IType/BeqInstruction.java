@@ -7,7 +7,7 @@ import MIPS_Emulator.Registers;
 public class BeqInstruction extends ITypeInstruction {
     public BeqInstruction(int s, int t, int offset) {
         super(t, s, offset);
-        super.name = "BEQ";
+        this.name = "BEQ";
     }
 
     @Override

@@ -7,12 +7,12 @@ import MIPS_Emulator.Registers;
 public class AddiInstruction extends ITypeInstruction {
     public AddiInstruction(int t, int s, int immediate) {
         super(t, s, immediate);
-        super.name = "ADDI";
+        this.name = "ADDI";
     }
 
     @Override
     public void execute(ProgramCounter pc, MemoryMapper mem, Registers reg) {
-        reg.setRegister(super.t, reg.getRegister(super.s) + signExtend(super.immediate));
+        reg.setRegister(t, reg.getRegister(s) + signExtend(immediate));
         pc.incrementPC(4);
     }
 }

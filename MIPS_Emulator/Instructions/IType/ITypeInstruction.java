@@ -28,4 +28,8 @@ public abstract class ITypeInstruction implements Instruction {
     public String toString() {
         return name + " " + Registers.registerToName(t) + ", " + Registers.registerToName(s) + ", " + String.format("0x%04X", immediate);
     }
+
+    public String getName() {
+        return this.name;
+    }
 }

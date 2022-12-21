@@ -7,7 +7,7 @@ import MIPS_Emulator.Registers;
 public class BneInstruction extends ITypeInstruction {
     public BneInstruction(int s, int t, int offset) {
         super(t, s, offset);
-        super.name = "BNE";
+        this.name = "BNE";
     }
 
     @Override
