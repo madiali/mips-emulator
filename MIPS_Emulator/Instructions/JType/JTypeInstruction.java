@@ -6,7 +6,7 @@ import MIPS_Emulator.ProgramCounter;
 import MIPS_Emulator.Registers;
 
 public abstract class JTypeInstruction implements Instruction {
-  protected String name = null;
+  protected String name;
   protected final int target;
 
   protected JTypeInstruction(int target) {
@@ -19,5 +19,9 @@ public abstract class JTypeInstruction implements Instruction {
   @Override
   public String toString() {
     return name + " " + String.format("0x%04X", target);
+  }
+
+  public String getName() {
+    return this.name;
   }
 }
