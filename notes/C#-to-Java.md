@@ -196,9 +196,12 @@ Same as Java's [`Integer.compare(x, y)`](https://www.geeksforgeeks.org/java-inte
 
 * No direct counterpart in Java
 
-```C#
-protected abstract string Name { get; }
-```
+## [`>>`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
 
-* From [`ITypeInstruction.cs`](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/Instructions/IType/ITypeInstruction.cs)
-* We omit the getter and assume that derived classes will implement a getter
+* Signed (arithmetic) right shift that copies the sign bit
+* Same as Java's [`>>`](https://www.programiz.com/java-programming/bitwise-operators) (also signed)
+
+## [`>>>`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+
+* Unsigned right shift that always pads with 0's
+* Same as Java's [`>>>`](https://www.programiz.com/java-programming/bitwise-operators)
