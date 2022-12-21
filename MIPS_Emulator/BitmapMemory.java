@@ -4,7 +4,7 @@ import java.util.regex.*;
 
 public class BitmapMemory implements MemoryUnit {
   private int wordSize;
-  private final int[] memory;
+  private int[] memory;
 
   public BitmapMemory(int size, int wordSize) {
     this.memory = new int[size];
