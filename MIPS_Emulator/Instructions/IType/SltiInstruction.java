@@ -4,15 +4,16 @@ import MIPS_Emulator.MemoryMapper;
 import MIPS_Emulator.ProgramCounter;
 import MIPS_Emulator.Registers;
 
-public class AndiInstruction extends ITypeInstruction {
-  public AndiInstruction(int t, int s, int immediate) {
+public class SltiInstruction extends ITypeInstruction {
+  public SltiInstruction(int t, int s, int immediate) {
     super(t, s, immediate);
-    this.name = "ANDI";
+    this.name = "SLTI";
   }
 
   @Override
   public void execute(ProgramCounter pc, MemoryMapper mem, Registers reg) {
-    reg.setRegister(t, s & immediate);
+    boolean isLessThanImmediate = reg.getRegister(s) < signExtend(immediate);
+    reg.setRegister(t, (isLessThanImmediate ? 1 : 0));
     pc.incrementPC(4);
   }
 }
