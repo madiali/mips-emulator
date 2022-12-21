@@ -23,6 +23,10 @@ public class InstructionFactory {
     private final int TWENTY_SIX_MASK = 0b11111111111111111111111111;
 
     /**
+     * The original has no constructor, so ours doesn't have a constructor either (though an InstructionFactory is constructed in InstructionMemory.java)
+     */
+
+    /**
      * This is modified from the original code!! This method does not throw an exception when instruction has a bad opcode or func bits, instead returns null on failure.
      * When using this method, must check that it doesn't return null.
      * @param instruction

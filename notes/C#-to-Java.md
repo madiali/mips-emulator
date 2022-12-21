@@ -205,3 +205,12 @@ Same as Java's [`Integer.compare(x, y)`](https://www.geeksforgeeks.org/java-inte
 
 * Unsigned right shift that always pads with 0's
 * Same as Java's [`>>>`](https://www.programiz.com/java-programming/bitwise-operators)
+
+## Exceptions
+
+* As seen in [`InstructionMemory.cs`](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/InstructionMemory.cs) in the indexer and [InstructionFactory.cs](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/InstructionFactory.cs), C# methods that throw Exceptions (at least some types of Exceptions) don't need to specify in the method signature that they throw Exceptions.
+* However, Java has rules regarding checked and unchecked Exceptions.
+* In general, we throw unchecked exceptions, such as `IllegalArgumentException`, because that doesn't require the method signature to be changed.
+  * Especially useful when throwing exception in a method that must follow an interface and can't have a different signature from the interface.
+  * This is done in the setter method in `InstructionMemory.java`.
+* Also in InstructionMemory.cs, the indexer getter method that is specified to return `uint` is able to throw an `Exception` without returning? Can't do that in Java...
