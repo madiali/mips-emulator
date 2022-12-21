@@ -14,8 +14,8 @@ public class Mips {
 	public Mips(int pc, Map<Class, List<MemoryUnit>> memDict, Registers reg, String name, float clockSpeed) {
 		this.pc = new ProgramCounter(pc);
 		this.memDict = memDict;
-		this.instrMem = (InstructionMemory) memDict[typeof(InstructionMemory)][0];
-		this.memory = (MemoryMapper) memDict[typeof(MemoryMapper)][0];
+		this.instrMem = (InstructionMemory) memDict.get(InstructionMemory.class).get(0);
+		this.memory = (MemoryMapper) memDict.get(MemoryMapper.class).get(0);
 		this.reg = (reg == null) ? new Registers() : reg;
 		this.name = (name == null) ? "" : name;
 		this.clockSpeed = (clockSpeed <= 0) ? 0 : clockSpeed;
