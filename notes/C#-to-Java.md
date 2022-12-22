@@ -15,7 +15,7 @@ public uint this[uint index] {
 }
 ```
 
-from `MIPS_Emulator.SpriteMemory.cs`
+from `mips.SpriteMemory.cs`
 
 * Indexers do not exist in Java.
 * Our getters have signature `getter(index)`.
@@ -24,12 +24,12 @@ from `MIPS_Emulator.SpriteMemory.cs`
 ## Constructor default values
 
 ```C#
-public MIPS_Emulator.SpriteMemory(uint size, uint wordSize = 4) {
+public mips.SpriteMemory(uint size, uint wordSize = 4) {
 
 }
 ```
 
-from `MIPS_Emulator.SpriteMemory.cs`
+from `mips.SpriteMemory.cs`
 
 * Java does not support default values in constructors.
 * Instead, we overload the constructor and use [constructor chaining](https://www.geeksforgeeks.org/constructor-chaining-java-examples/) where convenient.
@@ -52,7 +52,7 @@ from `MIPS_Emulator.SpriteMemory.cs`
 * Using `long` to support the full range of `uint` doesn't work out
   * For example, Java arrays can't be subscripted by a `long` type. So if we were to use `long`, we'd have to cast to an `int` anyway.
 * The numbers are small enough that the halved range (0-2000000) should be fine.
-* *Note*: `MIPS_Emulator.Registers.cs` has two constructors with signatures `RegisterToName(int regNumber)` and `RegisterToName(uint regNumber)`.
+* *Note*: `mips.Registers.cs` has two constructors with signatures `RegisterToName(int regNumber)` and `RegisterToName(uint regNumber)`.
   * The second one is one line of code, `return RegisterToName((int)regNumber);`
 * Since we're just using signed `int`s anyway, I *think* it's fine to leave out the second constructor.
 
@@ -89,10 +89,10 @@ from `MIPS_Emulator.SpriteMemory.cs`
 
 ## [`Console.ReadKey()`](https://learn.microsoft.com/en-us/dotnet/api/system.console.readkey?view=net-7.0)
 
-* Seen in `MIPS_Emulator.Program.cs`.
+* Seen in `mips.Program.cs`.
 * This method blocks until a key is pressed, then gets the key.
 * [Java can't handle non-blocking (i.e. user doesn't have to hit Enter) input easily](https://stackoverflow.com/questions/1066318/how-to-read-a-single-char-from-the-console-in-java-as-the-user-types-it?noredirect=1&lq=1), so we use `nextLine()`, which requires the user to hit Enter after typing something.
-* This is fine in `MIPS_Emulator.Program.cs`, where user input isn't fed into a game that requires non-blocking input.
+* This is fine in `mips.Program.cs`, where user input isn't fed into a game that requires non-blocking input.
   * I use `nextLine()` and require the user to hit Enter for now... TODO need to improve this later.
 * This will not be fine when we get to game implementation, and we'll need to use a workaround, which exists.
 * [StackOverflow](https://stackoverflow.com/questions/1066318/how-to-read-a-single-char-from-the-console-in-java-as-the-user-types-it) and [information from 68 upvote answer](https://darkcoding.net/software/non-blocking-console-io-is-not-possible/).

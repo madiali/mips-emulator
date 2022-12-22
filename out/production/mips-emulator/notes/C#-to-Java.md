@@ -196,9 +196,25 @@ Same as Java's [`Integer.compare(x, y)`](https://www.geeksforgeeks.org/java-inte
 
 * No direct counterpart in Java
 
-```C#
-protected abstract string Name { get; }
-```
+## [`>>`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
 
-* From [`ITypeInstruction.cs`](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/Instructions/IType/ITypeInstruction.cs)
-* We omit the getter and assume that derived classes will implement a getter
+* Signed (arithmetic) right shift that copies the sign bit
+* Same as Java's [`>>`](https://www.programiz.com/java-programming/bitwise-operators) (also signed)
+
+## [`>>>`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+
+* Unsigned right shift that always pads with 0's
+* Same as Java's [`>>>`](https://www.programiz.com/java-programming/bitwise-operators)
+
+## [`enum`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum)
+
+* tl;dr they're different, and I wasted a lot of time trying to get it to work.
+
+## Exceptions
+
+* As seen in [`InstructionMemory.cs`](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/InstructionMemory.cs) in the indexer and [InstructionFactory.cs](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator/InstructionFactory.cs), C# methods that throw Exceptions (at least some types of Exceptions) don't need to specify in the method signature that they throw Exceptions.
+* However, Java has rules regarding checked and unchecked Exceptions.
+* In general, we throw unchecked exceptions, such as `IllegalArgumentException`, because that doesn't require the method signature to be changed.
+  * Especially useful when throwing exception in a method that must follow an interface and can't have a different signature from the interface.
+  * This is done in the setter method in `InstructionMemory.java`.
+* Also in InstructionMemory.cs, the indexer getter method that is specified to return `uint` is able to throw an `Exception` without returning? Can't do that in Java...
