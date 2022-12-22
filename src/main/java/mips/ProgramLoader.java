@@ -59,6 +59,7 @@ public class ProgramLoader {
 
     /**
      * TODO: Should take JToken token parameter
+     * Finish this after buildMemoryUnit and mapMemoryToAddresses
      * @return
      */
     private Map<Class, List<MemoryUnit>> buildMemoryUnits() {
@@ -66,6 +67,43 @@ public class ProgramLoader {
 
         List<MappedMemoryUnit> memUnits = new ArrayList<>();
 
+        return null;
+    }
+
+    /**
+     * Should take a JToken token parameter
+     * @return
+     */
+    private MemoryUnit buildMemoryUnit() {
+        return null;
+    }
+
+    /**
+     * Should take a JToken token parameter
+     * @param mem
+     * @return
+     */
+    private MappedMemoryUnit mapMemoryToAddresses(MemoryUnit mem) {
+        return null;
+    }
+
+    /**
+     * Should take a JToken token parameter
+     * @return
+     */
+    private int[] readInitFile() {
+        return null;
+    }
+
+    private static int parseFormat(String format) {
+        return -1;
+    }
+
+    private int[] parseInitData(String path, int baseNum) {
+        return null;
+    }
+
+    private static String cleanLine(String line) {
         return null;
     }
 }
