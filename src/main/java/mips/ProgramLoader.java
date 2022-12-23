@@ -198,4 +198,8 @@ public class ProgramLoader {
     private static String cleanLine(String line) {
         return null;
     }
+
+    public Mips getMips() {
+        return this.mips;
+    }
 }

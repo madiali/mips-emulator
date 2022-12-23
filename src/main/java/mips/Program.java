@@ -50,7 +50,7 @@ class Program {
         case 'n':
           mips.executeNext();
           System.out.println(
-              "PC: " + mips.getPC() + "\t Instr: " + mips.InstrMem.GetInstruction(mips.Pc));
+              "PC: " + mips.getPC() + "\t Instr: " + mips.getInstrMem().getInstruction(mips.getPC()));
           break;
         case 'r':
           System.out.println("Register Contents:");
@@ -61,7 +61,7 @@ class Program {
           break;
         case 'i':
           System.out.println("Instruction Memory Contents:");
-          for (int i = 0; i < mips.InstrMem.Size; i += mips.InstrMem.wordSize) {
+          for (int i = 0; i < mips.getInstrMem().getSize(); i += mips.getInstrMem().getWordSize()) {
             System.out.println(
                 (mips.getPC() == i)
                     ? ">"
@@ -69,7 +69,7 @@ class Program {
                         + "0x"
                         + Integer.toHexString(i)
                         + " | "
-                        + mips.InstrMem.getInstruction(i));
+                        + mips.getInstrMem().getInstruction(i));
           }
           break;
       }
