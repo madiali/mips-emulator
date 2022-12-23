@@ -1,5 +1,6 @@
 target/
 .idea/
+.idea/workspace.xml
 *.iml
 .idea-backup/
 mips-emulator-backup.iml

@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9fdffa3-657e-4e18-87b4-2c5fdd0f3ada" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea-backup/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea-backup/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea-backup/libraries/Maven__junit_junit_4_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea-backup/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea-backup/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea-backup/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea-backup/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea-backup/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mips-emulator.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/mips/instructions/JType/JalInstructionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/JType/JalInstructionTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +147,7 @@
       <workItem from="1671560440668" duration="9961000" />
       <workItem from="1671583865548" duration="5710000" />
       <workItem from="1671637540774" duration="41788000" />
-      <workItem from="1671814429273" duration="65000" />
+      <workItem from="1671814429273" duration="116000" />
     </task>
     <servers />
   </component>
