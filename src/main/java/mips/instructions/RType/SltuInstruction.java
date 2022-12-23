@@ -17,11 +17,9 @@ public class SltuInstruction extends RTypeInstruction {
     boolean isLessThan;
     if (sUpperBit == 1 && rUpperBit == 0) {
       isLessThan = false;
-    }
-    else if (sUpperBit == 0 && rUpperBit == 1) {
+    } else if (sUpperBit == 0 && rUpperBit == 1) {
       isLessThan = true;
-    }
-    else {
+    } else {
       isLessThan = reg.getRegister(s) < reg.getRegister(t);
     }
     reg.setRegister(d, (isLessThan ? 1 : 0));

@@ -17,11 +17,9 @@ public class SltiuInstruction extends ITypeInstruction {
     boolean isLessThanImmediate;
     if (sUpperBit == 1 && immediateUpperBit == 0) {
       isLessThanImmediate = false;
-    }
-    else if (sUpperBit == 0 && immediateUpperBit == 1) {
+    } else if (sUpperBit == 0 && immediateUpperBit == 1) {
       isLessThanImmediate = true;
-    }
-    else {
+    } else {
       isLessThanImmediate = reg.getRegister(s) < signExtend(immediate);
     }
     reg.setRegister(t, (isLessThanImmediate ? 1 : 0));

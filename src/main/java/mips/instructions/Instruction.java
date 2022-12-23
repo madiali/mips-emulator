@@ -5,5 +5,5 @@ import mips.ProgramCounter;
 import mips.Registers;
 
 public interface Instruction {
-    void execute(ProgramCounter pc, MemoryMapper mem, Registers reg);
+  void execute(ProgramCounter pc, MemoryMapper mem, Registers reg);
 }
