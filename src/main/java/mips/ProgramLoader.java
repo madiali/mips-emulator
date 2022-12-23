@@ -1,17 +1,23 @@
 package mips;
 
 /**
- * NOT DONE
- * For now, we've decided to hardcode the project configuration in this file instead of parsing JSON.
+ * For now, we've decided to hardcode a project configuration in this file instead of parsing JSON.
+ * Specifically, we traced through the original code logic and hardcoded full_test.json (https://github.com/jordanel/mips-emulator/blob/master/projects/full_test/full_test.json)
+ * Note the Python scripts in /scripts/ used to generate arrays of signed (imem, dmem) and unsigned (bmem, smem) ints from .mem files
+ * I think the wordSize for every type of memory is 4 because that's the default and changes only when the JSON contains a wordsize key with a different value, which doesn't exist in full_test.json
  */
+
+import mips.instructions.Instruction;
 
 import java.io.File;
 import java.util.*;
+import mips.InstructionFactory;
 
 public class ProgramLoader {
     private Mips mips;
     private final String basePath;
 
+    // Values are from full_test
     private final int[] bmem_init = {3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 3840, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 240, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095};
     private final int[] dmem_init = {0, 3, 28, 27, 29, 26, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private final int[] imem_init = {1008537601, 935133440, 604307476, 604373007, 604241922, 202375227, 202375301, 140032, 202375312, 202375307, 135490, 604241921, 4464644, 202375320, 604241945, 202375216, 202375316, 202375267, 272695281, 536936449, 337772549, 547749887, 10487850, 270598124, 604307456, 135266308, 536936450, 337772549, 547684353, 681639976, 337706981, 604307495, 135266308, 536936451, 337772549, 549912575, 12585002, 270598110, 604372992, 135266308, 536936452, 337838055, 549847041, 683737118, 337706967, 604373021, 135266308, 135266351, 599654392, -1346437116, -1348206592, 271360, 276824066, 545587199, 343998462, -1885077504, -1883308028, 599588872, 65011720, 599654384, -1346437108, -1347944440, -1347878908, -1347813376, 1006702594, 875036672, 411968, 413888, 19548192, 19220512, 608384, 17383456, -1392246784, -1883308020, -1884815352, -1884749820, -1884684288, 599588880, 65011720, 599654384, -1346437108, -1347944440, -1347878908, -1347813376, 1006702594, 875036672, 411968, 413888, 19548192, 19220512, 608384, 17383456, -1929248768, -1883308020, -1884815352, -1884749820, -1884684288, 599588880, 65011720, 599654384, -1346437108, -1347944440, -1347878908, -1347813376, 1006702595, 2099233, -1943928832, 272629774, 149537, 604110848, 1006702593, 2099233, -1943404520, 675968, 1006702593, 2230305, -1943535608, 541196292, 285802499, 4851754, 337707001, 604110848, 135298, -1883308020, -1884815352, -1884749820, -1884684288, 599588880, 65011720, 1006702595, 2099233, -1943928828, 65011720, 1006702595, 2099233, -1943928828, 136194, 809632255, 65011720, 1006702595, 2099233, -1943928828, 809632255, 65011720, 1006702595, 2099233, -1406926840, 65011720, 1006702595, 2099233, -1407188984, 65011720, 1006702595, 2099233, -1406926836, 65011720};
@@ -34,12 +40,13 @@ public class ProgramLoader {
         // Skipping all of the JSON stuff. For now, hardcoding instead
 
         int pc = 0;
-        // TODO: Do memDict after implementing BuildMemoryUnits
+        Map<Class, List<MemoryUnit>> memDict = buildMemoryUnits();
         String name = "Placeholder, parse the name from JSON later";
-        float desiredClockSpeed = 12.5F;
+        float desiredClockSpeed = 0;
 
-        // TODO: Use mips constructor after implementing BuildMemoryUnits
-        return null;
+        // registers parameter is optional in the original code, passing in null
+        // Mips.registers will be a new Registers() object
+        return new Mips(pc, memDict, null, name, desiredClockSpeed);
     }
 
     /**
@@ -64,7 +71,7 @@ public class ProgramLoader {
 
     /**
      * TODO: Should take JToken token parameter
-     * Finish this after buildMemoryUnit and mapMemoryToAddresses
+     * This is a finished hardcoded version of buildMemoryUnits that should be ready for testing, disregarding any bugs - Jesse
      * @return
      */
     private Map<Class, List<MemoryUnit>> buildMemoryUnits() {
@@ -72,7 +79,87 @@ public class ProgramLoader {
 
         List<MappedMemoryUnit> memUnits = new ArrayList<>();
 
-        return null;
+        // Create InstructionMemory
+        // Don't think creation exactly follows the logic of the original code, but seems correct
+        Instruction[] instructions = new Instruction[imem_init.length];
+        InstructionFactory iFact = new InstructionFactory();
+
+        for (int i = 0; i < imem_init.length; i++) {
+            instructions[i] = iFact.createInstruction(imem_init[i]);
+        }
+
+        MemoryUnit imem = new InstructionMemory(instructions);
+        // imem is not memory mapped
+        memoryDict.put(InstructionMemory.class, new ArrayList<>());
+        memoryDict.get(InstructionMemory.class).add(imem);
+
+        // Create DataMemory
+        MemoryUnit dmem = new DataMemory(dmem_init);
+        // dmem is memory mapped
+        MappedMemoryUnit mappedDmem = new MappedMemoryUnit(dmem, 0x10010000, null);
+        memUnits.add(mappedDmem);
+
+        memoryDict.put(DataMemory.class, new ArrayList<>());
+        memoryDict.get(DataMemory.class).add(dmem);
+
+        // BitmapMemory
+        // Following original code logic, wordSize would be set to 4 since full_path doesn't associate a wordSize with BitmapMemory
+        // Kinda confused about why BitmapMemory's wordSize is 4...
+        MemoryUnit bmem = new BitmapMemory(bmem_init, 4);
+        // bmem is not memory mapped
+        memoryDict.put(BitmapMemory.class, new ArrayList<>());
+        memoryDict.get(BitmapMemory.class).add(bmem);
+
+        // ScreenMemory
+        // wordSize also set to 4, similar to BitmapMemory
+        MemoryUnit smem = new ScreenMemory(smem_init, 4);
+        // smem is memory mapped
+        MappedMemoryUnit mappedSmem = new MappedMemoryUnit(smem, 0x10020000, null);
+        memUnits.add(mappedSmem);
+
+        memoryDict.put(ScreenMemory.class, new ArrayList<>());
+        memoryDict.get(ScreenMemory.class).add(smem);
+
+        // Keyboard
+        MemoryUnit keyboard = new Keyboard(smem_init.length, 4);
+        for (int i = 0; i < smem_init.length; i++) {
+            keyboard.setMemoryUnit(i * keyboard.getWordSize(), smem_init[i]);
+        }
+        // Keyboard is memory mapped
+        MappedMemoryUnit mappedKeyboard = new MappedMemoryUnit(keyboard, 0x10030000, null);
+        memUnits.add(mappedKeyboard);
+
+        memoryDict.put(Keyboard.class, new ArrayList<>());
+        memoryDict.get(Keyboard.class).add(keyboard);
+
+        // Accelerometer
+        MemoryUnit accelerometer = new Accelerometer();
+        // init is null, so don't need to populate accelerometer
+        // Accelerometer is memory mapped
+        MappedMemoryUnit mappedAccelerometer = new MappedMemoryUnit(accelerometer, 0x10030004, null);
+        memUnits.add(mappedAccelerometer);
+
+        memoryDict.put(Accelerometer.class, new ArrayList<>());
+        memoryDict.get(Accelerometer.class).add(accelerometer);
+
+        // Skipping sound for now
+
+        // LED's
+        MemoryUnit led = new DataMemory(1, 4);
+        // init is null, don't need to populate led
+        // LED is memory mapped
+        MappedMemoryUnit mappedLed = new MappedMemoryUnit(led, 0x1003000c, "LED");
+        memUnits.add(mappedLed);
+
+        // DataMemory is already in the memoryDict, so we just append led to the List
+        memoryDict.get(DataMemory.class).add(led);
+
+        // MemoryMapper stuff at the end
+        MemoryMapper mapper = new MemoryMapper(memUnits);
+        memoryDict.put(MemoryMapper.class, new ArrayList<>());
+        memoryDict.get(MemoryMapper.class).add(mapper);
+
+        return memoryDict;
     }
 
     /**
