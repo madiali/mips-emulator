@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9fdffa3-657e-4e18-87b4-2c5fdd0f3ada" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/IType/SltiuInstructionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/IType/SwInstructionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/IType/XoriInstructionTest.java" afterDir="false" />
+    <list default="true" id="7cf9d7a6-be68-4aff-9208-72e43a55e5ea" name="Changes" comment="SltuInstruction bug fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mips/instructions/IType/SltiuInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mips/instructions/IType/SltiuInstruction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,20 +61,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="JUnit.mips.instructions.IType in mips-emulator">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MIPS_Emulator.Instructions.IType.Main" />
-      <module name="mips-emulator" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="MIPS_Emulator.Instructions.IType.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.SltiuInstructionTest">
     <configuration name="JalInstructionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mips-emulator" />
       <extension name="coverage">
@@ -92,6 +77,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SltiuInstructionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mips-emulator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mips.instructions.IType.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="mips.instructions.IType" />
+      <option name="MAIN_CLASS_NAME" value="mips.instructions.IType.SltiuInstructionTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SltuInstructionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mips-emulator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mips.instructions.RType.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="mips.instructions.RType" />
+      <option name="MAIN_CLASS_NAME" value="mips.instructions.RType.SltuInstructionTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="mips.instructions.IType in mips-emulator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mips-emulator" />
       <extension name="coverage">
@@ -101,20 +116,6 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="mips.instructions.IType" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="mips.instructions.JType in mips-emulator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mips-emulator" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="mips.instructions.JType.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="mips.instructions.JType" />
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -136,11 +137,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SltiuInstructionTest" />
+        <item itemvalue="JUnit.SltuInstructionTest" />
         <item itemvalue="JUnit.mips.instructions.IType in mips-emulator" />
         <item itemvalue="JUnit.mips.instructions.RType in mips-emulator" />
         <item itemvalue="JUnit.JalInstructionTest" />
-        <item itemvalue="JUnit.mips.instructions.JType in mips-emulator" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -176,5 +177,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="SltuInstruction bug fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="SltuInstruction bug fix" />
   </component>
 </project>
