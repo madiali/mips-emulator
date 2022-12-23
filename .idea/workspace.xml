@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9fdffa3-657e-4e18-87b4-2c5fdd0f3ada" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea-backup/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea-backup/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea-backup/libraries/Maven__junit_junit_4_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea-backup/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea-backup/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea-backup/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea-backup/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea-backup/workspace.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/IType/SltiuInstructionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/IType/SwInstructionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/IType/XoriInstructionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +63,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="JUnit.JalInstructionTest">
+  <component name="RunManager" selected="JUnit.mips.instructions.IType in mips-emulator">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MIPS_Emulator.Instructions.IType.Main" />
       <module name="mips-emulator" />
@@ -94,6 +88,20 @@
       <option name="PACKAGE_NAME" value="mips.instructions.JType" />
       <option name="MAIN_CLASS_NAME" value="mips.instructions.JType.JalInstructionTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mips.instructions.IType in mips-emulator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mips-emulator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mips.instructions.IType.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="mips.instructions.IType" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -128,9 +136,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.mips.instructions.IType in mips-emulator" />
+        <item itemvalue="JUnit.mips.instructions.RType in mips-emulator" />
         <item itemvalue="JUnit.JalInstructionTest" />
         <item itemvalue="JUnit.mips.instructions.JType in mips-emulator" />
-        <item itemvalue="JUnit.mips.instructions.RType in mips-emulator" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -147,7 +156,7 @@
       <workItem from="1671560440668" duration="9961000" />
       <workItem from="1671583865548" duration="5710000" />
       <workItem from="1671637540774" duration="41788000" />
-      <workItem from="1671814429273" duration="116000" />
+      <workItem from="1671814429273" duration="571000" />
     </task>
     <servers />
   </component>
