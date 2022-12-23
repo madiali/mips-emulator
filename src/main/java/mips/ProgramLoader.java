@@ -85,7 +85,11 @@ public class ProgramLoader {
         InstructionFactory iFact = new InstructionFactory();
 
         for (int i = 0; i < imem_init.length; i++) {
-            instructions[i] = iFact.createInstruction(imem_init[i]);
+            Instruction instruction = iFact.createInstruction(imem_init[i]);
+            if (instruction == null) {
+                throw new IllegalArgumentException(String.format("Instruction 0x%08X is invalid", imem_init[i]));
+            }
+            instructions[i] = instruction;
         }
 
         MemoryUnit imem = new InstructionMemory(instructions);
