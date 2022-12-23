@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9fdffa3-657e-4e18-87b4-2c5fdd0f3ada" name="Changes" comment="" />
+    <list default="true" id="a9fdffa3-657e-4e18-87b4-2c5fdd0f3ada" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mips-emulator.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/mips/instructions/JType/JalInstructionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/JType/JalInstructionTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,8 +58,11 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="JUnit.mips.instructions.RType in mips-emulator">
+  <component name="RunManager" selected="JUnit.JalInstructionTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MIPS_Emulator.Instructions.IType.Main" />
       <module name="mips-emulator" />
@@ -65,6 +72,35 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JalInstructionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mips-emulator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mips.instructions.JType.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="mips.instructions.JType" />
+      <option name="MAIN_CLASS_NAME" value="mips.instructions.JType.JalInstructionTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mips.instructions.JType in mips-emulator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mips-emulator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mips.instructions.JType.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="mips.instructions.JType" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -85,6 +121,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.JalInstructionTest" />
+        <item itemvalue="JUnit.mips.instructions.JType in mips-emulator" />
         <item itemvalue="JUnit.mips.instructions.RType in mips-emulator" />
         <item itemvalue="Application.Main" />
       </list>
@@ -101,7 +139,8 @@
       <workItem from="1671511565722" duration="12087000" />
       <workItem from="1671560440668" duration="9961000" />
       <workItem from="1671583865548" duration="5710000" />
-      <workItem from="1671637540774" duration="41695000" />
+      <workItem from="1671637540774" duration="41788000" />
+      <workItem from="1671814429273" duration="65000" />
     </task>
     <servers />
   </component>

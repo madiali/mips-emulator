@@ -25,7 +25,7 @@ public class JalInstructionTest {
         pc.setPC(0x20000000);
         target = new JalInstruction(0x00000003);
         target.execute(pc, mem, reg);
-        assertEquals(0x2000000C, pc);
+        assertEquals(0x2000000C, pc.getPC());
         assertEquals(0x20000004, reg.getRegister(31));
     }
 }
