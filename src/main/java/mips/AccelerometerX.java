@@ -1,14 +1,18 @@
 package mips;
 
 public class AccelerometerX implements MemoryUnit {
-    private final int WORD_SIZE = 4;
+    private int wordSize;
     private int xValue = 255;
 
     public AccelerometerX() {
         this(1, 4);
     }
 
-    public AccelerometerX(int size, int wordSize) {}
+    // Original code has size parameter but doesn't do anything with it, not sure why it's there
+    // It also has public uint Size => WordSize, so it looks like size == wordSize
+    public AccelerometerX(int size, int wordSize) {
+        this.wordSize = wordSize;
+    }
 
     @Override
     public int getMemoryUnit(int index) {
@@ -22,11 +26,19 @@ public class AccelerometerX implements MemoryUnit {
 
     @Override
     public int getSize() {
-        return WORD_SIZE;
+        return wordSize;
     }
 
     @Override
     public int getWordSize() {
-        return WORD_SIZE;
+        return wordSize;
+    }
+
+    public int getXValue() {
+        return xValue;
+    }
+
+    public void setXValue(int xValue) {
+        this.xValue = xValue;
     }
 }
