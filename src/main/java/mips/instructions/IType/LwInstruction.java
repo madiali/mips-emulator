@@ -12,7 +12,7 @@ public class LwInstruction extends ITypeInstruction {
 
   @Override
   public void execute(ProgramCounter pc, MemoryMapper mem, Registers reg) {
-    reg.setRegister(t, mem.getMemoryUnit(reg.getRegister(s)) + signExtend(immediate));
+    reg.setRegister(t, mem.getMemoryUnit(reg.getRegister(s) + signExtend(immediate)));
     pc.incrementPC(4);
   }
 }
