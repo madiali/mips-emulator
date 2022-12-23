@@ -169,9 +169,9 @@ public class InstructionFactoryTest {
 
   /**
    * This fails because I don't think there's a way to throw an exception from the original code...
-   * The createInstruction method returns Instruction, but throwing Exception makes the return statement unreachable
-   * Java treats that as a syntax error, but C# doesn't.
-   * In the case that the instruction is invalid, createInstruction returns null instead of throwing an exception.
+   * The createInstruction method returns Instruction, but throwing Exception makes the return
+   * statement unreachable Java treats that as a syntax error, but C# doesn't. In the case that the
+   * instruction is invalid, createInstruction returns null instead of throwing an exception.
    */
   @Test
   public void unknownOpcodeThrowsException() {
@@ -185,9 +185,9 @@ public class InstructionFactoryTest {
 
   /**
    * This fails because I don't think there's a way to throw an exception from the original code...
-   * The createInstruction method returns Instruction, but throwing Exception makes the return statement unreachable
-   * Java treats that as a syntax error, but C# doesn't.
-   * In the case that the instruction is invalid, createInstruction returns null instead of throwing an exception.
+   * The createInstruction method returns Instruction, but throwing Exception makes the return
+   * statement unreachable Java treats that as a syntax error, but C# doesn't. In the case that the
+   * instruction is invalid, createInstruction returns null instead of throwing an exception.
    */
   @Test
   public void unknownFuncThrowsException() {

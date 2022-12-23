@@ -7,6 +7,6 @@ There's also files that are incomplete as they depend on other files.
 * `SoundModule`
 * `SoundWaveGenerator`
 * `ProgramLoader`
-  * Uses `Mips`, so `Mips` (along with whatever `Mips` uses) probably needs to be done first.
-* `mips.Program`
-  * Mostly done, but it uses `Mips` and `ProgramLoader`, so those need to be done.
+  * Not skipped, currently hardcoded (doesn't parse JSON)
+  * Also, once Sound is implemented, there needs to be a small change in this file
+  * ProgramLoader test currently not ported

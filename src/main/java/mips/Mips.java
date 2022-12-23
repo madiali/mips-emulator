@@ -11,6 +11,13 @@ public class Mips {
   public String name;
   public float clockSpeed;
 
+  /**
+   * @param pc
+   * @param memDict
+   * @param reg default value null
+   * @param name default value ""
+   * @param clockSpeed default value 0
+   */
   public Mips(
       int pc, Map<Class, List<MemoryUnit>> memDict, Registers reg, String name, float clockSpeed) {
     this.pc = new ProgramCounter(pc);
