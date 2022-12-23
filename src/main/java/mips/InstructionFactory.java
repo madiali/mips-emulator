@@ -17,23 +17,19 @@ public class InstructionFactory {
 
   // Java has no const keyword, using final instead
   private final int SIX_MASK = 0b111111;
-
   private final int FIVE_MASK = 0b11111;
   private final int SIXTEEN_MASK = 0b1111111111111111;
   private final int TWENTY_SIX_MASK = 0b11111111111111111111111111;
 
   /**
-   * The original has no constructor, so ours doesn't have a constructor either (though an
-   * InstructionFactory is constructed in InstructionMemory.java)
+   * The original has no constructor, so ours doesn't have a constructor either.
+   * InstructionFactory() constructor is sometimes called in other files, so I assume Java creates a default constructor
    */
 
   /**
-   * This is modified from the original code!! This method does not throw an exception when
-   * instruction has a bad opcode or func bits, instead returns null on failure. When using this
-   * method, must check that it doesn't return null.
-   *
+   * Throws UnknownInstructionException if int instruction is invalid (invalid opcode or func bits)
    * @param instruction
-   * @return Instruction if successful, null if not successful
+   * @return Instruction object
    */
   public Instruction createInstruction(int instruction) {
     int func = instruction & SIX_MASK;
@@ -81,6 +77,8 @@ public class InstructionFactory {
           return new AdduInstruction(rd, rs, rt);
         case 0b001001:
           return new JalrInstruction(rs);
+        default:
+          throw new UnknownInstructionException(instruction);
       }
     } else {
       switch (op) {
@@ -112,13 +110,9 @@ public class InstructionFactory {
           return new JalInstruction(address);
         case 0b001110:
           return new XoriInstruction(rt, rs, immediate);
+        default:
+          throw new UnknownInstructionException(instruction);
       }
     }
-    // We need this return statement because the method returns Instruction
-    // But if we throw a UnknownInstructionException here, then this return statement may be
-    // unreachable, and that causes a compiler error
-    // We also can't modify the switch statements with default: throw new
-    // UnknownInstructionException for the same reason
-    return null;
   }
 }

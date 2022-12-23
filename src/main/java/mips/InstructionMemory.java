@@ -47,7 +47,7 @@ public class InstructionMemory implements MemoryUnit {
   }
 
   /**
-   * Overloaded constructor The missing wordSize parameter is set to 4 by default
+   * Overloaded constructor, the missing wordSize parameter is set to 4 by default
    *
    * @param instructions
    */
@@ -57,8 +57,7 @@ public class InstructionMemory implements MemoryUnit {
 
   /**
    * The original code throws a NotImplementedException when this method is called. However, we
-   * can't throw an Exception here since the method needs to return an integer.
-   *
+   * can't throw an Exception here since the method needs to return an integer. *
    * @param pc
    * @return
    */
@@ -72,10 +71,6 @@ public class InstructionMemory implements MemoryUnit {
   @Override
   public void setMemoryUnit(int pc, int value) {
     if (pc % wordSize == 0) {
-      Instruction instruction = instrFact.createInstruction(value);
-      if (instruction == null) {
-        throw new IllegalArgumentException(String.format("Unknown instruction: 0x%08X", value));
-      }
       iMem[pc / wordSize] = instrFact.createInstruction(value);
     } else {
       throw new IllegalArgumentException(

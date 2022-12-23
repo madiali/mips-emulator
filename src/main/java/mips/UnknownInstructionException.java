@@ -1,8 +1,6 @@
 package mips;
 
-import jdk.jshell.spi.ExecutionControl;
-
-public class UnknownInstructionException extends ExecutionControl.NotImplementedException {
+public class UnknownInstructionException extends IllegalArgumentException {
   public UnknownInstructionException(int instruction) {
     super(String.format("Unknown instruction: 0x%08X", instruction));
   }
