@@ -18,7 +18,7 @@ public class AddiInstructionTest {
         reg.setRegister(1, 0x00000002);
         target = new AddiInstruction(1, 1, 0x0001);
         target.execute(pc, mem, reg);
-        assertEquals(0x00000004, reg.getRegister(1));
+        assertEquals(0x00000003, reg.getRegister(1));
         assertEquals(0x00000004, pc.getPC());
     }
 
