@@ -63,7 +63,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="JUnit.mips.instructions.IType in mips-emulator">
+  <component name="RunManager" selected="JUnit.mips.instructions.RType in mips-emulator">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MIPS_Emulator.Instructions.IType.Main" />
       <module name="mips-emulator" />
@@ -136,8 +136,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.mips.instructions.IType in mips-emulator" />
         <item itemvalue="JUnit.mips.instructions.RType in mips-emulator" />
+        <item itemvalue="JUnit.mips.instructions.IType in mips-emulator" />
         <item itemvalue="JUnit.JalInstructionTest" />
         <item itemvalue="JUnit.mips.instructions.JType in mips-emulator" />
         <item itemvalue="Application.Main" />
