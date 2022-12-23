@@ -5,9 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9fdffa3-657e-4e18-87b4-2c5fdd0f3ada" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/RType/NorInstructionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/RType/OrInstructionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/RType/SllInstructionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/RType/SllvInstructionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/RType/SltInstructionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/RType/SltuInstructionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/RType/SraInstructionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/RType/SrlInstructionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/RType/SubInstructionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/mips/instructions/RType/XorInstructionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mips/Accelerometer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mips/Accelerometer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mips/AccelerometerX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mips/AccelerometerX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mips-emulator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mips-emulator.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +68,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.mips.instructions.RType in mips-emulator">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MIPS_Emulator.Instructions.IType.Main" />
       <module name="mips-emulator" />
@@ -73,8 +82,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="mips.instructions.RType in mips-emulator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mips-emulator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mips.instructions.RType.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="mips.instructions.RType" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.mips.instructions.RType in mips-emulator" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -90,7 +114,7 @@
       <workItem from="1671511565722" duration="12087000" />
       <workItem from="1671560440668" duration="9961000" />
       <workItem from="1671583865548" duration="5710000" />
-      <workItem from="1671637540774" duration="37800000" />
+      <workItem from="1671637540774" duration="40165000" />
     </task>
     <servers />
   </component>
