@@ -26,10 +26,14 @@ public class InstructionMemoryTest {
   @Test
   public void setInstructionValidIndex() {
     target = new InstructionMemory(8);
-    Instruction instr = new AddInstruction(1, 1, 2);
+    AddInstruction instr = new AddInstruction(1, 1, 2);
 
     target.setMemoryUnit(4, 0x00220820);
-    assertEquals(instr, target.getInstruction(4));
+    AddInstruction targetInstruction = (AddInstruction) target.getInstruction(4);
+    assertEquals(instr.getClass(), targetInstruction.getClass());
+    assertEquals(instr.getD(), targetInstruction.getD());
+    assertEquals(instr.getS(), targetInstruction.getS());
+    assertEquals(instr.getT(), targetInstruction.getT());
   }
 
   @Test

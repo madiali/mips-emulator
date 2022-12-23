@@ -32,4 +32,16 @@ public abstract class RTypeInstruction implements Instruction {
   public String getName() {
     return this.name;
   }
+
+  public int getD() {
+    return d;
+  }
+
+  public int getS() {
+    return s;
+  }
+
+  public int getT() {
+    return t;
+  }
 }
