@@ -12,7 +12,7 @@ public class AndiInstruction extends ITypeInstruction {
 
   @Override
   public void execute(ProgramCounter pc, MemoryMapper mem, Registers reg) {
-    reg.setRegister(t, s & immediate);
+    reg.setRegister(t, reg.getRegister(s) & immediate);
     pc.incrementPC(4);
   }
 }

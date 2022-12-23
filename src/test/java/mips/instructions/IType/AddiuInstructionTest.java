@@ -5,27 +5,27 @@ import mips.ProgramCounter;
 import mips.Registers;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-public class AddiInstructionTest {
+public class AddiuInstructionTest {
     private ProgramCounter pc = new ProgramCounter(0x00000000);
     private Registers reg = new Registers();
     private MemoryMapper mem = new MemoryMapper(8);
-    private AddiInstruction target;
+    private AddiuInstruction target;
 
     @Test
     public void executeAddPositiveNumbers() {
         reg.setRegister(1, 0x00000002);
-        target = new AddiInstruction(1, 1, 0x0001);
+        target = new AddiuInstruction(1, 1, 0x0001);
         target.execute(pc, mem, reg);
-        assertEquals(0x00000004, reg.getRegister(1));
+        assertEquals(0x00000003, reg.getRegister(1));
         assertEquals(0x00000004, pc.getPC());
     }
 
     @Test
     public void executeNegativeImmediate() {
         reg.setRegister(1, 0x00000003);
-        target = new AddiInstruction(2, 1, 0xFFFF);
+        target = new AddiuInstruction(2, 1, 0xFFFF);
         target.execute(pc, mem, reg);
         assertEquals(0x00000002, reg.getRegister(2));
         assertEquals(0x00000004, pc.getPC());
@@ -34,7 +34,7 @@ public class AddiInstructionTest {
     @Test
     public void executeOverflow() {
         reg.setRegister(1, 0xFFFFFFFF);
-        target = new AddiInstruction(1, 1, 0x0001);
+        target = new AddiuInstruction(1, 1, 0x0001);
         target.execute(pc, mem, reg);
         assertEquals(0x00000000, reg.getRegister(1));
         assertEquals(0x00000004, pc.getPC());
