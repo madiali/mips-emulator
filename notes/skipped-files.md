@@ -7,7 +7,5 @@ There's also files that are incomplete as they depend on other files.
 * `SoundModule`
 * `SoundWaveGenerator`
 * `ProgramLoader`
-  * Not skipped, currently hardcoded (doesn't parse JSON)
-  * Also, once Sound is implemented, there needs to be a small change in this file
-  * ProgramLoader test currently not ported
-  * And Sound also needs to go in MemoryUnitFactory
+  * Once Sound is implemented, there needs to be a small change in this file
+  * And Sound also needs to go in MemoryUnitFactory when implemented, do not forget about this

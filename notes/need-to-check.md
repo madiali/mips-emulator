@@ -8,3 +8,4 @@ Here are some things that need to be tested:
 * `MemoryMapper`: should `findContainingUnit` and `resolveAddress` be `static` methods?
 * IType instructions: Access fields with this.s, this.t, this.imm, or super.s, super.t, super.imm, or no prefix all have the same behavior?
 * Registers: The original code says `registers` is `readonly` but has a setter method that modifies `registers`?
+* ProgramLoader: parseNumber should also use parseUnsignedInt? This may cause unintended negative values...

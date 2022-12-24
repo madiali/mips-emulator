@@ -222,3 +222,9 @@ Same as Java's [`Integer.compare(x, y)`](https://www.geeksforgeeks.org/java-inte
 
 * We use `org.json`, which should be installed as a Maven dependency in `pom.xml`
 * If it doesn't work, go to the Maven tab and click `Reload all Maven projects` 
+* There's some information on [StackOverflow](https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator.Test/ProgramLoaderTest.cs) (top answer) about `org.json`
+* In JSON notation, {...} represents an object, and [...] represents an array.
+* In `org.json`, these are `JSONObject` and `JSONArray` objects.
+* Assuming the project has been loaded as a `JSONObject`, its fields can be accessed like so:
+  * `project.getJSONArray("memories")`
+  * And inside the memories array, there are several JSON objects representing memories, so those are `JSONObject`s

@@ -62,12 +62,12 @@ public class ProgramLoader {
   private int parseNumber(String token) {
     token = token.replace("_", "");
     if (token.startsWith("0x")) {
-      return Integer.parseInt(token.substring(2), 16);
+      return Integer.parseUnsignedInt(token.substring(2), 16);
     }
     if (token.startsWith("0b")) {
-      return Integer.parseInt(token.substring(2), 2);
+      return Integer.parseUnsignedInt(token.substring(2), 2);
     }
-    return Integer.parseInt(token, 10);
+    return Integer.parseUnsignedInt(token, 10);
   }
 
   private Map<Class, List<MemoryUnit>> buildMemoryUnits(JSONArray memoriesArray) {
@@ -143,10 +143,15 @@ public class ProgramLoader {
   }
 
   private MappedMemoryUnit mapMemoryToAddresses(JSONObject memoryToken, MemoryUnit mem) {
-    // startAddr and endAddr are always Strings
+    // According to the no_errors.json file, startAddr, endAddr, size can be int (usually) or String (if binary or hex value)
     Integer startAddr = null;
     try {
       startAddr = parseNumber(memoryToken.getString("startAddr"));
+    } catch (Exception e) {
+    }
+
+    try {
+      startAddr = memoryToken.getInt("startAddr");
     } catch (Exception e) {
     }
 
@@ -156,10 +161,19 @@ public class ProgramLoader {
     } catch (Exception e) {
     }
 
+    try {
+      endAddr = memoryToken.getInt("endAddr");
+    } catch (Exception e) {
+    }
+
     Integer size = null;
     try {
-      // size may be an int, not a String, this may be incorrect logic
       size = parseNumber(memoryToken.getString("size"));
+    } catch (Exception e) {
+    }
+
+    try {
+      size = memoryToken.getInt("size");
     } catch (Exception e) {
     }
 

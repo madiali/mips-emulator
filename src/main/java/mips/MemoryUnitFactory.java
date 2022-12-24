@@ -1,3 +1,9 @@
+/**
+ * This file is needed because of a line in ProgramLoader.cs. mem = (MemoryUnit)
+ * Activator.createInstance(t, args), where t is a MemoryUnit type passed as a parameter and args is
+ * {length, wordSize}, {0, wordSize}, or {} (no args). No direct equivalent in Java, so we use a
+ * Factory.
+ */
 package mips;
 
 public class MemoryUnitFactory {
@@ -22,7 +28,8 @@ public class MemoryUnitFactory {
   }
 
   /**
-   * @param type
+   * @param type NOT InstructionMemory, DataMemory, BitmapMemory, or ScreenMemory (need more
+   *     constructor arguments), which will throw IllegalArgumentException
    * @return
    */
   public MemoryUnit createMemoryUnit(String type) {
