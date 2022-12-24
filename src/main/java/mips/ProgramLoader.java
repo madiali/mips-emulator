@@ -5,11 +5,11 @@ package mips;
  * This link has some discussion about which library to use to parse JSON in Java
  * org.json seems to match the original code closely, so I decided on that
  * I omit the ParseRequiredNumber method since it's only used one time
- * Also, it seems that C#'s JSON stuff will return null if a field is not found, whereas org.json will throw an Exception.
+ * Also, C#'s JSON stuff will return null if a field is not found, whereas org.json will throw an Exception.
+ * So, the original code is able to use the uint? (meaning either uint or null) type, which is null if some field is not found in the JSON
+ * I replicate this behavior by using Integer, which is initialized to null null, and try catch to catch the Exception thrown if the field is not found.
+ * Then the Integer remains null if the field is not found.
  */
-
-
-import mips.instructions.Instruction;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -118,10 +118,6 @@ public class ProgramLoader {
 
     MemoryUnit mem = null;
     MemoryUnitFactory memUnitFactory = new MemoryUnitFactory();
-
-//    System.out.println(length);
-//    System.out.println(init);
-//    System.out.println(wordSize);
 
     if (length != null || init != null) {
       mem = memUnitFactory.createMemoryUnit(type, length == null ? init.length : length, wordSize == null ? 4 : wordSize);
