@@ -4,6 +4,10 @@ public class DataMemory implements MemoryUnit {
   private int wordSize;
   private final int[] memory;
 
+  /**
+   * @param size
+   * @param wordSize default value 4
+   */
   public DataMemory(int size, int wordSize) {
     this.memory = new int[size];
     this.wordSize = wordSize;
@@ -14,6 +18,10 @@ public class DataMemory implements MemoryUnit {
     this(size, 4);
   }
 
+  /**
+   * @param memory
+   * @param wordSize default value 4
+   */
   public DataMemory(int[] memory, int wordSize) {
     this.memory = memory;
     this.wordSize = wordSize;

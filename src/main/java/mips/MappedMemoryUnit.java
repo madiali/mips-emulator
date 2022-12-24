@@ -10,6 +10,12 @@ public class MappedMemoryUnit {
   // The original code uses a Regex type, but that doesn't exist in Java
   private final Pattern bitmaskFormat = Pattern.compile("^(0|1)+x*$");
 
+  /**
+   * @param memUnit
+   * @param startAddr
+   * @param endAddr
+   * @param name default value null
+   */
   public MappedMemoryUnit(MemoryUnit memUnit, int startAddr, int endAddr, String name) {
     this.memUnit = memUnit;
     this.startAddr = startAddr;
@@ -18,11 +24,11 @@ public class MappedMemoryUnit {
   }
 
   /**
-   * Overloaded constructor Default value of String name is null in original code
-   *
+   * Overloaded constructor
    * @param memUnit
    * @param startAddr
    * @param endAddr
+   * Default value of String name is null
    */
   public MappedMemoryUnit(MemoryUnit memUnit, int startAddr, int endAddr) {
     // If there is no String name argument, then null is the default value
@@ -33,16 +39,20 @@ public class MappedMemoryUnit {
     this(memUnit, startAddr, endAddr, null);
   }
 
+  /**
+   * @param memUnit
+   * @param startAddr
+   * @param name default value null
+   */
   public MappedMemoryUnit(MemoryUnit memUnit, int startAddr, String name) {
     this(memUnit, startAddr, startAddr + memUnit.getSize() - 1, name);
   }
 
   /**
-   * Overloaded constructor If the only args are memUnit and startAddr, then String name has default
-   * value null
-   *
+   * Overloaded constructor
    * @param memUnit
    * @param startAddr
+   * String name default value null
    */
   public MappedMemoryUnit(MemoryUnit memUnit, int startAddr) {
     this(memUnit, startAddr, null);
@@ -54,7 +64,7 @@ public class MappedMemoryUnit {
    * @param memUnit
    * @param bitmask If this bitmask is the full 32 bits AND the 31'th bit is 1, then there will be
    *     undefined behavior. This is due to implementation (Integer.parseInt) and uint vs. int.
-   * @param name
+   * @param name default value null
    */
   public MappedMemoryUnit(MemoryUnit memUnit, String bitmask, String name) {
     String cleanedBitmask = bitmask.trim().toLowerCase().replace("_", "");
@@ -91,6 +101,7 @@ public class MappedMemoryUnit {
    * @param memUnit
    * @param bitmask If this bitmask is the full 32 bits AND the 31'th bit is 1, then there will be
    *     undefined behavior. This is due to implementation (Integer.parseInt) and uint vs. int.
+   * String name default value null
    */
   public MappedMemoryUnit(MemoryUnit memUnit, String bitmask) {
     this(memUnit, bitmask, null);

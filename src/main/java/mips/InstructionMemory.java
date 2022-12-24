@@ -8,10 +8,12 @@ public class InstructionMemory implements MemoryUnit {
   private int wordSize;
   private InstructionFactory instrFact;
 
+  /**
+   * @param size
+   * @param wordSize default value 4
+   */
   public InstructionMemory(int size, int wordSize) {
     iMem = new Instruction[size];
-    // There's no constructor in InstructionFactory.java, so this must be a default constructor
-    // since there's no syntax error?
     instrFact = new InstructionFactory();
     this.wordSize = wordSize;
     // Calculate log_2(wordSize) using change of base formula
@@ -25,14 +27,17 @@ public class InstructionMemory implements MemoryUnit {
   }
 
   /**
-   * Overloaded constructor The missing wordSize parameter is set to 4 by default
-   *
    * @param size
+   * wordSize default value 4
    */
   public InstructionMemory(int size) {
     this(size, 4);
   }
 
+  /**
+   * @param instructions
+   * @param wordSize default value 4
+   */
   public InstructionMemory(Instruction[] instructions, int wordSize) {
     iMem = instructions;
     instrFact = new InstructionFactory();
@@ -47,19 +52,17 @@ public class InstructionMemory implements MemoryUnit {
   }
 
   /**
-   * Overloaded constructor, the missing wordSize parameter is set to 4 by default
-   *
    * @param instructions
+   * wordSize default value 4
    */
   public InstructionMemory(Instruction[] instructions) {
     this(instructions, 4);
   }
 
   /**
+   * DO NOT CALL THIS METHOD.
    * The original code throws a NotImplementedException when this method is called. However, we
    * can't throw an Exception here since the method needs to return an integer. *
-   * @param pc
-   * @return
    */
   @Override
   public int getMemoryUnit(int pc) {

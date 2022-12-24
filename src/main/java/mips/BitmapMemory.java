@@ -4,22 +4,36 @@ public class BitmapMemory implements MemoryUnit {
   private int wordSize;
   private final int[] memory;
 
+  /**
+   * @param size
+   * @param wordSize default value 4
+   */
   public BitmapMemory(int size, int wordSize) {
     this.memory = new int[size];
     this.wordSize = wordSize;
   }
 
-  /** wordSize default value 4 */
+  /**
+   * @param size
+   * wordSize default value 4
+   */
   public BitmapMemory(int size) {
     this(size, 4);
   }
 
+  /**
+   * @param memory
+   * @param wordSize default value 4
+   */
   public BitmapMemory(int[] memory, int wordSize) {
     this.memory = memory;
     this.wordSize = wordSize;
   }
 
-  /** wordSize default value 4 */
+  /**
+   * @param memory
+   * wordSize default value 4
+   */
   public BitmapMemory(int[] memory) {
     this(memory, 4);
   }

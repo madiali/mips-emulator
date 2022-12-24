@@ -10,6 +10,10 @@ public class ScreenMemory extends DataMemory {
     super(size);
   }
 
+  /**
+   * @param memory
+   * @param wordSize default value 4 in superclass constructor
+   */
   public ScreenMemory(int[] memory, int wordSize) {
     super(memory, wordSize);
   }

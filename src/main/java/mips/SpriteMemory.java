@@ -59,9 +59,19 @@ public class SpriteMemory implements MemoryUnit {
   // The above doesn't apply here, i.e. I don't think a constructor with no body gets an
   // automatically generated body.
   // Leaving this constructor without a body...
+
+  /**
+   * Constructor body empty
+   * @param size
+   * @param wordSize default value 4
+   */
   public SpriteMemory(int size, int wordSize) {}
 
   // Original constructor has default value 4 for wordSize
   // No default values in Java, so overload the constructor
+  /**
+   * Constructor body empty
+   * @param size
+   */
   public SpriteMemory(int size) {}
 }
