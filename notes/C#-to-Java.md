@@ -228,3 +228,16 @@ Same as Java's [`Integer.compare(x, y)`](https://www.geeksforgeeks.org/java-inte
 * Assuming the project has been loaded as a `JSONObject`, its fields can be accessed like so:
   * `project.getJSONArray("memories")`
   * And inside the memories array, there are several JSON objects representing memories, so those are `JSONObject`s
+
+# [`Convert.ToUInt32(String s, int radix)`](https://learn.microsoft.com/en-us/dotnet/api/system.convert.touint32?view=net-7.0)
+
+* Pretty self explanatory.
+* We use `Integer.parseUnsignedInt(String s, int radix)`.
+* For `String`s that are 32-bit (either binary or hex) with MSB=1, `parseUnsignedInt` returns a negative number, which is what we expect.
+  * For imem, we want "negative" instructions to be treated as negative. `InstructionFactory.createInstruction(int instruction)` will return the correct `Instruction`.
+  * For dmem, we want to support negative values.
+* For `String`s that aren't 32-bit, `parseUnsignedInt` will return a positive value even when MSB=1 (i.e. treated as unsigned number).
+  * In bmem, for example, `f00` is parsed to `3840`, as we expect.
+  * This is also expected behavior for smem, which should also be positive numbers only.
+* On the other hand, `Integer.parseSignedInt(String s, int radix)` will throw an exception for a 32-bit string with MSB=1.
+  * For example, `parseSignedInt(80000000, 16)` would cause an Exception.
