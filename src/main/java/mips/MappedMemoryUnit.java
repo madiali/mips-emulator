@@ -25,10 +25,10 @@ public class MappedMemoryUnit {
 
   /**
    * Overloaded constructor
+   *
    * @param memUnit
    * @param startAddr
-   * @param endAddr
-   * Default value of String name is null
+   * @param endAddr Default value of String name is null
    */
   public MappedMemoryUnit(MemoryUnit memUnit, int startAddr, int endAddr) {
     // If there is no String name argument, then null is the default value
@@ -50,9 +50,9 @@ public class MappedMemoryUnit {
 
   /**
    * Overloaded constructor
+   *
    * @param memUnit
-   * @param startAddr
-   * String name default value null
+   * @param startAddr String name default value null
    */
   public MappedMemoryUnit(MemoryUnit memUnit, int startAddr) {
     this(memUnit, startAddr, null);
@@ -101,7 +101,7 @@ public class MappedMemoryUnit {
    * @param memUnit
    * @param bitmask If this bitmask is the full 32 bits AND the 31'th bit is 1, then there will be
    *     undefined behavior. This is due to implementation (Integer.parseInt) and uint vs. int.
-   * String name default value null
+   *     String name default value null
    */
   public MappedMemoryUnit(MemoryUnit memUnit, String bitmask) {
     this(memUnit, bitmask, null);

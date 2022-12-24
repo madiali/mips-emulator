@@ -27,8 +27,7 @@ public class InstructionMemory implements MemoryUnit {
   }
 
   /**
-   * @param size
-   * wordSize default value 4
+   * @param size wordSize default value 4
    */
   public InstructionMemory(int size) {
     this(size, 4);
@@ -52,17 +51,16 @@ public class InstructionMemory implements MemoryUnit {
   }
 
   /**
-   * @param instructions
-   * wordSize default value 4
+   * @param instructions wordSize default value 4
    */
   public InstructionMemory(Instruction[] instructions) {
     this(instructions, 4);
   }
 
   /**
-   * DO NOT CALL THIS METHOD.
-   * The original code throws a NotImplementedException when this method is called. However, we
-   * can't throw an Exception here since the method needs to return an integer. *
+   * DO NOT CALL THIS METHOD. The original code throws a NotImplementedException when this method is
+   * called. However, we can't throw an Exception here since the method needs to return an integer.
+   * *
    */
   @Override
   public int getMemoryUnit(int pc) {

@@ -3,15 +3,14 @@ package mips;
 public class Keyboard implements MemoryUnit {
   private int keyCode = 0;
 
-  /**
-   * Constructor has empty body
-   */
+  /** Constructor has empty body */
   public Keyboard() {
     this(4, 4);
   }
 
   /**
    * Constructor has empty body
+   *
    * @param size unused
    * @param wordSize unused
    */

@@ -17,17 +17,20 @@ public class InstructionFactory {
 
   // Java has no const keyword, using final instead
   private final int SIX_MASK = 0b111111;
+
   private final int FIVE_MASK = 0b11111;
   private final int SIXTEEN_MASK = 0b1111111111111111;
   private final int TWENTY_SIX_MASK = 0b11111111111111111111111111;
 
   /**
    * The original has no constructor, so ours doesn't have a constructor either.
-   * InstructionFactory() constructor is sometimes called in other files, so I assume Java creates a default constructor
+   * InstructionFactory() constructor is sometimes called in other files, so I assume Java creates a
+   * default constructor
    */
 
   /**
    * Throws UnknownInstructionException if int instruction is invalid (invalid opcode or func bits)
+   *
    * @param instruction
    * @return Instruction object
    */

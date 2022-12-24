@@ -5,10 +5,7 @@ public class Accelerometer implements MemoryUnit {
   private AccelerometerX accelX;
   private AccelerometerY accelY;
 
-  /**
-   * size unused, default value 1
-   * wordSize default value 4
-   */
+  /** size unused, default value 1 wordSize default value 4 */
   public Accelerometer() {
     this(1, 4);
   }

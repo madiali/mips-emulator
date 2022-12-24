@@ -4,10 +4,7 @@ public class AccelerometerY implements MemoryUnit {
   private int wordSize;
   private int yValue = 255;
 
-  /**
-   * size unused, default value 1
-   * wordSize default value 4
-   */
+  /** size unused, default value 1 wordSize default value 4 */
   public AccelerometerY() {
     this(1, 4);
   }

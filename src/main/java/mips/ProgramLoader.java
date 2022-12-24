@@ -1,16 +1,15 @@
 package mips;
 
 /**
- * https://stackoverflow.com/questions/2591098/how-to-parse-json-in-java
- * This link has some discussion about which library to use to parse JSON in Java
- * org.json seems to match the original code closely, so I decided on that
- * I omit the ParseRequiredNumber method since it's only used one time
- * Also, C#'s JSON stuff will return null if a field is not found, whereas org.json will throw an Exception.
- * So, the original code is able to use the uint? (meaning either uint or null) type, which is null if some field is not found in the JSON
- * I replicate this behavior by using Integer, which is initialized to null null, and try catch to catch the Exception thrown if the field is not found.
- * Then the Integer remains null if the field is not found.
+ * https://stackoverflow.com/questions/2591098/how-to-parse-json-in-java This link has some
+ * discussion about which library to use to parse JSON in Java org.json seems to match the original
+ * code closely, so I decided on that I omit the ParseRequiredNumber method since it's only used one
+ * time Also, C#'s JSON stuff will return null if a field is not found, whereas org.json will throw
+ * an Exception. So, the original code is able to use the uint? (meaning either uint or null) type,
+ * which is null if some field is not found in the JSON I replicate this behavior by using Integer,
+ * which is initialized to null, and try catch to catch the Exception thrown if the field is not
+ * found. Then the Integer remains null if the field is not found.
  */
-
 import java.io.*;
 import java.nio.file.Files;
 import java.util.*;
@@ -52,7 +51,8 @@ public class ProgramLoader {
     try {
       // Assume clockSpeed is float, not String
       desiredClockSpeed = project.getFloat("clockSpeed");
-    } catch (Exception e) { }
+    } catch (Exception e) {
+    }
 
     // registers parameter is optional in the original code, passing in null
     // Mips.registers will be a new Registers() object
@@ -98,29 +98,35 @@ public class ProgramLoader {
     String type = null;
     try {
       type = memoryToken.getString("type");
-    } catch (Exception e) { }
+    } catch (Exception e) {
+    }
 
     Integer length = null;
     try {
       length = memoryToken.getInt("length");
-    } catch (Exception e) { }
+    } catch (Exception e) {
+    }
 
     Integer wordSize = null;
     try {
       // Assuming wordSize would be an int, not a String
       wordSize = memoryToken.getInt("wordSize");
-    } catch (Exception e) { }
+    } catch (Exception e) {
+    }
 
     int[] init = null;
     try {
       init = readInitFile(memoryToken.getJSONObject("initFile"));
-    } catch (Exception e) { }
+    } catch (Exception e) {
+    }
 
     MemoryUnit mem = null;
     MemoryUnitFactory memUnitFactory = new MemoryUnitFactory();
 
     if (length != null || init != null) {
-      mem = memUnitFactory.createMemoryUnit(type, length == null ? init.length : length, wordSize == null ? 4 : wordSize);
+      mem =
+          memUnitFactory.createMemoryUnit(
+              type, length == null ? init.length : length, wordSize == null ? 4 : wordSize);
     } else if (wordSize != null) {
       mem = memUnitFactory.createMemoryUnit(type, 0, wordSize);
     } else {
@@ -141,28 +147,33 @@ public class ProgramLoader {
     Integer startAddr = null;
     try {
       startAddr = parseNumber(memoryToken.getString("startAddr"));
-    } catch (Exception e) { }
+    } catch (Exception e) {
+    }
 
     Integer endAddr = null;
     try {
       endAddr = parseNumber(memoryToken.getString("endAddr"));
-    } catch (Exception e) { }
+    } catch (Exception e) {
+    }
 
     Integer size = null;
     try {
       // size may be an int, not a String, this may be incorrect logic
       size = parseNumber(memoryToken.getString("size"));
-    } catch (Exception e) { }
+    } catch (Exception e) {
+    }
 
     String bitmask = null;
     try {
       bitmask = memoryToken.getString("bitmask");
-    } catch (Exception e) { }
+    } catch (Exception e) {
+    }
 
     String name = null;
     try {
       name = memoryToken.getString("name");
-    } catch (Exception e) { }
+    } catch (Exception e) {
+    }
 
     MappedMemoryUnit mappedMem = null;
     if (startAddr != null) {
@@ -199,8 +210,9 @@ public class ProgramLoader {
   }
 
   /**
-   * {"hex": 16, "dec": 10, "bin": 2}
-   * For any other string, also return 16 (assume hex). Doesn't use a Dictionary like the original code, but same behavior.
+   * {"hex": 16, "dec": 10, "bin": 2} For any other string, also return 16 (assume hex). Doesn't use
+   * a Dictionary like the original code, but same behavior.
+   *
    * @param format
    * @return
    */
@@ -215,7 +227,9 @@ public class ProgramLoader {
   }
 
   /**
-   * Needs to return array of unsigned integers for bmem and smem and array of signed integers for imem and dmem.
+   * Needs to return array of unsigned integers for bmem and smem and array of signed integers for
+   * imem and dmem.
+   *
    * @param path
    * @param baseNum
    * @return
@@ -228,14 +242,16 @@ public class ProgramLoader {
     BufferedReader br = new BufferedReader(fr);
     String line;
     while ((line = br.readLine()) != null) {
-     line = cleanLine(line);
-     if (line.length() > 0) {
-       // It is necessary to use parseUnsignedInt over parseInt because parseInt("8fbf0004", 16) doesn't work
-       // parseUnsignedInt("8fbf0004", 16) will return a negative number, for imem and dmem, as expected
-       // But parseUnsignedInt("f00", 16) returns +3840, as expected for smem and bmem
-       // Overall, I believe parseUnsignedInt works as expected in all cases
-       data.add(Integer.parseUnsignedInt(line, baseNum));
-     }
+      line = cleanLine(line);
+      if (line.length() > 0) {
+        // It is necessary to use parseUnsignedInt over parseInt because parseInt("8fbf0004", 16)
+        // doesn't work
+        // parseUnsignedInt("8fbf0004", 16) will return a negative number, for imem and dmem, as
+        // expected
+        // But parseUnsignedInt("f00", 16) returns +3840, as expected for smem and bmem
+        // Overall, I believe parseUnsignedInt works as expected in all cases
+        data.add(Integer.parseUnsignedInt(line, baseNum));
+      }
     }
     return convertListToArr(data);
   }

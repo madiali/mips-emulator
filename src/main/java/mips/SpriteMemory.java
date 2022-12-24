@@ -62,6 +62,7 @@ public class SpriteMemory implements MemoryUnit {
 
   /**
    * Constructor body empty
+   *
    * @param size
    * @param wordSize default value 4
    */
@@ -71,6 +72,7 @@ public class SpriteMemory implements MemoryUnit {
   // No default values in Java, so overload the constructor
   /**
    * Constructor body empty
+   *
    * @param size
    */
   public SpriteMemory(int size) {}
