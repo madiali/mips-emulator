@@ -217,3 +217,8 @@ Same as Java's [`Integer.compare(x, y)`](https://www.geeksforgeeks.org/java-inte
 * In general, we throw unchecked exceptions, such as `IllegalArgumentException`, because that doesn't require the method signature to be changed.
   * Especially useful when throwing exception in a method that must follow an interface and can't have a different signature from the interface.
   * This is done in the setter method in `InstructionMemory.java`.
+
+## JSON
+
+* We use `org.json`, which should be installed as a Maven dependency in `pom.xml`
+* If it doesn't work, go to the Maven tab and click `Reload all Maven projects` 
