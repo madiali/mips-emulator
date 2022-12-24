@@ -21,4 +21,11 @@ public class XorInstructionTest {
     assertEquals(0x00FF00FF, reg.getRegister(16));
     assertEquals(0x4, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new XorInstruction(16, 17, 18);
+
+    assertEquals("XOR $s0, $s1, $s2", target.toString());
+  }
 }

@@ -17,4 +17,15 @@ public class BeqInstruction extends ITypeInstruction {
       pc.incrementPC(immediate << 2);
     }
   }
+
+  @Override
+  public String toString() {
+    return name
+            + " "
+            + Registers.registerToName(s)
+            + ", "
+            + Registers.registerToName(t)
+            + ", "
+            + String.format("0x%04X", immediate);
+  }
 }

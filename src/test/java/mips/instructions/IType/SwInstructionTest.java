@@ -21,4 +21,11 @@ public class SwInstructionTest {
     assertEquals(0x11037, mem.getMemoryUnit(4));
     assertEquals(0x00000004, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new SwInstruction(8, 9, 0x0004);
+
+    assertEquals("SW $t0, 0x0004($t1)", target.toString());
+  }
 }

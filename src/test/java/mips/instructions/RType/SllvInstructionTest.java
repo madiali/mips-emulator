@@ -21,4 +21,11 @@ public class SllvInstructionTest {
     assertEquals(0x34567800, reg.getRegister(16));
     assertEquals(0x4, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new SllvInstruction(16, 17, 18);
+
+    assertEquals("SLLV $s0, $s1, $s2", target.toString());
+  }
 }

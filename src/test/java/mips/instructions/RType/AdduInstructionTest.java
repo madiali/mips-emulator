@@ -41,4 +41,11 @@ public class AdduInstructionTest {
     assertEquals(0x0, reg.getRegister(8));
     assertEquals(0x4, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new AdduInstruction(8, 9, 10);
+
+    assertEquals("ADDU $t0, $t1, $t2", target.toString());
+  }
 }

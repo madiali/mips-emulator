@@ -39,4 +39,10 @@ public class AddiuInstructionTest {
     assertEquals(0x00000000, reg.getRegister(1));
     assertEquals(0x00000004, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new AddiuInstruction(1, 2, 0xFFFF);
+    assertEquals("ADDIU $at, $v0, 0xFFFF", target.toString());
+  }
 }

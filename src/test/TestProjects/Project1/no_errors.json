@@ -1,0 +1,59 @@
+{
+  "projectName": "Test 1",
+  "schema": "1.0",
+  "instructionSet": "2017",
+  "programCounter": 4,
+  "memories": [
+    {
+      "type": "InstructionMemory",
+      "initFile": {
+        "filepath": "imem.mem",
+        "format": "hex"
+      }
+    },
+    {
+      "type": "DataMemory",
+      "startAddr": 0,
+      "length": 50,
+      "initFile": {
+        "filepath": "dmem.mem",
+        "format": "bin"
+      }
+    },
+    {
+      "type": "ScreenMemory",
+      "startAddr": 200,
+      "size": 200,
+      "initFile": {
+        "filepath": "smem.mem",
+        "format": "hex"
+      }
+    },
+    {
+      "type": "BitmapMemory",
+      "startAddr": 400,
+      "endAddr": 2000,
+      "initFile": {
+        "filepath": "bmem.mem",
+        "format": "hex"
+      }
+    },
+    {
+      "type": "BitmapMemory",
+      "bitmask": "1xxxxxxxxxxx",
+      "initFile": {
+        "filepath": "bmem.mem",
+        "format": "hex"
+      }
+    },
+    {
+      "type": "DataMemory",
+      "startAddr": "0xDEADbeef",
+      "length": "0b100",
+      "initFile": {
+        "filepath": "dmem.mem",
+        "format": "bin"
+      }
+    }
+  ]
+}

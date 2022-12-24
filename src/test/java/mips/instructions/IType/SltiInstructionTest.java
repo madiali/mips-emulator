@@ -40,4 +40,11 @@ public class SltiInstructionTest {
     assertEquals(0x00000000, reg.getRegister(9));
     assertEquals(0x00000004, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new SltiInstruction(9, 8, 0x0000);
+
+    assertEquals("SLTI $t1, $t0, 0x0000", target.toString());
+  }
 }

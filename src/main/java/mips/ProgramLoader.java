@@ -222,7 +222,7 @@ public class ProgramLoader {
    */
   private int[] parseInitData(String path, int baseNum) throws IOException {
     // This is probably terrible for runtime but it's fine
-    List<int> data = new ArrayList<int>();
+    List<Integer> data = new ArrayList<>();
     boolean signed = path.toLowerCase().contains("imem") || path.toLowerCase().contains("dmem");
     File file = new File(basePath + "/" + path);
     FileReader fr = new FileReader(file);
@@ -246,7 +246,7 @@ public class ProgramLoader {
     return line;
   }
 
-  private static int[] convertListToArr(List<int> data) {
+  private static int[] convertListToArr(List<Integer> data) {
     int[] res = new int[data.size()];
     for (int i = 0; i < res.length; i++) {
       res[i] = data.get(i);

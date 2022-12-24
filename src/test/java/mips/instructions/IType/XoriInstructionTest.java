@@ -21,4 +21,11 @@ public class XoriInstructionTest {
     assertEquals(0x00FF00FF, reg.getRegister(9));
     assertEquals(0x00000004, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new XoriInstruction(9, 8, 0xFFFF);
+
+    assertEquals("XORI $t1, $t0, 0xFFFF", target.toString());
+  }
 }

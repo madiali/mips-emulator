@@ -21,4 +21,11 @@ public class AndInstructionTest {
     assertEquals(0x0000FF00, reg.getRegister(8));
     assertEquals(0x4, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new AndInstruction(8, 9, 10);
+
+    assertEquals("AND $t0, $t1, $t2", target.toString());
+  }
 }

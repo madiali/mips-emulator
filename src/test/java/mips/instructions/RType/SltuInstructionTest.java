@@ -41,4 +41,11 @@ public class SltuInstructionTest {
     assertEquals(0x0, reg.getRegister(16));
     assertEquals(0x4, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new SltuInstruction(16, 17, 18);
+
+    assertEquals("SLTU $s0, $s1, $s2", target.toString());
+  }
 }

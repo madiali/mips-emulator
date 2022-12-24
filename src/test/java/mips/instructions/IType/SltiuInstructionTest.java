@@ -39,4 +39,11 @@ public class SltiuInstructionTest {
     assertEquals(0x00000000, reg.getRegister(9));
     assertEquals(0x0000004, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new SltiuInstruction(9, 8, 0x0000);
+
+    assertEquals("SLTIU $t1, $t0, 0x0000", target.toString());
+  }
 }

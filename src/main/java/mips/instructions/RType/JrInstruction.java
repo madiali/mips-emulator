@@ -14,4 +14,9 @@ public class JrInstruction extends RTypeInstruction {
   public void execute(ProgramCounter pc, MemoryMapper mem, Registers reg) {
     pc.setPC(reg.getRegister(s));
   }
+
+  @Override
+  public String toString() {
+    return name + " " + Registers.registerToName(s);
+  }
 }

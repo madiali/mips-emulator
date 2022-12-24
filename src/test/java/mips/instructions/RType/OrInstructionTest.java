@@ -21,4 +21,11 @@ public class OrInstructionTest {
     assertEquals(0x00FFFFFF, reg.getRegister(16));
     assertEquals(0x4, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new OrInstruction(16, 17, 18);
+
+    assertEquals("OR $s0, $s1, $s2", target.toString());
+  }
 }

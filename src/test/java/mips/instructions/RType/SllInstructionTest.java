@@ -20,4 +20,11 @@ public class SllInstructionTest {
     assertEquals(0x34567800, reg.getRegister(16));
     assertEquals(0x4, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new SllInstruction(16, 17, 8);
+
+    assertEquals("SLL $s0, $s1, 8", target.toString());
+  }
 }

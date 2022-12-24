@@ -28,4 +28,11 @@ public class JalInstructionTest {
     assertEquals(0x2000000C, pc.getPC());
     assertEquals(0x20000004, reg.getRegister(31));
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new JalInstruction(0x00000003);
+
+    assertEquals("JAL 0x00000003", target.toString());
+  }
 }

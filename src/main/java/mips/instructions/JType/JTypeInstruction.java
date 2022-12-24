@@ -18,7 +18,7 @@ public abstract class JTypeInstruction implements Instruction {
 
   @Override
   public String toString() {
-    return name + " " + String.format("0x%04X", target);
+    return name + " " + String.format("0x%08X", target);
   }
 
   public String getName() {

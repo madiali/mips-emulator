@@ -20,4 +20,11 @@ public class LuiInstructionTest {
     assertEquals(0xABCD0000, reg.getRegister(8));
     assertEquals(0x00000004, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new LuiInstruction(8, 0xABCD);
+
+    assertEquals("LUI $t0, 0xABCD", target.toString());
+  }
 }

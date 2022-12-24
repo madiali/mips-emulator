@@ -19,4 +19,11 @@ public class JrInstructionTest {
     target.execute(pc, mem, reg);
     assertEquals(0xFFFFFFFF, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new JrInstruction(16);
+
+    assertEquals("JR $s0", target.toString());
+  }
 }

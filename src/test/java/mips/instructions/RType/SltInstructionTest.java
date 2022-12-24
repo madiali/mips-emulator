@@ -41,4 +41,11 @@ public class SltInstructionTest {
     assertEquals(0x0, reg.getRegister(16));
     assertEquals(0x4, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new SltInstruction(16, 17, 18);
+
+    assertEquals("SLT $s0, $s1, $s2", target.toString());
+  }
 }

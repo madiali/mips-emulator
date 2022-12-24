@@ -20,4 +20,11 @@ public class SrlInstructionTest {
     assertEquals(0x00823456, reg.getRegister(16));
     assertEquals(0x4, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new SrlInstruction(16, 17, 8);
+
+    assertEquals("SRL $s0, $s1, 8", target.toString());
+  }
 }

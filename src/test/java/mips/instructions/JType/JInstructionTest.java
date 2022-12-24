@@ -26,4 +26,11 @@ public class JInstructionTest {
     target.execute(pc, mem, reg);
     assertEquals(0x2000000C, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new JInstruction(0x00000003);
+
+    assertEquals("J 0x00000003", target.toString());
+  }
 }

@@ -15,4 +15,9 @@ public class JalrInstruction extends RTypeInstruction {
     reg.setRegister(31, pc.getPC() + 4);
     pc.setPC(reg.getRegister(s));
   }
+
+  @Override
+  public String toString() {
+    return name + " " + Registers.registerToName(s);
+  }
 }

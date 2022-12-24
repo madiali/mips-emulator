@@ -21,4 +21,11 @@ public class OriInstructionTest {
     assertEquals(0xFFFFFFFF, reg.getRegister(9));
     assertEquals(0x00000004, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new OriInstruction(9, 8, 0xFFFF);
+
+    assertEquals("ORI $t1, $t0, 0xFFFF", target.toString());
+  }
 }

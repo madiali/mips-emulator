@@ -21,4 +21,10 @@ public class AndiInstructionTest {
     assertEquals(0x0000FF00, reg.getRegister(9));
     assertEquals(0x00000004, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new AndiInstruction(9, 8, 0xFFFF);
+    assertEquals("ANDI $t1, $t0, 0xFFFF", target.toString());
+  }
 }

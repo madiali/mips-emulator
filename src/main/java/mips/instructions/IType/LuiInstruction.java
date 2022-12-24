@@ -15,4 +15,13 @@ public class LuiInstruction extends ITypeInstruction {
     reg.setRegister(t, immediate << 16);
     pc.incrementPC(4);
   }
+
+  @Override
+  public String toString() {
+    return name
+            + " "
+            + Registers.registerToName(t)
+            + ", "
+            + String.format("0x%04X", immediate);
+  }
 }

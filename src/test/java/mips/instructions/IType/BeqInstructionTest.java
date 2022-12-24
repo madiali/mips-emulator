@@ -28,4 +28,11 @@ public class BeqInstructionTest {
     target.execute(pc, mem, reg);
     assertEquals(0x0000000C, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new BeqInstruction(5, 6, 0x1234);
+
+    assertEquals("BEQ $a1, $a2, 0x1234", target.toString());
+  }
 }

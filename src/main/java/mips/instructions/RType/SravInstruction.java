@@ -15,4 +15,9 @@ public class SravInstruction extends RTypeInstruction {
     reg.setRegister(d, reg.getRegister(t) >> reg.getRegister(s));
     pc.incrementPC(4);
   }
+
+  @Override
+  public String toString() {
+    return name + " " + Registers.registerToName(d) + ", " + Registers.registerToName(t) + ", " + Registers.registerToName(s);
+  }
 }

@@ -31,4 +31,10 @@ public class LwInstructionTest {
     assertEquals(0xDEADBEEF, reg.getRegister(8));
     assertEquals(0x00000004, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new LwInstruction(8, 9, 0x0004);
+    assertEquals("LW $t0, 0x0004($t1)", target.toString());
+  }
 }

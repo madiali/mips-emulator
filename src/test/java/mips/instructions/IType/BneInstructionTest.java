@@ -28,4 +28,10 @@ public class BneInstructionTest {
     target.execute(pc, mem, reg);
     assertEquals(0x00000014, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new BneInstruction(5, 6, 0x1234);
+    assertEquals("BNE $a1, $a2, 0x1234", target.toString());
+  }
 }

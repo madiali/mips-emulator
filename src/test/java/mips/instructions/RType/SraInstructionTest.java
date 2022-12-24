@@ -29,4 +29,11 @@ public class SraInstructionTest {
     assertEquals(0xFF823456, reg.getRegister(16));
     assertEquals(0x4, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new SraInstruction(16, 17, 8);
+
+    assertEquals("SRA $s0, $s1, 8", target.toString());
+  }
 }

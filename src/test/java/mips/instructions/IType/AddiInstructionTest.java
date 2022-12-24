@@ -39,4 +39,10 @@ public class AddiInstructionTest {
     assertEquals(0x00000000, reg.getRegister(1));
     assertEquals(0x00000004, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new AddiInstruction(1, 2, 0xFFFF);
+    assertEquals("ADDI $at, $v0, 0xFFFF", target.toString());
+  }
 }

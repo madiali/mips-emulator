@@ -41,4 +41,11 @@ public class SubInstructionTest {
     assertEquals(0xFFFFFFFF, reg.getRegister(16));
     assertEquals(0x4, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new SubInstruction(16, 17, 18);
+
+    assertEquals("SUB $s0, $s1, $s2", target.toString());
+  }
 }

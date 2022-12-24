@@ -21,4 +21,11 @@ public class NorInstructionTest {
     assertEquals(0xFF000000, reg.getRegister(16));
     assertEquals(0x4, pc.getPC());
   }
+
+  @Test
+  public void toStringFormatted() {
+    target = new NorInstruction(16, 17, 18);
+
+    assertEquals("NOR $s0, $s1, $s2", target.toString());
+  }
 }
