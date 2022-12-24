@@ -20,20 +20,14 @@ public class InstructionMemoryTest {
     target = new InstructionMemory(instructions);
   }
 
-  // Comment from original code
-  // I assume this test fails in the original code as well... but idk why it fails either
-  // TODO: Figure this out
   @Test
   public void setInstructionValidIndex() {
     target = new InstructionMemory(8);
     AddInstruction instr = new AddInstruction(1, 1, 2);
 
     target.setMemoryUnit(4, 0x00220820);
-    AddInstruction targetInstruction = (AddInstruction) target.getInstruction(4);
-    assertEquals(instr.getClass(), targetInstruction.getClass());
-    assertEquals(instr.getD(), targetInstruction.getD());
-    assertEquals(instr.getS(), targetInstruction.getS());
-    assertEquals(instr.getT(), targetInstruction.getT());
+    Instruction targetInstruction = target.getInstruction(4);
+    assertEquals(instr.toString(), targetInstruction.toString());
   }
 
   @Test

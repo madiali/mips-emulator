@@ -38,16 +38,4 @@ public abstract class ITypeInstruction implements Instruction {
   public String getName() {
     return this.name;
   }
-
-  public int getT() {
-    return t;
-  }
-
-  public int getS() {
-    return s;
-  }
-
-  public int getImmediate() {
-    return immediate;
-  }
 }

@@ -24,8 +24,4 @@ public abstract class JTypeInstruction implements Instruction {
   public String getName() {
     return this.name;
   }
-
-  public int getTarget() {
-    return target;
-  }
 }
