@@ -9,14 +9,19 @@ public class Accelerometer implements MemoryUnit {
     this(1, 4);
   }
 
+  /**
+   * @param size default value 1
+   * @param wordSize default value 4
+   */
   public Accelerometer(int size, int wordSize) {
     this.accelX = new AccelerometerX();
     this.accelY = new AccelerometerY();
+    this.wordSize = wordSize;
   }
 
   @Override
   public int getMemoryUnit(int index) {
-    return (accelX.getMemoryUnit(0) << 16) | (accelY.getMemoryUnit(0));
+    return (accelX.getXValue() << 16) | accelY.getYValue();
   }
 
   /* Not sure how to implement this method.
@@ -49,5 +54,13 @@ public class Accelerometer implements MemoryUnit {
 
   public AccelerometerY getAccelY() {
     return accelY;
+  }
+
+  public void setAccelX(AccelerometerX accelX) {
+    this.accelX = accelX;
+  }
+
+  public void setAccelY(AccelerometerY accelY) {
+    this.accelY = accelY;
   }
 }
