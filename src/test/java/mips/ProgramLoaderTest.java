@@ -29,15 +29,69 @@ public class ProgramLoaderTest {
         assertEquals(49 * 4, target.getMips().getInstrMem().getSize());
     }
 
-    /**
-     * This test uses toString, I'm gonna add overridden toString methods to Instructions
-     */
     @Test
     public void instructionsInitializedNoComment() {
         InstructionFactory instrFact = new InstructionFactory();
-        // expected = LUI $t0, 0xFFFF
         Instruction expected = instrFact.createInstruction(0x3c08ffff);
-        Instruction targetInstruction = target.getMips().getInstrMem().getInstruction(4);
-        assertEquals(expected.getClass(), targetInstruction.getClass());
+        assertEquals(expected.toString(), target.getMips().getInstrMem().getInstruction(4).toString());
+    }
+
+    @Test
+    public void instructionsInitializedWithComment() {
+        InstructionFactory instrFact = new InstructionFactory();
+        Instruction expected = instrFact.createInstruction(0x201d003c);
+        assertEquals(expected.toString(), target.getMips().getInstrMem().getInstruction(0).toString());
+    }
+
+    @Test
+    public void memoryInitializedWithStartAddr() {
+        assertEquals(3, target.getMips().getMemory().getMemoryUnit(4));
+    }
+
+    @Test
+    public void memoryInitializedWithStartAndEndAddr() {
+        assertEquals(0xf00, target.getMips().getMemory().getMemoryUnit(400));
+    }
+
+    @Test
+    public void memoryInitializedWithStartAddrAndSize() {
+        assertEquals(0xf00, target.getMips().getMemory().getMemoryUnit(2048));
+    }
+
+    /**
+     * TODO: need better error message
+     */
+    @Test
+    public void nonExistentMemoryUnitType() {
+        File file = new File("src/test/TestProjects/Project1/nonexistent_memory_type.json");
+        try {
+            ProgramLoader pl = new ProgramLoader(file);
+            fail();
+        } catch (Exception e) {
+
+        }
+    }
+
+    /**
+     * TODO: same here
+     */
+    @Test
+    public void invalidMemoryUnitType() {
+        File file = new File("src/test/TestProjects/Project1/invalid_memory_type.json");
+        try {
+            ProgramLoader pl = new ProgramLoader(file);
+            fail();
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Test
+    public void parsesHexAndBinValues() {
+        MappedMemoryUnit memUnit = target.getMips().getMemory().getMemUnits().get(4);
+        assertEquals(DataMemory.class, memUnit.getClass());
+        assertEquals(0xDEADBEEF, memUnit.getStartAddr());
+        assertEquals(0b100, memUnit.getSize() / memUnit.getWordSize());
+
     }
 }

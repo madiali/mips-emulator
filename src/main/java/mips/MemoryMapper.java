@@ -68,4 +68,8 @@ public class MemoryMapper implements MemoryUnit {
   private int resolveAddress(int addr, MappedMemoryUnit memUnit) {
     return addr - memUnit.getStartAddr();
   }
+
+  public List<MappedMemoryUnit> getMemUnits() {
+    return memUnits;
+  }
 }

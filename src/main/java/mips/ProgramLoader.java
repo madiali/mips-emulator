@@ -119,6 +119,10 @@ public class ProgramLoader {
     MemoryUnit mem = null;
     MemoryUnitFactory memUnitFactory = new MemoryUnitFactory();
 
+//    System.out.println(length);
+//    System.out.println(init);
+//    System.out.println(wordSize);
+
     if (length != null || init != null) {
       mem = memUnitFactory.createMemoryUnit(type, length == null ? init.length : length, wordSize == null ? 4 : wordSize);
     } else if (wordSize != null) {
@@ -223,7 +227,6 @@ public class ProgramLoader {
   private int[] parseInitData(String path, int baseNum) throws IOException {
     // This is probably terrible for runtime but it's fine
     List<Integer> data = new ArrayList<>();
-    boolean signed = path.toLowerCase().contains("imem") || path.toLowerCase().contains("dmem");
     File file = new File(basePath + "/" + path);
     FileReader fr = new FileReader(file);
     BufferedReader br = new BufferedReader(fr);
@@ -231,7 +234,11 @@ public class ProgramLoader {
     while ((line = br.readLine()) != null) {
      line = cleanLine(line);
      if (line.length() > 0) {
-       data.add(signed ? Integer.parseInt(line, baseNum) : Integer.parseUnsignedInt(line, baseNum));
+       // It is necessary to use parseUnsignedInt over parseInt because parseInt("8fbf0004", 16) doesn't work
+       // parseUnsignedInt("8fbf0004", 16) will return a negative number, for imem and dmem, as expected
+       // But parseUnsignedInt("f00", 16) returns +3840, as expected for smem and bmem
+       // Overall, I believe parseUnsignedInt works as expected in all cases
+       data.add(Integer.parseUnsignedInt(line, baseNum));
      }
     }
     return convertListToArr(data);
