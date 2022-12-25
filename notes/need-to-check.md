@@ -11,3 +11,4 @@ Here are some things that need to be tested:
 * ProgramLoader: parseNumber should also use parseUnsignedInt? This may cause unintended negative values...
 * ProgramLoaderTest.parsesHexAndBinValues: DataMemory mapped to 0xDEADBEEF (negative) sorted correctly due to MemoryMapper using Integer.compareUnsigned, but the start address is negative.
   * If this causes problems (it might be fine though), we can say that the JSON shouldn't map to an address above 0x7FFFFFFF.
+  * Make sure that all int fields are checked as `Strings` or `int`s.

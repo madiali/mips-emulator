@@ -37,9 +37,15 @@ public class ProgramLoader {
     try {
       pc = project.getInt("programCounter");
     } catch (Exception e) {
-      throw new IllegalArgumentException("Expected field programCounter not found in project JSON");
+      throw new IllegalArgumentException(
+          "Expected field int (not String, do not surround this field with quotation marks) programCounter not found in project JSON");
     }
-    JSONArray memoriesArray = project.getJSONArray("memories");
+    JSONArray memoriesArray;
+    try {
+      memoriesArray = project.getJSONArray("memories");
+    } catch (Exception e) {
+      throw new IllegalArgumentException("Your JSON does not specify the JSONArray memories field");
+    }
     Map<Class, List<MemoryUnit>> memDict = buildMemoryUnits(memoriesArray);
     String name = null;
     try {
@@ -68,6 +74,23 @@ public class ProgramLoader {
       return Integer.parseUnsignedInt(token.substring(2), 2);
     }
     return Integer.parseUnsignedInt(token, 10);
+  }
+
+  /**
+   * An integer field (e.g. startAddr, endAddr) in JSON can be either an integer (no quotes) or String (with quotes); this function parses both ways.
+   * @param object
+   * @param field
+   * @return the integer or null if the field doesn't exist
+   */
+  private Integer parseJSONIntField(JSONObject object, String field) {
+    Integer rv = null;
+    try {
+      rv = object.getInt(field);
+    } catch (Exception e) { }
+    try {
+      rv = parseNumber(object.getString(field));
+    } catch (Exception e) { }
+    return rv;
   }
 
   private Map<Class, List<MemoryUnit>> buildMemoryUnits(JSONArray memoriesArray) {
@@ -103,13 +126,22 @@ public class ProgramLoader {
 
     Integer length = null;
     try {
+      length = parseNumber(memoryToken.getString("length"));
+    } catch (Exception e) {
+    }
+
+    try {
       length = memoryToken.getInt("length");
     } catch (Exception e) {
     }
 
     Integer wordSize = null;
     try {
-      // Assuming wordSize would be an int, not a String
+      wordSize = parseNumber(memoryToken.getString("wordSize"));
+    } catch (Exception e) {
+    }
+
+    try {
       wordSize = memoryToken.getInt("wordSize");
     } catch (Exception e) {
     }
@@ -143,7 +175,8 @@ public class ProgramLoader {
   }
 
   private MappedMemoryUnit mapMemoryToAddresses(JSONObject memoryToken, MemoryUnit mem) {
-    // According to the no_errors.json file, startAddr, endAddr, size can be int (usually) or String (if binary or hex value)
+    // According to the no_errors.json file, startAddr, endAddr, size can be int (usually) or String
+    // (if binary or hex value)
     Integer startAddr = null;
     try {
       startAddr = parseNumber(memoryToken.getString("startAddr"));
