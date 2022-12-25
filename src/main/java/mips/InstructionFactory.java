@@ -14,8 +14,6 @@ public class InstructionFactory {
    * = in Java I could not get enums to work, so I'm just hardcoding it Also, 0b100011 is recognized
    * as positive 35, not a negative number. Yay! - Jesse
    */
-
-  // Java has no const keyword, using final instead
   private final int SIX_MASK = 0b111111;
 
   private final int FIVE_MASK = 0b11111;
@@ -24,8 +22,8 @@ public class InstructionFactory {
 
   /**
    * The original has no constructor, so ours doesn't have a constructor either.
-   * InstructionFactory() constructor is sometimes called in other files, so I assume Java creates a
-   * default constructor
+   * InstructionFactory() constructor is called in other files, so I assume Java creates a default
+   * constructor
    */
 
   /**

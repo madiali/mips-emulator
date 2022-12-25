@@ -1,7 +1,6 @@
 package mips;
 
 public class Registers {
-  // readonly in the original code
   private final int[] registers;
 
   public Registers() {
@@ -14,8 +13,6 @@ public class Registers {
     return (regNumber == 0) ? 0 : registers[regNumber];
   }
 
-  // This setter modifies elements of registers but not the memory address stored by the variable
-  // registers
   public void setRegister(int regNumber, int value) {
     registers[regNumber] = value;
   }

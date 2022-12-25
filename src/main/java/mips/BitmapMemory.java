@@ -39,7 +39,7 @@ public class BitmapMemory implements MemoryUnit {
   @Override
   public int getMemoryUnit(int index) {
     if (index % this.wordSize == 0) {
-      return this.memory[(int) (index / this.wordSize)];
+      return this.memory[index / this.wordSize];
     } else {
       throw new IllegalArgumentException(
           String.format(
@@ -51,7 +51,7 @@ public class BitmapMemory implements MemoryUnit {
   @Override
   public void setMemoryUnit(int index, int value) {
     if (index % this.wordSize == 0) {
-      this.memory[(int) (index / this.wordSize)] = value;
+      this.memory[index / this.wordSize] = value;
     } else {
       throw new IllegalArgumentException(
           String.format(

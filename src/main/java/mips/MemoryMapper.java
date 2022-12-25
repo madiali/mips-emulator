@@ -11,9 +11,7 @@ public class MemoryMapper implements MemoryUnit {
 
   public MemoryMapper(List<MappedMemoryUnit> memUnits) {
     this.memUnits = memUnits;
-    // Not sure that this line is correct, but it's essentially copied from the original code
-    // IntelliJ says this can be replaced by Comparator.comparingInt
-    // Also, this sort method mutates memUnits, as expected
+    // This sort method mutates memUnits, as expected
     this.memUnits.sort((x, y) -> Integer.compareUnsigned(x.getStartAddr(), y.getStartAddr()));
   }
 
@@ -22,9 +20,7 @@ public class MemoryMapper implements MemoryUnit {
     int[] data = new int[size];
     DataMemory dataMem = new DataMemory(data);
     MappedMemoryUnit mappedMem = new MappedMemoryUnit(dataMem, 0);
-    // List is abstract and can't be instantiated, so I'm using ArrayList
     this.memUnits = new ArrayList<MappedMemoryUnit>();
-    // I think the syntax means mappedMem is added to the list
     this.memUnits.add(mappedMem);
   }
 

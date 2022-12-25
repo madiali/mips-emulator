@@ -22,6 +22,7 @@ public class Keyboard implements MemoryUnit {
   }
 
   @Override
+  /** Original code has an empty setter body. */
   public void setMemoryUnit(int index, int value) {
     keyCode = value;
   }

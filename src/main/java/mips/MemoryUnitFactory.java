@@ -28,8 +28,8 @@ public class MemoryUnitFactory {
   }
 
   /**
-   * @param type NOT InstructionMemory, DataMemory, BitmapMemory, or ScreenMemory (need more
-   *     constructor arguments), which will throw IllegalArgumentException
+   * @param type NOT InstructionMemory, DataMemory, BitmapMemory, or ScreenMemory (which require
+   *     more constructor arguments), which will throw IllegalArgumentException
    * @return
    */
   public MemoryUnit createMemoryUnit(String type) {

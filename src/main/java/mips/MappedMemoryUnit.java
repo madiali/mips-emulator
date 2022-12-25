@@ -7,7 +7,7 @@ public class MappedMemoryUnit {
   private int startAddr;
   private int endAddr;
   private String name;
-  // The original code uses a Regex type, but that doesn't exist in Java
+  // The original code uses a Regex type
   private final Pattern bitmaskFormat = Pattern.compile("^(0|1)+x*$");
 
   /**
@@ -89,8 +89,6 @@ public class MappedMemoryUnit {
       throw new ArithmeticException(
           "EndAddr is negative in MappedMemoryUnit.java. Its value is " + this.endAddr);
     }
-    // This replaces the null coalescing (??) and null conditional (x?.y) operators in the original
-    // code
     this.name = (name == null) ? ((memUnit == null) ? null : memUnit.getClass().getName()) : name;
   }
 
