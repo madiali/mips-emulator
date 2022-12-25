@@ -1,6 +1,7 @@
 package GUI;
 
-import javafx.*;
+import javafx.fxml.*;
+import javafx.scene.*;
 
 public class HelloFX {
 }
