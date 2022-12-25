@@ -20,7 +20,7 @@ public class ProgramLoader {
   private final String basePath;
 
   public ProgramLoader(File file) throws IOException {
-    // If file is in /MIPS_Emulator/, the below returns /MIPS_Emulator (without the trailing /)
+    // If file is in /MIPS_Emulator/, getParent() returns /MIPS_Emulator (without the trailing /)
     // Works the same as FileInfo's .DirectoryName
     this.basePath = file.getParent();
     this.mips = loadMipsFromFile(file);
@@ -47,7 +47,7 @@ public class ProgramLoader {
       throw new IllegalArgumentException("Your JSON does not specify the JSONArray memories field");
     }
     Map<Class, List<MemoryUnit>> memDict = buildMemoryUnits(memoriesArray);
-    String name = null;
+    String name;
     try {
       name = project.getString("projectName");
     } catch (Exception e) {
@@ -65,6 +65,11 @@ public class ProgramLoader {
     return new Mips(pc, memDict, null, name, desiredClockSpeed);
   }
 
+  /**
+   * Parse a hex, binary, or decimal String field to int.
+   *
+   * @param token
+   */
   private int parseNumber(String token) {
     token = token.replace("_", "");
     if (token.startsWith("0x")) {
@@ -77,7 +82,9 @@ public class ProgramLoader {
   }
 
   /**
-   * An integer field (e.g. startAddr, endAddr) in JSON can be either an integer (no quotes) or String (with quotes); this function parses both ways.
+   * An integer field (e.g. startAddr, endAddr) in JSON can be either an integer (no quotes) or
+   * String (with quotes) if hex or binary; this function parses the field both ways.
+   *
    * @param object
    * @param field
    * @return the integer or null if the field doesn't exist
@@ -86,10 +93,28 @@ public class ProgramLoader {
     Integer rv = null;
     try {
       rv = object.getInt(field);
-    } catch (Exception e) { }
+    } catch (Exception e) {
+    }
     try {
       rv = parseNumber(object.getString(field));
-    } catch (Exception e) { }
+    } catch (Exception e) {
+    }
+    return rv;
+  }
+
+  /**
+   * Parse a String field
+   *
+   * @param object
+   * @param field
+   * @return the String or null if the field doesn't exist
+   */
+  private String parseJSONStringField(JSONObject object, String field) {
+    String rv = null;
+    try {
+      rv = object.getString(field);
+    } catch (Exception e) {
+    }
     return rv;
   }
 
@@ -118,33 +143,9 @@ public class ProgramLoader {
   }
 
   private MemoryUnit buildMemoryUnit(JSONObject memoryToken) {
-    String type = null;
-    try {
-      type = memoryToken.getString("type");
-    } catch (Exception e) {
-    }
-
-    Integer length = null;
-    try {
-      length = parseNumber(memoryToken.getString("length"));
-    } catch (Exception e) {
-    }
-
-    try {
-      length = memoryToken.getInt("length");
-    } catch (Exception e) {
-    }
-
-    Integer wordSize = null;
-    try {
-      wordSize = parseNumber(memoryToken.getString("wordSize"));
-    } catch (Exception e) {
-    }
-
-    try {
-      wordSize = memoryToken.getInt("wordSize");
-    } catch (Exception e) {
-    }
+    String type = parseJSONStringField(memoryToken, "type");
+    Integer length = parseJSONIntField(memoryToken, "length");
+    Integer wordSize = parseJSONIntField(memoryToken, "wordSize");
 
     int[] init = null;
     try {
@@ -152,7 +153,7 @@ public class ProgramLoader {
     } catch (Exception e) {
     }
 
-    MemoryUnit mem = null;
+    MemoryUnit mem;
     MemoryUnitFactory memUnitFactory = new MemoryUnitFactory();
 
     if (length != null || init != null) {
@@ -175,54 +176,13 @@ public class ProgramLoader {
   }
 
   private MappedMemoryUnit mapMemoryToAddresses(JSONObject memoryToken, MemoryUnit mem) {
-    // According to the no_errors.json file, startAddr, endAddr, size can be int (usually) or String
-    // (if binary or hex value)
-    Integer startAddr = null;
-    try {
-      startAddr = parseNumber(memoryToken.getString("startAddr"));
-    } catch (Exception e) {
-    }
+    Integer startAddr = parseJSONIntField(memoryToken, "startAddr");
+    Integer endAddr = parseJSONIntField(memoryToken, "endAddr");
+    Integer size = parseJSONIntField(memoryToken, "size");
+    String bitmask = parseJSONStringField(memoryToken, "bitmask");
+    String name = parseJSONStringField(memoryToken, "name");
 
-    try {
-      startAddr = memoryToken.getInt("startAddr");
-    } catch (Exception e) {
-    }
-
-    Integer endAddr = null;
-    try {
-      endAddr = parseNumber(memoryToken.getString("endAddr"));
-    } catch (Exception e) {
-    }
-
-    try {
-      endAddr = memoryToken.getInt("endAddr");
-    } catch (Exception e) {
-    }
-
-    Integer size = null;
-    try {
-      size = parseNumber(memoryToken.getString("size"));
-    } catch (Exception e) {
-    }
-
-    try {
-      size = memoryToken.getInt("size");
-    } catch (Exception e) {
-    }
-
-    String bitmask = null;
-    try {
-      bitmask = memoryToken.getString("bitmask");
-    } catch (Exception e) {
-    }
-
-    String name = null;
-    try {
-      name = memoryToken.getString("name");
-    } catch (Exception e) {
-    }
-
-    MappedMemoryUnit mappedMem = null;
+    MappedMemoryUnit mappedMem;
     if (startAddr != null) {
       if (endAddr != null) {
         mappedMem = new MappedMemoryUnit(mem, startAddr, endAddr, name);
@@ -244,7 +204,7 @@ public class ProgramLoader {
     try {
       path = initFileObj.getString("filepath");
     } catch (Exception e) {
-      throw new IllegalArgumentException("One of your initFile tokens doesn't have a filepath");
+      throw new IllegalArgumentException("One of your initFile objects doesn't have a filepath");
     }
     String format;
     try {
@@ -282,7 +242,7 @@ public class ProgramLoader {
    * @return
    */
   private int[] parseInitData(String path, int baseNum) throws IOException {
-    // This is probably terrible for runtime but it's fine
+    // This is terrible for runtime, but it's fine since it's a one-time cost at startup (copium)
     List<Integer> data = new ArrayList<>();
     File file = new File(basePath + "/" + path);
     FileReader fr = new FileReader(file);
