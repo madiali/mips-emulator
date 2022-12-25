@@ -85,8 +85,11 @@ public class ProgramLoaderTest {
   @Test
   public void parsesHexAndBinValues() {
     MappedMemoryUnit memUnit = target.getMips().getMemory().getMemUnits().get(4);
-    assertEquals(DataMemory.class, memUnit.getClass());
+    assertTrue(memUnit.getMemUnit() instanceof DataMemory);
+    // This passes but the startAddr is negative (but sorted correctly, as if it were unsigned, due to MemoryMapper using Integer.compareUnsigned to sort)
     assertEquals(0xDEADBEEF, memUnit.getStartAddr());
+    System.out.println("size: " + memUnit.getSize());
+    System.out.println("wordSize: " + memUnit.getWordSize());
     assertEquals(0b100, memUnit.getSize() / memUnit.getWordSize());
   }
 }

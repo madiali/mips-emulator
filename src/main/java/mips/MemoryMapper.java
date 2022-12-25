@@ -13,7 +13,8 @@ public class MemoryMapper implements MemoryUnit {
     this.memUnits = memUnits;
     // Not sure that this line is correct, but it's essentially copied from the original code
     // IntelliJ says this can be replaced by Comparator.comparingInt
-    this.memUnits.sort((x, y) -> Integer.compare(x.getStartAddr(), y.getStartAddr()));
+    // Also, this sort method mutates memUnits, as expected
+    this.memUnits.sort((x, y) -> Integer.compareUnsigned(x.getStartAddr(), y.getStartAddr()));
   }
 
   @Deprecated

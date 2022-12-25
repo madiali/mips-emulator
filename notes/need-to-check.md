@@ -9,3 +9,5 @@ Here are some things that need to be tested:
 * IType instructions: Access fields with this.s, this.t, this.imm, or super.s, super.t, super.imm, or no prefix all have the same behavior?
 * Registers: The original code says `registers` is `readonly` but has a setter method that modifies `registers`?
 * ProgramLoader: parseNumber should also use parseUnsignedInt? This may cause unintended negative values...
+* ProgramLoaderTest.parsesHexAndBinValues: DataMemory mapped to 0xDEADBEEF (negative) sorted correctly due to MemoryMapper using Integer.compareUnsigned, but the start address is negative.
+  * If this causes problems (it might be fine though), we can say that the JSON shouldn't map to an address above 0x7FFFFFFF.
