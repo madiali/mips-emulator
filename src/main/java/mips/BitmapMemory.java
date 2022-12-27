@@ -1,6 +1,3 @@
-/**
- * TODO: Create some helpers to make looping through the array more straightforward.
- */
 package mips;
 
 public class BitmapMemory implements MemoryUnit {
@@ -71,5 +68,15 @@ public class BitmapMemory implements MemoryUnit {
   @Override
   public int getWordSize() {
     return this.wordSize;
+  }
+
+  /**
+   * This method returns a clone of the int[] memory to make iterating easier (don't have to mess
+   * with getSize and getWordSize) while protecting read-only memory contents.
+   *
+   * @return int[] memory
+   */
+  public int[] getMemoryClone() {
+    return memory.clone();
   }
 }
