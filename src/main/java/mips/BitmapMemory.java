@@ -1,3 +1,6 @@
+/**
+ * TODO: Create some helpers to make looping through the array more straightforward.
+ */
 package mips;
 
 public class BitmapMemory implements MemoryUnit {

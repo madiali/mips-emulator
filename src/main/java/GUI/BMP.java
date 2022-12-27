@@ -12,9 +12,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class ParseBmem {
+public class BMP {
     // Boilerplate header bits for all sprites
-    private static final byte[] bmp_header = new byte[] {
+    private static final byte[] BMP_HEADER = new byte[] {
             0x42, 0x4D,
             0, 0, 0, 0,             // file size (B)
             0, 0,
@@ -33,6 +33,9 @@ public class ParseBmem {
             0, 0, 0, 0,
             0, 0, 0, 0
     };
+
+    // 16 bpp uses 5 bits per color but bmem.mem uses 4 bits per color. Colors appear unsaturated unless we scale them.
+    private static final double SCALE_COLOR = 5.0/4;
 
     public static void main(String[] args) throws IOException {
         ProgramLoader programLoader = new ProgramLoader(new File("src/test/TestProjects/Rubik/full_test.json"));
@@ -57,7 +60,7 @@ public class ParseBmem {
                     data[2 * revPixel + 1] = (byte) (twoBytes & 0xFF);
                 }
             }
-            dataToFile(bmp_header, destination, false);
+            dataToFile(BMP_HEADER, destination, false);
             dataToFile(data, destination, true);
         }
     }

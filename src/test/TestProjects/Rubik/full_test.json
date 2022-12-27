@@ -1,0 +1,99 @@
+{
+  "comment": "I removed Sound from this JSON because it's not implemented so throws an error",
+  "projectName": "Rubik's",
+  "schema": "1.0",
+  "instructionSet": "2018",
+  "programCounter": 0,
+  "memories": [
+    {
+      "type": "InstructionMemory",
+      "initFile": {
+        "filepath": "imem.mem",
+        "format": "hex"
+      }
+    },
+    {
+      "type": "DataMemory",
+      "startAddr": "0x10010000",
+      "initFile": {
+        "filepath": "dmem.mem",
+        "format": "hex"
+      }
+    },
+    {
+      "type": "BitmapMemory",
+      "initFile": {
+        "filepath": "bmem.mem",
+        "format": "hex"
+      }
+    },
+    {
+      "type": "ScreenMemory",
+      "startAddr": "0x10020000",
+      "initFile": {
+        "filepath": "smem.mem",
+        "format": "hex"
+      }
+    },
+    {
+      "type": "Keyboard",
+      "startAddr": "0x10030000",
+      "initFile": {
+        "filepath": "smem.mem",
+        "format": "hex"
+      }
+    },
+    {
+      "type": "Accelerometer",
+      "startAddr": "0x10030004"
+    },
+    {
+      "type": "DataMemory",
+      "name": "LED",
+      "startAddr": "0x1003000c",
+      "length": 1
+    },
+    {
+      "type": "DataMemory",
+      "name": "RNG",
+      "startAddr": "0x10000000",
+      "length": 1
+    },
+    {
+      "type": "DataMemory",
+      "name": "curr_time",
+      "startAddr": "0x10000004",
+      "length": 1
+    },
+    {
+      "type": "DataMemory",
+      "name": "sound2",
+      "startAddr": "0x10000008",
+      "length": 1
+    },
+    {
+      "type": "DataMemory",
+      "name": "timer_reset",
+      "startAddr": "0x10070000",
+      "length": 1
+    },
+    {
+      "type": "DataMemory",
+      "name": "timer_enable",
+      "startAddr": "0x10070004",
+      "length": 1
+    },
+    {
+      "type": "DataMemory",
+      "name": "timer_disp",
+      "startAddr": "0x10070008",
+      "length": 1
+    },
+    {
+      "type": "DataMemory",
+      "name": "timer_old_time",
+      "startaddr": "0x1007000C",
+      "length": 1
+    }
+  ]
+}
