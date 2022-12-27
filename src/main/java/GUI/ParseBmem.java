@@ -1,6 +1,6 @@
 /**
- * This code is essentially proof of concept that we can generate working BMP from bmem.mem, will make it readable later.
- * Also, This is programmed with the assumption that each sprite in bmem is 16x16. TODO: Generalize later.
+ * This code is essentially proof of concept that we can generate working BMP from bmem.mem, will make it more readable later.
+ * Also, this is programmed with the assumption that each sprite in bmem is 16x16. TODO: Generalize later. Also make sure these render fine in GridPane.
  * https://medium.com/sysf/bits-to-bitmaps-a-simple-walkthrough-of-bmp-image-format-765dc6857393
  */
 package GUI;
@@ -48,10 +48,14 @@ public class ParseBmem {
         for (int sprite = 0; sprite < bmem.getSize() / bmem.getWordSize() / 256; sprite++) {
             File destination = new File("img/" + Integer.toHexString(sprite) + ".bmp");
             byte[] data = new byte[512];
-            for (int pixel = 0; pixel < 256; pixel++) {
-                int twoBytes = bigEndianToLittleEndian(bmemPixelToBMPPixel(bmem.getMemoryUnit(bmem.getWordSize() * (sprite * 256 + pixel))));
-                data[2 * pixel] = (byte) ((twoBytes & 0xFF00) >> 8);
-                data[2 * pixel + 1] = (byte) (twoBytes & 0xFF);
+            for (int row = 0; row < 16; row++) {
+                for (int col = 0; col < 16; col++) {
+                    int pixel = (16 * row + col);
+                    int twoBytes = bigEndianToLittleEndian(bmemPixelToBMPPixel(bmem.getMemoryUnit(bmem.getWordSize() * (sprite * 256 + pixel))));
+                    int revPixel = 16 * (15 - row) + col;
+                    data[2 * revPixel] = (byte) ((twoBytes & 0xFF00) >> 8);
+                    data[2 * revPixel + 1] = (byte) (twoBytes & 0xFF);
+                }
             }
             dataToFile(bmp_header, destination, false);
             dataToFile(data, destination, true);
