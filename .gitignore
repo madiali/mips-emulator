@@ -4,3 +4,4 @@ target/
 *.iml
 .idea-backup/
 mips-emulator-backup.iml
+src/test/TestProjects/Rubik/
