@@ -20,7 +20,7 @@ public class Accelerometer implements FXComponent {
     @Override
     public Parent render() {
         layout = new VBox();
-        Insets inset = new Insets(10, 10, 10, 10);
+        Insets inset = new Insets(10, 10, 100, 10);
         layout.setPadding(inset);
 
         // x Slider
