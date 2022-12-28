@@ -3,9 +3,10 @@ module mips.emulator {
     requires javafx.fxml;
     requires org.json;
 
-
-    opens GUI to javafx.fxml;
     exports GUI;
+    opens GUI to javafx.fxml;
     exports GUI.misc;
     opens GUI.misc to javafx.fxml;
+    exports GUI.tab;
+    opens GUI.tab to javafx.fxml;
 }

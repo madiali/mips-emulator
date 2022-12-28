@@ -1,5 +1,6 @@
 package GUI;
 
+import GUI.tab.ViewTabs;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
