@@ -1,4 +1,4 @@
-package GUI.tab;
+package GUI.tabs;
 
 import GUI.FXComponent;
 import javafx.scene.Parent;

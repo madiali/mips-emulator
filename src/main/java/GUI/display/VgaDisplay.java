@@ -1,12 +1,16 @@
-package GUI;
+package GUI.display;
 
+import GUI.FXComponent;
 import javafx.scene.Parent;
 import javafx.scene.layout.GridPane;
 
-public class Screen implements FXComponent {
+public class VgaDisplay implements FXComponent {
+    public final static int WIDTH = 40 * 16;
+    public final static int HEIGHT = 30 * 16;
+
     private GridPane layout;
 
-    public Screen() {
+    public VgaDisplay() {
     }
 
     @Override
@@ -15,9 +19,7 @@ public class Screen implements FXComponent {
 
         // Style screen
         layout.setStyle("-fx-border: 2px solid; -fx-border-color: black;");
-        layout.setMaxSize(40 * 16, 30 * 16);
-
-        // Generate screen
+        layout.setMaxSize(WIDTH, HEIGHT);
 
         return layout;
     }

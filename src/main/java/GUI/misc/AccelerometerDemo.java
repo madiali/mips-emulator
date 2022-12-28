@@ -1,5 +1,6 @@
 package GUI.misc;
 
+import GUI.accelerometer.Accelerometer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -14,7 +15,7 @@ public class AccelerometerDemo extends Application {
         stage.setMaximized(true);
 
         // Initialize components
-        GUI.Accelerometer ac = new GUI.Accelerometer();
+        Accelerometer ac = new Accelerometer();
         VBox layout = new VBox();
         layout.getChildren().add(ac.render());
 

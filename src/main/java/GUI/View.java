@@ -1,7 +1,9 @@
 package GUI;
 
+import GUI.accelerometer.Accelerometer;
 import GUI.menu.EmulatorMenuBar;
-import GUI.tab.DebugTabs;
+import GUI.display.VgaDisplay;
+import GUI.tabs.DebugTabs;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 
@@ -19,11 +21,11 @@ public class View implements FXComponent {
         EmulatorMenuBar viewMenu = new EmulatorMenuBar();
         layout.setTop(viewMenu.render());
 
-        // Screen and accelerometer (Emulator center)
+        // Display and accelerometer (Emulator center)
         BorderPane emulatorCenter = new BorderPane();
         Accelerometer accelerometer = new Accelerometer();
         emulatorCenter.setBottom(accelerometer.render());
-        Screen screen = new Screen();
+        VgaDisplay screen = new VgaDisplay();
         emulatorCenter.setCenter(screen.render());
 
         // Debug tabs (Emulator right)

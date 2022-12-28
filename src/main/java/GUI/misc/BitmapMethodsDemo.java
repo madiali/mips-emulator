@@ -10,7 +10,7 @@ import mips.ProgramLoader;
 import java.io.File;
 import java.util.List;
 
-import static GUI.BitmapMethods.generateSpriteArray;
+import static GUI.display.BitmapMethods.generateSpriteArray;
 
 public class BitmapMethodsDemo extends Application {
 
