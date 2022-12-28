@@ -34,12 +34,10 @@ public class View extends Application {
         main.setCenter(lhs);
 
         // Layout RHS center (register / memory)
-        Rectangle tempRectangle = new Rectangle(500, 700, Color.GRAY);
-        Insets rectangleInset = new Insets(10, 10, 10, 10);
-        StackPane rectangleStackPane = new StackPane();
-        rectangleStackPane.getChildren().add(tempRectangle);
-        rectangleStackPane.setPadding(rectangleInset);
-        main.setRight(tempRectangle);
+        ViewTabs viewTabs = new ViewTabs();
+        main.setRight(viewTabs.render());
+
+        // Center
         layout.setCenter(main);
 
         // Initialize scene
