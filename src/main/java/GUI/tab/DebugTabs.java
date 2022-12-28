@@ -5,34 +5,33 @@ import javafx.scene.Parent;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
-public class ViewTabs implements FXComponent {
+public class DebugTabs implements FXComponent {
+    public final static int PANE_WIDTH = 500;
+
     private TabPane layout;
 
-    public ViewTabs() {
+    public DebugTabs() {
     }
 
     @Override
     public Parent render() {
         layout = new TabPane();
-        layout.setPrefWidth(500);
+        layout.setPrefWidth(PANE_WIDTH);
 
         // Registers
-        RegisterTab rt = new RegisterTab();
-        Tab registerTab = rt.render();
+        Tab registerTab = (new RegisterTab()).render();
 
         // Instruction Memory
-        InstructionMemoryTab imt = new InstructionMemoryTab();
-        Tab imemTab = imt.render();
+        Tab imemTab = (new InstructionMemoryTab()).render();
 
         // Data Memory
-        DataMemoryTab dmt = new DataMemoryTab();
-        Tab dmemTab = dmt.render();
+        Tab dmemTab = (new DataMemoryTab()).render();
 
         // IO
-        IOTab iot = new IOTab();
-        Tab ioTab = iot.render();
+        Tab ioTab = (new IOTab()).render();
 
         layout.getTabs().addAll(registerTab, imemTab, dmemTab, ioTab);
+
         return layout;
     }
 }

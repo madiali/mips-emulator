@@ -5,6 +5,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 public class DataMemoryTab {
+    public final static int NUM_OF_COL = 3;
+    public final static int COL_WIDTH = DebugTabs.PANE_WIDTH / NUM_OF_COL;
+
     private Tab dmemTab;
     private TableView dmemTable;
     private TableColumn dmemMappedAddrCol;
@@ -16,11 +19,11 @@ public class DataMemoryTab {
         dmemTab.setClosable(false);
         dmemTable = new TableView();
         dmemMappedAddrCol = new TableColumn("Mapped Address");
-        dmemMappedAddrCol.setPrefWidth(500 / 3);
+        dmemMappedAddrCol.setPrefWidth(COL_WIDTH);
         dmemRelAddrCol = new TableColumn("Relative Address");
-        dmemRelAddrCol.setPrefWidth(500 / 3);
+        dmemRelAddrCol.setPrefWidth(COL_WIDTH);
         dmemValCol = new TableColumn("Value");
-        dmemValCol.setPrefWidth(500 / 3);
+        dmemValCol.setPrefWidth(COL_WIDTH);
         dmemTable.getColumns().addAll(dmemMappedAddrCol, dmemRelAddrCol, dmemValCol);
         dmemTab.setContent(dmemTable);
     }

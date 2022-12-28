@@ -5,6 +5,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 public class RegisterTab {
+    public final static int NUM_OF_COL = 2;
+    public final static int COL_WIDTH = DebugTabs.PANE_WIDTH / NUM_OF_COL;
+
     private Tab regTab;
     private TableView regTable;
     private TableColumn regNameCol;
@@ -15,9 +18,9 @@ public class RegisterTab {
         regTab.setClosable(false);
         regTable = new TableView();
         regNameCol = new TableColumn("Name");
-        regNameCol.setPrefWidth(500 / 2);
+        regNameCol.setPrefWidth(COL_WIDTH);
         regValCol = new TableColumn("Value");
-        regValCol.setPrefWidth(500 / 2);
+        regValCol.setPrefWidth(COL_WIDTH);
         regTable.getColumns().addAll(regNameCol, regValCol);
         regTab.setContent(regTable);
     }

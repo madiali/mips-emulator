@@ -1,7 +1,7 @@
 package GUI;
 
 import GUI.menu.EmulatorMenuBar;
-import GUI.tab.ViewTabs;
+import GUI.tab.DebugTabs;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 
@@ -27,12 +27,12 @@ public class View implements FXComponent {
         emulatorCenter.setCenter(screen.render());
 
         // Debug tabs (Emulator right)
-        ViewTabs viewTabs = new ViewTabs();
+        DebugTabs debugTabs = new DebugTabs();
 
         // Emulator (View center)
         BorderPane emulator = new BorderPane();
         emulator.setCenter(emulatorCenter);
-        emulator.setRight(viewTabs.render());
+        emulator.setRight(debugTabs.render());
         layout.setCenter(emulator);
 
         return layout;
