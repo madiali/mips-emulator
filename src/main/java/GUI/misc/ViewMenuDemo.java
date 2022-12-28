@@ -1,11 +1,11 @@
-package GUI;
+package GUI.misc;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class View extends Application {
+public class ViewMenuDemo extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -13,12 +13,10 @@ public class View extends Application {
         stage.setTitle("MIPS Emulator");
         stage.setMaximized(true);
 
-        // Initialize layout
-        BorderPane layout = new BorderPane();
-        ViewMenu viewMenu = new ViewMenu();
-        layout.setTop(viewMenu.render());
-        Accelerometer accelerometer = new Accelerometer();
-        layout.setBottom(accelerometer.render());
+        // Initialize components
+        GUI.ViewMenu vm = new GUI.ViewMenu();
+        VBox layout = new VBox();
+        layout.getChildren().add(vm.render());
 
         // Initialize scene
         Scene scene = new Scene(layout);
