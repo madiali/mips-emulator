@@ -5,7 +5,7 @@
  * This file is programmed with the assumption that each sprite in bmem is 16x16.
  * https://medium.com/sysf/bits-to-bitmaps-a-simple-walkthrough-of-bmp-image-format-765dc6857393
  */
-package GUI;
+package GUI.misc;
 
 import mips.BitmapMemory;
 import mips.ProgramLoader;
@@ -19,7 +19,7 @@ public class BMP {
     // Note that fields that span more than 1 byte are represented in little-endian format
     // The only fields that should change for different sprite size are width (px) and height (px)
     // If this file was reformatted, consider looking at this array from a previous commit since its spacing and newlines are relevant
-    private static final byte[] BMP_HEADER = new byte[] {
+    private static final byte[] BMP_HEADER = new byte[]{
             0x42, 0x4D,
             0, 0, 0, 0,             // file size (B), set to 0 because JavaFX doesn't need this information
             0, 0,
@@ -68,6 +68,7 @@ public class BMP {
      * This method is unfinished.
      * Parse BitmapMemory to generate .bmp files representing the sprites.
      * They are named with decimal digits 0.bmp, 1.bmp... to make conversion to an Image[] easier.
+     *
      * @param spriteSize multiple of 16
      */
     @Deprecated
@@ -104,6 +105,7 @@ public class BMP {
      * Color values will be incorrect but the ratio of r to g to b is maintained, so the colors appear mostly fine.
      * TODO: Come up with a better way to scale the colors equally.
      * NOTE: This pixel is returned in big-endian format.
+     *
      * @param pixel in bmem format
      * @return pixel in 16 bpp format
      */
@@ -116,6 +118,7 @@ public class BMP {
 
     /**
      * Convert two bytes in big-endian format to little-endian format.
+     *
      * @param twoBytes {a, b}
      * @return twoBytes {b, a}
      */
