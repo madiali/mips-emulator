@@ -1,8 +1,8 @@
 package GUI;
 
 import GUI.accelerometer.Accelerometer;
-import GUI.menu.EmulatorMenuBar;
 import GUI.display.VgaDisplay;
+import GUI.menu.EmulatorMenuBar;
 import GUI.tabs.DebugTabs;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
