@@ -48,8 +48,4 @@ public class MipsController {
     public void regToName(int regNum) {
         Registers.registerToName(regNum);
     }
-
-    // TODO: add Accelerometer getter / setter (might need to adjust Mips implementation)
-    // TODO: add relevant InstructionMemory methods
-    // TODO: add other relevant memory methods
 }

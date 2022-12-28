@@ -15,9 +15,9 @@ public class RegisterTab {
         regTab.setClosable(false);
         regTable = new TableView();
         regNameCol = new TableColumn("Name");
-        regNameCol.setPrefWidth(500/2);
+        regNameCol.setPrefWidth(500 / 2);
         regValCol = new TableColumn("Value");
-        regValCol.setPrefWidth(500/2);
+        regValCol.setPrefWidth(500 / 2);
         regTable.getColumns().addAll(regNameCol, regValCol);
         regTab.setContent(regTable);
     }

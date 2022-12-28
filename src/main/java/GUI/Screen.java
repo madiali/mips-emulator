@@ -1,5 +1,3 @@
-/* TODO: add screen generation control */
-
 package GUI;
 
 import javafx.scene.Parent;

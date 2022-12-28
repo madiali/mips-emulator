@@ -16,11 +16,11 @@ public class DataMemoryTab {
         dmemTab.setClosable(false);
         dmemTable = new TableView();
         dmemMappedAddrCol = new TableColumn("Mapped Address");
-        dmemMappedAddrCol.setPrefWidth(500/3);
+        dmemMappedAddrCol.setPrefWidth(500 / 3);
         dmemRelAddrCol = new TableColumn("Relative Address");
-        dmemRelAddrCol.setPrefWidth(500/3);
+        dmemRelAddrCol.setPrefWidth(500 / 3);
         dmemValCol = new TableColumn("Value");
-        dmemValCol.setPrefWidth(500/3);
+        dmemValCol.setPrefWidth(500 / 3);
         dmemTable.getColumns().addAll(dmemMappedAddrCol, dmemRelAddrCol, dmemValCol);
         dmemTab.setContent(dmemTable);
     }

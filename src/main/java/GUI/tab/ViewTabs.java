@@ -14,7 +14,7 @@ public class ViewTabs implements FXComponent {
     @Override
     public Parent render() {
         layout = new TabPane();
-        layout.setPrefSize(500, 700);
+        layout.setPrefWidth(500);
 
         // Registers
         RegisterTab rt = new RegisterTab();

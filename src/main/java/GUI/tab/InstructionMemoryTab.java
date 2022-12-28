@@ -15,9 +15,9 @@ public class InstructionMemoryTab {
         imemTab.setClosable(false);
         imemTable = new TableView();
         imemAddrCol = new TableColumn("Address");
-        imemAddrCol.setPrefWidth(500/2);
+        imemAddrCol.setPrefWidth(500 / 2);
         imemInstrCol = new TableColumn("Instruction");
-        imemInstrCol.setPrefWidth(500/2);
+        imemInstrCol.setPrefWidth(500 / 2);
         imemTable.getColumns().addAll(imemAddrCol, imemInstrCol);
         imemTab.setContent(imemTable);
     }

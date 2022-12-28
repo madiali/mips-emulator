@@ -1,5 +1,3 @@
-/* TODO: add accelerometer input control */
-
 package GUI;
 
 import javafx.geometry.Insets;
