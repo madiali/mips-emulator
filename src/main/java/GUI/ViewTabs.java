@@ -7,7 +7,8 @@ import javafx.scene.control.TabPane;
 public class ViewTabs implements FXComponent {
     private TabPane layout;
 
-    public ViewTabs() {}
+    public ViewTabs() {
+    }
 
     @Override
     public Parent render() {

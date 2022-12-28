@@ -11,7 +11,8 @@ import javafx.scene.layout.StackPane;
 public class ViewMenu implements FXComponent {
     private StackPane layout;
 
-    public ViewMenu() {}
+    public ViewMenu() {
+    }
 
     @Override
     public Parent render() {

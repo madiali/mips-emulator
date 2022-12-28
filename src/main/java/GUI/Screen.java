@@ -8,7 +8,8 @@ import javafx.scene.layout.GridPane;
 public class Screen implements FXComponent {
     private GridPane layout;
 
-    public Screen() {}
+    public Screen() {
+    }
 
     @Override
     public Parent render() {

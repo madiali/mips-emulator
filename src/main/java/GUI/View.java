@@ -1,12 +1,8 @@
 package GUI;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class View extends Application {
@@ -16,6 +12,7 @@ public class View extends Application {
         // Initialize stage
         stage.setTitle("MIPS Emulator");
         stage.setMaximized(true);
+        stage.setResizable(false);
 
         // Initialize layout
         BorderPane layout = new BorderPane();
