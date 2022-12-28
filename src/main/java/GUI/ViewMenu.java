@@ -1,3 +1,5 @@
+/* TODO: add menu bar input control */
+
 package GUI;
 
 import javafx.scene.Parent;

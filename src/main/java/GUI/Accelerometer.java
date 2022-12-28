@@ -1,7 +1,8 @@
-/* TODO: add input control */
+/* TODO: add accelerometer input control */
 
 package GUI;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -19,6 +20,8 @@ public class Accelerometer implements FXComponent {
     @Override
     public Parent render() {
         layout = new VBox();
+        Insets inset = new Insets(10, 10, 10, 10);
+        layout.setPadding(inset);
 
         // x Slider
         HBox xHBox = new HBox();
@@ -29,7 +32,7 @@ public class Accelerometer implements FXComponent {
         xSlider.setMax(511);
         xSlider.setValue(255);
         xSlider.setBlockIncrement(1);
-        xSlider.setPrefWidth(1000);
+        xSlider.setPrefWidth(40 * 16);
         xHBox.getChildren().add(xSlider);
         xHBox.setAlignment(Pos.CENTER);
         layout.getChildren().add(xHBox);
@@ -43,14 +46,14 @@ public class Accelerometer implements FXComponent {
         ySlider.setMax(511);
         ySlider.setValue(255);
         ySlider.setBlockIncrement(1);
-        ySlider.setPrefWidth(1000);
+        ySlider.setPrefWidth(40 * 16);
         yHBox.getChildren().add(ySlider);
         yHBox.setAlignment(Pos.CENTER);
         layout.getChildren().add(yHBox);
 
         // Reset
         Button resetButton = new Button("Reset");
-        resetButton.setPrefWidth(1000);
+        resetButton.setPrefWidth(40 * 16);
         layout.getChildren().add(resetButton);
         layout.setAlignment(Pos.CENTER);
 
