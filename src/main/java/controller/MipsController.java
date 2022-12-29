@@ -23,8 +23,9 @@ import java.util.ResourceBundle;
  * The FXML is tied to this Controller and only this controller. All handle methods (handleOpen,
  * handleTabClick, etc.) must go in here.
  *
- * Implement Initializable - user is forced to load a JSON at startup. mips won't be null at
- * startup. This is a bit lazy but prevents us from having to worry about a lot of edge cases.
+ * Implement Initializable to call initialize() method - user is forced to load a JSON at
+ * startup. mips won't be null at startup. This is a bit lazy but prevents us from having to worry
+ * about edge cases related to a JSON not being open.
  */
 public class MipsController implements Initializable {
   private Mips mips;
@@ -34,11 +35,9 @@ public class MipsController implements Initializable {
   // Or make AccelerometerController's methods static?
   private AccelerometerController accelControl;
 
-  @FXML
-  public Slider xSlider;
-
-  @FXML
-  public Slider ySlider;
+  // These @FXML tags are *necessary* for the variables to be linked to FXML components.
+  @FXML private Slider xSlider;
+  @FXML private Slider ySlider;
 
   public MipsController(Mips mips) {
     if (mips == null) {
@@ -48,9 +47,7 @@ public class MipsController implements Initializable {
   }
 
   /** A MipsController with no params is necessary for loader.getController() in AppLauncher. */
-  public MipsController() {
-
-  }
+  public MipsController() {}
 
   public int getPC() {
     return mips.getPC();
@@ -92,15 +89,22 @@ public class MipsController implements Initializable {
     this.stage = stage;
   }
 
-  // If we do have multiple Controllers encapsulated in this class, handleOpen needs to reinstantiate all of them.
+  // If we do have multiple Controllers encapsulated in this class, handleOpen needs to
+  // reinstantiate all of them.
   public void handleOpen() throws IOException {
+    // Prompt user for project JSON
     FileChooser fc = new FileChooser();
     fc.setTitle("Open project JSON");
     fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON files", "*.json"));
     File selectedFile = fc.showOpenDialog(this.stage);
+
+    // Model instantiation
     ProgramLoader pl = new ProgramLoader(selectedFile);
     this.mips = pl.getMips();
+
+    // Controller instantiation
     this.accelControl = new AccelerometerController(this.mips);
+    // Link FXML components to the other Controller file as well (this does not happen automatically)
     accelControl.setXSlider(xSlider);
     accelControl.setYSlider(ySlider);
   }
@@ -120,12 +124,10 @@ public class MipsController implements Initializable {
     accelControl.handleResetButton();
   }
 
-
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     try {
       handleOpen();
-      // Connect accelControl to the same mips instance (constructed after handleOpen is called) as MipsController?
     } catch (IOException ioe) {
       throw new IllegalArgumentException("Your JSON file does not exist");
     }

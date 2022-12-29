@@ -31,17 +31,17 @@ public class AccelerometerController implements DebuggerView {
 
     public void handleXSliderDrag() {
         accelerometerX.setXValue((int) xSlider.getValue());
-        System.out.println("x: " + accelerometerX.getXValue());
     }
 
     public void handleYSliderDrag() {
         accelerometerY.setYValue((int) ySlider.getValue());
-        System.out.println("y: " + accelerometerY.getYValue());
     }
 
     public void handleResetButton() {
         xSlider.setValue(defaultAccelValue);
         ySlider.setValue(defaultAccelValue);
+        accelerometerX.setXValue((int) defaultAccelValue);
+        accelerometerY.setYValue((int) defaultAccelValue);
     }
 
     @Override
