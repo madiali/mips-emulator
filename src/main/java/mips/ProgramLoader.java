@@ -3,12 +3,22 @@ package mips;
 /**
  * https://stackoverflow.com/questions/2591098/how-to-parse-json-in-java. This link has some
  * discussion about which library to use to parse JSON in Java. org.json seems to match the original
- * code closely, so I decided on that. I omit the ParseRequiredNumber method since it's only used
- * one time. Also, C#'s JSON stuff will return null if a field is not found, whereas org.json will
- * throw an Exception. So, the original code is able to use the uint? (meaning either uint or null)
- * type, which is null if some field is not found in the JSON. I replicate this behavior by using
- * Integer, which is initialized to null, and try catch to catch the Exception thrown if the field
- * is not found. Then the Integer remains null if the field is not found.
+ * code closely, so I decided on that.
+ *
+ * C#'s JSON stuff will return null if a field is not found, whereas org.json will throw an
+ * Exception. So, the original code is able to use the uint? (meaning either uint or null) type,
+ * which is null if some field is not found in the JSON. e.g. uint? pc = token["programCounter"],
+ * where the JSON token has the field "programCounter": some int. pc will then be an int if the
+ * field is found, else null.
+ *
+ * I replicate this behavior by using Integer, which is initialized to null, and try catch to
+ * catch the Exception thrown if the field is not found. Then the Integer remains null if the field
+ * is not found.
+ *
+ * <p>Lastly, some stuff about org.json. The C# code has JObject, JToken, and JArray. We have only
+ * JSONObject and JSONArray. In JSON, anything in braces {...} is a JSONObject, and anything in
+ * brackets [...] is a JSONArray. From a JSONObject, you can parse a field with o.getString(field
+ * name), o.getInt(field name), etc. JSONArray can be iterated over pretty easily.
  */
 import java.io.*;
 import java.nio.file.Files;
@@ -33,20 +43,11 @@ public class ProgramLoader {
     String json = Files.readString(file.toPath());
     JSONObject project = new JSONObject(json);
 
-    int pc;
-    try {
-      pc = project.getInt("programCounter");
-    } catch (Exception e) {
-      throw new IllegalArgumentException(
-          "Expected field int (not String, do not surround this field with quotation marks) programCounter not found in project JSON");
-    }
-    JSONArray memoriesArray;
-    try {
-      memoriesArray = project.getJSONArray("memories");
-    } catch (Exception e) {
-      throw new IllegalArgumentException("Your JSON does not specify the JSONArray memories field");
-    }
+    int pc = parseRequiredInt(project, "programCounter");
+    JSONArray memoriesArray = parseRequiredJSONArray(project, "memories");
+
     Map<Class, List<MemoryUnit>> memDict = buildMemoryUnits(memoriesArray);
+
     String name;
     try {
       name = project.getString("projectName");
@@ -79,6 +80,42 @@ public class ProgramLoader {
       return Integer.parseUnsignedInt(token.substring(2), 2);
     }
     return Integer.parseUnsignedInt(token, 10);
+  }
+
+  /**
+   * Parse a required integer field.
+   *
+   * @param object
+   * @param field
+   * @return int, throw IllegalArgumentException if field not found or illegally formatted.
+   */
+  private int parseRequiredInt(JSONObject object, String field) {
+    Integer rv = null;
+    try {
+      rv = object.getInt(field);
+    } catch (Exception e) {
+      throw new IllegalArgumentException(
+          "Required integer field " + field + " not found or illegally formatted");
+    }
+    return rv;
+  }
+
+  /**
+   * Parse a required JSONArray field.
+   *
+   * @param object
+   * @param field
+   * @return JSONArray, throw IllegalArgumentException if field not found or illegally formatted.
+   */
+  private JSONArray parseRequiredJSONArray(JSONObject object, String field) {
+    JSONArray jArray = null;
+    try {
+      jArray = object.getJSONArray(field);
+    } catch (Exception e) {
+      throw new IllegalArgumentException(
+          "Required JSON array field " + field + " not found or illegally formatted");
+    }
+    return jArray;
   }
 
   /**
@@ -242,7 +279,7 @@ public class ProgramLoader {
    * @return
    */
   private int[] parseInitData(String path, int baseNum) throws IOException {
-    // This is terrible for runtime, but it's fine since it's a one-time cost at startup (copium)
+    // ArrayList is terrible for runtime, but it's fine since it's a one-time cost at startup (copium)
     List<Integer> data = new ArrayList<>();
     File file = new File(basePath + "/" + path);
     FileReader fr = new FileReader(file);
