@@ -15,4 +15,7 @@ module mips.emulator {
     opens GUI.display to javafx.fxml;
     exports GUI.accelerometer;
     opens GUI.accelerometer to javafx.fxml;
+
+    // Required for project.fxml to be able to use Controller
+    opens controller to javafx.fxml;
 }
