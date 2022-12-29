@@ -1,4 +1,4 @@
-package GUI.display;
+package GUI.temp.display;
 
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;

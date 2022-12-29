@@ -1,4 +1,4 @@
-package GUI.misc;
+package GUI.temp.misc;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -10,7 +10,7 @@ import mips.ProgramLoader;
 import java.io.File;
 import java.util.List;
 
-import static GUI.display.BitmapMethods.generateSpriteArray;
+import static GUI.temp.display.BitmapMethods.generateSpriteArray;
 
 public class BitmapMethodsDemo extends Application {
 

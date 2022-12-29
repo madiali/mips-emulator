@@ -1,4 +1,4 @@
-package GUI.tabs;
+package GUI.temp.tabs;
 
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;

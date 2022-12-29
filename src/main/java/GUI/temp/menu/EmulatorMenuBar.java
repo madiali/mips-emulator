@@ -1,6 +1,6 @@
-package GUI.menu;
+package GUI.temp.menu;
 
-import GUI.FXComponent;
+import GUI.temp.FXComponent;
 import javafx.scene.Parent;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;

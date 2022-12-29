@@ -1,9 +1,9 @@
-package GUI;
+package GUI.temp;
 
-import GUI.accelerometer.Accelerometer;
-import GUI.display.VgaDisplay;
-import GUI.menu.EmulatorMenuBar;
-import GUI.tabs.DebugTabs;
+import GUI.temp.accelerometer.Accelerometer;
+import GUI.temp.display.VgaDisplay;
+import GUI.temp.menu.EmulatorMenuBar;
+import GUI.temp.tabs.DebugTabs;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 

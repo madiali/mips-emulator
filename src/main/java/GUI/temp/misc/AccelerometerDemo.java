@@ -1,6 +1,6 @@
-package GUI.misc;
+package GUI.temp.misc;
 
-import GUI.accelerometer.Accelerometer;
+import GUI.temp.accelerometer.Accelerometer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
