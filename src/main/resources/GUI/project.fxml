@@ -78,13 +78,13 @@
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="X: " />
-                              <Slider blockIncrement="1.0" max="511.0" onMouseDragged="#handleXSliderDrag" prefWidth="600.0" showTickLabels="true" showTickMarks="true" value="255.0" fx:id="xSlider" />
+                              <Slider blockIncrement="1.0" max="511.0" onMouseDragged="#handleXSliderDrag" prefWidth="600.0" showTickLabels="true" value="255.0" fx:id="xSlider" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Y: " />
-                              <Slider fx:id="ySlider" blockIncrement="1.0" max="511.0" onMouseDragged="#handleYSliderDrag" prefWidth="600.0" showTickLabels="true" showTickMarks="true" value="255.0" />
+                              <Slider fx:id="ySlider" blockIncrement="1.0" max="511.0" onMouseDragged="#handleYSliderDrag" prefWidth="600.0" showTickLabels="true" value="255.0" />
                            </children>
                         </HBox>
                         <Button mnemonicParsing="false" onAction="#handleResetButton" prefWidth="640.0" text="Reset" />
