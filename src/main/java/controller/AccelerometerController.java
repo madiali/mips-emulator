@@ -1,9 +1,12 @@
 package controller;
 
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import mips.*;
 
 public class AccelerometerController implements DebuggerView {
@@ -11,10 +14,18 @@ public class AccelerometerController implements DebuggerView {
   private AccelerometerY accelerometerY;
   private Slider xSlider;
   private Slider ySlider;
+  private Label xLabel;
+  private Label yLabel;
+  private Button resetButton;
   private final double defaultAccelValue = 255;
 
   /* The AccelerometerController might need to take mips as a parameter to get accelerometerX and accelerometerY from the same Mips as the one in MipsController? */
-  public AccelerometerController(Mips mips) {
+  public AccelerometerController(Mips mips, Slider xSlider, Slider ySlider, Label xLabel, Label yLabel, Button resetButton) {
+    this.xSlider = xSlider;
+    this.ySlider = ySlider;
+    this.xLabel = xLabel;
+    this.yLabel = yLabel;
+    this.resetButton = resetButton;
     Accelerometer mappedAccelerometer = null;
     for (MappedMemoryUnit mappedMemoryUnit : mips.getMemory().getMemUnits()) {
       if (mappedMemoryUnit.getMemUnit() instanceof Accelerometer) {
@@ -30,18 +41,6 @@ public class AccelerometerController implements DebuggerView {
     } else {
       close();
     }
-    // mappedAccelerometer will be null if Accelerometer is not in the JSON. We can add logic to
-    // handle this case later, which could include removing the Slider components since any action
-    // on a slider with null Accelerometer will throw Exception (which doesn't seem to crash the
-    // program?)
-  }
-
-  public void setXSlider(Slider xSlider) {
-    this.xSlider = xSlider;
-  }
-
-  public void setYSlider(Slider ySlider) {
-    this.ySlider = ySlider;
   }
 
   public void handleXSliderDrag() {
@@ -65,14 +64,21 @@ public class AccelerometerController implements DebuggerView {
   public void refreshDisplay() {}
 
   /**
-   * Call this to remove Sliders since Accelerometer is not mapped. However, this code fails when
-   * Accelerometer is not mapped, which somehow causes xSlider to be null???
+   * When Accelerometer is not in Memory Mapper, then remove Sliders, labels, and Reset button.
    */
   @Override
   public void close() {
-//        HBox parent = (HBox) MipsController.xSlider.getParent();
-//        parent.getChildren().remove(xSlider);
-//        parent = (HBox) MipsController.ySlider.getParent();
-//        parent.getChildren().remove(ySlider);
+        HBox parent = (HBox) this.xSlider.getParent();
+        parent.getChildren().remove(xSlider);
+        parent = (HBox) this.ySlider.getParent();
+        parent.getChildren().remove(ySlider);
+
+        parent = (HBox) this.xLabel.getParent();
+        parent.getChildren().remove(xLabel);
+
+        this.yLabel.setText("There would be sliders here for controlling Accelerometer, but you have not memory mapped it in your JSON!");
+
+        VBox parent2 = (VBox) this.resetButton.getParent();
+        parent2.getChildren().remove(resetButton);
   }
 }

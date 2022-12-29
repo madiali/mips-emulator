@@ -2,6 +2,8 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -18,7 +20,7 @@ import java.util.ResourceBundle;
  * The FXML is tied to this Controller and only this controller. All handle methods (handleOpen,
  * handleTabClick, etc.) must go in here.
  *
- * Implement Initializable to call initialize() method - user is forced to load a JSON at
+ * <p>Implement Initializable to call initialize() method - user is forced to load a JSON at
  * startup. mips won't be null at startup. This is a bit lazy but prevents us from having to worry
  * about edge cases related to a JSON not being open.
  */
@@ -33,6 +35,9 @@ public class MipsController implements Initializable {
   // These @FXML tags are *necessary* for the variables to be linked to FXML components.
   @FXML private Slider xSlider;
   @FXML private Slider ySlider;
+  @FXML private Label xLabel;
+  @FXML private Label yLabel;
+  @FXML private Button resetButton;
 
   public MipsController(Mips mips) {
     if (mips == null) {
@@ -98,10 +103,9 @@ public class MipsController implements Initializable {
     this.mips = pl.getMips();
 
     // Controller instantiation
-    this.accelControl = new AccelerometerController(this.mips);
-    // Link FXML components to the other Controller file as well (this does not happen automatically)
-    accelControl.setXSlider(xSlider);
-    accelControl.setYSlider(ySlider);
+    // Pass FXML components to other Controller files through constructor. The other Controllers do
+    // not have access to FXML components automatically.
+    this.accelControl = new AccelerometerController(this.mips, xSlider, ySlider, xLabel, yLabel, resetButton);
   }
 
   @FXML
