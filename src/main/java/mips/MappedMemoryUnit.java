@@ -31,11 +31,6 @@ public class MappedMemoryUnit {
    * @param endAddr Default value of String name is null
    */
   public MappedMemoryUnit(MemoryUnit memUnit, int startAddr, int endAddr) {
-    // If there is no String name argument, then null is the default value
-    // In the original class, if name is null, then this.Name is set to
-    // memUnit.getClass().getName(), so I simply pass this into the base constructor
-    // This is becoming a huge hassle... we might want to just not implement default values in
-    // constructors...
     this(memUnit, startAddr, endAddr, null);
   }
 

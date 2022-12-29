@@ -23,7 +23,6 @@ public class AppLauncher extends Application {
         // Initialize scene
         Scene scene = new Scene(view.render());
         stage.setScene(scene);
-
         stage.show();
     }
 

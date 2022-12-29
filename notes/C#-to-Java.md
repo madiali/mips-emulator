@@ -241,3 +241,7 @@ Same as Java's [`Integer.compare(x, y)`](https://www.geeksforgeeks.org/java-inte
   * This is also expected behavior for smem, which should also be positive numbers only.
 * On the other hand, `Integer.parseSignedInt(String s, int radix)` will throw an exception for a 32-bit string with MSB=1.
   * For example, `parseSignedInt(80000000, 16)` would cause an Exception.
+
+# [`InitializeComponent`](https://stackoverflow.com/questions/245825/what-does-initializecomponent-do-and-how-does-it-work-in-wpf)
+
+* Seems to link a class/object to XAML?
