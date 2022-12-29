@@ -6,26 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
-public class AppLauncher extends Application {
+public class AppLauncherFXML extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        // Initialize stage
+        Parent root = FXMLLoader.load(getClass().getResource("project.fxml"));
         stage.setTitle("MIPS Emulator");
         stage.setMaximized(true);
         stage.setResizable(false);
-
-        // Model
-
-        // View
-        View view = new View();
-
-        // Controller
-
-        // Initialize scene
-        Scene scene = new Scene(view.render());
-        stage.setScene(scene);
-
+        stage.setScene(new Scene(root));
         stage.show();
     }
 
