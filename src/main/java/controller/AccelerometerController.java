@@ -14,6 +14,11 @@ public class AccelerometerController implements DebuggerView {
 
     /* The AccelerometerController might need to take mips as a parameter to get accelerometerX and accelerometerY from it? */
     public AccelerometerController(Mips mips) {
+        // This is just for testing, later we'll make the Accelerometer objects the same as the ones in the Mips object
+        accelerometerX = new AccelerometerX();
+        accelerometerY = new AccelerometerY();
+        accelerometerX.setXValue((int) defaultAccelValue);
+        accelerometerY.setYValue((int) defaultAccelValue);
     }
 
     public void setXSlider(Slider xSlider) {
@@ -22,6 +27,16 @@ public class AccelerometerController implements DebuggerView {
 
     public void setYSlider(Slider ySlider) {
         this.ySlider = ySlider;
+    }
+
+    public void handleXSliderDrag() {
+        accelerometerX.setXValue((int) xSlider.getValue());
+        System.out.println("x: " + accelerometerX.getXValue());
+    }
+
+    public void handleYSliderDrag() {
+        accelerometerY.setYValue((int) ySlider.getValue());
+        System.out.println("y: " + accelerometerY.getYValue());
     }
 
     public void handleResetButton() {

@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
  * handleTabClick, etc.) must go in here.
  *
  * Implement Initializable - user is forced to load a JSON at startup. mips won't be null at
- * startup.
+ * startup. This is a bit lazy but prevents us from having to worry about a lot of edge cases.
  */
 public class MipsController implements Initializable {
   private Mips mips;
@@ -100,23 +100,32 @@ public class MipsController implements Initializable {
     File selectedFile = fc.showOpenDialog(this.stage);
     ProgramLoader pl = new ProgramLoader(selectedFile);
     this.mips = pl.getMips();
+    this.accelControl = new AccelerometerController(this.mips);
+    accelControl.setXSlider(xSlider);
+    accelControl.setYSlider(ySlider);
+  }
+
+  @FXML
+  public void handleXSliderDrag() {
+    accelControl.handleXSliderDrag();
+  }
+
+  @FXML
+  public void handleYSliderDrag() {
+    accelControl.handleYSliderDrag();
   }
 
   @FXML
   public void handleResetButton() {
-    System.out.println(xSlider);
-    System.out.println(ySlider);
-    accelControl.setXSlider(xSlider);
-    accelControl.setYSlider(ySlider);
     accelControl.handleResetButton();
   }
+
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     try {
       handleOpen();
       // Connect accelControl to the same mips instance (constructed after handleOpen is called) as MipsController?
-      this.accelControl = new AccelerometerController(this.mips);
     } catch (IOException ioe) {
       throw new IllegalArgumentException("Your JSON file does not exist");
     }
