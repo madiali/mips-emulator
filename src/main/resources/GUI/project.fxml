@@ -80,13 +80,13 @@
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="X: " />
-                              <Slider blockIncrement="1.0" max="511.0" prefWidth="640.0" value="255.0" />
+                              <Slider blockIncrement="1.0" max="511.0" prefWidth="600.0" value="255.0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Y: " />
-                              <Slider blockIncrement="1.0" max="511.0" prefWidth="640.0" value="255.0" />
+                              <Slider blockIncrement="1.0" max="511.0" prefWidth="600.0" value="255.0" />
                            </children>
                         </HBox>
                         <Button mnemonicParsing="false" prefWidth="640.0" text="Reset" />
@@ -97,15 +97,6 @@
                </bottom>
                <center>
                   <GridPane maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" style="-fx-border: 2; -fx-border-color: black;" BorderPane.alignment="CENTER">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
                   </GridPane>
                </center>
             </BorderPane>
