@@ -1,6 +1,6 @@
-package GUI.accelerometer;
+package GUI.temp.accelerometer;
 
-import GUI.display.VgaDisplay;
+import GUI.temp.display.VgaDisplay;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;

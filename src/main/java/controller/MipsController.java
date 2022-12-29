@@ -1,15 +1,10 @@
 package controller;
 
-import GUI.menu.EmulatorMenuBar;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Slider;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import mips.Accelerometer;
 import mips.Mips;
 import mips.ProgramLoader;
 import mips.Registers;

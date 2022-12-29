@@ -1,7 +1,7 @@
-package GUI.accelerometer;
+package GUI.temp.accelerometer;
 
-import GUI.FXComponent;
-import GUI.display.VgaDisplay;
+import GUI.temp.FXComponent;
+import GUI.temp.display.VgaDisplay;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;

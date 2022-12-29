@@ -1,6 +1,6 @@
-package GUI.display;
+package GUI.temp.display;
 
-import GUI.FXComponent;
+import GUI.temp.FXComponent;
 import javafx.scene.Parent;
 import javafx.scene.layout.GridPane;
 

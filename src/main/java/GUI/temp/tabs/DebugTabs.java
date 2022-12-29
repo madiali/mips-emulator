@@ -1,6 +1,6 @@
-package GUI.tabs;
+package GUI.temp.tabs;
 
-import GUI.FXComponent;
+import GUI.temp.FXComponent;
 import javafx.scene.Parent;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
