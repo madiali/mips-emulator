@@ -7,4 +7,4 @@ There's also files that are incomplete as they depend on other files.
 * `SoundModule`
 * `SoundWaveGenerator`
 * `AccelerometerController`
-  * Handle the case when the accelerometer isn't in the JSON
+  * Handle the case when the accelerometer isn't in the JSON; check for AccelerometerX and AccelerometerY

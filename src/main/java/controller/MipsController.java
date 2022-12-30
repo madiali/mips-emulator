@@ -32,7 +32,7 @@ public class MipsController implements Initializable {
   // Or make AccelerometerController's methods static?
   private AccelerometerController accelControl;
 
-  // These @FXML tags are *necessary* for the variables to be linked to FXML components.
+  // @FXML tags are **necessary** for the variables to be automatically linked to FXML components.
   @FXML private Slider xSlider;
   @FXML private Slider ySlider;
   @FXML private Label xLabel;
@@ -95,7 +95,7 @@ public class MipsController implements Initializable {
     // Prompt user for project JSON
     FileChooser fc = new FileChooser();
     fc.setTitle("Open project JSON");
-    fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON files", "*.json"));
+    fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Project configuration JSON file", "*.json"));
     File selectedFile = fc.showOpenDialog(this.stage);
 
     // Model instantiation
@@ -104,8 +104,10 @@ public class MipsController implements Initializable {
 
     // Controller instantiation
     // Pass FXML components to other Controller files through constructor. The other Controllers do
-    // not have access to FXML components automatically.
-    this.accelControl = new AccelerometerController(this.mips, xSlider, ySlider, xLabel, yLabel, resetButton);
+    // not have access to this file's FXML components automatically. Passing through constructor
+    // removes need for setter methods.
+    this.accelControl =
+            new AccelerometerController(this.mips, xSlider, ySlider, xLabel, yLabel, resetButton);
   }
 
   @FXML
@@ -123,6 +125,13 @@ public class MipsController implements Initializable {
     accelControl.handleResetButton();
   }
 
+  /**
+   * This method is called at startup, so user is prompted for JSON at startup. This prevents us
+   * from having to worry about edge cases that happen when a JSON is not loaded.
+   *
+   * @param url
+   * @param resourceBundle
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     try {
