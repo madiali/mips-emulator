@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import mips.Mips;
@@ -31,6 +32,7 @@ public class MipsController implements Initializable {
   // Encapsulate other controllers since all handle methods must be called in this file?
   // Or make AccelerometerController's methods static?
   private AccelerometerController accelControl;
+  private VgaDisplayController vgaDispControl;
 
   // @FXML tags are **necessary** for the variables to be automatically linked to FXML components.
   @FXML private Slider xSlider;
@@ -38,6 +40,7 @@ public class MipsController implements Initializable {
   @FXML private Label xLabel;
   @FXML private Label yLabel;
   @FXML private Button resetButton;
+  @FXML private GridPane vgaDisplay;
 
   public MipsController(Mips mips) {
     if (mips == null) {
@@ -108,6 +111,7 @@ public class MipsController implements Initializable {
     // removes need for setter methods.
     this.accelControl =
             new AccelerometerController(this.mips, xSlider, ySlider, xLabel, yLabel, resetButton);
+    this.vgaDispControl = new VgaDisplayController(this.mips, vgaDisplay);
   }
 
   @FXML
