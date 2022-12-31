@@ -32,7 +32,7 @@ public class MipsController implements Initializable {
   // Encapsulate other controllers since all handle methods must be called in this file?
   // Or make AccelerometerController's methods static?
   private AccelerometerController accelControl;
-//  private VgaDisplayController vgaDispControl;
+  //  private VgaDisplayController vgaDispControl;
   private VgaDisplayBMPController vgaDispBMPControl;
 
   // @FXML tags are **necessary** for the variables to be automatically linked to FXML components.
@@ -99,7 +99,8 @@ public class MipsController implements Initializable {
     // Prompt user for project JSON
     FileChooser fc = new FileChooser();
     fc.setTitle("Open project JSON");
-    fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Project configuration JSON file", "*.json"));
+    fc.getExtensionFilters()
+        .add(new FileChooser.ExtensionFilter("Project configuration JSON file", "*.json"));
     File selectedFile = fc.showOpenDialog(this.stage);
 
     // Model instantiation
@@ -111,8 +112,7 @@ public class MipsController implements Initializable {
     // not have access to this file's FXML components automatically. Passing through constructor
     // removes need for setter methods.
     this.accelControl =
-            new AccelerometerController(this.mips, xSlider, ySlider, xLabel, yLabel, resetButton);
-//    this.vgaDispControl = new VgaDisplayController(this.mips, vgaDisplay);
+        new AccelerometerController(this.mips, xSlider, ySlider, xLabel, yLabel, resetButton);
     this.vgaDispBMPControl = new VgaDisplayBMPController(this.mips, vgaDisplay);
   }
 
