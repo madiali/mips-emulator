@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
@@ -34,13 +35,24 @@ public class MipsController implements Initializable {
   private AccelerometerController accelControl;
   //  private VgaDisplayController vgaDispControl;
   private VgaDisplayBMPController vgaDispBMPControl;
+  private MenuController menuController;
 
   // @FXML tags are **necessary** for the variables to be automatically linked to FXML components.
+  // Menu
+  @FXML private MenuItem open;
+  @FXML private MenuItem exit;
+  @FXML private MenuItem go;
+  @FXML private MenuItem pause;
+  @FXML private MenuItem stepForward;
+
+  // Accelerometer
   @FXML private Slider xSlider;
   @FXML private Slider ySlider;
   @FXML private Label xLabel;
   @FXML private Label yLabel;
   @FXML private Button resetButton;
+
+  // Screen
   @FXML private GridPane vgaDisplay;
 
   public MipsController(Mips mips) {
@@ -95,6 +107,7 @@ public class MipsController implements Initializable {
 
   // If we do have multiple Controllers encapsulated in this class, handleOpen needs to
   // reinstantiate all of them.
+  @FXML
   public void handleOpen() throws IOException {
     // Prompt user for project JSON
     FileChooser fc = new FileChooser();
@@ -108,17 +121,37 @@ public class MipsController implements Initializable {
     this.mips = pl.getMips();
 
     // Controller instantiation
-    // Pass FXML components to other Controller files through constructor. The other Controllers do
-    // not have access to this file's FXML components automatically. Passing through constructor
-    // removes need for setter methods.
+    // Pass mips (can't be done in MipsController constructor) and FXML components to other
+    // Controller files through constructor.
     this.accelControl =
         new AccelerometerController(this.mips, xSlider, ySlider, xLabel, yLabel, resetButton);
     this.vgaDispBMPControl = new VgaDisplayBMPController(this.mips, vgaDisplay);
+    // Passing VGAController to menuController for testing render speed, remove that parameter later
+    this.menuController = new MenuController(open, exit, go, pause, stepForward, vgaDispBMPControl);
   }
 
   @FXML
+  public void handleExit() {}
+
+  @FXML
+  public void handleGo() {
+    menuController.handleGo();
+  }
+
+  @FXML
+  public void handlePause() {}
+
+  /** Using this to test render speed for now. Remove implementation later. */
+  @FXML
+  public void handleStepForward() {
+    menuController.handleStepForward();
+  }
+
+  /** Also hijacking XSliderDrag to really test render speed. Remove handleStepForward later. */
+  @FXML
   public void handleXSliderDrag() {
     accelControl.handleXSliderDrag();
+    menuController.handleStepForward();
   }
 
   @FXML
@@ -135,6 +168,9 @@ public class MipsController implements Initializable {
    * This method is called at startup, so user is prompted for JSON at startup. This prevents us
    * from having to worry about edge cases that happen when a JSON is not loaded.
    *
+   * <p>TODO: We can improve this (without JSON, show app and gray out relevant buttons, etc.)
+   * later.
+   *
    * @param url
    * @param resourceBundle
    */
@@ -143,7 +179,8 @@ public class MipsController implements Initializable {
     try {
       handleOpen();
     } catch (IOException ioe) {
-      throw new IllegalArgumentException("Your JSON file does not exist");
+      throw new IllegalArgumentException(
+          "Your JSON file doesn't exist or something else went wrong during initialization");
     }
   }
 }

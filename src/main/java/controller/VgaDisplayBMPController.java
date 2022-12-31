@@ -32,8 +32,9 @@ public class VgaDisplayBMPController {
   private static final int SPRITE_SIZE = SPRITE_LENGTH * SPRITE_LENGTH;
 
   private GridPane vgaDisplay;
-  private ScreenMemory screenMemory;
-  private BitmapMemory bitmapMemory;
+  // Changing both of these public for render speed testing. Change back to private later.
+  public ScreenMemory screenMemory;
+  public BitmapMemory bitmapMemory;
   private int numSprites;
   private List<Image> spriteList;
 
