@@ -1,15 +1,11 @@
 package controller;
 
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import mips.*;
-
-import java.util.stream.Collectors;
 
 public class AccelerometerController implements DebuggerView {
   private AccelerometerX accelerometerX;
