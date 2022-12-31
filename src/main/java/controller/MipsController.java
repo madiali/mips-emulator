@@ -32,7 +32,8 @@ public class MipsController implements Initializable {
   // Encapsulate other controllers since all handle methods must be called in this file?
   // Or make AccelerometerController's methods static?
   private AccelerometerController accelControl;
-  private VgaDisplayController vgaDispControl;
+//  private VgaDisplayController vgaDispControl;
+  private VgaDisplayBMPController vgaDispBMPControl;
 
   // @FXML tags are **necessary** for the variables to be automatically linked to FXML components.
   @FXML private Slider xSlider;
@@ -111,7 +112,8 @@ public class MipsController implements Initializable {
     // removes need for setter methods.
     this.accelControl =
             new AccelerometerController(this.mips, xSlider, ySlider, xLabel, yLabel, resetButton);
-    this.vgaDispControl = new VgaDisplayController(this.mips, vgaDisplay);
+//    this.vgaDispControl = new VgaDisplayController(this.mips, vgaDisplay);
+    this.vgaDispBMPControl = new VgaDisplayBMPController(this.mips, vgaDisplay);
   }
 
   @FXML

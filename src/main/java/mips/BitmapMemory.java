@@ -74,6 +74,9 @@ public class BitmapMemory implements MemoryUnit {
    * This method returns a clone of the int[] memory to make iterating easier (don't have to mess
    * with getSize and getWordSize) while protecting read-only memory contents.
    *
+   * <p>This is an expensive operation for programmer convenience and should only be used for
+   * activities like initialization. Should not use this if it'll be called multiple times.
+   *
    * @return int[] memory
    */
   public int[] getMemoryClone() {

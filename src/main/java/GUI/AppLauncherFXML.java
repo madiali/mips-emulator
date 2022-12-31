@@ -21,7 +21,7 @@ public class AppLauncherFXML extends Application {
         controller.setStage(stage);
 
         stage.setTitle("MIPS Emulator");
-        stage.setFullScreen(true);
+//        stage.setFullScreen(true);
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();

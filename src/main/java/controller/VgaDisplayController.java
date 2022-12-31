@@ -14,14 +14,18 @@ public class VgaDisplayController {
     private final static int SPRITE_SIZE = SPRITE_LENGTH * SPRITE_LENGTH;
 
     private GridPane vgaDisplay;
-    private int[] smem;
-    private int[] bmem;
+//    private int[] smem;
+//    private int[] bmem;
+    private ScreenMemory screenMemory;
+    private BitmapMemory bitmapMemory;
     private double pixelSize;
 
     public VgaDisplayController(Mips mips, GridPane vgaDisplay) {
         this.vgaDisplay = vgaDisplay;
-        smem = ((ScreenMemory) mips.memDict.get(ScreenMemory.class).get(0)).getMemoryClone();
-        bmem = ((BitmapMemory) mips.memDict.get(BitmapMemory.class).get(0)).getMemoryClone();
+//        smem = ((ScreenMemory) mips.memDict.get(ScreenMemory.class).get(0)).getMemoryClone();
+//        bmem = ((BitmapMemory) mips.memDict.get(BitmapMemory.class).get(0)).getMemoryClone();
+        screenMemory = (ScreenMemory) mips.memDict.get(ScreenMemory.class).get(0);
+        bitmapMemory = (BitmapMemory) mips.memDict.get(BitmapMemory.class).get(0);
         pixelSize = Math.min(vgaDisplay.getWidth() / (GRID_WIDTH * SPRITE_LENGTH), vgaDisplay.getHeight() / (GRID_HEIGHT * SPRITE_LENGTH));
         this.render();
     }
@@ -31,7 +35,7 @@ public class VgaDisplayController {
         GridPane sprite = new GridPane();
         for (int y = 0; y < SPRITE_LENGTH; y++) {
             for (int x = 0; x < SPRITE_LENGTH; x++) {
-                Rectangle pixel = hexToRectangle(bmem[(spriteNum * SPRITE_SIZE) + (y * SPRITE_LENGTH + x)]);
+                Rectangle pixel = hexToRectangle(bitmapMemory.getMemoryUnit(bitmapMemory.getWordSize() * ((spriteNum * SPRITE_SIZE) + (y * SPRITE_LENGTH + x))));
                 sprite.add(pixel, x, y);
             }
         }
@@ -52,7 +56,7 @@ public class VgaDisplayController {
     public void render() {
         for (int y = 0; y < GRID_HEIGHT; y++) {
             for (int x = 0; x < GRID_WIDTH; x++) {
-                int spriteNum = smem[(y * GRID_WIDTH) + x];
+                int spriteNum = screenMemory.getMemoryUnit(screenMemory.getWordSize() * ((y * GRID_WIDTH) + x));
                 GridPane sprite = generateSprite(spriteNum);
                 vgaDisplay.add(sprite, x, y);
             }

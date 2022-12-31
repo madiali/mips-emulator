@@ -70,6 +70,8 @@ public class DataMemory implements MemoryUnit {
    * This method returns a clone of the int[] memory to make iterating easier (don't have to mess
    * with getSize and getWordSize) while protecting read-only memory contents.
    *
+   * This method hogs memory, be careful.
+   *
    * @return int[] memory
    */
   public int[] getMemoryClone() {
