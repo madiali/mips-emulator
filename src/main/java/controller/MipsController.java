@@ -2,10 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -36,6 +33,7 @@ public class MipsController implements Initializable {
   //  private VgaDisplayController vgaDispControl;
   private VgaDisplayBMPController vgaDispBMPControl;
   private MenuController menuController;
+  private RegistersController registersController;
 
   // @FXML tags are **necessary** for the variables to be automatically linked to FXML components.
   // Menu
@@ -54,6 +52,9 @@ public class MipsController implements Initializable {
 
   // Screen
   @FXML private GridPane vgaDisplay;
+
+  // Debugging tabs
+  @FXML private TableView registersTable;
 
   public MipsController(Mips mips) {
     if (mips == null) {
@@ -127,6 +128,7 @@ public class MipsController implements Initializable {
         new AccelerometerController(this.mips, xSlider, ySlider, xLabel, yLabel, resetButton);
     this.vgaDispBMPControl = new VgaDisplayBMPController(this.mips, vgaDisplay);
     this.menuController = new MenuController(open, exit, go, pause, stepForward);
+    this.registersController = new RegistersController(mips, registersTable);
   }
 
   @FXML

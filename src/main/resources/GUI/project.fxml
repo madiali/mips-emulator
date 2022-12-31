@@ -48,6 +48,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ListView?>
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MipsController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
@@ -104,11 +106,7 @@
               <tabs>
                 <Tab closable="false" text="Registers">
                      <content>
-                        <TableView prefHeight="200.0" prefWidth="200.0">
-                          <columns>
-                            <TableColumn prefWidth="250.0" text="Name" />
-                            <TableColumn prefWidth="250.0" text="Value" />
-                          </columns>
+                        <TableView fx:id="registersTable" prefHeight="200.0" prefWidth="200.0">
                         </TableView>
                      </content>
                   </Tab>
