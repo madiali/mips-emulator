@@ -33,8 +33,8 @@ public class VgaDisplayBMPController {
 
   private GridPane vgaDisplay;
   // Changing both of these public for render speed testing. Change back to private later.
-  public ScreenMemory screenMemory;
-  public BitmapMemory bitmapMemory;
+  private ScreenMemory screenMemory;
+  private BitmapMemory bitmapMemory;
   private int numSprites;
   private List<Image> spriteList;
 

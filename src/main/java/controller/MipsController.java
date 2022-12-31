@@ -126,32 +126,24 @@ public class MipsController implements Initializable {
     this.accelControl =
         new AccelerometerController(this.mips, xSlider, ySlider, xLabel, yLabel, resetButton);
     this.vgaDispBMPControl = new VgaDisplayBMPController(this.mips, vgaDisplay);
-    // Passing VGAController to menuController for testing render speed, remove that parameter later
-    this.menuController = new MenuController(open, exit, go, pause, stepForward, vgaDispBMPControl);
+    this.menuController = new MenuController(open, exit, go, pause, stepForward);
   }
 
   @FXML
   public void handleExit() {}
 
   @FXML
-  public void handleGo() {
-    menuController.handleGo();
-  }
+  public void handleGo() {}
 
   @FXML
   public void handlePause() {}
 
-  /** Using this to test render speed for now. Remove implementation later. */
   @FXML
-  public void handleStepForward() {
-    menuController.handleStepForward();
-  }
+  public void handleStepForward() {}
 
-  /** Also hijacking XSliderDrag to really test render speed. Remove handleStepForward later. */
   @FXML
   public void handleXSliderDrag() {
     accelControl.handleXSliderDrag();
-    menuController.handleStepForward();
   }
 
   @FXML
