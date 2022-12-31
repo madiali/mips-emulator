@@ -12,8 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InstructionMemoryController {
-    private final static double ADDRESS_COLUMN_WIDTH = 125;
-    private final static double INSTRUCTION_COLUMN_WIDTH = 375;
+    private final static double ADDRESS_COLUMN_WIDTH = 200;
+    private final static double INSTRUCTION_COLUMN_WIDTH = 300;
 
     private InstructionMemory imem;
     private TableView imemTable;
@@ -26,9 +26,8 @@ public class InstructionMemoryController {
         renderInstructionMemoryTable();
     }
 
-    private void renderInstructionMemoryTable() {
-        // Might need to remove previous nameColumn and valueColumn before re-rendering?
-        addressColumn = new TableColumn<>("Address");
+    public void renderInstructionMemoryTable() {
+        addressColumn = new TableColumn<>("Relative Address");
         addressColumn.setCellValueFactory(new MapValueFactory<>("address"));
         addressColumn.setPrefWidth(ADDRESS_COLUMN_WIDTH);
         instructionColumn = new TableColumn<>("Instruction");

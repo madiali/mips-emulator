@@ -118,12 +118,7 @@
                   </Tab>
                   <Tab text="Data Memory">
                      <content>
-                        <TableView prefHeight="200.0" prefWidth="200.0">
-                          <columns>
-                            <TableColumn prefWidth="166.0" text="Mapped Address" />
-                            <TableColumn prefWidth="166.0" text="Relative Address" />
-                              <TableColumn prefWidth="166.0" text="Value" />
-                          </columns>
+                        <TableView fx:id="dataMemoryTable" prefHeight="200.0" prefWidth="200.0">
                         </TableView>
                      </content>
                   </Tab>
@@ -131,11 +126,22 @@
                      <content>
                         <TableView prefHeight="200.0" prefWidth="200.0">
                            <columns>
-                              <TableColumn prefWidth="250.0" text="IO Device" />
-                              <TableColumn prefWidth="250.0" text="Value" />
+                              <TableColumn prefWidth="200.0" text="IO Device" />
+                              <TableColumn prefWidth="300.0" text="Value" />
                            </columns>
                         </TableView>
                      </content>
+                  </Tab>
+                  <Tab text="Memory Mapping">
+                      <content>
+                          <TableView prefHeight="200.0" prefWidth="200.0">
+                              <columns>
+                                  <TableColumn prefWidth="166.0" text="Memory Type" />
+                                  <TableColumn prefWidth="166.0" text="Relative Start Address" />
+                                  <TableColumn prefWidth="166.0" text="Mapped Start Address" />
+                              </columns>
+                          </TableView>
+                      </content>
                   </Tab>
               </tabs>
             </TabPane>

@@ -35,6 +35,7 @@ public class MipsController implements Initializable {
   private MenuController menuController;
   private RegistersController registersController;
   private InstructionMemoryController instructionMemoryController;
+  private DataMemoryController dataMemoryController;
 
   // @FXML tags are **necessary** for the variables to be automatically linked to FXML components.
   // Menu
@@ -57,6 +58,7 @@ public class MipsController implements Initializable {
   // Debugging tabs
   @FXML private TableView registersTable;
   @FXML private TableView instructionMemoryTable;
+  @FXML private TableView dataMemoryTable;
 
   public MipsController(Mips mips) {
     if (mips == null) {
@@ -132,6 +134,7 @@ public class MipsController implements Initializable {
     this.menuController = new MenuController(open, exit, go, pause, stepForward);
     this.registersController = new RegistersController(mips, registersTable);
     this.instructionMemoryController = new InstructionMemoryController(mips, instructionMemoryTable);
+    this.dataMemoryController = new DataMemoryController(mips, dataMemoryTable);
   }
 
   @FXML

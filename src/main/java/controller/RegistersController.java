@@ -12,8 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistersController {
-    private final static double NAME_COLUMN_WIDTH = 125;
-    private final static double VALUE_COLUMN_WIDTH = 375;
+    private final static double NAME_COLUMN_WIDTH = 200;
+    private final static double VALUE_COLUMN_WIDTH = 300;
 
     private Registers reg;
     private TableView regTable;
@@ -27,8 +27,7 @@ public class RegistersController {
     }
 
     public void renderRegisterTable() {
-        // Might need to remove previous nameColumn and valueColumn before re-rendering?
-        nameColumn = new TableColumn<>("Name");
+        nameColumn = new TableColumn<>("Register");
         nameColumn.setCellValueFactory(new MapValueFactory<>("name"));
         nameColumn.setPrefWidth(NAME_COLUMN_WIDTH);
         valueColumn = new TableColumn<>("Value");
