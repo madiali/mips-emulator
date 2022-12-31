@@ -17,24 +17,22 @@ public class RegistersController {
 
     private Registers reg;
     private TableView regTable;
-    private TableColumn<Map, String> nameColumn;
-    private TableColumn<Map, String> valueColumn;
+    private ObservableList<Map<String, Object>> regTableItems = FXCollections.<Map<String, Object>>observableArrayList();
 
     public RegistersController(Mips mips, TableView regTable) {
         reg = mips.getReg();
         this.regTable = regTable;
-        renderRegisterTable();
+        initializeRegisterTable();
     }
 
-    public void renderRegisterTable() {
-        nameColumn = new TableColumn<>("Register");
+    private void initializeRegisterTable() {
+        TableColumn nameColumn = new TableColumn<>("Register");
         nameColumn.setCellValueFactory(new MapValueFactory<>("name"));
         nameColumn.setPrefWidth(NAME_COLUMN_WIDTH);
-        valueColumn = new TableColumn<>("Value");
+        TableColumn valueColumn = new TableColumn<>("Value");
         valueColumn.setCellValueFactory(new MapValueFactory<>("value"));
         valueColumn.setPrefWidth(VALUE_COLUMN_WIDTH);
         regTable.getColumns().addAll(nameColumn, valueColumn);
-        ObservableList<Map<String, Object>> regTableItems = FXCollections.<Map<String, Object>>observableArrayList();
         generateTableCells(regTableItems);
         regTable.getItems().addAll(regTableItems);
     }
@@ -46,5 +44,13 @@ public class RegistersController {
             item.put("value", String.format("0x%08X", reg.getRegister(i)));
             regTableItems.add(item);
         }
+    }
+
+    public void renderRegisterTable() {
+        for (int i = 0; i < 32; i++) {
+            Map<String,Object> item = regTableItems.get(i);
+            item.replace("value", String.format("0x%08X", reg.getRegister(i)));
+        }
+        regTable.refresh();
     }
 }

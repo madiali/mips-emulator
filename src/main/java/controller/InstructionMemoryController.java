@@ -17,20 +17,18 @@ public class InstructionMemoryController {
 
     private InstructionMemory imem;
     private TableView imemTable;
-    private TableColumn<Map, String> addressColumn;
-    private TableColumn<Map, String> instructionColumn;
 
     public InstructionMemoryController(Mips mips,TableView imemTable) {
         imem = mips.getInstrMem();
         this.imemTable = imemTable;
-        renderInstructionMemoryTable();
+        initializeInstructionMemoryTable();
     }
 
-    public void renderInstructionMemoryTable() {
-        addressColumn = new TableColumn<>("Relative Address");
+    private void initializeInstructionMemoryTable() {
+        TableColumn addressColumn = new TableColumn<>("Relative Address");
         addressColumn.setCellValueFactory(new MapValueFactory<>("address"));
         addressColumn.setPrefWidth(ADDRESS_COLUMN_WIDTH);
-        instructionColumn = new TableColumn<>("Instruction");
+        TableColumn instructionColumn = new TableColumn<>("Instruction");
         instructionColumn.setCellValueFactory(new MapValueFactory<>("instruction"));
         instructionColumn.setPrefWidth(INSTRUCTION_COLUMN_WIDTH);
         imemTable.getColumns().addAll(addressColumn, instructionColumn);
