@@ -12,7 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistersController {
-    private final static double COLUMN_WIDTH = 250;
+    private final static double NAME_COLUMN_WIDTH = 125;
+    private final static double VALUE_COLUMN_WIDTH = 375;
 
     private Registers reg;
     private TableView regTable;
@@ -20,7 +21,7 @@ public class RegistersController {
     private TableColumn<Map, String> valueColumn;
 
     public RegistersController(Mips mips, TableView regTable) {
-        this.reg = mips.getReg();
+        reg = mips.getReg();
         this.regTable = regTable;
         renderRegisterTable();
     }
@@ -29,10 +30,10 @@ public class RegistersController {
         // Might need to remove previous nameColumn and valueColumn before re-rendering?
         nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new MapValueFactory<>("name"));
-        nameColumn.setPrefWidth(COLUMN_WIDTH);
+        nameColumn.setPrefWidth(NAME_COLUMN_WIDTH);
         valueColumn = new TableColumn<>("Value");
         valueColumn.setCellValueFactory(new MapValueFactory<>("value"));
-        valueColumn.setPrefWidth(COLUMN_WIDTH);
+        valueColumn.setPrefWidth(VALUE_COLUMN_WIDTH);
         regTable.getColumns().addAll(nameColumn, valueColumn);
         ObservableList<Map<String, Object>> regTableItems = FXCollections.<Map<String, Object>>observableArrayList();
         generateTableCells(regTableItems);

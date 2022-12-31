@@ -112,11 +112,7 @@
                   </Tab>
                 <Tab text="Instruction Memory">
                      <content>
-                        <TableView prefHeight="200.0" prefWidth="200.0">
-                           <columns>
-                              <TableColumn prefWidth="250.0" text="Address" />
-                              <TableColumn prefWidth="250.0" text="Instruction" />
-                           </columns>
+                        <TableView fx:id="instructionMemoryTable" prefHeight="200.0" prefWidth="200.0">
                         </TableView>
                      </content>
                   </Tab>

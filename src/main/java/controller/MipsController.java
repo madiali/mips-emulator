@@ -34,6 +34,7 @@ public class MipsController implements Initializable {
   private VgaDisplayBMPController vgaDispBMPControl;
   private MenuController menuController;
   private RegistersController registersController;
+  private InstructionMemoryController instructionMemoryController;
 
   // @FXML tags are **necessary** for the variables to be automatically linked to FXML components.
   // Menu
@@ -55,6 +56,7 @@ public class MipsController implements Initializable {
 
   // Debugging tabs
   @FXML private TableView registersTable;
+  @FXML private TableView instructionMemoryTable;
 
   public MipsController(Mips mips) {
     if (mips == null) {
@@ -129,6 +131,7 @@ public class MipsController implements Initializable {
     this.vgaDispBMPControl = new VgaDisplayBMPController(this.mips, vgaDisplay);
     this.menuController = new MenuController(open, exit, go, pause, stepForward);
     this.registersController = new RegistersController(mips, registersTable);
+    this.instructionMemoryController = new InstructionMemoryController(mips, instructionMemoryTable);
   }
 
   @FXML
