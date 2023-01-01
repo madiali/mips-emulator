@@ -144,8 +144,13 @@ public class MainController implements Initializable {
 
   }
 
+  /**
+   * Making the Exit button render VGA. Doing so in ExecuteAll causes IllegalStateException
+   */
   @FXML
-  public void handleExit() {}
+  public void handleExit() {
+    VgaDisplayBMPController.renderVGA();
+  }
 
   /**
    * Incomplete implementation.
