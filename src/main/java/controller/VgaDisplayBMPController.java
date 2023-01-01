@@ -8,6 +8,8 @@
  * other stuff.
  *
  * BMP explanation: https://medium.com/sysf/bits-to-bitmaps-a-simple-walkthrough-of-bmp-image-format-765dc6857393
+ *
+ * Original code doesn't access mips.memory (memory mapping) to get bmem and smem, so we don't need to do so here either? TODO: look into this
  */
 package controller;
 
@@ -32,7 +34,6 @@ public class VgaDisplayBMPController {
   private static final int SPRITE_SIZE = SPRITE_LENGTH * SPRITE_LENGTH;
 
   private GridPane vgaDisplay;
-  // Changing both of these public for render speed testing. Change back to private later.
   private ScreenMemory screenMemory;
   private BitmapMemory bitmapMemory;
   private int numSprites;

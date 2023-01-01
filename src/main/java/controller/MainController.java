@@ -3,6 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -21,9 +22,9 @@ import java.util.ResourceBundle;
  *
  * <p>Implement Initializable to call initialize() method - user is forced to load a JSON at
  * startup. mips won't be null at startup. This is a bit lazy but prevents us from having to worry
- * about edge cases related to a JSON not being open.
+ * about edge cases related to a JSON not being open. TODO: Improve this lol
  */
-public class MipsController implements Initializable {
+public class MainController implements Initializable {
   private Mips mips;
   // FileChooser uses Stage for some reason.
   private Stage stage;
@@ -36,6 +37,8 @@ public class MipsController implements Initializable {
   private RegistersController registersController;
   private InstructionMemoryController instructionMemoryController;
   private DataMemoryController dataMemoryController;
+
+  private KeyboardController keyboardController;
 
   // @FXML tags are **necessary** for the variables to be automatically linked to FXML components.
   // Menu
@@ -60,7 +63,7 @@ public class MipsController implements Initializable {
   @FXML private TableView instructionMemoryTable;
   @FXML private TableView dataMemoryTable;
 
-  public MipsController(Mips mips) {
+  public MainController(Mips mips) {
     if (mips == null) {
       throw new IllegalArgumentException("Mips is null");
     }
@@ -68,7 +71,7 @@ public class MipsController implements Initializable {
   }
 
   /** A MipsController with no params is necessary for loader.getController() in AppLauncher. */
-  public MipsController() {}
+  public MainController() {}
 
   public int getPC() {
     return mips.getPC();
@@ -110,11 +113,13 @@ public class MipsController implements Initializable {
     this.stage = stage;
   }
 
-  // If we do have multiple Controllers encapsulated in this class, handleOpen needs to
-  // reinstantiate all of them.
+  /*
+   * Menu
+   */
+
   @FXML
   public void handleOpen() throws IOException {
-    // Prompt user for project JSON
+    // Prompt for project JSON
     FileChooser fc = new FileChooser();
     fc.setTitle("Open project JSON");
     fc.getExtensionFilters()
@@ -126,15 +131,15 @@ public class MipsController implements Initializable {
     this.mips = pl.getMips();
 
     // Controller instantiation
-    // Pass mips (can't be done in MipsController constructor) and FXML components to other
-    // Controller files through constructor.
     this.accelControl =
-        new AccelerometerController(this.mips, xSlider, ySlider, xLabel, yLabel, resetButton);
-    this.vgaDispBMPControl = new VgaDisplayBMPController(this.mips, vgaDisplay);
-    this.menuController = new MenuController(open, exit, go, pause, stepForward);
+        new AccelerometerController(mips, xSlider, ySlider, xLabel, yLabel, resetButton);
+    this.vgaDispBMPControl = new VgaDisplayBMPController(mips, vgaDisplay);
+    this.menuController = new MenuController(mips, open, exit, go, pause, stepForward);
     this.registersController = new RegistersController(mips, registersTable);
     this.instructionMemoryController = new InstructionMemoryController(mips, instructionMemoryTable);
     this.dataMemoryController = new DataMemoryController(mips, dataMemoryTable);
+
+    this.keyboardController = new KeyboardController(mips);
   }
 
   @FXML
@@ -149,6 +154,10 @@ public class MipsController implements Initializable {
   @FXML
   public void handleStepForward() {}
 
+  /*
+   * Accelerometer
+   */
+
   @FXML
   public void handleXSliderDrag() {
     accelControl.handleXSliderDrag();
@@ -162,6 +171,18 @@ public class MipsController implements Initializable {
   @FXML
   public void handleResetButton() {
     accelControl.handleResetButton();
+  }
+
+  /*
+   * Keyboard
+   */
+
+  public void handleOnKeyDown(KeyCode keycode) {
+    keyboardController.handleOnKeyDown(keycode);
+  }
+
+  public void handleOnKeyUp(KeyCode keycode) {
+    keyboardController.handleOnKeyUp(keycode);
   }
 
   /**

@@ -47,7 +47,7 @@ public class AccelerometerController implements DebuggerView {
                   .get(0)
                   .getMemUnit();
     } catch (ArrayIndexOutOfBoundsException aioobe) {
-      // If Accelerometer doesn't exist, then the toList() is empty and .get(0) causes
+      // If Accelerometer isn't memory mapped (has startAddr or bitmask) in JSON, then the toList() is empty and .get(0) causes
       // IndexOutOfBoundsException. mappedAccelerometer remains null.
     }
     if (mappedAccelerometer != null) {

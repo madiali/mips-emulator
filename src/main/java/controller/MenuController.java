@@ -1,7 +1,7 @@
 package controller;
 
 import javafx.scene.control.MenuItem;
-import mips.ScreenMemory;
+import mips.Mips;
 
 public class MenuController {
   private MenuItem open;
@@ -11,7 +11,7 @@ public class MenuController {
   private MenuItem stepForward;
 
   public MenuController(
-      MenuItem open, MenuItem exit, MenuItem go, MenuItem pause, MenuItem stepForward) {
+          Mips mips, MenuItem open, MenuItem exit, MenuItem go, MenuItem pause, MenuItem stepForward) {
     this.open = open;
     this.exit = exit;
     this.go = go;

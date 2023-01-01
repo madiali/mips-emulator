@@ -50,7 +50,7 @@
 
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.ListView?>
-<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MipsController">
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>

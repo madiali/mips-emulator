@@ -17,6 +17,7 @@ Here are some things that need to be tested:
       0x7FFFFFFF.
     * Make sure that all int fields are checked as `Strings` or `int`s.
 * VGADisplayBMPController: Will creating files in /img work when we package the program into a .jar?
+  * Access memory mapper for bmem and smem?
 * AccelerometerController and any others that remove components:
     * Because of how removing a component works, if the FXML layout ever changes, then remove logic needs to be recoded.
       It would be super super easy to do though, just change some types.

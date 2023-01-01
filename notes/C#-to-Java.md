@@ -208,7 +208,8 @@ Same as Java's [`Integer.compare(x, y)`](https://www.geeksforgeeks.org/java-inte
 
 ## [`enum`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum)
 
-* tl;dr they're different, and I wasted a lot of time trying to get it to work.
+* [Java enums](https://www.youtube.com/watch?v=wq9SJb8VeyM)
+* As it turns out, we could've used enums for `mips.InstructionFactory`. Oh well.
 
 ## Exceptions
 

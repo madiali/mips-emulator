@@ -16,13 +16,17 @@ public class Keyboard implements MemoryUnit {
    */
   public Keyboard(int size, int wordSize) {}
 
+  /**
+   * This just returns Keyboard's keyCode field regardless of the index. Only has the index
+   * parameter because it's part of the interface.
+   */
   @Override
   public int getMemoryUnit(int index) {
     return keyCode;
   }
 
-  @Override
   /** Original code has an empty setter body. */
+  @Override
   public void setMemoryUnit(int index, int value) {
     keyCode = value;
   }

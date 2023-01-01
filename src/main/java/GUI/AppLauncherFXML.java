@@ -1,10 +1,11 @@
 package GUI;
 
-import controller.MipsController;
+import controller.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 
@@ -13,14 +14,24 @@ public class AppLauncherFXML extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("project.fxml"));
         Parent root = loader.load();
-        // I suspect that if we construct the controller ourselves using new MipsController(), then FXML methods might not be linked to that controller instance?
-        MipsController controller = loader.getController();
+
+        MainController controller = loader.getController();
         controller.setStage(stage);
 
         stage.setTitle("MIPS Emulator");
 //        stage.setFullScreen(true);
         stage.setResizable(false);
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        // Set listeners for key presses here (must have access to scene), then forward to MainController
+        scene.setOnKeyPressed(event -> {
+            KeyCode keycode = event.getCode();
+            controller.handleOnKeyDown(keycode);
+        });
+        scene.setOnKeyReleased(event -> {
+            KeyCode keycode = event.getCode();
+            controller.handleOnKeyUp(keycode);
+        });
+        stage.setScene(scene);
         stage.show();
     }
 
