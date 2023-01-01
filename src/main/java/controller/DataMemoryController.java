@@ -16,9 +16,9 @@ public class DataMemoryController {
     private final static double VALUE_COLUMN_WIDTH = 300;
     private final static int WORD_SIZE = 4;
 
-    private DataMemory dmem;
-    private TableView dmemTable;
-    private ObservableList<Map<String, Object>> dmemTableItems = FXCollections.<Map<String, Object>>observableArrayList();
+    private static DataMemory dmem;
+    private static TableView dmemTable;
+    private static ObservableList<Map<String, Object>> dmemTableItems = FXCollections.<Map<String, Object>>observableArrayList();
 
     public DataMemoryController(Mips mips, TableView dmemTable) {
         dmem = (DataMemory) mips.memDict.get(DataMemory.class).get(0);
@@ -47,7 +47,7 @@ public class DataMemoryController {
         }
     }
 
-    public void renderDataMemoryTable() {
+    public static void renderDataMemoryTable() {
         for (int relativeAddress = 0; relativeAddress < dmem.getSize(); relativeAddress += 4) {
             Map<String,Object> item = dmemTableItems.get(relativeAddress / WORD_SIZE);
             item.replace("value", String.format("0x%08X", dmem.getMemoryUnit(relativeAddress)));

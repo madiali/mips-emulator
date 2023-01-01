@@ -33,11 +33,11 @@ public class VgaDisplayBMPController {
   private static final int SPRITE_LENGTH = 16;
   private static final int SPRITE_SIZE = SPRITE_LENGTH * SPRITE_LENGTH;
 
-  private GridPane vgaDisplay;
-  private ScreenMemory screenMemory;
-  private BitmapMemory bitmapMemory;
-  private int numSprites;
-  private List<Image> spriteList;
+  private static GridPane vgaDisplay;
+  private static ScreenMemory screenMemory;
+  private static BitmapMemory bitmapMemory;
+  private static int numSprites;
+  private static List<Image> spriteList;
 
   // Boilerplate header bits for all sprites
   // Note that fields that span more than 1 byte are represented in little-endian format
@@ -64,13 +64,13 @@ public class VgaDisplayBMPController {
   };
 
   public VgaDisplayBMPController(Mips mips, GridPane vgaDisplay) throws IOException {
-    this.vgaDisplay = vgaDisplay;
-    this.screenMemory = (ScreenMemory) mips.memDict.get(ScreenMemory.class).get(0);
-    this.bitmapMemory = (BitmapMemory) mips.memDict.get(BitmapMemory.class).get(0);
-    this.numSprites = bitmapMemory.getSize() / bitmapMemory.getWordSize() / SPRITE_SIZE;
+    VgaDisplayBMPController.vgaDisplay = vgaDisplay;
+    screenMemory = (ScreenMemory) mips.memDict.get(ScreenMemory.class).get(0);
+    bitmapMemory = (BitmapMemory) mips.memDict.get(BitmapMemory.class).get(0);
+    numSprites = bitmapMemory.getSize() / bitmapMemory.getWordSize() / SPRITE_SIZE;
 
     generateBMP();
-    this.spriteList = generateSpriteList();
+    spriteList = generateSpriteList();
     deleteDir(new File("img"));
     renderVGA();
   }
@@ -129,7 +129,7 @@ public class VgaDisplayBMPController {
    * <p>Each ImageView object is unique, even if the Image (sprite) is the same, because GridPane
    * does not allow duplicate objects to be stored.
    */
-  public void renderVGA() {
+  public static void renderVGA() {
     for (int y = 0; y < GRID_HEIGHT; y++) {
       for (int x = 0; x < GRID_WIDTH; x++) {
         int spriteNum =

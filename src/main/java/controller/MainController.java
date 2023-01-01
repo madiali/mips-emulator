@@ -37,8 +37,8 @@ public class MainController implements Initializable {
   private RegistersController registersController;
   private InstructionMemoryController instructionMemoryController;
   private DataMemoryController dataMemoryController;
-
   private KeyboardController keyboardController;
+  private static boolean isExecuting;
 
   // @FXML tags are **necessary** for the variables to be automatically linked to FXML components.
   // Menu
@@ -136,23 +136,36 @@ public class MainController implements Initializable {
     this.vgaDispBMPControl = new VgaDisplayBMPController(mips, vgaDisplay);
     this.menuController = new MenuController(mips, open, exit, go, pause, stepForward);
     this.registersController = new RegistersController(mips, registersTable);
-    this.instructionMemoryController = new InstructionMemoryController(mips, instructionMemoryTable);
+    this.instructionMemoryController =
+        new InstructionMemoryController(mips, instructionMemoryTable);
     this.dataMemoryController = new DataMemoryController(mips, dataMemoryTable);
 
     this.keyboardController = new KeyboardController(mips);
+
   }
 
   @FXML
   public void handleExit() {}
 
+  /**
+   * Incomplete implementation.
+   */
   @FXML
-  public void handleGo() {}
+  public void handleGo() {
+    isExecuting = true;
+    // Just for testing
+    ExecuteAll ea = new ExecuteAll(mips);
+    Thread t = new Thread(ea);
+    t.start();
+  }
 
   @FXML
   public void handlePause() {}
 
   @FXML
-  public void handleStepForward() {}
+  public void handleStepForward() {
+    mips.executeNext();
+  }
 
   /*
    * Accelerometer
@@ -183,6 +196,20 @@ public class MainController implements Initializable {
 
   public void handleOnKeyUp(KeyCode keycode) {
     keyboardController.handleOnKeyUp(keycode);
+  }
+
+  public static boolean getIsExecuting() {
+    return isExecuting;
+  }
+
+  public static void setIsExecuting(boolean value) {
+    isExecuting = value;
+  }
+
+  public static void renderAllDisplays() {
+    VgaDisplayBMPController.renderVGA();
+    RegistersController.renderRegisterTable();
+    DataMemoryController.renderDataMemoryTable();
   }
 
   /**

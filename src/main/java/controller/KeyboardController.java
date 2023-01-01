@@ -14,7 +14,6 @@ import javafx.scene.input.KeyCode;
 import mips.Keyboard;
 import mips.MappedMemoryUnit;
 import mips.Mips;
-
 import java.util.Map;
 import static java.util.Map.entry;
 
@@ -27,9 +26,10 @@ public class KeyboardController {
   LEFT, RIGHT, UP, DOWN, SPACE, HOME, END, PGUP, PGDOWN, TAB
 
   Most issues can be avoided by not pressing any GUI component. We may add dedicated GUI buttons for the above keys.
-  Additionally, I think JavaFX doesn't distinguish between Left and Right for Windows, Shift, Control.
+  Additionally, JavaFX doesn't distinguish between Left and Right for Windows, Shift, Control.
   It doesn't support Applications key.
   Idk what KeyCode `/~ corresponds to. I think it's KeyCode.DEAD_GRAVE and KeyCode.DEAD_TILDE? Mapped both to the same value.
+  The OG code omits scancodes for these very uncommon keys: HELP, Separator, Left MENU, Right MENU
   */
   private Map<KeyCode, Integer> scancodeMapper =
       Map.ofEntries(
@@ -51,8 +51,7 @@ public class KeyboardController {
           entry(KeyCode.PRINTSCREEN, 57468),
           entry(KeyCode.INSERT, 57456),
           entry(KeyCode.DELETE, 57457),
-          // HELP key omitted in OG code
-          entry(KeyCode.DIGIT0, 69),
+          entry(KeyCode.DIGIT0, 69), // lolz
           entry(KeyCode.DIGIT1, 22),
           entry(KeyCode.DIGIT2, 30),
           entry(KeyCode.DIGIT3, 38),
@@ -101,7 +100,6 @@ public class KeyboardController {
           entry(KeyCode.NUMPAD9, 125),
           entry(KeyCode.MULTIPLY, 124),
           entry(KeyCode.ADD, 121),
-          // KeyCode.Separator is skipped in OG code
           entry(KeyCode.SUBTRACT, 123),
           entry(KeyCode.DECIMAL, 113),
           entry(KeyCode.DIVIDE, 66),
@@ -121,7 +119,6 @@ public class KeyboardController {
           entry(KeyCode.SCROLL_LOCK, 126),
           entry(KeyCode.SHIFT, 18),
           entry(KeyCode.CONTROL, 20),
-          // Left and Right MENU keys are omitted in OG code
           entry(KeyCode.SEMICOLON, 76),
           entry(KeyCode.PLUS, 85),
           entry(KeyCode.COMMA, 65),
@@ -155,7 +152,6 @@ public class KeyboardController {
     if (keyboard != null) {
       Keyboard kb = (Keyboard) keyboard.getMemUnit();
       kb.setKeycode(scancodeMapper.get(keycode));
-//      System.out.println(kb.getMemoryUnit(0));
     }
   }
 

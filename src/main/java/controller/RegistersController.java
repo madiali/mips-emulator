@@ -15,9 +15,9 @@ public class RegistersController {
     private final static double NAME_COLUMN_WIDTH = 200;
     private final static double VALUE_COLUMN_WIDTH = 300;
 
-    private Registers reg;
-    private TableView regTable;
-    private ObservableList<Map<String, Object>> regTableItems = FXCollections.<Map<String, Object>>observableArrayList();
+    private static Registers reg;
+    private static TableView regTable;
+    private static ObservableList<Map<String, Object>> regTableItems = FXCollections.<Map<String, Object>>observableArrayList();
 
     public RegistersController(Mips mips, TableView regTable) {
         reg = mips.getReg();
@@ -46,7 +46,7 @@ public class RegistersController {
         }
     }
 
-    public void renderRegisterTable() {
+    public static void renderRegisterTable() {
         for (int i = 0; i < 32; i++) {
             Map<String,Object> item = regTableItems.get(i);
             item.replace("value", String.format("0x%08X", reg.getRegister(i)));

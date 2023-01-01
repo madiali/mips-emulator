@@ -1,15 +1,15 @@
 package GUI;
 
+import controller.ExecuteAll;
 import controller.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 
-public class AppLauncherFXML extends Application {
+public class AppLauncher extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("project.fxml"));
@@ -22,15 +22,11 @@ public class AppLauncherFXML extends Application {
 //        stage.setFullScreen(true);
         stage.setResizable(false);
         Scene scene = new Scene(root);
-        // Set listeners for key presses here (must have access to scene), then forward to MainController
-        scene.setOnKeyPressed(event -> {
-            KeyCode keycode = event.getCode();
-            controller.handleOnKeyDown(keycode);
-        });
-        scene.setOnKeyReleased(event -> {
-            KeyCode keycode = event.getCode();
-            controller.handleOnKeyUp(keycode);
-        });
+
+        // Listeners for key events that forward KeyCode enum to MainController
+        scene.setOnKeyPressed(event -> controller.handleOnKeyDown(event.getCode()));
+        scene.setOnKeyReleased(event -> controller.handleOnKeyUp(event.getCode()));
+
         stage.setScene(scene);
         stage.show();
     }
