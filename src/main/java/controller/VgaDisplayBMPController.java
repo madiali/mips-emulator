@@ -72,7 +72,7 @@ public class VgaDisplayBMPController {
     generateBMP();
     spriteList = generateSpriteList();
     deleteDir(new File("img"));
-    renderVGA();
+    initializeVGA();
   }
 
   /**
@@ -123,6 +123,17 @@ public class VgaDisplayBMPController {
     return res;
   }
 
+  private static void initializeVGA() {
+    for (int y = 0; y < GRID_HEIGHT; y++) {
+      for (int x = 0; x < GRID_WIDTH; x++) {
+        int spriteNum =
+                screenMemory.getMemoryUnit(screenMemory.getWordSize() * ((y * GRID_WIDTH) + x));
+        ImageView sprite = new ImageView(spriteList.get(spriteNum));
+        vgaDisplay.add(sprite, x, y);
+      }
+    }
+  }
+
   /**
    * Render VGA display by using Screen Memory contents to index into spriteList.
    *
@@ -132,10 +143,11 @@ public class VgaDisplayBMPController {
   public static void renderVGA() {
     for (int y = 0; y < GRID_HEIGHT; y++) {
       for (int x = 0; x < GRID_WIDTH; x++) {
+        int spriteIndex = (y * GRID_WIDTH) + x;
+        ImageView sprite = (ImageView) vgaDisplay.getChildren().get(spriteIndex);
         int spriteNum =
-            screenMemory.getMemoryUnit(screenMemory.getWordSize() * ((y * GRID_WIDTH) + x));
-        ImageView sprite = new ImageView(spriteList.get(spriteNum));
-        vgaDisplay.add(sprite, x, y);
+                screenMemory.getMemoryUnit(screenMemory.getWordSize() * ((y * GRID_WIDTH) + x));
+        sprite.setImage(spriteList.get(spriteNum));
       }
     }
   }

@@ -34,7 +34,7 @@ public class ExecuteAll implements Runnable {
       RegistersController.renderRegisterTable();
       DataMemoryController.renderDataMemoryTable();
       // For some reason, the above 2 don't error, whereas the below will error.
-//      VgaDisplayBMPController.renderVGA();
+      VgaDisplayBMPController.renderVGA();
 //      System.out.print(Integer.toHexString(mips.getReg().getRegister(29)) + "\n");
     }
   }
