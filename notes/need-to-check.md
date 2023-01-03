@@ -21,4 +21,4 @@ Here are some things that need to be tested:
 * AccelerometerController and any others that remove components:
     * Because of how removing a component works, if the FXML layout ever changes, then remove logic needs to be recoded.
       It would be super super easy to do though, just change some types.
-* KeyboardController: read docstring for differences between ours and OG (for program efficiency)
+* KeyboardController: read docstring for differences between ours and OG (for program efficiency). Not handling print screen edge case might be sus but it's fine (famous last words)

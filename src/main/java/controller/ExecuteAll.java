@@ -1,25 +1,19 @@
 /**
- * https://www.youtube.com/watch?v=r_MbozD32eo Multithreading in Java Explained in 10 Minutes We can
- * extend Thread or implement Runnable here. Either is fine.
+ * https://www.youtube.com/watch?v=r_MbozD32eo Multithreading in Java Explained in 10 Minutes. We
+ * can extend Thread or implement Runnable here. Either is fine.
  *
  * <p>The OG program and our program need to use Thread for MIPS program execution because all the
  * event handler and GUI code needs to run in the background concurrently.
  *
  * <p>https://stackoverflow.com/questions/29449297/java-lang-illegalstateexception-not-on-fx-application-thread-currentthread-t
- * tl;dr We will get an Illegal State Exception when updating UI on some thread (like this one, sad)
- * other than the JavaFX Application thread. I think ExecuteAll has to be a thread because the
- * listener code in MainController and other places need to run concurrently. We need to find a
- * workaround.
- * https://community.oracle.com/tech/developers/discussion/2592236/javafx-binding-throws-illegal-state-exception-not-on-fx-application-thread
- * The above page suggests using
- * https://docs.oracle.com/javafx/2/api/javafx/application/Platform.html#runLater(java.lang.Runnable)
+ * We solved this by updating the ImageView in VgaDisplayBMPController instead of adding new
+ * ImageView's.
  */
 package controller;
 
-import mips.MappedMemoryUnit;
-import mips.Mips;
-import mips.ScreenMemory;
+import mips.*;
 import mips.instructions.IType.SwInstruction;
+import mips.instructions.Instruction;
 
 public class ExecuteAll implements Runnable {
   private Mips mips;
@@ -29,43 +23,60 @@ public class ExecuteAll implements Runnable {
   }
 
   /**
-   * renderVGA runs only when a `sw` Instruction is executed. renderRegisterTable and
-   * renderDataMemoryTable run when the pause button is clicked. Commented out for now. Since run()
-   * loops based on isExecuting, that logic should probably be handled in handlePause(). There is
-   * currently some code here for tracking time.
+   * renderVGA(spriteIndex) runs only when a SwInstruction is executed AND that SwInstruction's
+   * target address is in the bounds of mapped Screen Memory. renderRegisterTable and
+   * renderDataMemoryTable run when the pause button is clicked. Commented out for now, we need to
+   * speed those up. There's some code here for tracking time. For now, stats are printed out when
+   * the pause or exit buttons are clicked.
    *
-   * <p>Results of the commented-out print statements (confirming that they work correctly)
+   * <p>The code in this method optimizes for speed instead of readability, so we explain how it
+   * works here in the docstring:
    *
-   * <p>Screen memory start: 0x10020000 Screen memory end: 0x100212BF Gap between the above 2
-   * addresses: 4799
+   * <p>The lines before the for loop get some necessary variables.
+   *
+   * <p>The for loop goes while boolean isExecuting is true. It always executes the nextInstruction
+   * (at current PC value) and determines whether it's a SwInstruction.
+   *
+   * <p>If so, then it computes the target address of the SwInstruction to determine whether it's
+   * storing to ScreenMemory.
+   *
+   * <p>If so, then it computes the spriteIndex of Screen Memory by (targetAddr - startAddr) / 4.
+   * spriteIndex, a number between 0 and 1199, is passed to the overloaded renderVGA method. With a
+   * specific spriteIndex, renderVGA updates only one ImageView instead of looping through the
+   * entire GridPane.
    */
   @Override
   public void run() {
     boolean swInstructionExecuted;
-    boolean swToScreenMemory;
-    int instructionsExecuted = 0;
+    long instructionsExecuted = 0;
+    Registers reg = mips.getReg();
     MappedMemoryUnit screenMemory =
         mips.getMemory().getMemUnits().stream()
             .filter(mappedMemoryUnit -> mappedMemoryUnit.getMemUnit() instanceof ScreenMemory)
             .toList()
             .get(0);
-    //    System.out.println("Screen memory start: " + String.format("0x%08X",
-    // screenMemory.getStartAddr()));
-    //    System.out.println("Screen memory end: " + String.format("0x%08X",
-    // screenMemory.getEndAddr()));
-    //    System.out.println("Gap between the above 2 addresses: " + (screenMemory.getEndAddr() -
-    // screenMemory.getStartAddr()));
-    
+    int smemStartAddr = screenMemory.getStartAddr();
+    int smemEndAddr = screenMemory.getEndAddr();
+
     long start = System.currentTimeMillis() / 1000;
-    for (; MainController.getIsExecuting(); ) {
-      instructionsExecuted++;
-      swInstructionExecuted =
-          mips.getInstrMem().getInstruction(mips.getPC()) instanceof SwInstruction;
+
+    /**
+     * This code optimizes for speed. Might be difficult to read ig. Some explanations in docstring
+     * of method.
+     */
+    for (; MainController.getIsExecuting(); instructionsExecuted++) {
+      Instruction nextInstruction = mips.getInstrMem().getInstruction(mips.getPC());
+      swInstructionExecuted = nextInstruction instanceof SwInstruction;
       mips.executeNext();
       //      RegistersController.renderRegisterTable();
       //      DataMemoryController.renderDataMemoryTable();
       if (swInstructionExecuted) {
-        VgaDisplayBMPController.renderVGA();
+        SwInstruction swInstruction = (SwInstruction) nextInstruction;
+        int targetAddr =
+            reg.getRegister(swInstruction.getS()) + signExtend(swInstruction.getImmediate());
+        if (smemStartAddr <= targetAddr && targetAddr <= smemEndAddr) {
+          VgaDisplayBMPController.renderVGA((targetAddr - smemStartAddr) >> 2);
+        }
       }
     }
 
@@ -73,5 +84,17 @@ public class ExecuteAll implements Runnable {
     System.out.println("Time: " + delta + "s");
     System.out.println("Mips instructions executed: " + instructionsExecuted);
     System.out.println("Clock speed: " + instructionsExecuted / 1000000.0 / delta + " MHz");
+  }
+
+  /**
+   * Taken from mips.instructions.IType. Not importing from there since it's protected there, and
+   * also putting it here probably shaves off some time. Removed intermediary variables to shave off
+   * time.
+   *
+   * @param immediate
+   * @return sign-extended immediate
+   */
+  private static int signExtend(int immediate) {
+    return (((immediate >> 15) & 0b1) == 0) ? immediate : (immediate | 0xFFFF0000);
   }
 }
