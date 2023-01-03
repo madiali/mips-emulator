@@ -65,7 +65,6 @@ public class VgaDisplayBMPController {
 
     public VgaDisplayBMPController(Mips mips, GridPane vgaDisplay) throws IOException {
         VgaDisplayBMPController.vgaDisplay = vgaDisplay;
-        // screenMemory = (ScreenMemory) mips.memDict.get(ScreenMemory.class).get(0);
         screenMemory = (ScreenMemory) mips.getMemory().getMemUnits().stream()
                 .filter(mappedMemoryUnit -> mappedMemoryUnit.getMemUnit() instanceof ScreenMemory)
                 .toList()

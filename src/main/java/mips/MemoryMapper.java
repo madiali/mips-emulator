@@ -50,7 +50,6 @@ public class MemoryMapper implements MemoryUnit {
     return memUnits.get(0).getStartAddr();
   }
 
-  // Should this be static? It's not static in the original code tho
   private MappedMemoryUnit findContainingUnit(int addr) {
     for (int i = 0; i < this.memUnits.size(); i++) {
       MappedMemoryUnit m = this.memUnits.get(i);
@@ -61,7 +60,6 @@ public class MemoryMapper implements MemoryUnit {
     throw new UnmappedAddressException(addr);
   }
 
-  // Should this method be static? Not sure how this doesn't cause an error in the getter...
   private int resolveAddress(int addr, MappedMemoryUnit memUnit) {
     return addr - memUnit.getStartAddr();
   }

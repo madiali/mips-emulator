@@ -1,10 +1,18 @@
 /**
- * The OG code in MainWindow.cs gets the Keyboard field as a MappedMemoryUnit but casts it to
- * Keyboard in the OnKeyDown and OnKeyUp methods? Why doesn't it just make the Keyboard field's type
- * Keyboard from the start then? Gonna go with the OG approach for now...
+ * The OG code checks that keyboard != null in handleOnKeyDown/Up, but we don't since we need the
+ * program to run faster. Instead, the constructor forces a Keyboard to be mapped. We can improve
+ * this later.
  *
- * <p>Also, instead of a ScanCodeMapper class, I just use an internal HashMap. The order of entries
- * is the same as keyboard.ini
+ * <p>The OG code in MainWindow.cs gets the Keyboard field as a MappedMemoryUnit but casts it to
+ * Keyboard in the OnKeyDown and OnKeyUp methods? Why doesn't it just make the Keyboard field's type
+ * Keyboard from the start then? We make the keyboard field's type Keyboard from the start to avoid
+ * type casting in handler methods. Jesse - I tested this on Rubik and it seems to be fine.
+ *
+ * <p>We also don't handle the printscreen edge case in handleOnKeyUp because literally who maps to
+ * print screen.
+ *
+ * <p>Also, instead of a ScanCodeMapper class, I use an internal HashMap. The order of entries is
+ * the same as keyboard.ini
  *
  * <p>https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator.GUI/keyboard.ini
  */
@@ -18,7 +26,7 @@ import java.util.Map;
 import static java.util.Map.entry;
 
 public class KeyboardController {
-  private MappedMemoryUnit keyboard;
+  private Keyboard keyboard;
   /*
   READ IMPORTANT NOTE IN skipped-files.md!! JavaFX won't send an event for a key when it does something in the GUI.
   For example, when you click on a slider and it turns blue, then LEFT and RIGHT will change the slider value and will not
@@ -133,7 +141,7 @@ public class KeyboardController {
           entry(KeyCode.QUOTE, 82));
 
   public KeyboardController(Mips mips) {
-    MappedMemoryUnit mappedKeyboard = null;
+    MappedMemoryUnit mappedKeyboard;
     try {
       mappedKeyboard =
           mips.getMemory().getMemUnits().stream()
@@ -142,31 +150,29 @@ public class KeyboardController {
               .get(0);
     } catch (ArrayIndexOutOfBoundsException aioobe) {
       // If Keyboard isn't memory mapped (has startAddr or bitmask) in JSON, then the toList() is
-      // empty and .get(0) causes
-      // IndexOutOfBoundsException. mappedKeyboard remains null.
+      // empty and .get(0) causes IndexOutOfBoundsException. As mentioned in the docstring, we throw
+      // IAE to make sure this.keyboard is not null.
+      throw new IllegalArgumentException(
+          "Keyboard is not memory mapped (has startAddr or bitmask) in your JSON, you must map Keyboard in your JSON");
     }
-    this.keyboard = mappedKeyboard;
+    this.keyboard = (Keyboard) mappedKeyboard.getMemUnit();
   }
 
   public void handleOnKeyDown(KeyCode keycode) {
-    if (keyboard != null) {
-      Keyboard kb = (Keyboard) keyboard.getMemUnit();
-      kb.setKeycode(scancodeMapper.get(keycode));
-    }
+    keyboard.setKeycode(scancodeMapper.get(keycode));
   }
 
   public void handleOnKeyUp(KeyCode keycode) {
-    if (keyboard != null) {
-      Keyboard kb = (Keyboard) keyboard.getMemUnit();
-      int scanCode = scancodeMapper.get(keycode);
-      if (keycode == KeyCode.PRINTSCREEN) {
-        // Special case for print screen
-        kb.setKeycode(0xE0F012);
-      } else if (scanCode > 0xFF) {
-        kb.setKeycode(scanCode | 0xE0F000);
-      } else {
-        kb.setKeycode(scanCode | 0xF000);
-      }
+    int scanCode = scancodeMapper.get(keycode);
+    // As mentioned in the docstring, we don't handle the PRINTSCREEN case for program efficiency
+    //    if (keycode == KeyCode.PRINTSCREEN) {
+    // Special case for print screen
+    //      keyboard.setKeycode(0xE0F012);
+    // }
+    if (scanCode > 0xFF) {
+      keyboard.setKeycode(scanCode | 0xE0F000);
+    } else {
+      keyboard.setKeycode(scanCode | 0xF000);
     }
   }
 }

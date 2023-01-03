@@ -7,7 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import mips.*;
 
-public class AccelerometerController implements DebuggerView {
+public class AccelerometerController {
   private AccelerometerX accelerometerX;
   private AccelerometerY accelerometerY;
   private Slider xSlider;
@@ -75,10 +75,6 @@ public class AccelerometerController implements DebuggerView {
     accelerometerY.setYValue((int) defaultAccelValue);
   }
 
-  /** Unnecessary to call this, sliders update on screen automatically. */
-  @Deprecated
-  @Override
-  public void refreshDisplay() {}
 
   /**
    * When Accelerometer is not in Memory Mapper, then remove Sliders, labels, and Reset button.
@@ -89,7 +85,6 @@ public class AccelerometerController implements DebuggerView {
    * getChildren(), only getChildrenUnmodifiable(). If we change the layout, this wouldn't be hard
    * to recode.
    */
-  @Override
   public void close() {
     HBox parent = (HBox) this.xSlider.getParent();
     parent.getChildren().remove(xSlider);

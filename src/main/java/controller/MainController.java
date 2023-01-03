@@ -144,8 +144,13 @@ public class MainController implements Initializable {
 
   }
 
+  /**
+   * Set isExecuting to false to halt execution in ExecuteAll to get time statistics.
+   */
   @FXML
-  public void handleExit() {}
+  public void handleExit() {
+    isExecuting = false;
+  }
 
   /**
    * Incomplete implementation.
