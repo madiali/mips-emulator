@@ -164,8 +164,16 @@ public class MainController implements Initializable {
     t.start();
   }
 
+  /**
+   * Set isExecuting to false to pause execution in ExecuteAll to print out time statistics.
+   * Does the same thing as Exit button, for now.
+   */
   @FXML
-  public void handlePause() {}
+  public void handlePause() {
+    isExecuting = false;
+    RegistersController.renderRegisterTable();
+    DataMemoryController.renderDataMemoryTable();
+  }
 
   @FXML
   public void handleStepForward() {

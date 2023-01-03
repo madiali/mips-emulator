@@ -55,6 +55,7 @@ public class ExecuteAll implements Runnable {
     // screenMemory.getEndAddr()));
     //    System.out.println("Gap between the above 2 addresses: " + (screenMemory.getEndAddr() -
     // screenMemory.getStartAddr()));
+    
     long start = System.currentTimeMillis() / 1000;
     for (; MainController.getIsExecuting(); ) {
       instructionsExecuted++;
@@ -67,8 +68,8 @@ public class ExecuteAll implements Runnable {
         VgaDisplayBMPController.renderVGA();
       }
     }
-    long end = System.currentTimeMillis() / 1000;
-    long delta = end - start;
+
+    long delta = System.currentTimeMillis() / 1000 - start;
     System.out.println("Time: " + delta + "s");
     System.out.println("Mips instructions executed: " + instructionsExecuted);
     System.out.println("Clock speed: " + instructionsExecuted / 1000000.0 / delta + " MHz");
