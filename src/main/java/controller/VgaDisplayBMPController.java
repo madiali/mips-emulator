@@ -45,26 +45,29 @@ public class VgaDisplayBMPController {
   // The only fields that should change for different sprite size are width (px) and height (px)
   // If this file is reformatted, please paste this array from a previous commit since its spacing
   // and newlines are relevant
-  private static final byte[] BMP_HEADER = new byte[]{
-          0x42, 0x4D,
-          0, 0, 0, 0,             // file size (B), set to 0 because JavaFX doesn't need this information and with parameterization, file size is variable
-          0, 0,
-          0, 0,
-          0x36, 0, 0, 0,          // offset until actual pixel data (B)
+  private static final byte[] BMP_HEADER =
+      new byte[] {
+        0x42, 0x4D, 0, 0, 0,
+        0, // file size (B), set to 0 because JavaFX doesn't need this information and with
+           // parameterization, file size is variable
+        0, 0, 0, 0, 0x36, 0, 0, 0, // offset until actual pixel data (B)
+        0x28, 0, 0, 0, 0x10, 0, 0,
+        0, // width (px), indices 18-21 (inclusive), must be a multiple of 16, default value 16
+        0x10, 0, 0,
+        0, // height (px), indices 22-25 (inclusive), must be a multiple of 16, default value 16
+        0x01, 0, 0x10, 0, // bpp (bits per pixel), currently set to 16 bpp (5 bits per color)
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      };
 
-          0x28, 0, 0, 0,
-          0x10, 0, 0, 0,          // width (px), indices 18-21 (inclusive), must be a multiple of 16, default value 16
-          0x10, 0, 0, 0,          // height (px), indices 22-25 (inclusive), must be a multiple of 16, default value 16
-          0x01, 0,
-          0x10, 0,                // bpp (bits per pixel), currently set to 16 bpp (5 bits per color)
-          0, 0, 0, 0,
-          0, 0, 0, 0,
-          0, 0, 0, 0,
-          0, 0, 0, 0,
-          0, 0, 0, 0,
-          0, 0, 0, 0
-  };
-
+  /**
+   * Create BMP files in img/ directory.
+   * Create Image[] from BMP files.
+   * Delete img/ directory.
+   * Initialize VGA GridPane.
+   * @param mips
+   * @param vgaDisplay
+   * @throws IOException
+   */
   public VgaDisplayBMPController(Mips mips, GridPane vgaDisplay) throws IOException {
     VgaDisplayBMPController.vgaDisplay = vgaDisplay;
     screenMemory =
@@ -83,6 +86,9 @@ public class VgaDisplayBMPController {
     initializeVGA();
   }
 
+  /**
+   * Create all ImageView's in the GridPane.
+   */
   private static void initializeVGA() {
     for (int y = 0; y < GRID_HEIGHT; y++) {
       for (int x = 0; x < GRID_WIDTH; x++) {
@@ -94,10 +100,13 @@ public class VgaDisplayBMPController {
   }
 
   /**
-   * Render VGA display by using Screen Memory contents to index into spriteList.
+   * Render entire VGA display by using Screen Memory contents to index into spriteList.
    *
    * <p>Each ImageView object is unique, even if the Image (sprite) is the same, because GridPane
    * does not allow duplicate objects to be stored.
+   *
+   * <p>Updating the image of an ImageView instead of creating a new ImageView avoids a JavaFX
+   * IllegalStateException related to updating on non-JavaFX application thread.
    */
   public static void renderVGA() {
     for (int y = 0; y < GRID_HEIGHT; y++) {
@@ -178,11 +187,11 @@ public class VgaDisplayBMPController {
   /**
    * Convert a bmem 12-bit integer {r[3:0], g[3:0], b[3:0]} to the .BMP 16 bpp format {0, r[4:0],
    * g[4:0], b[4:0]}. Since each color is originally 4-bit but needs to become 5-bit, each color is
-   * shifted one additional time to maintain color saturation. Color values will be incorrect but
-   * the ratio of r to g to b is maintained, so the colors appear mostly fine. TODO: Come up with a
-   * better way to scale the colors equally. NOTE: This pixel is returned in big-endian format, but
-   * BMP requires little-endian. NOTE 2: This method does not need to change for bigger sprites.
-   * bmem.mem will always store a single pixel as 3 hexits.
+   * shifted one additional time to maintain color saturation. LSB is incorrect but the ratio of r
+   * to g to b is maintained, so the colors appear mostly fine. TODO: Come up with a better way to
+   * scale the colors equally. NOTE: This pixel is returned in big-endian format, but BMP requires
+   * little-endian. NOTE 2: This method does not need to change for bigger sprites. bmem.mem will
+   * always store a single pixel as 3 hexits.
    *
    * @param pixel in bmem format
    * @return pixel in 16 bpp format

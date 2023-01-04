@@ -2,7 +2,7 @@
  * https://www.youtube.com/watch?v=r_MbozD32eo Multithreading in Java Explained in 10 Minutes. We
  * can extend Thread or implement Runnable here. Either is fine.
  *
- * <p>The OG program and our program need to use Thread for MIPS program execution because all the
+ * <p>The OG program and our program need to use Thread for MIPS program execution because the
  * event handler and GUI code needs to run in the background concurrently.
  *
  * <p>https://stackoverflow.com/questions/29449297/java-lang-illegalstateexception-not-on-fx-application-thread-currentthread-t
@@ -47,7 +47,6 @@ public class ExecuteAll implements Runnable {
    */
   @Override
   public void run() {
-    boolean swInstructionExecuted;
     long instructionsExecuted = 0;
     Registers reg = mips.getReg();
     MappedMemoryUnit screenMemory =
@@ -66,11 +65,10 @@ public class ExecuteAll implements Runnable {
      */
     for (; MainController.getIsExecuting(); instructionsExecuted++) {
       Instruction nextInstruction = mips.getInstrMem().getInstruction(mips.getPC());
-      swInstructionExecuted = nextInstruction instanceof SwInstruction;
       mips.executeNext();
-      //      RegistersController.renderRegisterTable();
-      //      DataMemoryController.renderDataMemoryTable();
-      if (swInstructionExecuted) {
+//            RegistersController.renderRegisterTable();
+//            DataMemoryController.renderDataMemoryTable();
+      if (nextInstruction instanceof SwInstruction) {
         SwInstruction swInstruction = (SwInstruction) nextInstruction;
         int targetAddr =
             reg.getRegister(swInstruction.getS()) + signExtend(swInstruction.getImmediate());
@@ -83,13 +81,12 @@ public class ExecuteAll implements Runnable {
     long delta = System.currentTimeMillis() / 1000 - start;
     System.out.println("Time: " + delta + "s");
     System.out.println("Mips instructions executed: " + instructionsExecuted);
-    System.out.println("Clock speed: " + instructionsExecuted / 1000000.0 / delta + " MHz");
+    System.out.println("Clock speed (avg): " + instructionsExecuted / 1000000.0 / delta + " MHz");
   }
 
   /**
    * Taken from mips.instructions.IType. Not importing from there since it's protected there, and
-   * also putting it here probably shaves off some time. Removed intermediary variables to shave off
-   * time.
+   * also putting it here shaves off some time. Made it a one-liner to shave off time.
    *
    * @param immediate
    * @return sign-extended immediate

@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
-import mips.InstructionMemory;
 import mips.Mips;
 
 import java.util.HashMap;
@@ -19,7 +18,7 @@ public class InstructionMemoryController {
   private static final double ADDRESS_COLUMN_WIDTH = 200;
   private static final double INSTRUCTION_COLUMN_WIDTH = 300;
 
-  private InstructionMemory imem;
+  private mips.InstructionMemory imem;
   private TableView imemTable;
 
   public InstructionMemoryController(Mips mips, TableView imemTable) {

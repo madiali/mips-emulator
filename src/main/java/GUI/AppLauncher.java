@@ -1,6 +1,5 @@
 package GUI;
 
-import controller.ExecuteAll;
 import controller.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +22,6 @@ public class AppLauncher extends Application {
         stage.setResizable(false);
         Scene scene = new Scene(root);
 
-        // Listeners for key events that forward KeyCode enum to MainController
         scene.setOnKeyPressed(event -> controller.handleOnKeyDown(event.getCode()));
         scene.setOnKeyReleased(event -> controller.handleOnKeyUp(event.getCode()));
 

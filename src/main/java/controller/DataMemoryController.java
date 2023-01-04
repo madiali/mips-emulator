@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
-import mips.DataMemory;
 import mips.Mips;
 
 import java.util.HashMap;
@@ -16,13 +15,13 @@ public class DataMemoryController {
     private final static double VALUE_COLUMN_WIDTH = 300;
     private final static int WORD_SIZE = 4;
 
-    private static DataMemory dmem;
+    private static mips.DataMemory dmem;
     private static TableView dmemTable;
     private static ObservableList<Map<String, Object>> dmemTableItems = FXCollections.<Map<String, Object>>observableArrayList();
 
     public DataMemoryController(Mips mips, TableView dmemTable) {
-        dmem = (DataMemory) mips.memDict.get(DataMemory.class).get(0);
-        this.dmemTable = dmemTable;
+        dmem = (mips.DataMemory) mips.memDict.get(mips.DataMemory.class).get(0);
+        DataMemoryController.dmemTable = dmemTable;
         initializeDataMemoryTable();
     }
 

@@ -20,9 +20,7 @@ public class MenuController {
   }
 
   // There is no handleOpen() here. Since Controllers are instantiated in handleOpen, handleOpen
-  // needs to be handled in MipsController
-
-  public void handleExit() {}
+  // needs to be handled in MipsController. Also no handleExit() since that can be done in MainController.
 
   public void handleGo() {}
 

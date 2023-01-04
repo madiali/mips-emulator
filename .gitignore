@@ -5,5 +5,5 @@ target/
 .idea-backup/
 mips-emulator-backup.iml
 src/main/java/test/
-src/test/TestProjects/Rubik/imem.mem
-src/test/TestProjects/Rubik/dmem.mem
+src/test/TestProjects/Rubik's/imem.mem
+src/test/TestProjects/Rubik's/dmem.mem

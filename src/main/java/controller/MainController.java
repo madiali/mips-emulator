@@ -26,19 +26,16 @@ import java.util.ResourceBundle;
  */
 public class MainController implements Initializable {
   private Mips mips;
-  // FileChooser uses Stage for some reason.
   private Stage stage;
-  // Encapsulate other controllers since all handle methods must be called in this file?
-  // Or make AccelerometerController's methods static?
   private AccelerometerController accelControl;
-  //  private VgaDisplayController vgaDispControl;
-  private VgaDisplayBMPController vgaDispBMPControl;
+  private VgaDisplayBMPController vgaDispControl;
   private MenuController menuController;
   private RegistersController registersController;
   private InstructionMemoryController instructionMemoryController;
   private DataMemoryController dataMemoryController;
   private KeyboardController keyboardController;
   private static boolean isExecuting;
+  private Thread execution;
 
   // @FXML tags are **necessary** for the variables to be automatically linked to FXML components.
   // Menu
@@ -63,6 +60,9 @@ public class MainController implements Initializable {
   @FXML private TableView instructionMemoryTable;
   @FXML private TableView dataMemoryTable;
 
+  // Misc
+  @FXML private Label statusLabel;
+
   public MainController(Mips mips) {
     if (mips == null) {
       throw new IllegalArgumentException("Mips is null");
@@ -70,7 +70,7 @@ public class MainController implements Initializable {
     this.mips = mips;
   }
 
-  /** A MipsController with no params is necessary for loader.getController() in AppLauncher. */
+  /** Constructor with no params is necessary for loader.getController() in AppLauncher. */
   public MainController() {}
 
   public int getPC() {
@@ -126,6 +126,10 @@ public class MainController implements Initializable {
         .add(new FileChooser.ExtensionFilter("Project configuration JSON file", "*.json"));
     File selectedFile = fc.showOpenDialog(this.stage);
 
+    // Reset state
+    isExecuting = false;
+    statusLabel.setText("Program hasn't started. Press Run > Go to start.");
+
     // Model instantiation
     ProgramLoader pl = new ProgramLoader(selectedFile);
     this.mips = pl.getMips();
@@ -133,51 +137,55 @@ public class MainController implements Initializable {
     // Controller instantiation
     this.accelControl =
         new AccelerometerController(mips, xSlider, ySlider, xLabel, yLabel, resetButton);
-    this.vgaDispBMPControl = new VgaDisplayBMPController(mips, vgaDisplay);
+    this.vgaDispControl = new VgaDisplayBMPController(mips, vgaDisplay);
     this.menuController = new MenuController(mips, open, exit, go, pause, stepForward);
     this.registersController = new RegistersController(mips, registersTable);
     this.instructionMemoryController =
         new InstructionMemoryController(mips, instructionMemoryTable);
     this.dataMemoryController = new DataMemoryController(mips, dataMemoryTable);
-
     this.keyboardController = new KeyboardController(mips);
-
   }
 
-  /**
-   * Set isExecuting to false to halt execution in ExecuteAll to get time statistics.
-   */
   @FXML
   public void handleExit() {
-    isExecuting = false;
+    System.exit(0);
   }
 
-  /**
-   * Incomplete implementation.
-   */
   @FXML
   public void handleGo() {
-    isExecuting = true;
-    // Just for testing
-    ExecuteAll ea = new ExecuteAll(mips);
-    Thread t = new Thread(ea);
-    t.start();
+    if (!isExecuting) {
+      isExecuting = true;
+      ExecuteAll ea = new ExecuteAll(mips);
+      execution = new Thread(ea);
+      execution.start();
+      statusLabel.setText("Program is running.");
+    }
   }
 
   /**
-   * Set isExecuting to false to pause execution in ExecuteAll to print out time statistics.
-   * Does the same thing as Exit button, for now.
+   * Set isExecuting = false to pause execution in ExecuteAll to print out time statistics.
+   * renderVGA() may be unnecessary since ExecuteAll would've done it, but since program is paused,
+   * time doesn't matter.
+   *
+   * Thread execution.join() is from the original code.
    */
   @FXML
-  public void handlePause() {
+  public void handlePause() throws InterruptedException {
     isExecuting = false;
-    RegistersController.renderRegisterTable();
-    DataMemoryController.renderDataMemoryTable();
+    execution.join();
+    renderAllDisplays();
+    statusLabel.setText("Program is paused. Step forward with Run > Step Forward.");
   }
 
+  /** Refreshes everything since program is now paused and speed (probably) doesn't matter. */
   @FXML
   public void handleStepForward() {
+    if (isExecuting) {
+      isExecuting = false;
+      statusLabel.setText("Program is now paused.");
+    }
     mips.executeNext();
+    renderAllDisplays();
   }
 
   /*
@@ -211,6 +219,10 @@ public class MainController implements Initializable {
     keyboardController.handleOnKeyUp(keycode);
   }
 
+  /*
+   * Execution stuff
+   */
+
   public static boolean getIsExecuting() {
     return isExecuting;
   }
@@ -219,6 +231,11 @@ public class MainController implements Initializable {
     isExecuting = value;
   }
 
+  /**
+   * This will slow the program to an unusable speed if called in the handleRun loop. Using
+   * Deprecated tag to prevent unwanted usage.
+   */
+  @Deprecated
   public static void renderAllDisplays() {
     VgaDisplayBMPController.renderVGA();
     RegistersController.renderRegisterTable();
