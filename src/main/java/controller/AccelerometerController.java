@@ -33,16 +33,16 @@ public class AccelerometerController {
     this.xLabel = xLabel;
     this.yLabel = yLabel;
     this.resetButton = resetButton;
-    mips.Accelerometer mappedAccelerometer = null;
+    Accelerometer mappedAccelerometer = null;
     // This code is very similar to the OG code in MainWindow.cs extractAccelerometer. Messy
     // but it'd be a for loop otherwise. If there's a way around using toList(), then the try catch
     // could be removed.
     try {
       mappedAccelerometer =
-          (mips.Accelerometer)
+          (Accelerometer)
               mips.getMemory().getMemUnits().stream()
                   .filter(
-                      mappedMemoryUnit -> mappedMemoryUnit.getMemUnit() instanceof mips.Accelerometer)
+                      mappedMemoryUnit -> mappedMemoryUnit.getMemUnit() instanceof Accelerometer)
                   .toList()
                   .get(0)
                   .getMemUnit();

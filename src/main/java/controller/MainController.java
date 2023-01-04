@@ -126,7 +126,7 @@ public class MainController implements Initializable {
         .add(new FileChooser.ExtensionFilter("Project configuration JSON file", "*.json"));
     File selectedFile = fc.showOpenDialog(this.stage);
 
-    // Reset state
+    // Reset execution state, if user for some reason presses Open multiple times
     isExecuting = false;
     statusLabel.setText("Program hasn't started. Press Run > Go to start.");
 

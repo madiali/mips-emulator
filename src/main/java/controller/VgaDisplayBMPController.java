@@ -45,19 +45,25 @@ public class VgaDisplayBMPController {
   // The only fields that should change for different sprite size are width (px) and height (px)
   // If this file is reformatted, please paste this array from a previous commit since its spacing
   // and newlines are relevant
-  private static final byte[] BMP_HEADER =
-      new byte[] {
-        0x42, 0x4D, 0, 0, 0,
-        0, // file size (B), set to 0 because JavaFX doesn't need this information and with
-           // parameterization, file size is variable
-        0, 0, 0, 0, 0x36, 0, 0, 0, // offset until actual pixel data (B)
-        0x28, 0, 0, 0, 0x10, 0, 0,
-        0, // width (px), indices 18-21 (inclusive), must be a multiple of 16, default value 16
-        0x10, 0, 0,
-        0, // height (px), indices 22-25 (inclusive), must be a multiple of 16, default value 16
-        0x01, 0, 0x10, 0, // bpp (bits per pixel), currently set to 16 bpp (5 bits per color)
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-      };
+  private static final byte[] BMP_HEADER = new byte[]{
+          0x42, 0x4D,
+          0, 0, 0, 0,             // file size (B), set to 0 because JavaFX doesn't need this information and with parameterization, file size is variable
+          0, 0,
+          0, 0,
+          0x36, 0, 0, 0,          // offset until actual pixel data (B)
+
+          0x28, 0, 0, 0,
+          0x10, 0, 0, 0,          // width (px), indices 18-21 (inclusive), must be a multiple of 16, default value 16
+          0x10, 0, 0, 0,          // height (px), indices 22-25 (inclusive), must be a multiple of 16, default value 16
+          0x01, 0,
+          0x10, 0,                // bpp (bits per pixel), currently set to 16 bpp (5 bits per color)
+          0, 0, 0, 0,
+          0, 0, 0, 0,
+          0, 0, 0, 0,
+          0, 0, 0, 0,
+          0, 0, 0, 0,
+          0, 0, 0, 0
+  };
 
   /**
    * Create BMP files in img/ directory.
