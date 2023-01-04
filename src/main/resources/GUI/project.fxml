@@ -108,43 +108,40 @@
             <right>
                 <TabPane prefHeight="700.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
                     <tabs>
-                        <Tab closable="false" text="Registers">
-                            <content>
-                                <TableView fx:id="registersTable" prefHeight="200.0" prefWidth="200.0">
-                                </TableView>
-                            </content>
-                        </Tab>
                         <Tab text="Instruction Memory">
                             <content>
                                 <TableView fx:id="instructionMemoryTable" prefHeight="200.0" prefWidth="200.0">
                                 </TableView>
                             </content>
                         </Tab>
-                        <Tab text="Data Memory">
+                        <Tab fx:id="registersTab" closable="false" text="Registers">
+                            <content>
+                                <TableView fx:id="registersTable" prefHeight="200.0" prefWidth="200.0">
+                                </TableView>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="dataMemoryTab" text="Data Memory">
                             <content>
                                 <TableView fx:id="dataMemoryTable" prefHeight="200.0" prefWidth="200.0">
                                 </TableView>
                             </content>
                         </Tab>
-                        <Tab text="IO">
+                        <Tab fx:id="otherMemoryTab" text="Other Memory">
                             <content>
-                                <TableView prefHeight="200.0" prefWidth="200.0">
-                                    <columns>
-                                        <TableColumn prefWidth="200.0" text="IO Device" />
-                                        <TableColumn prefWidth="300.0" text="Value" />
-                                    </columns>
-                                </TableView>
-                            </content>
-                        </Tab>
-                        <Tab text="Memory Mapping">
-                            <content>
-                                <TableView prefHeight="200.0" prefWidth="200.0">
-                                    <columns>
-                                        <TableColumn prefWidth="166.0" text="Memory Type" />
-                                        <TableColumn prefWidth="166.0" text="Relative Start Address" />
-                                        <TableColumn prefWidth="166.0" text="Mapped Start Address" />
-                                    </columns>
-                                </TableView>
+                                <TabPane tabClosingPolicy="UNAVAILABLE">
+                                    <tabs>
+                                        <Tab text="Memory A">
+                                            <TableView prefHeight="200.0" prefWidth="200.0">
+                                                <columns>
+                                                    <TableColumn prefWidth="200" text="Mapped Address" />
+                                                    <TableColumn prefWidth="300" text="Value" />
+                                                </columns>
+                                            </TableView>
+                                        </Tab>
+                                        <Tab text="Memory B">
+                                        </Tab>
+                                    </tabs>
+                                </TabPane>
                             </content>
                         </Tab>
                     </tabs>

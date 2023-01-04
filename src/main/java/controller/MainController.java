@@ -59,6 +59,9 @@ public class MainController implements Initializable {
   @FXML private TableView registersTable;
   @FXML private TableView instructionMemoryTable;
   @FXML private TableView dataMemoryTable;
+  @FXML private Tab registersTab;
+  @FXML private Tab dataMemoryTab;
+  @FXML private Tab otherMemoryTab;
 
   // Misc
   @FXML private Label statusLabel;
@@ -155,6 +158,7 @@ public class MainController implements Initializable {
   public void handleGo() {
     if (!isExecuting) {
       isExecuting = true;
+      disableTabs();
       ExecuteAllThrottled ea = new ExecuteAllThrottled(mips, 12.5);
       execution = new Thread(ea);
       execution.start();
@@ -172,6 +176,7 @@ public class MainController implements Initializable {
   @FXML
   public void handlePause() throws InterruptedException {
     isExecuting = false;
+    enableTabs();
     execution.join();
     renderAllDisplays();
     statusLabel.setText("Program is paused. Step forward with Run > Step Forward.");
@@ -229,6 +234,18 @@ public class MainController implements Initializable {
 
   public static void setIsExecuting(boolean value) {
     isExecuting = value;
+  }
+
+  private void disableTabs() {
+    registersTab.setDisable(true);
+    dataMemoryTab.setDisable(true);
+    otherMemoryTab.setDisable(true);
+  }
+
+  private void enableTabs() {
+    registersTab.setDisable(false);
+    dataMemoryTab.setDisable(false);
+    otherMemoryTab.setDisable(false);
   }
 
   /**
