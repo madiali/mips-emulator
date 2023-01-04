@@ -155,7 +155,7 @@ public class MainController implements Initializable {
   public void handleGo() {
     if (!isExecuting) {
       isExecuting = true;
-      ExecuteAll ea = new ExecuteAll(mips);
+      ExecuteAllThrottled ea = new ExecuteAllThrottled(mips, 12.5);
       execution = new Thread(ea);
       execution.start();
       statusLabel.setText("Program is running.");
