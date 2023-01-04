@@ -184,9 +184,10 @@ public class MainController implements Initializable {
 
   /** Refreshes everything since program is now paused and speed (probably) doesn't matter. */
   @FXML
-  public void handleStepForward() {
+  public void handleStepForward() throws InterruptedException {
     if (isExecuting) {
       isExecuting = false;
+      execution.join();
       statusLabel.setText("Program is now paused.");
     }
     mips.executeNext();
