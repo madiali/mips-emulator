@@ -46,11 +46,24 @@ public class RegistersController {
         }
     }
 
+    /**
+     * Renders all rows of register table
+     */
     public static void renderRegisterTable() {
         for (int i = 0; i < 32; i++) {
             Map<String,Object> item = regTableItems.get(i);
             item.replace("value", String.format("0x%08X", reg.getRegister(i)));
         }
+        regTable.refresh();
+    }
+
+    /**
+     * Updates single row of register table
+     * @param regNum
+     */
+    public static void renderRegisterTable(int regNum) {
+        Map<String,Object> item = regTableItems.get(regNum);
+        item.replace("value", String.format("0x%08X", reg.getRegister(regNum)));
         regTable.refresh();
     }
 }
