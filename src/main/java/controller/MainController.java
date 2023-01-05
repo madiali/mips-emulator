@@ -38,13 +38,6 @@ public class MainController implements Initializable {
   private static Thread execution;
 
   // @FXML tags are **necessary** for the variables to be automatically linked to FXML components.
-  // Menu
-  @FXML private MenuItem open;
-  @FXML private MenuItem exit;
-  @FXML private MenuItem go;
-  @FXML private MenuItem pause;
-  @FXML private MenuItem stepForward;
-
   // Accelerometer
   @FXML private Slider xSlider;
   @FXML private Slider ySlider;
