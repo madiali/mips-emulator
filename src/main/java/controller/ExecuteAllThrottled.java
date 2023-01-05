@@ -8,7 +8,7 @@ import mips.instructions.IType.SwInstruction;
 import mips.instructions.Instruction;
 
 public class ExecuteAllThrottled implements Runnable {
-  private static final double TARGET_CONSTANT = 1.4;
+  private static final double TARGET_CONSTANT = 0.9;
 
   private Mips mips;
   private double clockSpeed;

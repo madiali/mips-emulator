@@ -32,6 +32,7 @@ public class MainController implements Initializable {
   private static RegistersController registersController;
   private static InstructionMemoryController instructionMemoryController;
   private static DataMemoryController dataMemoryController;
+  private static OtherMemoryController otherMemoryController;
   private static KeyboardController keyboardController;
   private static boolean isExecuting;
   private static Thread execution;
@@ -62,6 +63,7 @@ public class MainController implements Initializable {
   @FXML private Tab registersTab;
   @FXML private Tab dataMemoryTab;
   @FXML private Tab otherMemoryTab;
+  @FXML private TabPane otherMemoryTabPane;
 
   // Misc
   @FXML private Label statusLabel;
@@ -141,6 +143,10 @@ public class MainController implements Initializable {
     return dataMemoryController;
   }
 
+  public static OtherMemoryController getOtherMemoryController() {
+    return otherMemoryController;
+  }
+
   public static KeyboardController getKeyboardController() {
     return keyboardController;
   }
@@ -174,6 +180,7 @@ public class MainController implements Initializable {
     this.instructionMemoryController =
         new InstructionMemoryController(mips, instructionMemoryTable);
     this.dataMemoryController = new DataMemoryController(mips, dataMemoryTable);
+    this.otherMemoryController = new OtherMemoryController(mips, otherMemoryTabPane);
     this.keyboardController = new KeyboardController(mips);
 
     vgaDispControl.renderVGA();
@@ -205,7 +212,7 @@ public class MainController implements Initializable {
    * renderVGA() may be unnecessary since ExecuteAll would've done it, but since program is paused,
    * time doesn't matter.
    *
-   * Thread execution.join() is from the original code.
+   * <p>Thread execution.join() is from the original code.
    */
   @FXML
   public void handlePause() throws InterruptedException {
@@ -223,7 +230,7 @@ public class MainController implements Initializable {
       isExecuting = false;
       enableTabs();
       execution.join();
-      statusLabel.setText("Program is now paused.");
+      statusLabel.setText("Program is paused. Step forward with Run > Step Forward.");
     }
     mips.executeNext();
     renderAllDisplays();
@@ -292,10 +299,11 @@ public class MainController implements Initializable {
    */
   @Deprecated
   public void renderAllDisplays() {
-    instructionMemoryController.renderInstructionMemoryTable();
+    InstructionMemoryController.renderInstructionMemoryTable();
     VgaDisplayBMPController.renderVGA();
     RegistersController.renderRegisterTable();
     DataMemoryController.renderDataMemoryTable();
+    OtherMemoryController.renderAllTables();
   }
 
   /**
@@ -303,7 +311,6 @@ public class MainController implements Initializable {
    * from having to worry about edge cases that happen when a JSON is not loaded.
    *
    * <p>TODO: We can improve this (without JSON, show app and gray out relevant buttons, etc.)
-   * later.
    *
    * @param url
    * @param resourceBundle

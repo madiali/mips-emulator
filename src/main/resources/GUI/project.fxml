@@ -41,7 +41,6 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -128,20 +127,7 @@
                         </Tab>
                         <Tab fx:id="otherMemoryTab" text="Other Memory">
                             <content>
-                                <TabPane tabClosingPolicy="UNAVAILABLE">
-                                    <tabs>
-                                        <Tab text="Memory A">
-                                            <TableView prefHeight="200.0" prefWidth="200.0">
-                                                <columns>
-                                                    <TableColumn prefWidth="200" text="Mapped Address" />
-                                                    <TableColumn prefWidth="300" text="Value" />
-                                                </columns>
-                                            </TableView>
-                                        </Tab>
-                                        <Tab text="Memory B">
-                                        </Tab>
-                                    </tabs>
-                                </TabPane>
+                                <TabPane fx:id="otherMemoryTabPane" tabClosingPolicy="UNAVAILABLE" />
                             </content>
                         </Tab>
                     </tabs>

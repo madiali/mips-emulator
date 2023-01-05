@@ -19,10 +19,10 @@ public class InstructionMemoryController {
   private static final double ADDRESS_COLUMN_WIDTH = 200;
   private static final double INSTRUCTION_COLUMN_WIDTH = 300;
 
-  private Mips mips;
+  private static Mips mips;
   private InstructionMemory imem;
-  private TableView imemTable;
-  private int wordSizeLog;
+  private static TableView imemTable;
+  private static int wordSizeLog;
 
   public InstructionMemoryController(Mips mips, TableView imemTable) {
     this.mips = mips;
@@ -55,7 +55,7 @@ public class InstructionMemoryController {
     }
   }
 
-  public void renderInstructionMemoryTable () {
+  public static void renderInstructionMemoryTable () {
     int index = (mips.getPC() & 0xFFFF) >> wordSizeLog;
     imemTable.scrollTo(index);
     imemTable.getSelectionModel().select(index);
