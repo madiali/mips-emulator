@@ -11,6 +11,10 @@
  */
 package controller;
 
+import controller.DataMemoryController;
+import controller.MainController;
+import controller.RegistersController;
+import controller.VgaDisplayBMPController;
 import mips.*;
 import mips.instructions.IType.BeqInstruction;
 import mips.instructions.IType.BneInstruction;

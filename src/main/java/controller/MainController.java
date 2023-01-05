@@ -26,16 +26,15 @@ import java.util.ResourceBundle;
  */
 public class MainController implements Initializable {
   private Mips mips;
-  private Stage stage;
-  private AccelerometerController accelControl;
-  private VgaDisplayBMPController vgaDispControl;
-  private MenuController menuController;
-  private RegistersController registersController;
-  private InstructionMemoryController instructionMemoryController;
-  private DataMemoryController dataMemoryController;
-  private KeyboardController keyboardController;
+  private static Stage stage;
+  private static AccelerometerController accelControl;
+  private static VgaDisplayBMPController vgaDispControl;
+  private static RegistersController registersController;
+  private static InstructionMemoryController instructionMemoryController;
+  private static DataMemoryController dataMemoryController;
+  private static KeyboardController keyboardController;
   private static boolean isExecuting;
-  private Thread execution;
+  private static Thread execution;
 
   // @FXML tags are **necessary** for the variables to be automatically linked to FXML components.
   // Menu
@@ -117,6 +116,35 @@ public class MainController implements Initializable {
   }
 
   /*
+   * Controller getters. Whereas Controllers do not need to access other controllers, ExecuteAllThrottled may need to.
+   * Could just make the Controllers public instead.
+   */
+
+  public static AccelerometerController getAccelerometerController() {
+    return accelControl;
+  }
+
+  public static VgaDisplayBMPController getVgaDispControl() {
+    return vgaDispControl;
+  }
+
+  public static RegistersController getRegistersController() {
+    return registersController;
+  }
+
+  public static InstructionMemoryController getInstructionMemoryController() {
+    return instructionMemoryController;
+  }
+
+  public static DataMemoryController getDataMemoryController() {
+    return dataMemoryController;
+  }
+
+  public static KeyboardController getKeyboardController() {
+    return keyboardController;
+  }
+
+  /*
    * Menu
    */
 
@@ -129,7 +157,7 @@ public class MainController implements Initializable {
         .add(new FileChooser.ExtensionFilter("Project configuration JSON file", "*.json"));
     File selectedFile = fc.showOpenDialog(this.stage);
 
-    // Reset execution state, if user for some reason presses Open multiple times
+    // Reset execution state, if user presses Open multiple times
     isExecuting = false;
     statusLabel.setText("Program hasn't started. Press Run > Go to start.");
 
@@ -141,13 +169,18 @@ public class MainController implements Initializable {
     this.accelControl =
         new AccelerometerController(mips, xSlider, ySlider, xLabel, yLabel, resetButton);
     this.vgaDispControl = new VgaDisplayBMPController(mips, vgaDisplay);
-    this.menuController = new MenuController(mips, open, exit, go, pause, stepForward);
     this.registersController = new RegistersController(mips, registersTable);
     this.instructionMemoryController =
         new InstructionMemoryController(mips, instructionMemoryTable);
     this.dataMemoryController = new DataMemoryController(mips, dataMemoryTable);
     this.keyboardController = new KeyboardController(mips);
+
+    vgaDispControl.renderVGA();
   }
+
+  /*
+   * Menu handlers. No need for a MenuController, so the methods go here.
+   */
 
   @FXML
   public void handleExit() {

@@ -51,12 +51,14 @@ public class AccelerometerController {
       // IndexOutOfBoundsException. mappedAccelerometer remains null.
     }
     if (mappedAccelerometer != null) {
+      xSlider.setValue(defaultAccelValue);
+      ySlider.setValue(defaultAccelValue);
       this.accelerometerX = mappedAccelerometer.getAccelX();
       this.accelerometerY = mappedAccelerometer.getAccelY();
       accelerometerX.setXValue((int) defaultAccelValue);
       accelerometerY.setYValue((int) defaultAccelValue);
     } else {
-      close();
+      closeSliders();
     }
   }
 
@@ -85,7 +87,7 @@ public class AccelerometerController {
    * getChildren(), only getChildrenUnmodifiable(). If we change the layout, this wouldn't be hard
    * to recode.
    */
-  public void close() {
+  public void closeSliders() {
     HBox parent = (HBox) this.xSlider.getParent();
     parent.getChildren().remove(xSlider);
     parent = (HBox) this.ySlider.getParent();

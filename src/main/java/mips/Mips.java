@@ -1,5 +1,7 @@
 package mips;
 
+import mips.instructions.Instruction;
+
 import java.util.*;
 
 public class Mips {
@@ -66,8 +68,22 @@ public class Mips {
     clockSpeed = newClockSpeed;
   }
 
+  /** Execute the Instruction at the current pc value. */
   public void executeNext() {
     instrMem.getInstruction(pc.getPC()).execute(pc, memory, reg);
+  }
+
+  /**
+   * Execute the next instruction and return the instruction that was just executed.
+   *
+   * <p>Used in ExecuteAllThrottled to save work. Improved clock speed by ~5 MHz for Rubik's.
+   *
+   * @return Instruction that was executed
+   */
+  public Instruction executeNextAndReturnInstruction() {
+    Instruction executed = instrMem.getInstruction(pc.getPC());
+    executed.execute(pc, memory, reg);
+    return executed;
   }
 
   public void executeAll() {

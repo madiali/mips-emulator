@@ -50,4 +50,14 @@ public class InstructionMemoryController {
       imemTableItems.add(item);
     }
   }
+
+  /**
+   * Calls TableView.scrollTo on imemTable - Scrolls the TableView so that the given index is
+   * visible within the viewport.
+   *
+   * @param imemIndex
+   */
+  public void scrollTo(int imemIndex) {
+    imemTable.scrollTo(imemIndex);
+  }
 }

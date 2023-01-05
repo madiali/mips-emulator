@@ -93,6 +93,10 @@ public class InstructionMemory implements MemoryUnit {
     return wordSize;
   }
 
+  public int getWordSizeLog() {
+    return wordSizeLog;
+  }
+
   public InstructionFactory getInstrFact() {
     return instrFact;
   }
