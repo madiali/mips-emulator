@@ -43,11 +43,14 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.Pane?>
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
@@ -56,13 +59,6 @@
                     <items>
                         <MenuItem fx:id="open" mnemonicParsing="false" onAction="#handleOpen" text="Open" />
                         <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Run">
-                    <items>
-                        <MenuItem fx:id="go" mnemonicParsing="false" onAction="#handleGo" text="Go" />
-                        <MenuItem fx:id="pause" mnemonicParsing="false" onAction="#handlePause" text="Pause" />
-                        <MenuItem fx:id="stepForward" mnemonicParsing="false" onAction="#handleStepForward" text="Step Forward" />
                     </items>
                 </Menu>
             </menus>
@@ -87,7 +83,10 @@
                                         <Slider fx:id="ySlider" blockIncrement="1.0" max="511.0" nodeOrientation="RIGHT_TO_LEFT" onMouseDragged="#handleYSliderDrag" prefWidth="600.0" showTickLabels="true" value="255.0" />
                                     </children>
                                 </HBox>
-                                <Button fx:id="resetButton" mnemonicParsing="false" onAction="#handleResetButton" prefWidth="640.0" text="Reset" />
+                                <Button fx:id="resetButton" mnemonicParsing="false" onAction="#handleResetButton" prefWidth="640.0" style="-fx-background-color: GRAY;" text="RESET" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
                         <Label fx:id="statusLabel" text="Program hasn't started. Press Run &gt; Go to start." textAlignment="CENTER">
                            <VBox.margin>
                               <Insets top="5.0" />
@@ -95,7 +94,7 @@
                         </Label>
                             </children>
                             <padding>
-                                <Insets bottom="100.0" left="10.0" right="10.0" top="10.0" />
+                                <Insets bottom="50.0" left="10.0" right="10.0" top="10.0" />
                             </padding>
                         </VBox>
                     </bottom>
@@ -103,20 +102,46 @@
                         <GridPane fx:id="vgaDisplay" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" style="-fx-border: 2; -fx-border-color: black;" BorderPane.alignment="CENTER">
                         </GridPane>
                     </center>
+               <top>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <items>
+                        <Pane HBox.hgrow="ALWAYS" />
+                      <Button onAction="#handleGo" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: GRAY;" text="GO" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button onAction="#handlePause" mnemonicParsing="false" style="-fx-background-color: GRAY;" text="PAUSE" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button onAction="#handleStepForward" layoutX="48.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: GRAY;" text="STEP" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Pane HBox.hgrow="ALWAYS" />
+                    </items>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </ToolBar>
+               </top>
                 </BorderPane>
             </center>
             <right>
                 <TabPane prefHeight="700.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
                     <tabs>
-                        <Tab fx:id="instructionMemoryTab" text="Instruction Memory">
-                            <content>
-                                <TableView fx:id="instructionMemoryTable" prefHeight="200.0" prefWidth="200.0">
-                                </TableView>
-                            </content>
-                        </Tab>
                         <Tab fx:id="registersTab" closable="false" text="Registers">
                             <content>
                                 <TableView fx:id="registersTable" prefHeight="200.0" prefWidth="200.0">
+                                </TableView>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="instructionMemoryTab" text="Instruction Memory">
+                            <content>
+                                <TableView fx:id="instructionMemoryTable" prefHeight="200.0" prefWidth="200.0">
                                 </TableView>
                             </content>
                         </Tab>

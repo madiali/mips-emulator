@@ -18,7 +18,7 @@ public class AppLauncher extends Application {
         controller.setStage(stage);
 
         stage.setTitle("MIPS Emulator");
-//        stage.setFullScreen(true);
+        stage.setMaximized(true);
         stage.setResizable(false);
         Scene scene = new Scene(root);
 
