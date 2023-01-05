@@ -19,12 +19,16 @@ public class InstructionMemoryController {
   private static final double ADDRESS_COLUMN_WIDTH = 200;
   private static final double INSTRUCTION_COLUMN_WIDTH = 300;
 
+  private Mips mips;
   private InstructionMemory imem;
   private TableView imemTable;
+  private int wordSizeLog;
 
   public InstructionMemoryController(Mips mips, TableView imemTable) {
+    this.mips = mips;
     imem = mips.getInstrMem();
     this.imemTable = imemTable;
+    wordSizeLog = mips.getInstrMem().getWordSizeLog();
     initializeInstructionMemoryTable();
   }
 
@@ -51,13 +55,9 @@ public class InstructionMemoryController {
     }
   }
 
-  /**
-   * Calls TableView.scrollTo on imemTable - Scrolls the TableView so that the given index is
-   * visible within the viewport.
-   *
-   * @param imemIndex
-   */
-  public void scrollTo(int imemIndex) {
-    imemTable.scrollTo(imemIndex);
+  public void renderInstructionMemoryTable () {
+    int index = (mips.getPC() & 0xFFFF) >> wordSizeLog;
+    imemTable.scrollTo(index);
+    imemTable.getSelectionModel().select(index);
   }
 }

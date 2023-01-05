@@ -58,6 +58,7 @@ public class MainController implements Initializable {
   @FXML private TableView registersTable;
   @FXML private TableView instructionMemoryTable;
   @FXML private TableView dataMemoryTable;
+  @FXML private Tab instructionMemoryTab;
   @FXML private Tab registersTab;
   @FXML private Tab dataMemoryTab;
   @FXML private Tab otherMemoryTab;
@@ -220,6 +221,7 @@ public class MainController implements Initializable {
   public void handleStepForward() throws InterruptedException {
     if (isExecuting) {
       isExecuting = false;
+      enableTabs();
       execution.join();
       statusLabel.setText("Program is now paused.");
     }
@@ -271,12 +273,14 @@ public class MainController implements Initializable {
   }
 
   private void disableTabs() {
+    instructionMemoryTab.setDisable(true);
     registersTab.setDisable(true);
     dataMemoryTab.setDisable(true);
     otherMemoryTab.setDisable(true);
   }
 
   private void enableTabs() {
+    instructionMemoryTab.setDisable(false);
     registersTab.setDisable(false);
     dataMemoryTab.setDisable(false);
     otherMemoryTab.setDisable(false);
@@ -287,7 +291,8 @@ public class MainController implements Initializable {
    * Deprecated tag to prevent unwanted usage.
    */
   @Deprecated
-  public static void renderAllDisplays() {
+  public void renderAllDisplays() {
+    instructionMemoryController.renderInstructionMemoryTable();
     VgaDisplayBMPController.renderVGA();
     RegistersController.renderRegisterTable();
     DataMemoryController.renderDataMemoryTable();

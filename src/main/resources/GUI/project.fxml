@@ -108,7 +108,7 @@
             <right>
                 <TabPane prefHeight="700.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
                     <tabs>
-                        <Tab text="Instruction Memory">
+                        <Tab fx:id="instructionMemoryTab" text="Instruction Memory">
                             <content>
                                 <TableView fx:id="instructionMemoryTable" prefHeight="200.0" prefWidth="200.0">
                                 </TableView>

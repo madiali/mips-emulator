@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.scene.control.TableView;
 import mips.MappedMemoryUnit;
 import mips.Mips;
 import mips.Registers;
@@ -16,7 +15,6 @@ public class ExecuteAllThrottled implements Runnable {
   private Registers reg;
   private int smemStartAddr;
   private int smemEndAddr;
-  private int wordSizeLog;
 
   public ExecuteAllThrottled(Mips mips, double clockSpeed) {
     this.mips = mips;
@@ -29,7 +27,6 @@ public class ExecuteAllThrottled implements Runnable {
             .get(0);
     smemStartAddr = screenMemory.getStartAddr();
     smemEndAddr = screenMemory.getEndAddr();
-    wordSizeLog = mips.getInstrMem().getWordSizeLog();
   }
 
   @Override
@@ -37,7 +34,6 @@ public class ExecuteAllThrottled implements Runnable {
     double targetInstrPerMillisec = clockSpeed * 1000000 / 1000 * TARGET_CONSTANT;
     long totalInstructionsExecuted = 0;
     long instructionsExecuted = 0;
-    int scrollImemCounter = 0;
     Stopwatch executionStopwatch = new Stopwatch();
     Stopwatch throttleStopwatch = new Stopwatch();
 
@@ -59,12 +55,6 @@ public class ExecuteAllThrottled implements Runnable {
         }
         instructionsExecuted++;
         totalInstructionsExecuted++;
-        scrollImemCounter = (scrollImemCounter + 1) % 100;
-        if (scrollImemCounter == 0) {
-          // Index calculation is from InstructionMemory.java
-          MainController.getInstructionMemoryController()
-                  .scrollTo((mips.getPC() & 0xFFFF) >> wordSizeLog);
-        }
       } else if (throttleStopwatch.getTimeElapsed() >= 1) {
         throttleStopwatch.reset();
         instructionsExecuted = 0;
