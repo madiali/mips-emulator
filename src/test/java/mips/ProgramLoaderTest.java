@@ -17,7 +17,7 @@ public class ProgramLoaderTest {
 
   @Before
   public void setup() throws IOException {
-    File file = new File("src/test/TestProjects/Project1/no_errors.json");
+    File file = new File("src/test/TestProjects/For-JUnit-Tests-Pls-Ignore/no_errors.json");
     target = new ProgramLoader(file);
   }
 
@@ -64,7 +64,7 @@ public class ProgramLoaderTest {
   /** TODO: need better error message */
   @Test
   public void nonExistentMemoryUnitType() {
-    File file = new File("src/test/TestProjects/Project1/nonexistent_memory_type.json");
+    File file = new File("src/test/TestProjects/For-JUnit-Tests-Pls-Ignore/nonexistent_memory_type.json");
     try {
       ProgramLoader pl = new ProgramLoader(file);
       fail();
@@ -76,7 +76,7 @@ public class ProgramLoaderTest {
   /** TODO: same here */
   @Test
   public void invalidMemoryUnitType() {
-    File file = new File("src/test/TestProjects/Project1/invalid_memory_type.json");
+    File file = new File("src/test/TestProjects/For-JUnit-Tests-Pls-Ignore/invalid_memory_type.json");
     try {
       ProgramLoader pl = new ProgramLoader(file);
       fail();

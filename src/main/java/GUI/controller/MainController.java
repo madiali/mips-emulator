@@ -232,7 +232,7 @@ public class MainController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     System.out.println(
-        "Load a project config JSON file to display the GUI. Examples are shown in GitHub under src/Test/TestProjects/");
+        "LOAD A PROJECT CONFIG JSON FILE TO DISPLAY THE GUI. Examples are shown in GitHub under src/Test/TestProjects/");
     try {
       handleOpen();
     } catch (IOException ioe) {

@@ -1,0 +1,69 @@
+﻿{
+	"projectName": "💩",
+	"schema": "1.0",
+	"instructionSet": "2017",
+	"programCounter": 0,
+	"clockSpeed": 50,
+	"memories": [
+		{
+			"type": "InstructionMemory",
+			"initFile": {
+				"filepath": "imem.mem",
+				"format": "hex"
+			}
+		},
+		{
+			"type": "DataMemory",
+			"bitmask": "1_0000_0000_0001_XXXX_XXXX_XXXX_XXXX",
+			"length": 128,
+			"initFile": {
+				"filepath": "dmem.mem",
+				"format": "bin"
+			}
+		},
+		{
+			"type": "BitmapMemory",
+			"initFile": {
+				"filepath": "bmem.mem",
+				"format": "hex"
+			}
+		},
+		{
+			"type": "ScreenMemory",
+			"bitmask": "1_0000_0000_0010_XXXX_XXXX_XXXX_XXXX",
+			"initFile": {
+				"filepath": "smem.mem",
+				"format": "hex"
+			}
+		},
+		{
+			"type": "Keyboard",
+			"bitmask": "1_0000_0000_0011_0000_0000_0000_0000"
+		},
+		
+		{
+			"type": "SpriteMemory",
+			"startAddr": "268632068",
+			"length": 4,
+			"initFile": {
+				"filepath": "spmem.mem",
+				"format": "bin"
+			}
+		},
+		{
+			"type": "SpriteBitmapMemory",
+			"initFile": {
+				"filepath": "sbmem.mem",
+				"format": "hex"
+			}
+		},
+		{
+			"type": "AccelerometerX",
+			"bitmask": "1_0000_0000_0011_0000_0000_0001_0000"
+		},
+		{
+			"type": "AccelerometerY",
+			"bitmask": "1_0000_0000_0011_0000_0000_0000_1100"
+		}
+	]
+}

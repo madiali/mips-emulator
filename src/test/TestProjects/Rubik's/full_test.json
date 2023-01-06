@@ -56,6 +56,8 @@
       "length": 1
     },
     {
+      "comment": "The rest of the mappings aren't part of the project specification and are unique to my project",
+      "comment2": "Presumably, if you memory map something in your project, you'd have Verilog support for it to implement some new functionality. That can't be done in the emulator, so additional memory mappings in the JSON don't really do anything besides letting you see the value stored at that mapped address.",
       "type": "DataMemory",
       "name": "RNG",
       "startAddr": "0x10000000",
@@ -68,8 +70,9 @@
       "length": 1
     },
     {
+      "comment": "Hint: If you want to implement chords, use multiple sound registers! For a chord, the period played should rapidly switch among the values in your sound registers.",
       "type": "DataMemory",
-      "name": "sound2",
+      "name": "sound_2",
       "startAddr": "0x10000008",
       "length": 1
     },
