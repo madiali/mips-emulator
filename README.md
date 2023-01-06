@@ -1,8 +1,6 @@
 # MIPS Emulator
 
-We ported https://github.com/jordanel/mips-emulator to Java so the app works on any operating system.
-
-Here's some documentation from the OG repo. Check the [Wiki](https://github.com/madiali/mips-emulator/wiki) for [known bugs/limitations](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations).
+We ported https://github.com/jordanel/mips-emulator to Java so the app works on any OS. Here's some documentation from the OG repo. Check the [Wiki](https://github.com/madiali/mips-emulator/wiki) for [known bugs/limitations](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations).
 
 ---
 
@@ -10,7 +8,7 @@ MIPS Emulator is an emulator designed to support customized MIPS processors usin
 
 ## Project Files ##
 
-A MIPS Emulator project is configured using a required JSON file. See the examples in [src/test/TestProjects](https://github.com/madiali/mips-emulator/tree/main/src/test/TestProjects). [full_test](https://github.com/madiali/mips-emulator/tree/main/src/test/TestProjects/full_test), [imem_test](https://github.com/madiali/mips-emulator/tree/main/src/test/TestProjects/imem_test), and [PoopEmoji 💩](https://github.com/madiali/mips-emulator/tree/main/src/test/TestProjects/PoopEmoji) are from the OG repo.
+A MIPS Emulator project is configured using a **required JSON file**. See the examples in [src/test/TestProjects](https://github.com/madiali/mips-emulator/tree/main/src/test/TestProjects). [full_test](https://github.com/madiali/mips-emulator/tree/main/src/test/TestProjects/full_test), [imem_test](https://github.com/madiali/mips-emulator/tree/main/src/test/TestProjects/imem_test), and [PoopEmoji 💩](https://github.com/madiali/mips-emulator/tree/main/src/test/TestProjects/PoopEmoji) are from the OG repo.
 
 This file contains project-level information as well as configuration and mapping information for any memory units needed by the project. A project can also include multiple memory initialization files, used to set the starting values of configured memories. Numeric values may also be passed as a hexadecimal or binary string prefixed with `0x` and `0b` respectively.
 

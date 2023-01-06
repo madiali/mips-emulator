@@ -15,8 +15,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * The FXML is tied to this Controller and only this controller. All handle methods (handleOpen,
- * handleTabClick, etc.) must go in here.
+ * The FXML is tied to this Controller and only this controller. All handler methods tied to FXML
+ * components must go in this file.
  *
  * <p>Implement Initializable to call initialize() method - user is forced to load a JSON at
  * startup. mips won't be null at startup. This is a bit lazy but prevents us from having to worry
