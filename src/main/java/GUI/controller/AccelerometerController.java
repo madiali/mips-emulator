@@ -37,9 +37,6 @@ public class AccelerometerController {
     this.yLabel = yLabel;
     this.resetButton = resetButton;
     Accelerometer mappedAccelerometer = null;
-    // This code is very similar to the OG code in MainWindow.cs extractAccelerometer. Messy
-    // but it'd be a for loop otherwise. If there's a way around using toList(), then the try catch
-    // could be removed.
     try {
       mappedAccelerometer =
           (Accelerometer)

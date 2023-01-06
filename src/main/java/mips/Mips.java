@@ -12,7 +12,6 @@ public class Mips {
   private ProgramCounter pc;
   public Map<Class, List<MemoryUnit>> memDict;
   public InstructionMemory instrMem;
-  // MemoryMapper memory is stored inside (or comes from) memDict.
   public MemoryMapper memory;
   public Registers reg;
   public String name;

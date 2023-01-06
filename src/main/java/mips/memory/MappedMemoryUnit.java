@@ -130,6 +130,11 @@ public class MappedMemoryUnit {
     return memUnit.getWordSize();
   }
 
+  /**
+   * Uses StringTokenizer to display mips.ScreenMemory as just ScreenMemory, for example.
+   *
+   * @return
+   */
   public String getName() {
     StringTokenizer nameTokens = new StringTokenizer(name, ".");
     String modifiedName = nameTokens.nextToken();

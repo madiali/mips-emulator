@@ -8,9 +8,6 @@
  *
  * <p>BMP explanation:
  * https://medium.com/sysf/bits-to-bitmaps-a-simple-walkthrough-of-bmp-image-format-765dc6857393
- *
- * <p>Original code doesn't access mips.memory (memory mapping) to get bmem and smem, so we don't
- * need to do so here either? TODO: look into this
  */
 package GUI.controller;
 
@@ -44,7 +41,7 @@ public class VgaDisplayBMPController {
   // Note that fields that span more than 1 byte are represented in little-endian format
   // The only fields that should change for different sprite size are width (px) and height (px)
   // If this file is reformatted, please paste this array from a previous commit since its spacing
-  // and newlines are relevant
+  // and newlines are important
   private static final byte[] BMP_HEADER = new byte[]{
           0x42, 0x4D,
           0, 0, 0, 0,             // file size (B), set to 0 because JavaFX doesn't need this information and with parameterization, file size is variable

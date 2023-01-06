@@ -22,7 +22,7 @@ public class RegistersController {
 
   public RegistersController(Mips mips, TableView regTable) {
     reg = mips.getReg();
-    this.regTable = regTable;
+    RegistersController.regTable = regTable;
     initializeRegisterTable();
   }
 

@@ -10,6 +10,7 @@ package mips;
 import java.io.File;
 import java.util.Scanner;
 
+@Deprecated
 class Program {
   public static void main(String[] args) {
     ProgramLoader loader;

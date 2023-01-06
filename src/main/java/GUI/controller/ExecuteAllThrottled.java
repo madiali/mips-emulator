@@ -10,11 +10,11 @@ import mips.memory.ScreenMemory;
 public class ExecuteAllThrottled implements Runnable {
   private static final double TARGET_CONSTANT = 0.85;
 
-  private Mips mips;
-  private double clockSpeed;
-  private Registers reg;
-  private int smemStartAddr;
-  private int smemEndAddr;
+  private final Mips mips;
+  private final double clockSpeed;
+  private final Registers reg;
+  private final int smemStartAddr;
+  private final int smemEndAddr;
 
   public ExecuteAllThrottled(Mips mips, double clockSpeed) {
     this.mips = mips;

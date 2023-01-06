@@ -41,8 +41,8 @@ public class KeyboardController {
   Idk what KeyCode `/~ corresponds to. I think it's KeyCode.DEAD_GRAVE and KeyCode.DEAD_TILDE? Mapped both to the same value.
   The OG code omits scancodes for these very uncommon keys: HELP, Separator, Left MENU, Right MENU
   */
-  private Map<KeyCode, Integer> scancodeMapper =
-      Map.ofEntries(
+  private final Map<KeyCode, Integer> scancodeMapper =
+      Map.<KeyCode, Integer>ofEntries(
           entry(KeyCode.BACK_SPACE, 102),
           entry(KeyCode.TAB, 13),
           entry(KeyCode.ENTER, 90),

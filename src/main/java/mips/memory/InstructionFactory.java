@@ -8,7 +8,8 @@ import mips.instructions.JType.JalInstruction;
 import mips.instructions.RType.*;
 
 public class InstructionFactory {
-  // A comment from the original code, but all these were already implemented in the original
+  // A comment from the original code, but all these were already implemented in the original and
+  // are implemented in ours
   // TODO: Add new instructions (ANDI, XORI, ADDU)
 
   /**

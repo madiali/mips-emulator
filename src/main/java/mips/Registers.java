@@ -4,8 +4,7 @@ public class Registers {
   private final int[] registers;
 
   public Registers() {
-    // Default value for `uint` is 0
-    // Default value for `int` is 0, so this is fine
+    // Default values for `uint` and `int` are both 0, so this is fine
     registers = new int[32];
   }
 

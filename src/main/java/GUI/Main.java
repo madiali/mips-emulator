@@ -1,7 +1,9 @@
-package GUI;// This is needed for JAR packaging
+// This file is necessary for JAR packaging
+
+package GUI;
 
 public class Main {
-    public static void main(String[] args) {
-        AppLauncher.main(args);
-    }
+  public static void main(String[] args) {
+    AppLauncher.main(args);
+  }
 }

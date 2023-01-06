@@ -25,9 +25,9 @@ public class InstructionMemoryController {
   private static int wordSizeLog;
 
   public InstructionMemoryController(Mips mips, TableView imemTable) {
-    this.mips = mips;
+    InstructionMemoryController.mips = mips;
     imem = mips.getInstrMem();
-    this.imemTable = imemTable;
+    InstructionMemoryController.imemTable = imemTable;
     wordSizeLog = mips.getInstrMem().getWordSizeLog();
     initializeInstructionMemoryTable();
   }

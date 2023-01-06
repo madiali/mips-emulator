@@ -51,17 +51,8 @@ public class SpriteMemory implements MemoryUnit {
     return 4;
   }
 
-  // The original C# constructor has an empty body
-  // After some googling, if there is no constructor or a constructor with no parameters, then the
-  // compiler automatically
-  //      creates a constructor with no arguments and sets fields to default (in the language)
-  // values.
-  // The above doesn't apply here, i.e. I don't think a constructor with no body gets an
-  // automatically generated body.
-  // Leaving this constructor without a body...
-
   /**
-   * Constructor body empty
+   * Constructor body empty, like in original code
    *
    * @param size
    * @param wordSize default value 4

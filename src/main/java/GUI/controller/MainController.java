@@ -8,7 +8,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import mips.Mips;
 import mips.ProgramLoader;
-import mips.Registers;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +25,7 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
   private Mips mips;
   private static AccelerometerController accelControl;
-  private static VgaDisplayBMPController vgaDispControl;
+  private static VgaDisplayBMPController vgaDisplayBMPController;
   private static RegistersController registersController;
   private static InstructionMemoryController instructionMemoryController;
   private static DataMemoryController dataMemoryController;
@@ -35,7 +34,7 @@ public class MainController implements Initializable {
   private static boolean isExecuting;
   private static Thread execution;
 
-  // @FXML tags are **necessary** for the variables to be automatically linked to FXML components.
+  // @FXML tags are necessary for the variables to be automatically linked to FXML components.
   // Accelerometer
   @FXML private Slider xSlider;
   @FXML private Slider ySlider;
@@ -59,63 +58,11 @@ public class MainController implements Initializable {
   // Misc
   @FXML private Label statusLabel;
 
-  public MainController(Mips mips) {
-    if (mips == null) {
-      throw new IllegalArgumentException("Mips is null");
-    }
-    this.mips = mips;
-  }
-
   /** Constructor with no params is necessary for loader.getController() in AppLauncher. */
   public MainController() {}
 
-  public int getPC() {
-    return mips.getPC();
-  }
-
   public String getName() {
     return mips.getName();
-  }
-
-  public void setReg(int regNum, int val) {
-    mips.getReg().setRegister(regNum, val);
-  }
-
-  public Mips getMips() {
-    return mips;
-  }
-
-  /*
-   * Controller getters. Whereas Controllers do not need to access other controllers, ExecuteAllThrottled may need to.
-   * Could just make the Controllers public instead.
-   */
-
-  public static AccelerometerController getAccelerometerController() {
-    return accelControl;
-  }
-
-  public static VgaDisplayBMPController getVgaDispControl() {
-    return vgaDispControl;
-  }
-
-  public static RegistersController getRegistersController() {
-    return registersController;
-  }
-
-  public static InstructionMemoryController getInstructionMemoryController() {
-    return instructionMemoryController;
-  }
-
-  public static DataMemoryController getDataMemoryController() {
-    return dataMemoryController;
-  }
-
-  public static OtherMemoryController getOtherMemoryController() {
-    return otherMemoryController;
-  }
-
-  public static KeyboardController getKeyboardController() {
-    return keyboardController;
   }
 
   /*
@@ -145,19 +92,17 @@ public class MainController implements Initializable {
     this.mips = pl.getMips();
 
     // Controller instantiation
-    this.accelControl =
-        new AccelerometerController(mips, xSlider, ySlider, xLabel, yLabel, resetButton);
-    this.vgaDispControl = new VgaDisplayBMPController(mips, vgaDisplay);
-    this.registersController = new RegistersController(mips, registersTable);
-    this.instructionMemoryController =
-        new InstructionMemoryController(mips, instructionMemoryTable);
-    this.dataMemoryController = new DataMemoryController(mips, dataMemoryTable);
-    this.otherMemoryController = new OtherMemoryController(mips, otherMemoryTabPane);
-    this.keyboardController = new KeyboardController(mips);
+    accelControl = new AccelerometerController(mips, xSlider, ySlider, xLabel, yLabel, resetButton);
+    vgaDisplayBMPController = new VgaDisplayBMPController(mips, vgaDisplay);
+    registersController = new RegistersController(mips, registersTable);
+    instructionMemoryController = new InstructionMemoryController(mips, instructionMemoryTable);
+    dataMemoryController = new DataMemoryController(mips, dataMemoryTable);
+    otherMemoryController = new OtherMemoryController(mips, otherMemoryTabPane);
+    keyboardController = new KeyboardController(mips);
   }
 
   /*
-   * Menu handlers. No need for a MenuController, so the methods go here.
+   * Menu handlers. No need for a MenuController
    */
 
   @FXML
@@ -181,8 +126,6 @@ public class MainController implements Initializable {
    * Set isExecuting = false to pause execution in ExecuteAll to print out time statistics.
    * renderVGA() may be unnecessary since ExecuteAll would've done it, but since program is paused,
    * time doesn't matter.
-   *
-   * <p>Thread execution.join() is from the original code.
    */
   @FXML
   public void handlePause() throws InterruptedException {
@@ -289,7 +232,7 @@ public class MainController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     System.out.println(
-        "Load a project config JSON file to show the GUI. Examples are shown in GitHub under src/Test/TestProjects/");
+        "Load a project config JSON file to display the GUI. Examples are shown in GitHub under src/Test/TestProjects/");
     try {
       handleOpen();
     } catch (IOException ioe) {

@@ -20,7 +20,7 @@ public class MemoryMapper implements MemoryUnit {
     int[] data = new int[size];
     DataMemory dataMem = new DataMemory(data);
     MappedMemoryUnit mappedMem = new MappedMemoryUnit(dataMem, 0);
-    this.memUnits = new ArrayList<MappedMemoryUnit>();
+    this.memUnits = new ArrayList<>();
     this.memUnits.add(mappedMem);
   }
 

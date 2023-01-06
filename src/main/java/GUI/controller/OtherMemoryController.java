@@ -20,12 +20,13 @@ public class OtherMemoryController {
   private static final double MAPPED_ADDRESS_COLUMN_WIDTH = 200;
   private static final double VALUE_COLUMN_WIDTH = 300;
   // Since dmem is under its own tab, it shouldn't be in OtherMemory.
-  private static final String dmemMappedStartAddr = "10010000";
+  // Identify it by its unique startAddr in the project specification.
+  private static final int dmemMappedStartAddr = Integer.parseInt("10010000", 16);
 
-  private TabPane otherMemoryTabPane;
-  private List<MappedMemoryUnit> mappedMemoryUnits = new ArrayList<>();
-  private List<TableView> tableViewList = new ArrayList<>();
-  private List<ObservableList<Map<String, Object>>> memoryItemsList = new ArrayList<>();
+  private final TabPane otherMemoryTabPane;
+  private final List<MappedMemoryUnit> mappedMemoryUnits = new ArrayList<>();
+  private final List<TableView> tableViewList = new ArrayList<>();
+  private final List<ObservableList<Map<String, Object>>> memoryItemsList = new ArrayList<>();
 
   public OtherMemoryController(Mips mips, TabPane otherMemoryTabPane) {
     this.otherMemoryTabPane = otherMemoryTabPane;
@@ -34,7 +35,7 @@ public class OtherMemoryController {
     // Populate new mappedMemoryUnits list without Data Memory since there's already a dmem tab
     for (MappedMemoryUnit mmu : mm.getMemUnits()) {
       // Check for Data Memory by its unique startAddr. Keep other instances of Data Memory
-      if (mmu.getStartAddr() != Integer.parseInt(dmemMappedStartAddr, 16)) {
+      if (mmu.getStartAddr() != dmemMappedStartAddr) {
         mappedMemoryUnits.add(mmu);
       }
     }

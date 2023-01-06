@@ -15,7 +15,7 @@ public class AppLauncher extends Application {
 
     MainController controller = loader.getController();
 
-    stage.setTitle(controller.getMips().getName());
+    stage.setTitle(controller.getName());
     stage.setMaximized(true);
     stage.setResizable(false);
     Scene scene = new Scene(root);
