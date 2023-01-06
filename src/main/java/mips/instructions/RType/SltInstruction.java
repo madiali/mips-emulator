@@ -1,8 +1,8 @@
 package mips.instructions.RType;
 
-import mips.memory.MemoryMapper;
 import mips.ProgramCounter;
 import mips.Registers;
+import mips.memory.MemoryMapper;
 
 public class SltInstruction extends RTypeInstruction {
   public SltInstruction(int d, int s, int t) {

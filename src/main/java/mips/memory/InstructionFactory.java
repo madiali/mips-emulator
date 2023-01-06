@@ -3,7 +3,8 @@ package mips.memory;
 import mips.exception.UnknownInstructionException;
 import mips.instructions.IType.*;
 import mips.instructions.Instruction;
-import mips.instructions.JType.*;
+import mips.instructions.JType.JInstruction;
+import mips.instructions.JType.JalInstruction;
 import mips.instructions.RType.*;
 
 public class InstructionFactory {

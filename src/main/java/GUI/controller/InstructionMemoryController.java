@@ -9,8 +9,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
-import mips.memory.InstructionMemory;
 import mips.Mips;
+import mips.memory.InstructionMemory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,7 +55,7 @@ public class InstructionMemoryController {
     }
   }
 
-  public static void renderInstructionMemoryTable () {
+  public static void renderInstructionMemoryTable() {
     int index = (mips.getPC() & 0xFFFF) >> wordSizeLog;
     imemTable.scrollTo(index);
     imemTable.getSelectionModel().select(index);

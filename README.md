@@ -46,7 +46,7 @@ Any memory unit intended to be mapped and accessible to the MIPS program must ha
 - BitmapMemory - Read only memory containing the pixel values for all 16x16 bitmaps used by the MIPS program
 - ScreenMemory - Read/write memory containing the bitmap values to be displayed on the screen
 - Keyboard - Read only memory containing the current keyboard scan code
-- Sound - Read only memory containing the period of the waveform used by the sound module
+- ~~Sound - Read only memory containing the period of the waveform used by the sound module~~ (not supported)
 - Accelerometer - Read only memory containing the X and Y accelerometer values in the following format: `{7'b0, accelX, 7'b0, accelY}`
 - ~~AccelerometerX - Read only memory containing the X value of the accelerometer module~~ (not supported; use Accelerometer)
 - ~~AccelerometerY - Read only memory containing the Y value of the accelerometer module~~ (not supported; use Accelerometer)

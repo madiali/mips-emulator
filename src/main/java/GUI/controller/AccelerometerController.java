@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import mips.*;
+import mips.Mips;
 import mips.memory.Accelerometer;
 import mips.memory.AccelerometerX;
 import mips.memory.AccelerometerY;
@@ -50,7 +50,8 @@ public class AccelerometerController {
                   .get(0)
                   .getMemUnit();
     } catch (ArrayIndexOutOfBoundsException aioobe) {
-      // If Accelerometer isn't memory mapped (has startAddr or bitmask) in JSON, then the toList() is empty and .get(0) causes
+      // If Accelerometer isn't memory mapped (has startAddr or bitmask) in JSON, then the toList()
+      // is empty and .get(0) causes
       // IndexOutOfBoundsException. mappedAccelerometer remains null.
     }
     if (mappedAccelerometer != null) {
@@ -79,7 +80,6 @@ public class AccelerometerController {
     accelerometerX.setXValue((int) defaultAccelValue);
     accelerometerY.setYValue((int) defaultAccelValue);
   }
-
 
   /**
    * When Accelerometer is not in Memory Mapper, then remove Sliders, labels, and Reset button.

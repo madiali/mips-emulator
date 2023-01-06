@@ -19,10 +19,12 @@
 package GUI.controller;
 
 import javafx.scene.input.KeyCode;
+import mips.Mips;
 import mips.memory.Keyboard;
 import mips.memory.MappedMemoryUnit;
-import mips.Mips;
+
 import java.util.Map;
+
 import static java.util.Map.entry;
 
 public class KeyboardController {

@@ -1,8 +1,8 @@
 package mips.instructions.RType;
 
-import mips.memory.MemoryMapper;
 import mips.ProgramCounter;
 import mips.Registers;
+import mips.memory.MemoryMapper;
 
 public class SrlInstruction extends RTypeInstruction {
   private final int shamt;
@@ -22,6 +22,12 @@ public class SrlInstruction extends RTypeInstruction {
 
   @Override
   public String toString() {
-    return name + " " + Registers.registerToName(d) + ", " + Registers.registerToName(t) + ", " + shamt;
+    return name
+        + " "
+        + Registers.registerToName(d)
+        + ", "
+        + Registers.registerToName(t)
+        + ", "
+        + shamt;
   }
 }

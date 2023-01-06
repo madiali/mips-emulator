@@ -17,8 +17,8 @@ package GUI.controller;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import mips.memory.BitmapMemory;
 import mips.Mips;
+import mips.memory.BitmapMemory;
 import mips.memory.ScreenMemory;
 
 import java.io.File;
@@ -66,10 +66,9 @@ public class VgaDisplayBMPController {
   };
 
   /**
-   * Create BMP files in img/ directory.
-   * Create Image[] from BMP files.
-   * Delete img/ directory.
+   * Create BMP files in img/ directory. Create Image[] from BMP files. Delete img/ directory.
    * Initialize VGA GridPane.
+   *
    * @param mips
    * @param vgaDisplay
    * @throws IOException
@@ -92,9 +91,7 @@ public class VgaDisplayBMPController {
     initializeVGA();
   }
 
-  /**
-   * Create all ImageView's in the GridPane.
-   */
+  /** Create all ImageView's in the GridPane. */
   private static void initializeVGA() {
     for (int y = 0; y < GRID_HEIGHT; y++) {
       for (int x = 0; x < GRID_WIDTH; x++) {

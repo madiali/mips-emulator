@@ -1,8 +1,8 @@
 package mips.instructions.IType;
 
-import mips.memory.MemoryMapper;
 import mips.ProgramCounter;
 import mips.Registers;
+import mips.memory.MemoryMapper;
 
 public class BneInstruction extends ITypeInstruction {
   public BneInstruction(int s, int t, int offset) {
@@ -21,11 +21,11 @@ public class BneInstruction extends ITypeInstruction {
   @Override
   public String toString() {
     return name
-            + " "
-            + Registers.registerToName(s)
-            + ", "
-            + Registers.registerToName(t)
-            + ", "
-            + String.format("0x%04X", immediate);
+        + " "
+        + Registers.registerToName(s)
+        + ", "
+        + Registers.registerToName(t)
+        + ", "
+        + String.format("0x%04X", immediate);
   }
 }

@@ -1,8 +1,8 @@
 package mips.instructions.RType;
 
-import mips.memory.MemoryMapper;
 import mips.ProgramCounter;
 import mips.Registers;
+import mips.memory.MemoryMapper;
 
 public class XorInstruction extends RTypeInstruction {
   public XorInstruction(int d, int s, int t) {

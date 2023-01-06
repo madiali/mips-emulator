@@ -7,9 +7,9 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
+import mips.Mips;
 import mips.memory.MappedMemoryUnit;
 import mips.memory.MemoryMapper;
-import mips.Mips;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,10 +73,14 @@ public class OtherMemoryController {
 
   private void generateTableCells(ObservableList<Map<String, Object>> memoryItems, int index) {
     MappedMemoryUnit mmu = mappedMemoryUnits.get(index);
-    for (int mappedAddress = mmu.getStartAddr(); mappedAddress < mmu.getEndAddr(); mappedAddress += mmu.getWordSize()) {
+    for (int mappedAddress = mmu.getStartAddr();
+        mappedAddress < mmu.getEndAddr();
+        mappedAddress += mmu.getWordSize()) {
       Map<String, Object> item = new HashMap<>();
       item.put("mappedAddress", String.format("0x%08X", mappedAddress));
-      item.put("value", String.format("0x%08X", mmu.getMappedMemoryUnit(mappedAddress - mmu.getStartAddr())));
+      item.put(
+          "value",
+          String.format("0x%08X", mmu.getMappedMemoryUnit(mappedAddress - mmu.getStartAddr())));
       memoryItems.add(item);
     }
   }
@@ -84,8 +88,10 @@ public class OtherMemoryController {
   public void renderAllTables() {
     for (int i = 0; i < mappedMemoryUnits.size(); i++) {
       MappedMemoryUnit mmu = mappedMemoryUnits.get(i);
-      for (int relativeAddress = 0; relativeAddress < mmu.getSize(); relativeAddress += mmu.getWordSize()) {
-        Map<String,Object> item = memoryItemsList.get(i).get(relativeAddress / mmu.getWordSize());
+      for (int relativeAddress = 0;
+          relativeAddress < mmu.getSize();
+          relativeAddress += mmu.getWordSize()) {
+        Map<String, Object> item = memoryItemsList.get(i).get(relativeAddress / mmu.getWordSize());
         item.replace("value", String.format("0x%08X", mmu.getMappedMemoryUnit(relativeAddress)));
       }
       tableViewList.get(i).refresh();

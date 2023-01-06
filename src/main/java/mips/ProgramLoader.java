@@ -5,13 +5,13 @@ package mips;
  * discussion about which library to use to parse JSON in Java. org.json seems to match the original
  * code closely, so I decided on that.
  *
- * C#'s JSON stuff will return null if a field is not found, whereas org.json will throw an
+ * <p>C#'s JSON stuff will return null if a field is not found, whereas org.json will throw an
  * Exception. So, the original code is able to use the uint? (meaning either uint or null) type,
  * which is null if some field is not found in the JSON. e.g. uint? pc = token["programCounter"],
  * where the JSON token has the field "programCounter": some int. pc will then be an int if the
  * field is found, else null.
  *
- * I replicate this behavior by using Integer, which is initialized to null, and try catch to
+ * <p>I replicate this behavior by using Integer, which is initialized to null, and try catch to
  * catch the Exception thrown if the field is not found. Then the Integer remains null if the field
  * is not found.
  *
@@ -20,16 +20,24 @@ package mips;
  * brackets [...] is a JSONArray. From a JSONObject, you can parse a field with o.getString(field
  * name), o.getInt(field name), etc. JSONArray can be iterated over pretty easily.
  */
-import java.io.*;
-import java.nio.file.Files;
-import java.util.*;
 
 import mips.exception.MappingException;
 import mips.memory.MappedMemoryUnit;
 import mips.memory.MemoryMapper;
 import mips.memory.MemoryUnit;
 import mips.memory.MemoryUnitFactory;
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ProgramLoader {
   private Mips mips;
@@ -285,7 +293,8 @@ public class ProgramLoader {
    * @return
    */
   private int[] parseInitData(String path, int baseNum) throws IOException {
-    // ArrayList is terrible for runtime, but it's fine since it's a one-time cost at startup (copium)
+    // ArrayList is terrible for runtime, but it's fine since it's a one-time cost at startup
+    // (copium)
     List<Integer> data = new ArrayList<>();
     File file = new File(basePath + "/" + path);
     FileReader fr = new FileReader(file);

@@ -1,8 +1,8 @@
 package mips.instructions.JType;
 
-import mips.memory.MemoryMapper;
 import mips.ProgramCounter;
 import mips.Registers;
+import mips.memory.MemoryMapper;
 
 public class JalInstruction extends JTypeInstruction {
   public JalInstruction(int target) {

@@ -212,7 +212,8 @@ public class MainController implements Initializable {
   public void handlePause() throws InterruptedException {
     isExecuting = false;
     enableTabs();
-    // Prevents NullPointerException when user presses Pause before pressing Go, which creates the Thread.
+    // Prevents NullPointerException when user presses Pause before pressing Go, which creates the
+    // Thread.
     if (execution != null) {
       execution.join();
     }
@@ -311,7 +312,8 @@ public class MainController implements Initializable {
    */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    System.out.println("Load a project config JSON file to show the GUI. Examples are shown in GitHub under src/Test/TestProjects/");
+    System.out.println(
+        "Load a project config JSON file to show the GUI. Examples are shown in GitHub under src/Test/TestProjects/");
     try {
       handleOpen();
     } catch (IOException ioe) {

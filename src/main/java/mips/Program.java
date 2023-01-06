@@ -6,8 +6,9 @@ package mips;
  * because it relies on ProgramLoader and Mips. Specifically, we need to use getter methods in the
  * while loop around line 40, but Mips.java needs to be completed first.
  */
-import java.util.Scanner;
+
 import java.io.File;
+import java.util.Scanner;
 
 class Program {
   public static void main(String[] args) {

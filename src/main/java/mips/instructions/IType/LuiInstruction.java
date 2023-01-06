@@ -1,8 +1,8 @@
 package mips.instructions.IType;
 
-import mips.memory.MemoryMapper;
 import mips.ProgramCounter;
 import mips.Registers;
+import mips.memory.MemoryMapper;
 
 public class LuiInstruction extends ITypeInstruction {
   public LuiInstruction(int t, int immediate) {
@@ -18,10 +18,6 @@ public class LuiInstruction extends ITypeInstruction {
 
   @Override
   public String toString() {
-    return name
-            + " "
-            + Registers.registerToName(t)
-            + ", "
-            + String.format("0x%04X", immediate);
+    return name + " " + Registers.registerToName(t) + ", " + String.format("0x%04X", immediate);
   }
 }

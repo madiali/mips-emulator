@@ -1,11 +1,11 @@
 package GUI.controller;
 
-import mips.memory.MappedMemoryUnit;
 import mips.Mips;
 import mips.Registers;
-import mips.memory.ScreenMemory;
 import mips.instructions.IType.SwInstruction;
 import mips.instructions.Instruction;
+import mips.memory.MappedMemoryUnit;
+import mips.memory.ScreenMemory;
 
 public class ExecuteAllThrottled implements Runnable {
   private static final double TARGET_CONSTANT = 0.9;
@@ -65,7 +65,7 @@ public class ExecuteAllThrottled implements Runnable {
     System.out.println("Time: " + delta + "s");
     System.out.println("Mips instructions executed: " + totalInstructionsExecuted);
     System.out.println(
-        "Clock speed (avg): " + totalInstructionsExecuted / 1000000.0 / delta + " MHz");
+        "Throttled clock speed (avg): " + totalInstructionsExecuted / 1000000.0 / delta + " MHz");
   }
 
   /**

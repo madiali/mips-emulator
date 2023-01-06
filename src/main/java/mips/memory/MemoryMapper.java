@@ -5,8 +5,6 @@ import mips.exception.UnmappedAddressException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Integer.valueOf;
-
 public class MemoryMapper implements MemoryUnit {
 
   private List<MappedMemoryUnit> memUnits;

@@ -1,8 +1,8 @@
 package mips.instructions.RType;
 
-import mips.memory.MemoryMapper;
 import mips.ProgramCounter;
 import mips.Registers;
+import mips.memory.MemoryMapper;
 
 public class SravInstruction extends RTypeInstruction {
   public SravInstruction(int d, int t, int s) {
@@ -18,6 +18,12 @@ public class SravInstruction extends RTypeInstruction {
 
   @Override
   public String toString() {
-    return name + " " + Registers.registerToName(d) + ", " + Registers.registerToName(t) + ", " + Registers.registerToName(s);
+    return name
+        + " "
+        + Registers.registerToName(d)
+        + ", "
+        + Registers.registerToName(t)
+        + ", "
+        + Registers.registerToName(s);
   }
 }

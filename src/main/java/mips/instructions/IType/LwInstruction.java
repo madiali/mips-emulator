@@ -1,8 +1,8 @@
 package mips.instructions.IType;
 
-import mips.memory.MemoryMapper;
 import mips.ProgramCounter;
 import mips.Registers;
+import mips.memory.MemoryMapper;
 
 public class LwInstruction extends ITypeInstruction {
   public LwInstruction(int t, int s, int offset) {

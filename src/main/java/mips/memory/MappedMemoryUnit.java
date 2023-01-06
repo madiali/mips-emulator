@@ -1,7 +1,8 @@
 package mips.memory;
 
 import java.util.StringTokenizer;
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MappedMemoryUnit {
   private MemoryUnit memUnit;

@@ -1,9 +1,9 @@
 package mips.instructions.JType;
 
-import mips.instructions.Instruction;
-import mips.memory.MemoryMapper;
 import mips.ProgramCounter;
 import mips.Registers;
+import mips.instructions.Instruction;
+import mips.memory.MemoryMapper;
 
 public abstract class JTypeInstruction implements Instruction {
   protected String name;

@@ -1,9 +1,9 @@
 package mips.instructions.RType;
 
-import mips.instructions.Instruction;
-import mips.memory.MemoryMapper;
 import mips.ProgramCounter;
 import mips.Registers;
+import mips.instructions.Instruction;
+import mips.memory.MemoryMapper;
 
 public abstract class RTypeInstruction implements Instruction {
   protected String name;
