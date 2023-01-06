@@ -1,4 +1,4 @@
-package mips;
+package mips.memory;
 
 public class BitmapMemory implements MemoryUnit {
   private int wordSize;

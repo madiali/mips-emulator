@@ -1,6 +1,9 @@
 package mips;
 
 import mips.instructions.Instruction;
+import mips.memory.DataMemory;
+import mips.memory.InstructionFactory;
+import mips.memory.MappedMemoryUnit;
 import org.junit.Before;
 import org.junit.Test;
 

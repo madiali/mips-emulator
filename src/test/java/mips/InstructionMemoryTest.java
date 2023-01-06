@@ -1,6 +1,6 @@
 package mips;
 
-import mips.InstructionMemory;
+import mips.memory.InstructionMemory;
 import mips.instructions.Instruction;
 import mips.instructions.RType.*;
 import mips.instructions.IType.*;

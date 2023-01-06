@@ -1,9 +1,9 @@
 package GUI.controller;
 
-import mips.MappedMemoryUnit;
+import mips.memory.MappedMemoryUnit;
 import mips.Mips;
 import mips.Registers;
-import mips.ScreenMemory;
+import mips.memory.ScreenMemory;
 import mips.instructions.IType.SwInstruction;
 import mips.instructions.Instruction;
 

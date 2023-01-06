@@ -1,6 +1,7 @@
 package mips;
 
 import mips.instructions.Instruction;
+import mips.memory.*;
 import org.junit.Test;
 import java.util.*;
 

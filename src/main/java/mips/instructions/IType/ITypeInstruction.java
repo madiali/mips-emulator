@@ -1,7 +1,7 @@
 package mips.instructions.IType;
 
 import mips.instructions.Instruction;
-import mips.MemoryMapper;
+import mips.memory.MemoryMapper;
 import mips.ProgramCounter;
 import mips.Registers;
 

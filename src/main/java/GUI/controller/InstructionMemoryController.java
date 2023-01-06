@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
-import mips.InstructionMemory;
+import mips.memory.InstructionMemory;
 import mips.Mips;
 
 import java.util.HashMap;

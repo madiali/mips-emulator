@@ -1,4 +1,4 @@
-package mips;
+package mips.memory;
 
 import mips.exception.UnknownInstructionException;
 import mips.instructions.IType.*;

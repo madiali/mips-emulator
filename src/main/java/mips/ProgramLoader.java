@@ -25,6 +25,10 @@ import java.nio.file.Files;
 import java.util.*;
 
 import mips.exception.MappingException;
+import mips.memory.MappedMemoryUnit;
+import mips.memory.MemoryMapper;
+import mips.memory.MemoryUnit;
+import mips.memory.MemoryUnitFactory;
 import org.json.*;
 
 public class ProgramLoader {

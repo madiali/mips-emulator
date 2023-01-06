@@ -1,4 +1,4 @@
-package mips;
+package mips.memory;
 
 public class AccelerometerX implements MemoryUnit {
   private int wordSize;

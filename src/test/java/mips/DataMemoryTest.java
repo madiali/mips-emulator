@@ -1,5 +1,6 @@
 package mips;
 
+import mips.memory.DataMemory;
 import org.junit.Before;
 import org.junit.Test;
 

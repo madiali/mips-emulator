@@ -17,9 +17,9 @@ package GUI.controller;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import mips.BitmapMemory;
+import mips.memory.BitmapMemory;
 import mips.Mips;
-import mips.ScreenMemory;
+import mips.memory.ScreenMemory;
 
 import java.io.File;
 import java.io.FileOutputStream;

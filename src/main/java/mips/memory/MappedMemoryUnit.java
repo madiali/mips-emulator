@@ -1,5 +1,6 @@
-package mips;
+package mips.memory;
 
+import java.util.StringTokenizer;
 import java.util.regex.*;
 
 public class MappedMemoryUnit {
@@ -129,6 +130,11 @@ public class MappedMemoryUnit {
   }
 
   public String getName() {
-    return name;
+    StringTokenizer nameTokens = new StringTokenizer(name, ".");
+    String modifiedName = nameTokens.nextToken();
+    while (nameTokens.hasMoreTokens()) {
+      modifiedName = nameTokens.nextToken();
+    }
+    return modifiedName;
   }
 }

@@ -1,4 +1,4 @@
-package mips;
+package mips.memory;
 
 public interface MemoryUnit {
   int getMemoryUnit(int index);

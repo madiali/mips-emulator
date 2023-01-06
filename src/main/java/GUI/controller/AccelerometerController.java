@@ -6,6 +6,9 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import mips.*;
+import mips.memory.Accelerometer;
+import mips.memory.AccelerometerX;
+import mips.memory.AccelerometerY;
 
 public class AccelerometerController {
   private AccelerometerX accelerometerX;

@@ -1,4 +1,4 @@
-package mips;
+package mips.memory;
 
 public class ScreenMemory extends DataMemory {
   public ScreenMemory(int size, int wordSize) {

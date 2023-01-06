@@ -4,6 +4,7 @@ import mips.instructions.Instruction;
 import mips.instructions.RType.*;
 import mips.instructions.IType.*;
 import mips.instructions.JType.*;
+import mips.memory.InstructionFactory;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,6 +1,6 @@
 package mips.instructions.RType;
 
-import mips.MemoryMapper;
+import mips.memory.MemoryMapper;
 import mips.ProgramCounter;
 import mips.Registers;
 

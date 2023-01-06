@@ -1,4 +1,4 @@
-package mips;
+package mips.memory;
 
 public class Keyboard implements MemoryUnit {
   private int keyCode = 0;

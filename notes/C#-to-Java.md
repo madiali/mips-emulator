@@ -15,7 +15,7 @@ public uint this[uint index] {
 }
 ```
 
-from `mips.SpriteMemory.cs`
+from `mips.memory.SpriteMemory.cs`
 
 * Indexers do not exist in Java.
 * Our getters have signature `getter(index)`.
@@ -24,12 +24,12 @@ from `mips.SpriteMemory.cs`
 ## Constructor default values
 
 ```C#
-public mips.SpriteMemory(uint size, uint wordSize = 4) {
+public mips.memory.SpriteMemory(uint size, uint wordSize = 4) {
 
 }
 ```
 
-from `mips.SpriteMemory.cs`
+from `mips.memory.SpriteMemory.cs`
 
 * Java does not support default values in constructors.
 * Instead, we overload the constructor and use [constructor chaining](https://www.geeksforgeeks.org/constructor-chaining-java-examples/) where convenient.
@@ -209,7 +209,7 @@ Same as Java's [`Integer.compare(x, y)`](https://www.geeksforgeeks.org/java-inte
 ## [`enum`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum)
 
 * [Java enums](https://www.youtube.com/watch?v=wq9SJb8VeyM)
-* As it turns out, we could've used enums for `mips.InstructionFactory`. Oh well.
+* As it turns out, we could've used enums for `mips.memory.InstructionFactory`. Oh well.
 
 ## Exceptions
 

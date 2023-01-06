@@ -7,9 +7,8 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
-import mips.MappedMemoryUnit;
-import mips.MemoryMapper;
-import mips.MemoryUnit;
+import mips.memory.MappedMemoryUnit;
+import mips.memory.MemoryMapper;
 import mips.Mips;
 
 import java.util.ArrayList;

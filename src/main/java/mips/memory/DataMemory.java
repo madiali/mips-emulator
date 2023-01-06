@@ -1,4 +1,4 @@
-package mips;
+package mips.memory;
 
 public class DataMemory implements MemoryUnit {
   private int wordSize;

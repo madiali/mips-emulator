@@ -4,7 +4,7 @@
  * {length, wordSize}, {0, wordSize}, or {} (no args). No direct equivalent in Java, so we use a
  * Factory.
  */
-package mips;
+package mips.memory;
 
 public class MemoryUnitFactory {
   public MemoryUnit createMemoryUnit(String type, int length, int wordSize) {

@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
-import mips.DataMemory;
+import mips.memory.DataMemory;
 import mips.Mips;
 
 import java.util.HashMap;

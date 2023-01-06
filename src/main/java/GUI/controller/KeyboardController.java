@@ -19,8 +19,8 @@
 package GUI.controller;
 
 import javafx.scene.input.KeyCode;
-import mips.Keyboard;
-import mips.MappedMemoryUnit;
+import mips.memory.Keyboard;
+import mips.memory.MappedMemoryUnit;
 import mips.Mips;
 import java.util.Map;
 import static java.util.Map.entry;

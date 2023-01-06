@@ -1,6 +1,9 @@
 package mips;
 
 import mips.instructions.Instruction;
+import mips.memory.InstructionMemory;
+import mips.memory.MemoryMapper;
+import mips.memory.MemoryUnit;
 
 import java.util.*;
 
@@ -22,7 +25,7 @@ public class Mips {
    * @param clockSpeed default value 0
    */
   public Mips(
-      int pc, Map<Class, List<MemoryUnit>> memDict, Registers reg, String name, float clockSpeed) {
+          int pc, Map<Class, List<MemoryUnit>> memDict, Registers reg, String name, float clockSpeed) {
     this.pc = new ProgramCounter(pc);
     this.memDict = memDict;
     this.instrMem = (InstructionMemory) memDict.get(InstructionMemory.class).get(0);

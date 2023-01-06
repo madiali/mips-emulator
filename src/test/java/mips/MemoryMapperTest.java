@@ -1,6 +1,9 @@
 package mips;
 
 import mips.exception.UnmappedAddressException;
+import mips.memory.DataMemory;
+import mips.memory.MappedMemoryUnit;
+import mips.memory.MemoryMapper;
 import org.junit.Before;
 import org.junit.Test;
 
