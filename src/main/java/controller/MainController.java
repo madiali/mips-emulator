@@ -160,6 +160,9 @@ public class MainController implements Initializable {
     // Reset execution state, if user presses Open multiple times
     isExecuting = false;
     statusLabel.setText("Program hasn't started. Press Go to start.");
+    if (!otherMemoryTabPane.getTabs().isEmpty()) {
+      otherMemoryTabPane.getTabs().clear();
+    }
 
     // Model instantiation
     ProgramLoader pl = new ProgramLoader(selectedFile);
@@ -296,7 +299,7 @@ public class MainController implements Initializable {
     VgaDisplayBMPController.renderVGA();
     RegistersController.renderRegisterTable();
     DataMemoryController.renderDataMemoryTable();
-    OtherMemoryController.renderAllTables();
+    otherMemoryController.renderAllTables();
   }
 
   /**

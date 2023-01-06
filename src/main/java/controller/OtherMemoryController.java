@@ -23,10 +23,10 @@ public class OtherMemoryController {
   // Since dmem is under its own tab, it shouldn't be in OtherMemory.
   private static final String dmemMappedStartAddr = "10010000";
 
-  private static TabPane otherMemoryTabPane;
-  private static List<MappedMemoryUnit> mappedMemoryUnits = new ArrayList<>();
-  private static List<TableView> tableViewList = new ArrayList<>();
-  private static List<ObservableList<Map<String, Object>>> memoryItemsList = new ArrayList<>();
+  private TabPane otherMemoryTabPane;
+  private List<MappedMemoryUnit> mappedMemoryUnits = new ArrayList<>();
+  private List<TableView> tableViewList = new ArrayList<>();
+  private List<ObservableList<Map<String, Object>>> memoryItemsList = new ArrayList<>();
 
   public OtherMemoryController(Mips mips, TabPane otherMemoryTabPane) {
     this.otherMemoryTabPane = otherMemoryTabPane;
@@ -39,16 +39,19 @@ public class OtherMemoryController {
         mappedMemoryUnits.add(mmu);
       }
     }
+    initializeTabs();
+    initializeTableViews();
+  }
+
+  private void initializeTabs() {
     for (MappedMemoryUnit mmu : mappedMemoryUnits) {
       Tab tab = new Tab(mmu.getName());
       TableView tv = new TableView();
       tab.setContent(tv);
-
       otherMemoryTabPane.getTabs().add(tab);
       tableViewList.add(tv);
       memoryItemsList.add(FXCollections.<Map<String, Object>>observableArrayList());
     }
-    initializeTableViews();
   }
 
   private void initializeTableViews() {
@@ -79,7 +82,7 @@ public class OtherMemoryController {
     }
   }
 
-  public static void renderAllTables() {
+  public void renderAllTables() {
     for (int i = 0; i < mappedMemoryUnits.size(); i++) {
       MappedMemoryUnit mmu = mappedMemoryUnits.get(i);
       for (int relativeAddress = 0; relativeAddress < mmu.getSize(); relativeAddress += mmu.getWordSize()) {
