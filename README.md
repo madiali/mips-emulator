@@ -2,7 +2,7 @@
 
 We ported https://github.com/jordanel/mips-emulator to Java so the app works on any operating system. We are currently working on finishing the GUI and some small features.
 
-Documentation, mostly taken from the original repo's README. Check the Issues page for known bugs/limitations.
+Documentation, mostly taken from the original repo's README. Check the [Wiki](https://github.com/madiali/mips-emulator/wiki) for [known bugs/limitations](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations).
 
 ---
 
