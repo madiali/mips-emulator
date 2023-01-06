@@ -1,6 +1,6 @@
 {
-  "comment": "I removed Sound from this JSON because it's not implemented so throws an error",
-  "projectName": "Rubik's",
+  "comment": "I removed Sound from this JSON for now because it's not implemented so throws an error - Jesse",
+  "projectName": "Rubik's cube simulator",
   "schema": "1.0",
   "instructionSet": "2018",
   "programCounter": 0,

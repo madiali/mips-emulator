@@ -9,7 +9,7 @@
  * We solved this by updating the ImageView in VgaDisplayBMPController instead of adding new
  * ImageView's.
  */
-package controller;
+package controller.temp;
 
 import controller.DataMemoryController;
 import controller.MainController;

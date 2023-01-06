@@ -20,4 +20,5 @@ module mips.emulator {
     opens controller to javafx.fxml;
     exports GUI.temp;
     opens GUI.temp to javafx.fxml;
+    opens controller.temp to javafx.fxml;
 }

@@ -6,7 +6,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import mips.Mips;
 import mips.ProgramLoader;
 import mips.Registers;
@@ -22,11 +21,10 @@ import java.util.ResourceBundle;
  *
  * <p>Implement Initializable to call initialize() method - user is forced to load a JSON at
  * startup. mips won't be null at startup. This is a bit lazy but prevents us from having to worry
- * about edge cases related to a JSON not being open. TODO: Improve this lol
+ * about edge cases related to a JSON not being open.
  */
 public class MainController implements Initializable {
   private Mips mips;
-  private static Stage stage;
   private static AccelerometerController accelControl;
   private static VgaDisplayBMPController vgaDispControl;
   private static RegistersController registersController;
@@ -107,8 +105,8 @@ public class MainController implements Initializable {
     Registers.registerToName(regNum);
   }
 
-  public void setStage(Stage stage) {
-    this.stage = stage;
+  public Mips getMips() {
+    return mips;
   }
 
   /*
@@ -155,11 +153,13 @@ public class MainController implements Initializable {
     fc.setTitle("Open project JSON");
     fc.getExtensionFilters()
         .add(new FileChooser.ExtensionFilter("Project configuration JSON file", "*.json"));
-    File selectedFile = fc.showOpenDialog(this.stage);
+    // showOpenDialog expects a Stage as its argument but seems to work fine when passed null
+    // Probably used when there are multiple windows? Unnecessary here, though
+    File selectedFile = fc.showOpenDialog(null);
 
     // Reset execution state, if user presses Open multiple times
     isExecuting = false;
-    statusLabel.setText("Program hasn't started. Press Run > Go to start.");
+    statusLabel.setText("Program hasn't started. Press Go to start.");
 
     // Model instantiation
     ProgramLoader pl = new ProgramLoader(selectedFile);
@@ -175,8 +175,6 @@ public class MainController implements Initializable {
     this.dataMemoryController = new DataMemoryController(mips, dataMemoryTable);
     this.otherMemoryController = new OtherMemoryController(mips, otherMemoryTabPane);
     this.keyboardController = new KeyboardController(mips);
-
-    vgaDispControl.renderVGA();
   }
 
   /*
@@ -211,9 +209,12 @@ public class MainController implements Initializable {
   public void handlePause() throws InterruptedException {
     isExecuting = false;
     enableTabs();
-    execution.join();
+    // Prevents NullPointerException when user presses Pause before pressing Go, which creates the Thread.
+    if (execution != null) {
+      execution.join();
+    }
     renderAllDisplays();
-    statusLabel.setText("Program is paused. Step forward with Run > Step Forward.");
+    statusLabel.setText("Program is paused. Press Step to step forward.");
   }
 
   /** Refreshes everything since program is now paused and speed (probably) doesn't matter. */
@@ -223,7 +224,7 @@ public class MainController implements Initializable {
       isExecuting = false;
       enableTabs();
       execution.join();
-      statusLabel.setText("Program is paused. Step forward with Run > Step Forward.");
+      statusLabel.setText("Program is paused. Press Step to step forward.");
     }
     mips.executeNext();
     renderAllDisplays();
@@ -287,10 +288,9 @@ public class MainController implements Initializable {
   }
 
   /**
-   * This will slow the program to an unusable speed if called in the handleRun loop. Using
-   * Deprecated tag to prevent unwanted usage.
+   * Warning: this will slow the program to an unusable speed if called in ExecuteAll. Use only when
+   * stepping forward.
    */
-  @Deprecated
   public void renderAllDisplays() {
     InstructionMemoryController.renderInstructionMemoryTable();
     VgaDisplayBMPController.renderVGA();
@@ -303,13 +303,12 @@ public class MainController implements Initializable {
    * This method is called at startup, so user is prompted for JSON at startup. This prevents us
    * from having to worry about edge cases that happen when a JSON is not loaded.
    *
-   * <p>TODO: We can improve this (without JSON, show app and gray out relevant buttons, etc.)
-   *
    * @param url
    * @param resourceBundle
    */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
+    System.out.println("Load a project config JSON file to show the GUI. Examples are shown in GitHub under src/Test/TestProjects/");
     try {
       handleOpen();
     } catch (IOException ioe) {

@@ -15,9 +15,8 @@ public class AppLauncher extends Application {
         Parent root = loader.load();
 
         MainController controller = loader.getController();
-        controller.setStage(stage);
 
-        stage.setTitle("MIPS Emulator");
+        stage.setTitle(controller.getMips().getName());
         stage.setMaximized(true);
         stage.setResizable(false);
         Scene scene = new Scene(root);
