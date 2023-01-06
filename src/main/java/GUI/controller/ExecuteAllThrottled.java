@@ -8,7 +8,7 @@ import mips.memory.MappedMemoryUnit;
 import mips.memory.ScreenMemory;
 
 public class ExecuteAllThrottled implements Runnable {
-  private static final double TARGET_CONSTANT = 0.9;
+  private static final double TARGET_CONSTANT = 0.85;
 
   private Mips mips;
   private double clockSpeed;
