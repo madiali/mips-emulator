@@ -2,7 +2,7 @@
 
 We ported https://github.com/jordanel/mips-emulator to Java so the app works on any operating system. We are currently working on finishing the GUI and some small features.
 
-Documentation, mostly taken from the original repo's README. Check the [Wiki](https://github.com/madiali/mips-emulator/wiki) for [known bugs/limitations](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations).
+Here's some documentation, mostly taken from the original repo's README. Check the [Wiki](https://github.com/madiali/mips-emulator/wiki) for [known bugs/limitations](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations).
 
 ---
 
@@ -48,9 +48,5 @@ Any memory unit intended to be mapped and accessible to the MIPS program must ha
 - Keyboard - Read only memory containing the current keyboard scan code
 - Sound - Read only memory containing the period of the waveform used by the sound module
 - Accelerometer - Read only memory containing the X and Y accelerometer values in the following format: `{7'b0, accelX, 7'b0, accelY}`
-- AccelerometerX - Read only memory containing the X value of the accelerometer module
-- AccelerometerY - Read only memory containing the Y value of the accelerometer module
-
-### Known bugs/limitations ###
-
-Please see the issues page.
+- ~~AccelerometerX - Read only memory containing the X value of the accelerometer module~~ (not supported; use Accelerometer)
+- ~~AccelerometerY - Read only memory containing the Y value of the accelerometer module~~ (not supported; use Accelerometer)
