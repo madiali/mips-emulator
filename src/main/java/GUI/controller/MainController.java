@@ -77,32 +77,8 @@ public class MainController implements Initializable {
     return mips.getName();
   }
 
-  public float getClockSpeed() {
-    return mips.getClockSpeed();
-  }
-
-  public void setClockSpeed(float newClockSpeed) {
-    mips.setClockSpeed(newClockSpeed);
-  }
-
-  public void executeNext() {
-    mips.executeNext();
-  }
-
-  public void executeAll() {
-    mips.executeAll();
-  }
-
-  public int getReg(int regNum) {
-    return mips.getReg().getRegister(regNum);
-  }
-
   public void setReg(int regNum, int val) {
     mips.getReg().setRegister(regNum, val);
-  }
-
-  public void regToName(int regNum) {
-    Registers.registerToName(regNum);
   }
 
   public Mips getMips() {
