@@ -1,4 +1,4 @@
-package controller;
+package GUI.controller;
 
 public class Stopwatch {
     private long startTime;

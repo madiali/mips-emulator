@@ -1,4 +1,4 @@
-package mips;
+package mips.exception;
 
 public class MappingException extends IllegalArgumentException {
   public MappingException(String message) {

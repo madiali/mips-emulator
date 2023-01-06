@@ -12,7 +12,7 @@
  * <p>Original code doesn't access mips.memory (memory mapping) to get bmem and smem, so we don't
  * need to do so here either? TODO: look into this
  */
-package controller;
+package GUI.controller;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

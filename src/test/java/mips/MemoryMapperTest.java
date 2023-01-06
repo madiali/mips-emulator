@@ -1,5 +1,6 @@
 package mips;
 
+import mips.exception.UnmappedAddressException;
 import org.junit.Before;
 import org.junit.Test;
 

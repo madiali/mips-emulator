@@ -16,7 +16,7 @@
  *
  * <p>https://github.com/jordanel/mips-emulator/blob/master/MIPS%20Emulator.GUI/keyboard.ini
  */
-package controller;
+package GUI.controller;
 
 import javafx.scene.input.KeyCode;
 import mips.Keyboard;

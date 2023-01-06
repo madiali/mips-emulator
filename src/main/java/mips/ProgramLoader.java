@@ -23,6 +23,8 @@ package mips;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.*;
+
+import mips.exception.MappingException;
 import org.json.*;
 
 public class ProgramLoader {

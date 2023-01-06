@@ -1,4 +1,4 @@
-package mips;
+package mips.exception;
 
 public class UnknownInstructionException extends IllegalArgumentException {
   public UnknownInstructionException(int instruction) {

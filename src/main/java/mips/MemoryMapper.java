@@ -1,5 +1,7 @@
 package mips;
 
+import mips.exception.UnmappedAddressException;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package mips;
 
+import mips.exception.UnknownInstructionException;
 import mips.instructions.IType.*;
 import mips.instructions.Instruction;
 import mips.instructions.JType.*;

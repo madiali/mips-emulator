@@ -2,7 +2,7 @@
  * A cool feature we could add - highlight the instruction that is currently being executed, if
  * possible. May not require a refresh of the whole table?
  */
-package controller;
+package GUI.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

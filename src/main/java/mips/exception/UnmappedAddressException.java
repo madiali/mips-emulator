@@ -1,4 +1,4 @@
-package mips;
+package mips.exception;
 
 public class UnmappedAddressException extends IllegalArgumentException {
   public UnmappedAddressException(int address) {

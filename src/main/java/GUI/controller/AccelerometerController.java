@@ -1,4 +1,4 @@
-package controller;
+package GUI.controller;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

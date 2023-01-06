@@ -1,4 +1,4 @@
-package controller;
+package GUI.controller;
 
 import mips.MappedMemoryUnit;
 import mips.Mips;

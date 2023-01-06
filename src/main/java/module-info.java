@@ -7,5 +7,5 @@ module mips.emulator {
     opens GUI to javafx.fxml;
 
     // Required for project.fxml to be able to use Controller
-    opens controller to javafx.fxml;
+    opens GUI.controller to javafx.fxml;
 }
