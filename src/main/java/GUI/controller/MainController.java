@@ -137,7 +137,7 @@ public class MainController implements Initializable {
       execution.join();
     }
     renderAllDisplays();
-    statusLabel.setText("Program is paused. Press Step to step forward.");
+    statusLabel.setText("Program is paused. Press Step to step forward. View instruction at current PC value in Instruction Memory tab.");
   }
 
   /** Refreshes everything since program is now paused and speed (probably) doesn't matter. */
@@ -147,7 +147,7 @@ public class MainController implements Initializable {
       isExecuting = false;
       enableTabs();
       execution.join();
-      statusLabel.setText("Program is paused. Press Step to step forward.");
+      statusLabel.setText("Program is paused. Press Step to step forward. View instruction at current PC value in Instruction Memory tab.");
     }
     mips.executeNext();
     renderAllDisplays();

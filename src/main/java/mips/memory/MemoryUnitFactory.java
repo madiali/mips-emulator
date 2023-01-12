@@ -21,7 +21,7 @@ public class MemoryUnitFactory {
     } else if (type.equals("Accelerometer")) {
       return new Accelerometer(length, wordSize);
     } else if (type.equals("Sound")) {
-      throw new IllegalArgumentException("We have not yet implemented Sound");
+      throw new IllegalArgumentException("We have not yet implemented Sound! Please remove it from your JSON");
     } else {
       throw new IllegalArgumentException("Invalid MemoryUnit type provided: " + type);
     }
@@ -35,21 +35,21 @@ public class MemoryUnitFactory {
   public MemoryUnit createMemoryUnit(String type) {
     if (type.equals("InstructionMemory")) {
       throw new IllegalArgumentException(
-          "InstructionMemory requires length, initFile, or wordSize");
+          "InstructionMemory requires length, initFile, or wordSize in the JSON");
     } else if (type.equals("DataMemory")) {
-      throw new IllegalArgumentException("DataMemory requires length, initFile, or wordSize");
+      throw new IllegalArgumentException("DataMemory requires length, initFile, or wordSize in the JSON");
     } else if (type.equals("BitmapMemory")) {
-      throw new IllegalArgumentException("BitmapMemory requires length, initFile, or wordSize");
+      throw new IllegalArgumentException("BitmapMemory requires length, initFile, or wordSize in the JSON");
     } else if (type.equals("ScreenMemory")) {
-      throw new IllegalArgumentException("ScreenMemory requires length, initFile, or wordSize");
+      throw new IllegalArgumentException("ScreenMemory requires length, initFile, or wordSize in the JSON");
     } else if (type.equals("Keyboard")) {
       return new Keyboard();
     } else if (type.equals("Accelerometer")) {
       return new Accelerometer();
     } else if (type.equals("Sound")) {
-      throw new IllegalArgumentException("We have not yet implemented Sound");
+      throw new IllegalArgumentException("We have not yet implemented Sound! Please remove it from your JSON");
     } else {
-      throw new IllegalArgumentException("Invalid MemoryUnit type provided: " + type);
+      throw new IllegalArgumentException("Invalid MemoryUnit type provided in the JSON: " + type);
     }
   }
 }
