@@ -1,8 +1,10 @@
 # MIPS Emulator
 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/qVxx6SMaJdg/0.jpg)](https://www.youtube.com/watch?v=qVxx6SMaJdg)
+
 We ported https://github.com/jordanel/mips-emulator to Java so the app works on any OS. Credit to Jordan Elliot et al. for their original and awesome work!
 
-Below is documentation from the OG repo. Please read below to understand how to configure your project with a required JSON file. Check the [Wiki](https://github.com/madiali/mips-emulator/wiki) for [known bugs/limitations](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations).
+Below is documentation from the OG repo. Please read below to understand how to configure your project with a JSON file required on startup. Check the [Wiki](https://github.com/madiali/mips-emulator/wiki) for [known bugs/limitations](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations).
 
 ---
 
