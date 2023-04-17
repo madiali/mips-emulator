@@ -4,19 +4,39 @@
 
 We ported https://github.com/jordanel/mips-emulator to Java so the app works on any OS. Credit to Jordan Elliot et al. for their original and awesome work!
 
-Below is documentation from the OG repo. Please read below to understand how to configure your project with a JSON file required on startup. Check the [Wiki](https://github.com/madiali/mips-emulator/wiki) for [known bugs/limitations](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations).
+## Install
+
+Go to [Releases](https://github.com/madiali/mips-emulator/releases) and download the latest version.
+
+## Setup
+
+Check that your Java JDK version is at least 16 with `java --version`.
+
+Before running the `.jar`, you will need to set up the directory with a **required configuration** `.json` file and
+your project's `.mem` files.
+
+See [CatsAndDogs](src/test/TestProjects/CatsAndDogs) for an example.
+
+Put the `.jar` file and all your project files (including the configuration JSON file) in the same directory.
+
+![dir](https://i.imgur.com/zbGJpbV.png)
+
+Modify the `.json` file for your own needs. At minimum, you will need to set the names of your `.mem` files. 
+More examples are given in [`src/test/TestProjects`](src/test/TestProjects).
+
+Lastly, run the `.jar` file with `java -jar <path-to-jar-file>` or however you normally run `.jar` files.
 
 ---
 
 MIPS Emulator is an emulator designed to support customized MIPS processors using memory-mapped I/O based on designs from UNC Chapel Hill’s Digital Logic course. Please add any issues found to the issues page. This emulator is more restrictive than the FPGAs used in the course, so cases in which something works on the board but not on the emulator may not be issues. On the other hand, anything that works on the emulator but not on the board is likely an issue and should be reported.
 
-## Project Files ##
+## Project Files
 
 A MIPS Emulator project is configured using a **required JSON file**. See the examples in [src/test/TestProjects](https://github.com/madiali/mips-emulator/tree/main/src/test/TestProjects). [full_test](https://github.com/madiali/mips-emulator/tree/main/src/test/TestProjects/full_test), [imem_test](https://github.com/madiali/mips-emulator/tree/main/src/test/TestProjects/imem_test), and [PoopEmoji 💩](https://github.com/madiali/mips-emulator/tree/main/src/test/TestProjects/PoopEmoji) are from the OG repo. The JSON files in full_test, CatsAndDogs, and Rubik's follow project specifications and won't need to be modified much, if at all, for your project.
 
 This JSON file contains project-level information as well as configuration and mapping information for any memory units needed by the project. A project can also include multiple memory initialization files, used to set the starting values of configured memories. Numeric values may also be passed as a hexadecimal or binary string prefixed with `0x` and `0b` respectively.
 
-### Project File Elements ###
+### Project File Elements
 
 - projectName: The name of your project. Will appear on the emulator title bar.
 - programCounter (optional): The starting program counter value.
@@ -33,7 +53,7 @@ This JSON file contains project-level information as well as configuration and m
         - filepath: The path to the memory initialization file (typically a .txt or .mem file).
         - format (optional): The representation of values in the memory initialization file (hex, dec, bin). Defaults to hex.
 
-### Additional Mapping Information ###
+### Additional Mapping Information
 
 Arbitrarily sized memory units (InstructionMemory, DataMemory, ScreenMemory, BitmapMemory) must be configured using a length or initFile.
 
@@ -43,7 +63,7 @@ Any memory unit intended to be mapped and accessible to the MIPS program must ha
 - startAddr, endAddr
 - startAddr, size
 
-### Memory Unit Types ###
+### Memory Unit Types
 
 - InstructionMemory - Read only memory containing the instructions of the MIPS program
 - DataMemory - Read/write memory containing data used by the MIPS program. Can be used in place of unimplemented memory units
