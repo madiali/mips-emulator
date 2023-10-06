@@ -37,6 +37,20 @@
         "factorypath",
         "nbproject",
         "nbbuild",
-        "nbdist"
+        "nbdist",
+        "smem",
+        "millisec",
+        "smem",
+        "printscreen",
+        "pgdown",
+        "scancode",
+        "scancodes",
+        "lolz",
+        "numpad",
+        "braceleft",
+        "braceright",
+        "aioobe",
+	"imem",
+	"dmem"
     ]
 }
