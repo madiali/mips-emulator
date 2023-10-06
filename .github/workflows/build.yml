@@ -1,0 +1,44 @@
+name: Test and build JAR
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Git repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ubuntu
+        run: sudo apt-get update
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Test and build JAR
+        run: |
+          mvn --batch-mode --update-snapshots verify --file pom.xml
+          cp target/*.jar .
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ github.event.repository.name }}
+          path: |
+            src/
+            *.jar
+            *.txt
+
+      # https://github.com/codespell-project/actions-codespell
+      - name: CSpell
+        uses: streetsidesoftware/cspell-action@v3
+        with:
+          config: "cspell.json"

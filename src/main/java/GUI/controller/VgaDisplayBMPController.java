@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class VgaDisplayBMPController {
   private static final int GRID_WIDTH = 40;
@@ -74,11 +75,11 @@ public class VgaDisplayBMPController {
     VgaDisplayBMPController.vgaDisplay = vgaDisplay;
     screenMemory =
         (ScreenMemory)
-            mips.getMemory().getMemUnits().stream()
-                .filter(mappedMemoryUnit -> mappedMemoryUnit.getMemUnit() instanceof ScreenMemory)
-                .toList()
-                .get(0)
-                .getMemUnit();
+            Objects.requireNonNull(mips.getMemory().getMemUnits().stream()
+                   .filter(mappedMemoryUnit -> mappedMemoryUnit.getMemUnit() instanceof ScreenMemory)
+                   .findFirst()
+                   .orElse(null))
+                   .getMemUnit();
     bitmapMemory = (BitmapMemory) mips.memDict.get(BitmapMemory.class).get(0);
     numSprites = bitmapMemory.getSize() / bitmapMemory.getWordSize() / SPRITE_SIZE;
 
