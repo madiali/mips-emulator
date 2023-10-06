@@ -22,10 +22,9 @@ import javafx.scene.input.KeyCode;
 import mips.Mips;
 import mips.memory.Keyboard;
 import mips.memory.MappedMemoryUnit;
-
 import java.util.Map;
-
 import static java.util.Map.entry;
+import java.util.Objects;
 
 public class KeyboardController {
   private Keyboard keyboard;
@@ -146,10 +145,10 @@ public class KeyboardController {
     MappedMemoryUnit mappedKeyboard;
     try {
       mappedKeyboard =
-          mips.getMemory().getMemUnits().stream()
+          Objects.requireNonNull(mips.getMemory().getMemUnits().stream()
               .filter(mappedMemoryUnit -> mappedMemoryUnit.getMemUnit() instanceof Keyboard)
-              .toList()
-              .get(0);
+              .findFirst()
+              .orElse(null));
     } catch (ArrayIndexOutOfBoundsException aioobe) {
       // If Keyboard isn't memory mapped (has startAddr or bitmask) in JSON, then the toList() is
       // empty and .get(0) causes IndexOutOfBoundsException. As mentioned in the docstring, we throw

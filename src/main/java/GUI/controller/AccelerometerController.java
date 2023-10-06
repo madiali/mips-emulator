@@ -10,6 +10,8 @@ import mips.memory.Accelerometer;
 import mips.memory.AccelerometerX;
 import mips.memory.AccelerometerY;
 
+import java.util.Objects;
+
 public class AccelerometerController {
   private AccelerometerX accelerometerX;
   private AccelerometerY accelerometerY;
@@ -40,11 +42,11 @@ public class AccelerometerController {
     try {
       mappedAccelerometer =
           (Accelerometer)
-              mips.getMemory().getMemUnits().stream()
+              Objects.requireNonNull(mips.getMemory().getMemUnits().stream()
                   .filter(
-                      mappedMemoryUnit -> mappedMemoryUnit.getMemUnit() instanceof Accelerometer)
-                  .toList()
-                  .get(0)
+                          mappedMemoryUnit -> mappedMemoryUnit.getMemUnit() instanceof Accelerometer)
+                  .findFirst()
+                  .orElse(null))
                   .getMemUnit();
     } catch (ArrayIndexOutOfBoundsException aioobe) {
       // If Accelerometer isn't memory mapped (has startAddr or bitmask) in JSON, then the toList()

@@ -6,6 +6,7 @@ import mips.instructions.IType.SwInstruction;
 import mips.instructions.Instruction;
 import mips.memory.MappedMemoryUnit;
 import mips.memory.ScreenMemory;
+import java.util.Objects;
 
 public class ExecuteAllThrottled implements Runnable {
   private static final double TARGET_CONSTANT = 0.85;
@@ -21,10 +22,10 @@ public class ExecuteAllThrottled implements Runnable {
     this.clockSpeed = clockSpeed;
     reg = mips.getReg();
     MappedMemoryUnit screenMemory =
-        mips.getMemory().getMemUnits().stream()
+        Objects.requireNonNull(mips.getMemory().getMemUnits().stream()
             .filter(mappedMemoryUnit -> mappedMemoryUnit.getMemUnit() instanceof ScreenMemory)
-            .toList()
-            .get(0);
+            .findFirst()
+            .orElse(null));
     smemStartAddr = screenMemory.getStartAddr();
     smemEndAddr = screenMemory.getEndAddr();
   }
