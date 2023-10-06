@@ -20,7 +20,7 @@ jobs:
       - name: Set up Java 11 x86_64
         uses: actions/setup-java@v3
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
           architecture: x64
           java-package: jdk+fx
@@ -34,7 +34,7 @@ jobs:
       - name: Set up Java 11 ARM64
         uses: actions/setup-java@v3
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
           architecture: aarch64
           java-package: jdk+fx
