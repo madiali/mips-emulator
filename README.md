@@ -10,52 +10,53 @@ The original [MIPS emulator](https://github.com/jordanel/mips-emulator) was prog
 
 ## Install
 
-Go to [Releases](https://github.com/madiali/mips-emulator/releases), and download the latest version.
+Download the [latest release](https://github.com/madiali/mips-emulator/releases/latest).
 
 If you're using Windows, also consider the [original MIPS emulator](https://github.com/jordanel/mips-emulator) (C#, Windows-only).
 
 ## Setup
 
-The `.jar` has been tested on JDK 17, 18, and 19 (check your version with `java --version`). JDK 20 may not work. 
+The `.jar` has been tested on JDK 11 (check your version with `java --version`).
 
 Before running the `.jar`, set up a directory with a **required configuration** `.json` file and
 your project's `.mem` files. You will be prompted to load a JSON file when the application runs.
 
 <p align="center">
   <img width="250" align="center" src="https://i.imgur.com/IV7vATs.png"> 
+  <figcaption>Example project structure - <a href="src/test/TestProjects/CatsAndDogs">CatsAndDogs</a></figcaption>
 </p>
-
-<p align="center"><a href="src/test/TestProjects/CatsAndDogs">CatsAndDogs</a></p>
 
 <p align="center">
   <img width="250" src="https://i.imgur.com/QqoMuB9.png"> 
+  <figcaption><a href="src/test/TestProjects/CatsAndDogs/catsAndDogs.json">catsAndDogs.json</a></figcaption>
 </p>
 
-<p align="center"><a href="src/test/TestProjects/CatsAndDogs/catsAndDogs.json">catsAndDogs.json</a></p>
-
-Modify the `.json` file for your own needs. Mostly everything should stay the same, but at minimum, you will need to provide the names of your `.mem` files.
+You can find an example JSON file `catsAndDogs.json` at the link above.
+Modify the `.json` for your own needs. Mostly everything should stay the same, but at minimum,
+you will need to provide the names of your `.mem` files.
 
 You can create additional Data Memory mappings to view mapped data memory values in the emulator.
 See [Rubik's](src/test/TestProjects/Rubik's/rubiks.json) for an example.
 
-This should be all you need, but if you need advanced capabilities, see [below](#project-files) for more information.
-
-Lastly, there are more examples of project JSON files in the OG [MIPS emulator repo](https://github.com/jordanel/mips-emulator/tree/master/projects).
+There are more examples of project JSON files in the OG [MIPS emulator repo](https://github.com/jordanel/mips-emulator/tree/master/projects).
 Specifically, [full_test](https://github.com/jordanel/mips-emulator/tree/master/projects/full_test) is a great place to start.
 However, note that we have not implemented `Sound` in this emulator, so don't map `Sound` in a JSON file for our emulator.
-Similarly, don't map `AccelerometerX` or `AccelerometerY` (just use `Accelerometer`).
+Similarly, don't map `AccelerometerX` or `AccelerometerY` (just use `Accelerometer`, which has all the
+capabilities of both `AccelerometerX` and `AccelerometerY`).
+
+This should be all you need, but if you need advanced capabilities, see [below](#project-files) for more information.
 
 ## Run
 
 ```sh
-java -jar <path-to-mips-emulator-jar>
+java -jar <path-to-mips-emulator.jar>
 ```
-
-Or run however you normally run `.jar` files.
 
 ## Bugs and limitations
 
 If you run into any issues, check [the wiki page](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations).
+
+Report issues at [Issues](https://github.com/madiali/mips-emulator/issues).
 
 ---
 
@@ -82,7 +83,7 @@ This JSON file contains project-level information as well as configuration and m
     - size (optional*): The mapped size (number of addresses) of the memory unit.
     - length (optional): The number of memory locations in the memory unit. If not present, will be set to the size of the init file.
     - wordSize (optional): The size of a word in this memory unit (defaults to 4). Determines the number of addresses between values. Must be a power of 2.
-    - initFile (optional): Information about the memory intialization file for this memory unit.
+    - initFile (optional): Information about the memory initialization file for this memory unit.
         - filepath: The path to the memory initialization file (typically a .txt or .mem file).
         - format (optional): The representation of values in the memory initialization file (hex, dec, bin). Defaults to hex.
 

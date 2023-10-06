@@ -50,7 +50,8 @@
         "braceleft",
         "braceright",
         "aioobe",
-	"imem",
-	"dmem"
+	    "imem",
+	    "dmem",
+        "bitmask"
     ]
 }
