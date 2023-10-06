@@ -52,6 +52,11 @@
         "aioobe",
 	    "imem",
 	    "dmem",
-        "bitmask"
+        "bitmask",
+        "openjfx",
+        "javafx",
+        "controlsfx",
+        "kordamp",
+        "bootstrapfx",
     ]
 }
