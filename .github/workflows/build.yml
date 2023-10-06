@@ -23,7 +23,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           architecture: x64
-          java-package: jdk+fx
+          # java-package: jdk+fx
 
       - name: Build x86_64 JAR
         run: |
@@ -37,7 +37,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           architecture: aarch64
-          java-package: jdk+fx
+          # java-package: jdk+fx
 
       - name: Build ARM64 JAR
         run: |
