@@ -16,20 +16,22 @@ If you're using Windows, also consider the [original MIPS emulator](https://gith
 
 ## Setup
 
-The `.jar` has been tested on JDK 11 (check your version with `java --version`).
+The `.jar` has been tested on JDK 11 and should also be compatible with later Java versions (check your version with `java --version`). It has been tested on an ARM64 M1 MacBook and an x86_64 Windows PC.
 
 Before running the `.jar`, set up a directory with a **required configuration** `.json` file and
 your project's `.mem` files. You will be prompted to load a JSON file when the application runs.
 
 <p align="center">
   <img width="250" align="center" src="https://i.imgur.com/IV7vATs.png"> 
-  <figcaption>Example project structure - <a href="src/test/TestProjects/CatsAndDogs">CatsAndDogs</a></figcaption>
 </p>
+
+<p align="center">Example project structure - <a href="src/test/TestProjects/CatsAndDogs">CatsAndDogs</a></p>
 
 <p align="center">
   <img width="250" src="https://i.imgur.com/QqoMuB9.png"> 
-  <figcaption><a href="src/test/TestProjects/CatsAndDogs/catsAndDogs.json">catsAndDogs.json</a></figcaption>
 </p>
+
+<p align="center"><a href="src/test/TestProjects/CatsAndDogs/catsAndDogs.json">catsAndDogs.json</a></p>
 
 You can find an example JSON file `catsAndDogs.json` at the link above.
 Modify the `.json` for your own needs. Mostly everything should stay the same, but at minimum,
