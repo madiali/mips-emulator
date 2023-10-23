@@ -11,12 +11,12 @@
  */
 package com.comp541.GUI;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import com.comp541.mips.Mips;
 import com.comp541.mips.memory.BitmapMemory;
 import com.comp541.mips.memory.ScreenMemory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 
 import java.io.File;
 import java.io.FileOutputStream;

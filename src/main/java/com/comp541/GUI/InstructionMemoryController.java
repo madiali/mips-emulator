@@ -4,13 +4,13 @@
  */
 package com.comp541.GUI;
 
+import com.comp541.mips.Mips;
+import com.comp541.mips.memory.InstructionMemory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
-import com.comp541.mips.Mips;
-import com.comp541.mips.memory.InstructionMemory;
 
 import java.util.HashMap;
 import java.util.Map;

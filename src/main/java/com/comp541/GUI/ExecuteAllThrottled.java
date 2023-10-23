@@ -6,6 +6,7 @@ import com.comp541.mips.instructions.IType.SwInstruction;
 import com.comp541.mips.instructions.Instruction;
 import com.comp541.mips.memory.MappedMemoryUnit;
 import com.comp541.mips.memory.ScreenMemory;
+
 import java.util.Objects;
 
 public class ExecuteAllThrottled implements Runnable {

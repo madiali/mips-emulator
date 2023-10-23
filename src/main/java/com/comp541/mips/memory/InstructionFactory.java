@@ -1,11 +1,11 @@
 package com.comp541.mips.memory;
 
-import com.comp541.mips.instructions.IType.*;
-import com.comp541.mips.instructions.JType.JInstruction;
-import com.comp541.mips.instructions.RType.*;
 import com.comp541.mips.exception.UnknownInstructionException;
+import com.comp541.mips.instructions.IType.*;
 import com.comp541.mips.instructions.Instruction;
+import com.comp541.mips.instructions.JType.JInstruction;
 import com.comp541.mips.instructions.JType.JalInstruction;
+import com.comp541.mips.instructions.RType.*;
 
 public class InstructionFactory {
   // A comment from the original code, but all these were already implemented in the original and

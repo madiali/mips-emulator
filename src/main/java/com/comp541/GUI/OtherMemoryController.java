@@ -1,5 +1,8 @@
 package com.comp541.GUI;
 
+import com.comp541.mips.Mips;
+import com.comp541.mips.memory.MappedMemoryUnit;
+import com.comp541.mips.memory.MemoryMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Tab;
@@ -7,9 +10,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
-import com.comp541.mips.Mips;
-import com.comp541.mips.memory.MappedMemoryUnit;
-import com.comp541.mips.memory.MemoryMapper;
 
 import java.util.ArrayList;
 import java.util.HashMap;

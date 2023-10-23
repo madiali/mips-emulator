@@ -1,14 +1,14 @@
 package com.comp541.GUI;
 
+import com.comp541.mips.Mips;
+import com.comp541.mips.memory.Accelerometer;
+import com.comp541.mips.memory.AccelerometerX;
+import com.comp541.mips.memory.AccelerometerY;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import com.comp541.mips.Mips;
-import com.comp541.mips.memory.Accelerometer;
-import com.comp541.mips.memory.AccelerometerX;
-import com.comp541.mips.memory.AccelerometerY;
 
 import java.util.Objects;
 

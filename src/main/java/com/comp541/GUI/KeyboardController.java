@@ -18,13 +18,15 @@
  */
 package com.comp541.GUI;
 
-import javafx.scene.input.KeyCode;
 import com.comp541.mips.Mips;
 import com.comp541.mips.memory.Keyboard;
 import com.comp541.mips.memory.MappedMemoryUnit;
+import javafx.scene.input.KeyCode;
+
 import java.util.Map;
-import static java.util.Map.entry;
 import java.util.Objects;
+
+import static java.util.Map.entry;
 
 public class KeyboardController {
   private Keyboard keyboard;

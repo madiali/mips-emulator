@@ -1,13 +1,13 @@
 package com.comp541.GUI;
 
+import com.comp541.mips.Mips;
+import com.comp541.mips.ProgramLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
-import com.comp541.mips.Mips;
-import com.comp541.mips.ProgramLoader;
 
 import java.io.File;
 import java.io.IOException;
