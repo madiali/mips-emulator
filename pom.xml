@@ -75,11 +75,6 @@
             <artifactId>maven-project-info-reports-plugin</artifactId>
             <version>3.4.5</version>
         </dependency>
-        <dependency>
-            <groupId>org.codehaus.mojo.versions</groupId>
-            <artifactId>versions</artifactId>
-            <version>2.16.0</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -280,28 +275,6 @@
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>3.4.5</version>
             </plugin>
-
-            <!-- http://mojo.codehaus.org/versions-maven-plugin/version-rules.html -->
-            <!-- This plugin is a utility to find outdated dependencies in your project. Just run mvn site and
-            the resulting HTML reports in target/site will let you know what plugins and dependencies are out of date.
-             -->
-<!--            <plugin>-->
-<!--                <groupId>org.codehaus.mojo</groupId>-->
-<!--                <artifactId>versions-maven-plugin</artifactId>-->
-<!--                <version>2.16.0</version>-->
-<!--                <reportSets>-->
-<!--                    <reportSet>-->
-<!--                        <reports>-->
-<!--                            <report>dependency-updates-report</report>-->
-<!--                            <report>plugin-updates-report</report>-->
-<!--                            <report>property-updates-report</report>-->
-<!--                        </reports>-->
-<!--                    </reportSet>-->
-<!--                </reportSets>-->
-<!--                <configuration>-->
-<!--                    <processDependencyManagementTransitive>false</processDependencyManagementTransitive>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
         </plugins>
     </reporting>
     <profiles>
