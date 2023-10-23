@@ -1,10 +1,11 @@
 package mips;
 
-import mips.instructions.Instruction;
-import mips.instructions.RType.*;
-import mips.instructions.IType.*;
-import mips.instructions.JType.*;
-import mips.memory.InstructionFactory;
+import com.comp541.mips.instructions.IType.*;
+import com.comp541.mips.instructions.Instruction;
+import com.comp541.mips.instructions.JType.JInstruction;
+import com.comp541.mips.instructions.JType.JalInstruction;
+import com.comp541.mips.instructions.RType.*;
+import com.comp541.mips.memory.InstructionFactory;
 import org.junit.Before;
 import org.junit.Test;
 

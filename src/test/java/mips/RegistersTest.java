@@ -1,5 +1,6 @@
 package mips;
 
+import com.comp541.mips.Registers;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 

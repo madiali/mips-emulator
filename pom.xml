@@ -99,7 +99,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>GUI.Main</mainClass>
+                    <mainClass>com.comp541.Main</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -115,7 +115,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        GUI.Main
+                                        com.comp541.Main
                                     </mainClass>
                                 </manifest>
                             </archive>

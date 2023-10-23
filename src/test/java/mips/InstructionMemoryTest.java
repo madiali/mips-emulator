@@ -1,9 +1,9 @@
 package mips;
 
-import mips.memory.InstructionMemory;
-import mips.instructions.Instruction;
-import mips.instructions.RType.*;
-import mips.instructions.IType.*;
+import com.comp541.mips.instructions.IType.LuiInstruction;
+import com.comp541.mips.instructions.RType.AddInstruction;
+import com.comp541.mips.memory.InstructionMemory;
+import com.comp541.mips.instructions.Instruction;
 import org.junit.Before;
 import org.junit.Test;
 
