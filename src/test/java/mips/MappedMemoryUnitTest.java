@@ -4,9 +4,9 @@
  */
 package mips;
 
-import mips.memory.DataMemory;
-import mips.memory.MappedMemoryUnit;
-import mips.memory.MemoryUnit;
+import com.comp541.mips.memory.DataMemory;
+import com.comp541.mips.memory.MappedMemoryUnit;
+import com.comp541.mips.memory.MemoryUnit;
 import org.junit.Before;
 import org.junit.Test;
 

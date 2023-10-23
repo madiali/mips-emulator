@@ -1,8 +1,9 @@
 package mips.instructions.JType;
 
-import mips.memory.MemoryMapper;
-import mips.ProgramCounter;
-import mips.Registers;
+import com.comp541.mips.instructions.JType.JInstruction;
+import com.comp541.mips.memory.MemoryMapper;
+import com.comp541.mips.ProgramCounter;
+import com.comp541.mips.Registers;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

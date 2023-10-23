@@ -1,7 +1,9 @@
 package mips;
 
-import mips.instructions.Instruction;
-import mips.memory.*;
+import com.comp541.mips.Mips;
+import com.comp541.mips.Registers;
+import com.comp541.mips.instructions.Instruction;
+import com.comp541.mips.memory.*;
 import org.junit.Before;
 import org.junit.Test;
 

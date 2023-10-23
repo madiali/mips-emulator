@@ -1,9 +1,11 @@
 package mips;
 
-import mips.instructions.Instruction;
-import mips.memory.DataMemory;
-import mips.memory.InstructionFactory;
-import mips.memory.MappedMemoryUnit;
+import com.comp541.mips.Mips;
+import com.comp541.mips.ProgramLoader;
+import com.comp541.mips.instructions.Instruction;
+import com.comp541.mips.memory.DataMemory;
+import com.comp541.mips.memory.InstructionFactory;
+import com.comp541.mips.memory.MappedMemoryUnit;
 import org.junit.Before;
 import org.junit.Test;
 

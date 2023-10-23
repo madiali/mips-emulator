@@ -4,19 +4,31 @@
   <img src="https://i.imgur.com/y0gdKg6.gif">
 </p>
 
-MIPS Emulator is an emulator designed to support customized MIPS processors using memory-mapped I/O based on designs from UNC Chapel Hill’s COMP 541 Digital Logic course.
+MIPS Emulator is an emulator that simulates final projects in UNC's COMP 541 (Digital Logic and Computer Design). It simulates customized MIPS processors using memory-mapped I/O and devices used in the final project, such as accelerometer, keyboard, screen, and LED. Whereas flashing the MIPS assembly project onto the FPGA board can take upwards of 10 minutes per flash, this emulator allows for instant testing and debugging.
 
-The original [MIPS emulator](https://github.com/jordanel/mips-emulator) was programmed in C#. We ported it to Java to allow the app to work on any OS. Credit to Jordan Elliot et al. for their original and awesome work!
+We ported the original [MIPS emulator](https://github.com/jordanel/mips-emulator) to Java to allow the app to work on any OS. Credit to [jordanel](https://github.com/jordanel), [@jsettlem](https://github.com/jsettlem), [@swali-unc](https://github.com/swali-unc), and [@MarkovInequality](https://github.com/MarkovInequality) for their awesome work!
 
 ## Install
 
-Download the [latest release](https://github.com/madiali/mips-emulator/releases/latest).
+### macOS/Linux
 
-If you're using Windows, also consider the [original MIPS emulator](https://github.com/jordanel/mips-emulator) (C#, Windows-only).
+You will need JDK 17+ with JavaFX packaged. For macOS and Ubuntu, run the command below to do so automatically.
 
-## Setup
+```bash
+curl -s "https://github.com/madiali/mips-emulator/blob/main/src/main/sh/install.sh" | bash
+```
 
-The `.jar` has been tested on JDK 11 and should also be compatible with later Java versions (check your version with `java --version`). It has been tested on an ARM64 M1 MacBook and an x86_64 Windows PC.
+This script installs [SDKMAN!](https://sdkman.io) and downloads a compatible JDK and sets it as your default JDK. If you would like to change your default JDK version when not using MIPS Emulator, see SDKMAN!'s [website](https://sdkman.io/usage).
+
+### Windows
+
+Download the [latest release](https://github.com/madiali/mips-emulator/releases/latest), the version named `with-dependencies`.
+
+TODO: Unfinished instructions for setting Java version
+
+[This version should work](https://www.azul.com/downloads/?version=java-17-lts&os=windows&architecture=x86-64-bit&package=jdk-fx#zulu)
+
+## Usage
 
 Before running the `.jar`, set up a directory with a **required configuration** `.json` file and
 your project's `.mem` files. You will be prompted to load a JSON file when the application runs.
@@ -62,17 +74,17 @@ Report issues at [Issues](https://github.com/madiali/mips-emulator/issues).
 
 ---
 
-# Other info paraphrased from OG MIPS emulator's README
+## Other info paraphrased from OG MIPS emulator's README
 
 Please add any issues found to the issues page. This emulator is more restrictive than the FPGAs used in the course, so cases in which something works on the board but not on the emulator may not be issues. On the other hand, anything that works on the emulator but not on the board is likely an issue and should be reported.
 
-## Project files
+### Project files
 
-A MIPS Emulator project is configured using a **required JSON file**, as described in the [Setup](#setup) section.
+A MIPS Emulator project is configured using a **required JSON file**, as described in the [Usage](#usage) section.
 
 This JSON file contains project-level information as well as configuration and mapping information for any memory units needed by the project. A project can also include multiple memory initialization files, used to set the starting values of configured memories. Numeric values may also be passed as a hexadecimal or binary string prefixed with `0x` and `0b` respectively.
 
-### Project JSON file elements
+#### Project JSON file elements
 
 - projectName: The name of your project. Will appear on the emulator title bar.
 - programCounter (optional): The starting program counter value.
@@ -89,7 +101,7 @@ This JSON file contains project-level information as well as configuration and m
         - filepath: The path to the memory initialization file (typically a .txt or .mem file).
         - format (optional): The representation of values in the memory initialization file (hex, dec, bin). Defaults to hex.
 
-### Additional mapping information
+#### Additional mapping information
 
 Arbitrarily sized memory units (InstructionMemory, DataMemory, ScreenMemory, BitmapMemory) must be configured using a length or initFile.
 
@@ -99,7 +111,7 @@ Any memory unit intended to be mapped and accessible to the MIPS program must ha
 - startAddr, endAddr
 - startAddr, size
 
-### Memory unit types
+#### Memory unit types
 
 - InstructionMemory - Read only memory containing the instructions of the MIPS program
 - DataMemory - Read/write memory containing data used by the MIPS program. Can be used in place of unimplemented memory units
