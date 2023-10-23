@@ -4,17 +4,25 @@
   <img src="https://i.imgur.com/y0gdKg6.gif">
 </p>
 
-MIPS Emulator is an emulator designed to support customized MIPS processors using memory-mapped I/O based on designs from UNC Chapel Hill’s COMP 541 Digital Logic course.
+MIPS Emulator is an emulator that simulates final projects in UNC's COMP 541. It simulates customized MIPS processors using memory-mapped I/O and devices used in the final project, such as accelerometer, keyboard, screen, and LED. Whereas flashing the MIPS assembly project onto the FPGA board can take upwards of 10 minutes per flash, this emulator allows for instant testing and debugging.
 
-The original [MIPS emulator](https://github.com/jordanel/mips-emulator) was programmed in C#. We ported it to Java to allow the app to work on any OS. Credit to Jordan Elliot et al. for their original and awesome work!
+We ported the original [MIPS emulator](https://github.com/jordanel/mips-emulator) to Java to allow the app to work on any OS. Credit to @jordanel, @jsettlem, @swali-unc, and @MarkovInequality for their awesome work!
 
 ## Install
 
 Download the [latest release](https://github.com/madiali/mips-emulator/releases/latest).
 
-If you're using Windows, also consider the [original MIPS emulator](https://github.com/jordanel/mips-emulator) (C#, Windows-only).
+## macOS/Linux
 
-## Setup
+You will need JDK 17+ with JavaFX packaged. For macOS and Ubuntu, run the command below to do so automatically.
+
+```bash
+
+```
+
+This script installs [SDKMAN!](https://sdkman.io) and downloads a compatible JDK and sets it as your default JDK. When not using MIPS Emulator, if you would like to change your default JDK version, see SDKMAN!'s [website](https://sdkman.io/usage).
+
+### Windows
 
 The `.jar` has been tested on JDK 11 and should also be compatible with later Java versions (check your version with `java --version`). It has been tested on an ARM64 M1 MacBook and an x86_64 Windows PC.
 
