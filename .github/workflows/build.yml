@@ -1,41 +1,35 @@
-name: Test and build JAR
+name: Build JAR with Maven
 
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main, build]
   pull_request:
+    branches: [main, build]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest]
     steps:
       - name: Checkout Git repository
         uses: actions/checkout@v4
 
-      - name: Set up Ubuntu
-        run: sudo apt-get update
-
-      - name: Set up Java 11 x86_64
+      - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '11'
-          distribution: 'temurin'
-          architecture: x64
+          java-version: 17.0.9
+          distribution: 'liberica'
+          java-package: jdk+fx
+          cache: 'maven'
 
-      - name: Build x86_64 JAR
-        run: |
-          mkdir x86
-          mvn --batch-mode --update-snapshots verify --file pom.xml
-          cp target/*.jar x86/
+      - name: Build JAR with Maven
+        run: mvn -B clean package --file pom.xml
 
-      - name: Upload artifacts
+      - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: ${{ github.event.repository.name }}
-          path: |
-            x86/*.jar
+          path: target/dependency/mips-emulator*dependencies*.jar
 
       # https://github.com/codespell-project/actions-codespell
       - name: CSpell
