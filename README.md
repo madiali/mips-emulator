@@ -6,13 +6,11 @@
 
 MIPS Emulator is an emulator that simulates final projects in UNC's COMP 541 (Digital Logic and Computer Design). It simulates customized MIPS processors using memory-mapped I/O and devices used in the final project, such as accelerometer, keyboard, screen, and LED. Whereas flashing the MIPS assembly project onto the FPGA board can take upwards of 10 minutes per flash, this emulator allows for instant testing and debugging.
 
-We ported the original [MIPS emulator](https://github.com/jordanel/mips-emulator) to Java to allow the app to work on any OS. Credit to @jordanel, @jsettlem, @swali-unc, and @MarkovInequality for their awesome work!
+We ported the original [MIPS emulator](https://github.com/jordanel/mips-emulator) to Java to allow the app to work on any OS. Credit to [jordanel](https://github.com/jordanel), [@jsettlem](https://github.com/jsettlem), [@swali-unc](https://github.com/swali-unc), and [@MarkovInequality](https://github.com/MarkovInequality) for their awesome work!
 
 ## Install
 
-Download the [latest release](https://github.com/madiali/mips-emulator/releases/latest).
-
-## macOS/Linux
+### macOS/Linux
 
 You will need JDK 17+ with JavaFX packaged. For macOS and Ubuntu, run the command below to do so automatically.
 
@@ -24,9 +22,13 @@ This script installs [SDKMAN!](https://sdkman.io) and downloads a compatible JDK
 
 ### Windows
 
-TODO: Unfinished instructions
+Download the [latest release](https://github.com/madiali/mips-emulator/releases/latest), the version named `with-dependencies`.
 
-The `.jar` has been tested on JDK 11 and should also be compatible with later Java versions (check your version with `java --version`). It has been tested on an ARM64 M1 MacBook and an x86_64 Windows PC.
+TODO: Unfinished instructions for setting Java version
+
+[This version should work](https://www.azul.com/downloads/?version=java-17-lts&os=windows&architecture=x86-64-bit&package=jdk-fx#zulu)
+
+## Usage
 
 Before running the `.jar`, set up a directory with a **required configuration** `.json` file and
 your project's `.mem` files. You will be prompted to load a JSON file when the application runs.
@@ -78,7 +80,7 @@ Please add any issues found to the issues page. This emulator is more restrictiv
 
 ### Project files
 
-A MIPS Emulator project is configured using a **required JSON file**, as described in the [Setup](#setup) section.
+A MIPS Emulator project is configured using a **required JSON file**, as described in the [Usage](#usage) section.
 
 This JSON file contains project-level information as well as configuration and mapping information for any memory units needed by the project. A project can also include multiple memory initialization files, used to set the starting values of configured memories. Numeric values may also be passed as a hexadecimal or binary string prefixed with `0x` and `0b` respectively.
 

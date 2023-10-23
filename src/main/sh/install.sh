@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 INSTALL_DIR=$HOME/.mips-emulator
-MIPS_EMULATOR=https://github.com/madiali/mips-emulator/releases/latest/download/mips-emulator-1.0.0.jar
+MIPS_EMULATOR=https://github.com/madiali/mips-emulator/releases/latest/download/mips-emulator-1.0.0-with-dependencies.jar
 # Must be a version with fx bundled
 JAVA_VER="17.0.9.fx-librca"
 # Everything after final slash in URL, don't change
@@ -15,7 +15,7 @@ source $HOME/.sdkman/bin/sdkman-init.sh
 yes | sdk install java $JAVA_VER
 # Just making sure
 sdk default java $JAVA_VER
-if sdk current java | grep -q "$JAVA_VER"; then
+if ! sdk current java | grep -q "$JAVA_VER"; then
     printf "This script was unable to set your Java version to $JAVA_VER (which has JavaFX for GUI bundled).
 
 You may proceed with installation of MIPS Emulator, but it is not guaranteed to work properly without java $JAVA_VER.
