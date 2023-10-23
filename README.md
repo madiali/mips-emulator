@@ -12,13 +12,11 @@ We ported the original [MIPS emulator](https://github.com/jordanel/mips-emulator
 
 ### macOS/Linux
 
-You will need JDK 17+ with JavaFX packaged. For macOS and Ubuntu, run the command below to do so automatically.
-
 ```bash
-curl -s "https://github.com/madiali/mips-emulator/blob/main/src/main/sh/install.sh" | bash
+curl -s "https://raw.githubusercontent.com/madiali/mips-emulator/main/src/main/sh/install.sh" | bash
 ```
 
-This script installs [SDKMAN!](https://sdkman.io) and downloads a compatible JDK and sets it as your default JDK. If you would like to change your default JDK version when not using MIPS Emulator, see SDKMAN!'s [website](https://sdkman.io/usage).
+This script installs [SDKMAN!](https://sdkman.io) to download a compatible JDK with JavaFX (for GUI) bundled and set it as your default JDK. If you would like to change your default JDK version when not using MIPS Emulator, see SDKMAN!'s [website](https://sdkman.io/usage).
 
 ### Windows
 
