@@ -65,11 +65,11 @@ public class AccelerometerController {
     }
   }
 
-  public void handleXSliderDrag() {
+  public void handleXSliderChange() {
     accelerometerX.setXValue((int) xSlider.getValue());
   }
 
-  public void handleYSliderDrag() {
+  public void handleYSliderChange() {
     accelerometerY.setYValue((int) ySlider.getValue());
   }
 

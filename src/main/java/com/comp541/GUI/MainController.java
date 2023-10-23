@@ -159,12 +159,22 @@ public class MainController implements Initializable {
 
   @FXML
   public void handleXSliderDrag() {
-    accelControl.handleXSliderDrag();
+    accelControl.handleXSliderChange();
   }
 
   @FXML
   public void handleYSliderDrag() {
-    accelControl.handleYSliderDrag();
+    accelControl.handleYSliderChange();
+  }
+
+  @FXML
+  public void handleXSliderClick() {
+    accelControl.handleXSliderChange();
+  }
+
+  @FXML
+  public void handleYSliderClick() {
+    accelControl.handleYSliderChange();
   }
 
   @FXML

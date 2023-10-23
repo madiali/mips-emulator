@@ -50,7 +50,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comp541.GUI.MainController">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comp541.GUI.MainController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
@@ -72,11 +72,11 @@
                             </padding>
                             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                 <Label text="X " fx:id="xLabel" />
-                                <Slider blockIncrement="1.0" max="511.0" nodeOrientation="RIGHT_TO_LEFT" onMouseDragged="#handleXSliderDrag" prefWidth="600.0" showTickLabels="true" value="255.0" fx:id="xSlider" />
+                                <Slider blockIncrement="1.0" max="511.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#handleXSliderClick" onMouseDragged="#handleXSliderDrag" prefWidth="600.0" showTickLabels="true" value="255.0" fx:id="xSlider" />
                             </HBox>
                             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                 <Label fx:id="yLabel" text="Y " />
-                                <Slider fx:id="ySlider" blockIncrement="1.0" max="511.0" nodeOrientation="RIGHT_TO_LEFT" onMouseDragged="#handleYSliderDrag" prefWidth="600.0" showTickLabels="true" value="255.0" />
+                                <Slider fx:id="ySlider" blockIncrement="1.0" max="511.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#handleYSliderClick" onMouseDragged="#handleYSliderDrag" prefWidth="600.0" showTickLabels="true" value="255.0" />
                             </HBox>
                             <Button fx:id="resetButton" mnemonicParsing="false" onAction="#handleResetButton" prefWidth="640.0" style="-fx-background-color: GRAY;" text="Reset sliders" textFill="WHITE">
                                 <font>
