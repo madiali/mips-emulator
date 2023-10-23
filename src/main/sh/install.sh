@@ -13,26 +13,10 @@ source $HOME/.sdkman/bin/sdkman-init.sh
 # sdkman asks whether to set the installed java version
 # as default. Answer yes
 yes | sdk install java $JAVA_VER
-# Just making sure
+# Make sure it's the default version
 sdk default java $JAVA_VER
-if ! sdk current java | grep -q "$JAVA_VER"; then
-    printf "This script was unable to set your Java version to $JAVA_VER (which has JavaFX for GUI bundled).
 
-You may proceed with installation of MIPS Emulator, but it is not guaranteed to work properly without java $JAVA_VER.
-
-Enter y if you understand and want to proceed with installation [y/n]: "
-    read proceed
-    # Convert proceed to lowercase
-    proceed_lower=$(echo "$proceed" | tr '[:upper:]' '[:lower:]')
-    if [[ "$proceed_lower" = "y" ]]; then
-        echo "Continuing installation"
-    else
-        echo "Halting"
-        exit 1
-    fi
-fi
-
-wget -P $INSTALL_DIR $MIPS_EMULATOR
+curl -OLH "Accept: application/zip" $MIPS_EMULATOR --create-dirs --output-dir $INSTALL_DIR
 
 # Determine name of shell rc file
 # This script will always be run via bash
