@@ -4,9 +4,9 @@
   <img src="https://i.imgur.com/y0gdKg6.gif">
 </p>
 
-MIPS Emulator is an emulator that simulates final projects in UNC's COMP 541 (Digital Logic and Computer Design). It simulates customized MIPS processors using memory-mapped I/O and devices used in the final project, such as accelerometer, keyboard, screen, and LED. Whereas flashing the MIPS assembly project onto the FPGA board can take upwards of 10 minutes per flash, this emulator allows for instant testing and debugging.
+MIPS Emulator simulates final projects in UNC's COMP 541 (Digital Logic and Computer Design). It simulates customized MIPS processors using memory-mapped I/O and devices used in the final project, such as accelerometer, keyboard, screen, and LED. Whereas flashing the MIPS assembly project onto the FPGA board can take upwards of 10 minutes per flash, this emulator allows for instant testing and debugging.
 
-We ported the original [MIPS emulator](https://github.com/jordanel/mips-emulator) to Java to allow the app to work on any OS. Credit to [jordanel](https://github.com/jordanel), [@jsettlem](https://github.com/jsettlem), [@swali-unc](https://github.com/swali-unc), and [@MarkovInequality](https://github.com/MarkovInequality) for their awesome work!
+We ported the original [MIPS emulator](https://github.com/jordanel/mips-emulator) to Java to allow the app to work on any OS. Credit to [@jordanel](https://github.com/jordanel), [@jsettlem](https://github.com/jsettlem), [@swali-unc](https://github.com/swali-unc), and [@MarkovInequality](https://github.com/MarkovInequality) for their awesome work!
 
 ## Install
 
@@ -110,7 +110,7 @@ This should be all you need, but if you need advanced capabilities, see [below](
 
 ## Bugs and limitations
 
-If you run into any issues, check [the wiki page](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations).
+If you run into any issues, first check [the wiki page](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations).
 
 Report issues at [Issues](https://github.com/madiali/mips-emulator/issues).
 
@@ -118,7 +118,7 @@ Report issues at [Issues](https://github.com/madiali/mips-emulator/issues).
 
 ## Other info paraphrased from OG MIPS emulator's README
 
-Please add any issues found to the issues page. This emulator is more restrictive than the FPGAs used in the course, so cases in which something works on the board but not on the emulator may not be issues. On the other hand, anything that works on the emulator but not on the board is likely an issue and should be reported.
+This emulator is more restrictive than the FPGAs used in the course, so cases in which something works on the board but not on the emulator may not be issues. On the other hand, anything that works on the emulator but not on the board is likely an issue and should be reported.
 
 ### Project files
 

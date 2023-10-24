@@ -16,8 +16,9 @@ yes | sdk install java $JAVA_VER
 # Make sure it's the default version
 sdk default java $JAVA_VER
 
+# Could use wget, but curl maximizes compatibility
+curl -OLH "Accept: application/zip" --remote-name $MIPS_EMULATOR
 mkdir -p $INSTALL_DIR
-curl -OLH "Accept: application/zip" --create-dirs --remote-name $MIPS_EMULATOR
 mv $JAR_NAME $INSTALL_DIR
 
 # Determine name of shell rc file
