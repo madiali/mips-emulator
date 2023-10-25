@@ -46,4 +46,4 @@ and the command \`mips-em\` has been aliased in your $SHELL_RC_FILE file.
 Run \`source $SHELL_RC_FILE\` to apply changes to your current shell session. Otherwise, restart your terminal.
 Then run \`mips-em\` to start MIPS Emulator.
 For usage details, please read https://github.com/madiali/mips-emulator#usage and/or https://comp541.web.unc.edu.
-Enjoy!\n"
+Good luck on your project!\n"

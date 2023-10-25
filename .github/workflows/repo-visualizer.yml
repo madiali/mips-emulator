@@ -1,10 +1,10 @@
 name: Repo visualizer
 
 on:
-  push:
-    branches: [ main, installsh ]
-  pull_request:
-    branches: [ main, installsh ]
+  schedule:
+    # https://jasonet.co/posts/scheduled-actions/#the-cron-syntax
+    - cron: "* * * */3 *"
+  workflow_dispatch:
 
 jobs:
   build:
