@@ -114,9 +114,13 @@ If you run into any issues, first check [the wiki page](https://github.com/madia
 
 Report issues at [Issues](https://github.com/madiali/mips-emulator/issues).
 
+## Code structure
+
+![](docs/diagram.svg)
+
 ---
 
-## Other info paraphrased from OG MIPS emulator's README
+## Info paraphrased from OG MIPS Emulator's README
 
 This emulator is more restrictive than the FPGAs used in the course, so cases in which something works on the board but not on the emulator may not be issues. On the other hand, anything that works on the emulator but not on the board is likely an issue and should be reported.
 
