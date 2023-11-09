@@ -52,7 +52,7 @@ fi
 # Alias the command
 echo "alias mips-em=\"java -jar $INSTALL_DIR/$JAR_NAME\"" >> "$SHELL_RC_FILE"
 
-printf "$JAR_NAME has been downloaded to $INSTALL_DIR/$JAR_NAME,
+printf "\n$JAR_NAME has been downloaded to $INSTALL_DIR/$JAR_NAME,
 and the command \`mips-em\` has been aliased in your $SHELL_RC_FILE file.
 Run \`source $SHELL_RC_FILE\` to apply changes to your current shell session. Otherwise, restart your terminal. Then,\n"
 
