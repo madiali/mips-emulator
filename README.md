@@ -108,13 +108,13 @@ capabilities of both `AccelerometerX` and `AccelerometerY`).
 
 This should be all you need. For more advanced capabilities, see [Project files](#project-files).
 
-## Bugs and limitations
+## Issues
 
-If you run into any issues, first check [the wiki page](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations).
+Report issues (e.g., bug report, feature request, usage question) at [Issues](https://github.com/madiali/mips-emulator/issues).
 
-Report issues at [Issues](https://github.com/madiali/mips-emulator/issues).
+Before submitting a bug report, please check the [Known bugs and limitations](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations) page and/or search for your problem on the Issues page.
 
-## Info paraphrased from OG MIPS Emulator's README
+## Advanced information
 
 The information in this section is paraphrased from the original MIPS Emulator's [README](https://github.com/jordanel/mips-emulator).
 

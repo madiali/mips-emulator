@@ -1,0 +1,20 @@
+name: "Question"
+description: Have a question?
+title: "[QUESTION] "
+labels: ["question"]
+assignees: ["jesse-wei"]
+body:
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: "Tasks"
+      options:
+        - label: I have searched the README and Issues page and did not find an answer there.
+          required: true
+  - type: textarea
+    id: Question
+    attributes:
+      label: "Question"
+      placeholder: Concise and clear question
+    validations:
+      required: false
