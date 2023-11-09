@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-INSTALL_DIR=$HOME/.mips-emulator
-MIPS_EMULATOR=https://github.com/madiali/mips-emulator/releases/latest/download/mips-emulator-1.0.0-with-dependencies.jar
+INSTALL_DIR=$HOME/.comp541
+MIPS_EMULATOR=https://github.com/madiali/mips-emulator/releases/download/v1.0.1/mips-emulator-1.0.1.jar
 # Must be a version with fx bundled
 JAVA_VER="17.0.9.fx-librca"
 # String after final slash in URL
@@ -31,7 +31,7 @@ if [[ $SHELL = *"bash"* ]]; then
 elif [[ $SHELL = *"zsh"* ]]; then
 	SHELL_RC_FILE=$HOME/.zshrc
 else
-    printf "MIPS Emulator has been downloaded to $INSTALL_DIR/$JAR_NAME.
+    printf "\nMIPS Emulator has been downloaded to $INSTALL_DIR/$JAR_NAME.
     
 However, this script cannot alias the command java -jar $INSTALL_DIR/$JAR_NAME because your \$SHELL is not bash or zsh, so I don't know what your shell's equivalent to .bashrc or .zshrc is.
 You can alias the command yourself, if you'd like.
@@ -39,11 +39,29 @@ Otherwise, the .jar has already been downloaded and can be run however you norma
     exit 1
 fi
 
-# Alias the command so user can start MIPS Emulator from any directory
+SHELL_RC_FILE_OWNER=$(ls -l $SHELL_RC_FILE | awk '{print $3}')
+
+if [[ "$SHELL_RC_FILE_OWNER" != "$USER" ]]; then
+    echo "ERROR: Owner of $SHELL_RC_FILE is not you ($USER)."
+    # Group is left out, so the group becomes the default group for $USER
+    echo "Run \`sudo chown $USER: $SHELL_RC_FILE\` to change ownership, then re-run this script."
+    echo "Exiting."
+    exit 1
+fi
+
+# Alias the command
 echo "alias mips-em=\"java -jar $INSTALL_DIR/$JAR_NAME\"" >> "$SHELL_RC_FILE"
-printf "$JAR_NAME has been downloaded to $INSTALL_DIR/$JAR_NAME,
+
+printf "\n$JAR_NAME has been downloaded to $INSTALL_DIR/$JAR_NAME,
 and the command \`mips-em\` has been aliased in your $SHELL_RC_FILE file.
-Run \`source $SHELL_RC_FILE\` to apply changes to your current shell session. Otherwise, restart your terminal.
-Then run \`mips-em\` to start MIPS Emulator.
-For usage details, please read https://github.com/madiali/mips-emulator#usage and/or https://comp541.web.unc.edu.
-Good luck on your project!\n"
+Run \`source $SHELL_RC_FILE\` to apply changes to your current shell session. Otherwise, restart your terminal. Then,\n"
+
+USAGE_FILE=$INSTALL_DIR/usage.txt
+USAGE="Run \`mips-em\` to start MIPS Emulator.
+For more usage details, read https://github.com/madiali/mips-emulator#usage and/or https://comp541.web.unc.edu
+To see this message again, run \`help-mips-em\`\n"
+
+printf "$USAGE" | tee $USAGE_FILE
+echo "alias help-mips-em=\"cat $USAGE_FILE\"" >> "$SHELL_RC_FILE"
+
+echo "Good luck on your project!"
