@@ -1,0 +1,80 @@
+name: "Bug report"
+description: Report a bug.
+title: "[BUG] "
+labels: ["bug"]
+assignees: ["jesse-wei"]
+body:
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: Tasks
+      options:
+        - label: I have carefully followed the instructions in the [README](https://github.com/madiali/mips-emulator).
+          required: true
+        - label: I have read through the page [Known bugs and limitations](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations), and my bug is not described there.
+          required: true
+        - label: I have searched for my issue on the [Issues](https://github.com/madiali/mips-emulator/issues) page and did not find it there.
+          required: true
+        - label: The issue I am raising is a potential bug and not just a usage question. For a usage question, please go back in your browser and select the Question option.
+          required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      placeholder: Short and explicit description of the issue
+    validations:
+      required: true
+  - type: textarea
+    id: reprod
+    attributes:
+      label: "Reproduction steps"
+      description: Concise and clear steps to reproduce the issue
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expectd
+    attributes:
+      label: "Expected behavior"
+      placeholder: Concise and clear description of what you expected to happen
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: "Screenshots"
+      description: If applicable, add screenshots to help explain the problem
+      placeholder: |
+        ![DESCRIPTION](LINK.png)
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Logs"
+      description: Copy and paste any relevant log output. This will automatically be formatted, so no need for backticks
+      render: bash
+    validations:
+      required: false
+  - type: dropdown
+    id: os
+    attributes:
+      label: "OS"
+      multiple: true
+      options:
+        - Windows
+        - Linux
+        - macOS
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: "Additional context"
+      placeholder: Note other details, if any, not mentioned above
+    validations:
+      required: false

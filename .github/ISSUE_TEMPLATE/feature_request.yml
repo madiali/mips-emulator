@@ -1,0 +1,42 @@
+name: "Feature Request"
+description: Suggest a feature for this project.
+title: "[FEATURE] "
+labels: ["enhancement"]
+assignees: ["jesse-wei"]
+body:
+  - type: textarea
+    id: reference_issues
+    attributes:
+      label: "Reference issues"
+      description: Related issues, if any
+      placeholder: "#Issue(s) IDs"
+    validations:
+      required: false
+  - type: textarea
+    id: summary
+    attributes:
+      label: "Summary"
+      placeholder: Concise and clear description of your feature request
+    validations:
+      required: true
+  - type: textarea
+    id: basic_example
+    attributes:
+      label: "Basic examples"
+      placeholder: Specific examples about your feature request
+    validations:
+      required: true
+  - type: textarea
+    id: drawback
+    attributes:
+      label: "Drawbacks"
+      placeholder: Identify drawbacks, if any, of your feature request while being neutral
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: "Additional context"
+      placeholder: Note other details, if any, not mentioned above
+    validations:
+      required: false
