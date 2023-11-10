@@ -12,15 +12,25 @@ We ported the original [MIPS emulator](https://github.com/jordanel/mips-emulator
 
 ### macOS/Linux
 
+#### Automatic
+
 ```bash
 curl -s "https://raw.githubusercontent.com/madiali/mips-emulator/main/src/main/sh/install.sh" | bash
 ```
 
-When done, restart your terminal. You should then be able to run `mips-em` to launch MIPS Emulator. This should print out a message and open your file browser.
+When done, restart your terminal. You should then be able to run `mips-em` to launch MIPS Emulator. This should print out a message and open your file browser. Skip to [Usage](#usage).
 
-This script installs [SDKMAN!](https://sdkman.io) to download a compatible JDK with JavaFX (GUI dependency) bundled and set it as your default JDK. If you want to change your default JDK version when not using MIPS Emulator, see SDKMAN!'s [website](https://sdkman.io/usage).
+If this approach does not work, follow the [manual](#manual) installation instructions below.
 
-Skip to [Usage](#usage).
+#### Manual
+
+The script above is provided for your convenience, but if it does not work on your computer, then follow these steps.
+
+1. Go to [install.sh](src/main/sh/install.sh)
+2. Copy from the first line until the line `sdk default java $JAVA_VER`
+3. Paste into your terminal and run
+4. Download the [latest release](https://github.com/madiali/mips-emulator/releases/latest)
+5. Run with `java -jar <path-to-mips-emulator.jar>`
 
 ### Windows
 
@@ -116,55 +126,6 @@ Before submitting a bug report, please check the [Known bugs and limitations](ht
 
 ## Advanced information
 
-The information in this section is paraphrased from the original MIPS Emulator's [README](https://github.com/jordanel/mips-emulator).
+For more advanced information (e.g., more information about the project JSON file and mapping information), see the original MIPS Emulator's [README](https://github.com/jordanel/mips-emulator).
 
-This emulator is more restrictive than the FPGAs used in the course, so cases in which something works on the board but not on the emulator may not be issues. On the other hand, anything that works on the emulator but not on the board is likely an issue and should be reported.
-
-### Project files
-
-A MIPS Emulator project is configured using a **required JSON file**, as described in the [Usage](#usage) section.
-
-This JSON file contains project-level information as well as configuration and mapping information for any memory units needed by the project. A project can also include multiple memory initialization files, used to set the starting values of configured memories. Numeric values may also be passed as a hexadecimal or binary string prefixed with `0x` and `0b` respectively.
-
-#### Project JSON file elements
-
-- projectName: The name of your project. Will appear on the emulator title bar.
-- programCounter (optional): The starting program counter value.
-- memories (array): A list of all mapped memory units needed by your MIPS processor.
-    - type: The class of the memory unit (see below for a list of default types).
-    - name (optional): The name of the memory unit. Used for display purposes in the Memory Mapper Viewer.
-    - bitmask (optional*): A bitmask representing the mapped range of the memory unit. Must follow regex `^(0|1)+x*$`
-    - startAddr (optional*): The starting mapped address for the memory unit.
-    - endAddr (optional*): The ending mapped address for the memory unit.
-    - size (optional*): The mapped size (number of addresses) of the memory unit.
-    - length (optional): The number of memory locations in the memory unit. If not present, will be set to the size of the init file.
-    - wordSize (optional): The size of a word in this memory unit (defaults to 4). Determines the number of addresses between values. Must be a power of 2.
-    - initFile (optional): Information about the memory initialization file for this memory unit.
-        - filepath: The path to the memory initialization file (typically a .txt or .mem file).
-        - format (optional): The representation of values in the memory initialization file (hex, dec, bin). Defaults to hex.
-
-#### Additional mapping information
-
-Arbitrarily sized memory units (InstructionMemory, DataMemory, ScreenMemory, BitmapMemory) must be configured using a length or initFile.
-
-Any memory unit intended to be mapped and accessible to the MIPS program must have one of the following combinations of elements:
-- bitmask
-- startAddr
-- startAddr, endAddr
-- startAddr, size
-
-#### Memory unit types
-
-- InstructionMemory - Read only memory containing the instructions of the MIPS program
-- DataMemory - Read/write memory containing data used by the MIPS program. Can be used in place of unimplemented memory units
-- BitmapMemory - Read only memory containing the pixel values for all 16x16 bitmaps used by the MIPS program
-- ScreenMemory - Read/write memory containing the bitmap values to be displayed on the screen
-- Keyboard - Read only memory containing the current keyboard scan code
-- ~~Sound - Read only memory containing the period of the waveform used by the sound module~~ (not implemented)
-- Accelerometer - Read only memory containing the X and Y accelerometer values in the following format: `{7'b0, accelX, 7'b0, accelY}`
-- ~~AccelerometerX - Read only memory containing the X value of the accelerometer module~~ (not implemented; use Accelerometer)
-- ~~AccelerometerY - Read only memory containing the Y value of the accelerometer module~~ (not implemented; use Accelerometer)
-
-## Code structure
-
-![Code structure](docs/structure.svg)
+However, note that we have not implemented `Sound`, so do not map that in your JSON. Additionally, `AccelerometerX` and `AccelerometerY` are unnecessary (just use `Accelerometer` instead), so do not map those in your JSON either.
