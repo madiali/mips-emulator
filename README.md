@@ -20,17 +20,15 @@ curl -s "https://raw.githubusercontent.com/madiali/mips-emulator/main/src/main/s
 
 When done, restart your terminal. You should then be able to run `mips-em` to launch MIPS Emulator. This should print out a message and open your file browser. Skip to [Usage](#usage).
 
-If this approach does not work, follow the [manual](#manual) installation instructions below.
+If this script does not work on your computer, follow the [manual](#manual) installation instructions below.
 
 #### Manual
-
-The script above is provided for your convenience, but if it does not work on your computer, then follow these steps.
 
 1. Go to [install.sh](src/main/sh/install.sh)
 2. Copy from the first line until the line `sdk default java $JAVA_VER`
 3. Paste into your terminal and run
-4. Download the [latest release](https://github.com/madiali/mips-emulator/releases/latest)
-5. Run with `java -jar <path-to-mips-emulator.jar>`
+4. Download the JAR file from the [latest release](https://github.com/madiali/mips-emulator/releases/latest)
+5. Run `java -jar <path-to-mips-emulator.jar>`
 
 ### Windows
 
@@ -88,44 +86,47 @@ Otherwise, your `JAVA_HOME` environment variable and `java --version` outputs ar
 
 ## Usage
 
-Create a directory with a **required** configuration `.json` file and
-your project's `.mem` files. You will be prompted to load a JSON file when the application runs.
+### Basic setup
+
+Create a directory with a **required** project configuration `.json` file and
+your project's `.mem` files. You will be prompted to load this JSON file in your file explorer when the application runs.
+
+The directory should look like this:
+
+```text
+CatsAndDogs
+├── bmem.mem
+├── catsAndDogs.json
+├── dmem.mem
+├── imem.mem
+└── smem.mem
+```
+
+Here is an example configuration JSON file: [`catsAndDogs.json`](src/test/TestProjects/CatsAndDogs/catsAndDogs.json)
+
+Mostly everything should stay the same since this file uses the same memory mappings as the ones in the ProjectA assignment. If your memory files are named differently from `{b,d,i,s}mem.mem`, then change your memory file names, or change the names in the JSON file.
+
+### Additional memory mappings
+
+If you have additional Data Memory mappings in your project, you can create Data Memory mappings in the JSON to view the values in the emulator.
+For example, see [rubiks.json](src/test/TestProjects/Rubik's/rubiks.json).
+
+The values would be displayed in the Other Memory tab, like so:
 
 <p align="center">
-  <img width="250" align="center" src="https://i.imgur.com/IV7vATs.png"> 
+  <img src="https://i.imgur.com/kVI5min.png">
 </p>
 
-<p align="center">Example project structure - <a href="src/test/TestProjects/CatsAndDogs">CatsAndDogs</a></p>
-
-<p align="center">
-  <img width="250" src="https://i.imgur.com/QqoMuB9.png"> 
-</p>
-
-<p align="center"><a href="src/test/TestProjects/CatsAndDogs/catsAndDogs.json">catsAndDogs.json</a></p>
-
-You can find an example JSON file `catsAndDogs.json` at the link above.
-Modify the `.json` for your own needs. Mostly everything should stay the same, but at minimum,
-you need to provide the names of your `.mem` files.
-
-You can create additional Data Memory mappings to view mapped data memory values in the emulator.
-See [Rubik's](src/test/TestProjects/Rubik's/rubiks.json) for an example.
-
-There are more examples of project JSON files in the OG [MIPS emulator repo](https://github.com/jordanel/mips-emulator/tree/master/projects).
-Specifically, [full_test](https://github.com/jordanel/mips-emulator/tree/master/projects/full_test) is a great place to start.
-However, note that we have not implemented `Sound` in this emulator, so don't map `Sound` in a JSON file for our emulator.
-Similarly, don't map `AccelerometerX` or `AccelerometerY` (just use `Accelerometer`, which has all the
-capabilities of both `AccelerometerX` and `AccelerometerY`).
-
-This should be all you need. For more advanced capabilities, see [Project files](#project-files).
+This should be all you need. For advanced mapping options, see [Advanced project configuration](#advanced-configuration).
 
 ## Issues
 
 Report issues (e.g., bug report, feature request, usage question) at [Issues](https://github.com/madiali/mips-emulator/issues).
 
-Before submitting a bug report, please check the [Known bugs and limitations](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations) page and/or search for your problem on the Issues page.
+Before submitting a bug report, please check the [Known bugs and limitations](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations) page.
 
-## Advanced information
+## Advanced configuration
 
-For more advanced information (e.g., more information about the project JSON file and mapping information), see the original MIPS Emulator's [README](https://github.com/jordanel/mips-emulator).
+For more information about the project JSON file (i.e., all possible mapping options, which we support but don't really see a need for), see the original MIPS Emulator's [README](https://github.com/jordanel/mips-emulator). Additionally, that repository has more [examples](https://github.com/jordanel/mips-emulator/tree/master/projects) of project JSON files.
 
-However, note that we have not implemented `Sound`, so do not map that in your JSON. Additionally, `AccelerometerX` and `AccelerometerY` are unnecessary (just use `Accelerometer` instead), so do not map those in your JSON either.
+However, note that we have not implemented `Sound`, so do not put `type: Sound` in a JSON file for our emulator. Instead, map it with the type `DataMemory` (see the example in [Additional memory mappings](#additional-memory-mappings)). Additionally, `AccelerometerX` and `AccelerometerY` are unnecessary (just use `Accelerometer` because `Accelerometer == AccelerometerX + AccelerometerY`), so do not map those in your JSON either.
