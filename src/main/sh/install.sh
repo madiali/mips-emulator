@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
 INSTALL_DIR=$HOME/.comp541
-MIPS_EMULATOR=https://github.com/madiali/mips-emulator/releases/download/v1.0.1/mips-emulator-1.0.1.jar
+MIPS_EMULATOR=https://github.com/madiali/mips-emulator/releases/latest/download/mips-emulator-1.0.2.jar
 # Must be a version with fx bundled
 JAVA_VER="17.0.9.fx-librca"
 # String after final slash in URL
 JAR_NAME="${MIPS_EMULATOR##*/}"
+
+# >>> Install Java >>>
 
 # Install SDKMAN!
 curl -s "https://get.sdkman.io" | bash
@@ -15,6 +17,10 @@ source $HOME/.sdkman/bin/sdkman-init.sh
 yes | sdk install java $JAVA_VER
 # Make sure it's the default version
 sdk default java $JAVA_VER
+
+# Don't modify this comment or its position without also modifying
+# the install command in README.md
+# <<< Install Java <<<
 
 # Could use wget, but curl maximizes compatibility
 curl -OLH "Accept: application/zip" --remote-name $MIPS_EMULATOR
