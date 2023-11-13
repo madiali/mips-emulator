@@ -44,7 +44,7 @@ Download the `.msi` file.
 
 <div align="center">
 
-![](https://i.imgur.com/xqBnzlc.png)
+![.msi](https://i.imgur.com/xqBnzlc.png)
 
 </div>
 
@@ -56,7 +56,7 @@ You should now see this (no red X):
 
 <div align="center">
 
-![](https://i.imgur.com/1sLcDoq.png)
+![Java setup](https://i.imgur.com/1sLcDoq.png)
 
 </div>
 
@@ -124,6 +124,10 @@ This should be all you need. For advanced mapping options, see [Advanced configu
 Report issues (e.g., bug report, feature request, usage question) at [Issues](https://github.com/madiali/mips-emulator/issues).
 
 Before submitting a bug report, please check the [Known bugs and limitations](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations) page.
+
+## Developer information
+
+We welcome contributions! See [Contributing](.github/CONTRIBUTING.md).
 
 ## Advanced configuration
 
