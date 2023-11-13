@@ -4,7 +4,7 @@
   <img src="https://i.imgur.com/y0gdKg6.gif">
 </p>
 
-MIPS Emulator is a cross-platform simulator for final projects in COMP 541 (Digital Logic and Computer Design) at [UNC](https://www.unc.edu/). It simulates customized MIPS processors using memory-mapped I/O and devices, such as accelerometer, keyboard, screen, and LED. Whereas flashing the MIPS assembly project onto the FPGA board can take upwards of 10 minutes per flash, this emulator allows for instant testing and debugging.
+MIPS Emulator is a cross-platform simulator for final projects in [COMP 541](https://comp541.web.unc.edu/) (Digital Logic and Computer Design) at [UNC](https://www.unc.edu/). It simulates customized MIPS processors using memory-mapped I/O and devices, such as accelerometer, keyboard, screen, and LED. Whereas flashing the MIPS assembly project onto the FPGA board can take upwards of 10 minutes per flash, this emulator allows for instant testing and debugging.
 
 We ported the original [MIPS emulator](https://github.com/jordanel/mips-emulator) to Java to make the program work on any OS. Credit to [@jordanel](https://github.com/jordanel), [@jsettlem](https://github.com/jsettlem), [@swali-unc](https://github.com/swali-unc), and [@MarkovInequality](https://github.com/MarkovInequality) for their awesome work!
 
@@ -27,7 +27,7 @@ If this script does not work on your computer, follow the manual steps below.
 Run the following:
 
 ```bash
-curl -s "https://raw.githubusercontent.com/madiali/mips-emulator/main/src/main/sh/install.sh" | sed -n '/#<<< Install Java <<</q;p' | bash
+curl -s "https://raw.githubusercontent.com/madiali/mips-emulator/main/src/main/sh/install.sh" | sed -n '/<<< Install Java <<</q;p' | bash
 ```
 
 This is the same as the above command but runs the script only up until it's done installing a compatible Java version and setting it as the default. This section of the script should be guaranteed to work.
