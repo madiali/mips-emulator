@@ -22,11 +22,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class VgaDisplayBMPController {
+  private static final Path IMG_DIR = Paths.get(System.getProperty("user.home")).resolve(".comp541").resolve("img");
   private static final int GRID_WIDTH = 40;
   private static final int GRID_HEIGHT = 30;
   private static final int SPRITE_LENGTH = 16;
@@ -64,7 +67,7 @@ public class VgaDisplayBMPController {
   };
 
   /**
-   * Create BMP files in img/ directory. Create Image[] from BMP files. Delete img/ directory.
+   * Create BMP files in IMG_DIR. Create Image[] from BMP files. Delete IMG_DIR.
    * Initialize VGA GridPane.
    *
    * @param mips
@@ -82,10 +85,12 @@ public class VgaDisplayBMPController {
                    .getMemUnit();
     bitmapMemory = (BitmapMemory) mips.memDict.get(BitmapMemory.class).get(0);
     numSprites = bitmapMemory.getSize() / bitmapMemory.getWordSize() / SPRITE_SIZE;
-
+    if (!Files.exists(IMG_DIR)) {
+        Files.createDirectories(IMG_DIR);
+    }
     generateBMP();
     spriteList = generateSpriteList();
-    deleteDir(new File("img"));
+    deleteDir(IMG_DIR.toFile());
     initializeVGA();
   }
 
@@ -141,18 +146,14 @@ public class VgaDisplayBMPController {
   }
 
   /**
-   * Store contents of Bitmap Memory as .bmp images in the img/ directory. They are named 0.bmp,
+   * Store contents of Bitmap Memory as .bmp images in IMG_DIR. They are named 0.bmp,
    * 1.bmp, 2.bmp... regular decimal numbers.
    *
    * @throws IOException
    */
   private void generateBMP() throws IOException {
-    File imgDir = new File("img");
-    if (!imgDir.exists()) {
-      imgDir.mkdirs();
-    }
     for (int sprite = 0; sprite < numSprites; sprite++) {
-      File destination = new File("img/" + sprite + ".bmp");
+      File destination = IMG_DIR.resolve(sprite + ".bmp").toFile();
       byte[] data = new byte[2 * SPRITE_SIZE];
       for (int row = 0; row < SPRITE_LENGTH; row++) {
         for (int col = 0; col < SPRITE_LENGTH; col++) {
@@ -218,14 +219,15 @@ public class VgaDisplayBMPController {
   }
 
   /**
-   * Assuming BMP files are stored in img/, put them all into an Image[].
+   * Put BMP files in IMG_DIR in an Image[].
    *
    * @return List<Image> of sprites
    */
   private List<Image> generateSpriteList() {
     List<Image> res = new ArrayList<>();
     for (int sprite = 0; sprite < numSprites; sprite++) {
-      Image img = new Image("File:img/" + sprite + ".bmp");
+      Path imgPath = IMG_DIR.resolve(sprite + ".bmp");
+      Image img = new Image("File:" + imgPath);
       res.add(img);
     }
     return res;

@@ -117,7 +117,7 @@ The values would be displayed in the Other Memory tab, like so:
   <img src="https://i.imgur.com/kVI5min.png">
 </p>
 
-This should be all you need. For advanced mapping options, see [Advanced project configuration](#advanced-configuration).
+This should be all you need. For advanced mapping options, see [Advanced configuration](#advanced-configuration).
 
 ## Issues
 
