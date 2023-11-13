@@ -242,7 +242,7 @@ public class MainController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     System.out.println(
-        "LOAD A PROJECT CONFIG JSON FILE TO DISPLAY THE GUI. Examples are shown in GitHub under src/Test/TestProjects/");
+        "Load a project configuration JSON file. Examples: https://github.com/madiali/mips-emulator/tree/main/src/test/TestProjects");
     try {
       handleOpen();
     } catch (IOException ioe) {
