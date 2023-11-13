@@ -12,6 +12,8 @@ Once you make a PR, your code will be tested and built into a JAR automatically.
 
 We recommend using [IntelliJ IDEA](https://www.jetbrains.com/idea/) to work on this project. You should be able to work on any OS. On Windows specifically, you may want to consider IntellJ's [WSL integration](https://www.jetbrains.com/help/idea/how-to-use-wsl-development-environment-in-product.html), but this is somewhat janky.
 
+The [.gitattributes](../.gitattributes) specifies `* text=auto eol=lf` to make working in WSL2 less painful.
+
 ## Project information
 
 This is a standard [Maven Java project](https://maven.apache.org/), and the `Main` class is [Main.java](../src/main/java/com/comp541/Main.java). We use JavaFX for the GUI, and we use [SceneBuilder](https://gluonhq.com/products/scene-builder/) to do drap & drop GUI development. Our FXML file is at [gui.fxml](../src/main/resources/com/comp541/fxml/gui.fxml). Do not edit this directly; use SceneBuilder.
@@ -26,13 +28,13 @@ Building occurs automatically via a GitHub Action (see [build.yml](workflows/bui
 
 ### Manual
 
-To build manually, go to IntelliJ and click on the Maven tab on the right. The file that we want will be at `target/dependency/mips-emulator-1.0.1-SNAPSHOT-jar-with-dependencies.jar`. The version number is specified in [pom.xml](../pom.xml).
+To build manually, go to IntelliJ and click on the Maven tab on the right. The file that we want will be at `target/dependency/mips-emulator-<version>-SNAPSHOT-jar-with-dependencies.jar`. The version is specified in [pom.xml](../pom.xml).
 
 ## Deploy
 
 To deploy,
 
-1. Change the version number in [pom.xml](../pom.xml) and [install.sh](../src/main/sh/install.sh) in the `MIPS_EMULATOR` variable (or make it a link that downloads the latest release...)
+1. Change the version number everywhere by doing a global find and replace for the old version number with the new one
 2. Push changes
 3. Download the artifact from GH [Actions](https://github.com/madiali/mips-emulator/actions)
 4. Test it on macOS and Ubuntu (WSL2) via `install.sh` and on Windows by running with `java -jar`

@@ -20,15 +20,19 @@ curl -s "https://raw.githubusercontent.com/madiali/mips-emulator/main/src/main/s
 
 When done, restart your terminal. You should then be able to run `mips-em` to launch MIPS Emulator. This should print out a message and open your file browser. Skip to [Usage](#usage).
 
-If this script does not work on your computer, follow the [manual](#manual) installation instructions below.
+If this script does not work on your computer, follow the manual steps below.
 
 #### Manual
 
-1. Go to [install.sh](src/main/sh/install.sh)
-2. Copy from the first line until the line `sdk default java $JAVA_VER`
-3. Paste into your terminal and run
-4. Download the JAR file from the [latest release](https://github.com/madiali/mips-emulator/releases/latest)
-5. Run `java -jar <path-to-mips-emulator.jar>`
+Run the following:
+
+```bash
+curl -s "https://raw.githubusercontent.com/madiali/mips-emulator/main/src/main/sh/install.sh" | sed -n '/#<<< Install Java <<</q;p' | bash
+```
+
+This is the same as the above command but runs the script only up until it's done installing a compatible Java version and setting it as the default. This section of the script should be guaranteed to work.
+
+Then, download the JAR file from the [latest release](https://github.com/madiali/mips-emulator/releases/latest). Run it with `java -jar <path-to-mips-emulator.jar>`. Running with this command avoids permission issues that may arise when double-clicking the file. Skip to [Usage](#usage).
 
 ### Windows
 
