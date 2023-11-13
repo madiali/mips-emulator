@@ -1,6 +1,6 @@
 {
-  "comment": "I removed Sound from this JSON for now because it's not implemented so throws an error - Jesse",
-  "projectName": "Rubik's cube simulator",
+  "projectName": "Rubik's cube",
+  "author": "Jesse Wei",
   "schema": "1.0",
   "instructionSet": "2018",
   "programCounter": 0,
@@ -50,13 +50,22 @@
       "startAddr": "0x10030004"
     },
     {
+      "comment": "LED's value is shown in the Other Memory tab.",
       "type": "DataMemory",
       "name": "LED",
       "startAddr": "0x1003000c",
       "length": 1
     },
     {
-      "comment": "The rest of the mappings aren't part of the project specification and are unique to my project",
+      "comment": "Sound's value is shown in the Other Memory tab.",
+      "comment2": "The original C# MIPS Emulator supports Sound in the type field and plays the sound. Unfortunately, we don't yet :(",
+      "type": "DataMemory",
+      "name": "Sound",
+      "startAddr": "0x10030008",
+      "length": 1
+    },
+    {
+      "comment": "The rest of my mappings are unique to my project.",
       "comment2": "Presumably, if you memory map something in your project, you'd have Verilog support for it to implement some new functionality. That can't be done in the emulator, so additional memory mappings in the JSON don't really do anything besides letting you see the value stored at that mapped address.",
       "type": "DataMemory",
       "name": "RNG",
@@ -70,7 +79,7 @@
       "length": 1
     },
     {
-      "comment": "Hint: If you want to implement chords, use multiple sound registers! For a chord, the period played should rapidly switch among the values in your sound registers.",
+      "comment": "Two sound registers to play chords.",
       "type": "DataMemory",
       "name": "sound_2",
       "startAddr": "0x10000008",
