@@ -13,7 +13,7 @@ You can run MIPS Emulator and load either JSON file in these directories to run 
 
 [rubiks.json](Rubik's/rubiks.json) contains 7 additional memory mappings, also specified with type `DataMemory`.
 
-To test the project or its controls, controls are these projects are provided:
+To test MIPS Emulator, controls for these projects are provided:
 
 ## CatsAndDogs
 
