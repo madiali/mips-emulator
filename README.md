@@ -114,7 +114,7 @@ CatsAndDogs
 └── smem.mem
 ```
 
-Our default configuration JSON file is [`catsAndDogs.json`](src/test/TestProjects/CatsAndDogs/catsAndDogs.json). You should download it and modify it, if necessary, for your own project.
+Our default configuration JSON file is [`catsAndDogs.json`](src/test/ExampleProjects/CatsAndDogs/catsAndDogs.json). You should download it and modify it, if necessary, for your own project.
 
 You shouldn't need to change many fields, if any, since it uses the same memory mappings as the ones in the project specification. If your memory files are named differently from `{b,d,i,s}mem.mem`, then change your memory file names, or change the names in the JSON file.
 
@@ -151,7 +151,7 @@ For sound, specifically, the original Windows-only [MIPS Emulator](https://githu
 
 ### Additional memory mappings
 
-If you have additional memory mappings in your project, you can create those mappings in the JSON with type `DataMemory` to view the values in the emulator, similar to the Sound mapping shown above. For example, see [rubiks.json](src/test/TestProjects/Rubik's/rubiks.json), which has 7 additional mappings. For example,
+If you have additional memory mappings in your project, you can create those mappings in the JSON with type `DataMemory` to view the values in the emulator, similar to the Sound mapping shown above. For example, see [rubiks.json](src/test/ExampleProjects/Rubik's/rubiks.json), which has 7 additional mappings. For example,
 
 ```json
 {
