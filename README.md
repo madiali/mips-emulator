@@ -108,13 +108,13 @@ The directory should look like this:
 ```text
 CatsAndDogs
 ├── bmem.mem
-├── catsAndDogs.json
+├── CatsAndDogs.json
 ├── dmem.mem
 ├── imem.mem
 └── smem.mem
 ```
 
-Our default configuration JSON file is [`catsAndDogs.json`](src/test/ExampleProjects/CatsAndDogs/catsAndDogs.json). You should download it and modify it, if necessary, for your own project.
+Our default configuration JSON file is [`CatsAndDogs.json`](src/test/ExampleProjects/CatsAndDogs/CatsAndDogs.json). You should download it and modify it, if necessary, for your own project.
 
 You shouldn't need to change many fields, if any, since it uses the same memory mappings as the ones in the project specification. If your memory files are named differently from `{b,d,i,s}mem.mem`, then change your memory file names, or change the names in the JSON file.
 
@@ -130,7 +130,7 @@ The `"type"` fields contain the special types `Keyboard`, `Accelerometer`, etc.,
 }
 ```
 
-`catsAndDogs.json` has the special types `InstructionMemory`, `DataMemory`, `BitmapMemory`, `ScreenMemory`, `Keyboard`, and `Accelerometer`.
+`CatsAndDogs.json` has the special types `InstructionMemory`, `DataMemory`, `BitmapMemory`, `ScreenMemory`, `Keyboard`, and `Accelerometer`.
 
 LED and Sound are not considered special types because they do not serve any special purpose (e.g., I/O) in the emulator. That is, the emulator does not show 12 LED's on the screen or play sound (unsupported, as of now). Thus, LED and Sound are mapped with type `DataMemory` at the appropriate memory addresses so that you can at least inspect the values at those memory addresses in the Other Memory tab in the emulator.
 

@@ -1,10 +1,33 @@
-# Controls
+# README
+
+Please watch the demo video shown at the top of the [README](https://github.com/madiali/mips-emulator), if you haven't already.
+
+The two directories here are example projects containing the 5 required files for MIPS Emulator:
+
+1. Configuration JSON file
+2. `{b,d,i,s}mem.mem`
+
+You can run MIPS Emulator and load either JSON file in these directories to run the projects.
+
+[CatsAndDogs.json](CatsAndDogs/CatsAndDogs.json) is our default JSON file that specifies the memory types `InstructionMemory`, `DataMemory`, `BitmapMemory`, `ScreenMemory`, `Keyboard`, and `Accelerometer`. It also contains LED and Sound, specified with type `DataMemory` so that their values can be viewed in the Other Memory tab in the emulator. All are specified with the default memory addresses given by the project specification, so you probably won't need to change that.
+
+[rubiks.json](Rubik's/rubiks.json) contains 7 additional memory mappings, also specified with type `DataMemory`.
+
+To test the project or its controls, controls are these projects are provided:
+
+## CatsAndDogs
+
+Use the accelerometer y slider to move the umbrella.
+
+Cat and dog sprite positions are not randomized when run in the emulator because Madison handled RNG in Verilog. Of course, the emulator cannot simulate anything handled in Verilog.
+
+## Rubik's
 
 [Project demo](https://youtu.be/CWI60TmpJHM)
 
 The black screen at the start of the program is intentional (but likely a bad idea, in retrospect, because a black screen makes it look like my project isn't working).
 
-These controls follow [Rubik's cube notation](https://youtu.be/24eHm4ri8WM).
+The controls follow [Rubik's cube notation](https://youtu.be/24eHm4ri8WM).
 
 ## Face moves
 
@@ -46,7 +69,7 @@ These controls follow [Rubik's cube notation](https://youtu.be/24eHm4ri8WM).
 
 w can be composed with any direction 1, 2, or '. Therefore, u, u2, and u' can all be performed.
 
-## Miscellanous
+## Miscellaneous
 
 |  Key  |         Action         |
 | :---: | :--------------------: |

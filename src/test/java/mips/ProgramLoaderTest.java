@@ -28,7 +28,7 @@ public class ProgramLoaderTest {
 
     @Test
     public void catsAndDogs() {
-        File catsAndDogs = new File(EXAMPLE_PROJECT_DIR.resolve("CatsAndDogs").resolve("catsAndDogs.json").toString());
+        File catsAndDogs = new File(EXAMPLE_PROJECT_DIR.resolve("CatsAndDogs").resolve("CatsAndDogs.json").toString());
         try {
             new ProgramLoader(catsAndDogs);
         } catch (Exception e) {
