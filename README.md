@@ -4,6 +4,14 @@
   <img src="https://i.imgur.com/y0gdKg6.gif">
 </p>
 
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=GOZdBHTAFI0"><img src="https://img.youtube.com/vi/GOZdBHTAFI0/0.jpg" alt="full demo video"></a>
+</p>
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=GOZdBHTAFI0">Demo/instructions</a>
+</p>
+
 MIPS Emulator is a cross-platform simulator for final projects in [COMP 541](https://comp541.web.unc.edu/) (Digital Logic and Computer Design) at [UNC](https://www.unc.edu/). It simulates customized MIPS processors using memory-mapped I/O and devices, such as accelerometer, keyboard, screen, and LED. Whereas flashing the MIPS assembly project onto the FPGA board can take upwards of 10 minutes per flash, this emulator allows for instant testing and debugging.
 
 We ported the original [MIPS emulator](https://github.com/jordanel/mips-emulator) to Java to make the program work on any OS. Credit to [@jordanel](https://github.com/jordanel), [@jsettlem](https://github.com/jsettlem), [@swali-unc](https://github.com/swali-unc), and [@MarkovInequality](https://github.com/MarkovInequality) for their awesome work!
@@ -125,7 +133,7 @@ This should be all you need. For advanced mapping options, see [Advanced configu
 
 ## Issues
 
-Report issues (e.g., bug report, feature request, usage question) at [Issues](https://github.com/madiali/mips-emulator/issues).
+**Please** report issues (e.g., bug report, feature request, usage question) at [Issues](https://github.com/madiali/mips-emulator/issues).
 
 Before submitting a bug report, please check the [Known bugs and limitations](https://github.com/madiali/mips-emulator/wiki/Known-bugs-and-limitations) page.
 
@@ -135,6 +143,6 @@ We welcome contributions! See [Contributing](.github/CONTRIBUTING.md).
 
 ## Advanced configuration
 
-For more information about the project JSON file (i.e., all possible mapping options, which we support but don't really see a need for), see the original MIPS Emulator's [README](https://github.com/jordanel/mips-emulator). Additionally, that repository has more [examples](https://github.com/jordanel/mips-emulator/tree/master/projects) of project JSON files.
+For more information about the project JSON file (i.e., all possible mapping options, which we support but don't really see a need for), see the original MIPS Emulator's [README](https://github.com/jordanel/mips-emulator).
 
-However, note that we have not implemented `Sound`, so do not put `type: Sound` in a JSON file for our emulator. Instead, map it with the type `DataMemory` (see the example in [Additional memory mappings](#additional-memory-mappings)). Additionally, `AccelerometerX` and `AccelerometerY` are unnecessary (just use `Accelerometer` because `Accelerometer == AccelerometerX + AccelerometerY`), so do not map those in your JSON either.
+However, note that many example JSON files there have `type: Sound`, which we do not support and would crash our emulator, so do not put `type: Sound` in a JSON file for our emulator. Instead, if you want to test `Sound` (or a value at any memory address), map it with the type `DataMemory` (see the example in [Additional memory mappings](#additional-memory-mappings)). Additionally, `AccelerometerX` and `AccelerometerY` are unnecessary (just use `Accelerometer` because `Accelerometer == AccelerometerX + AccelerometerY`), so do not map those in your JSON either.
