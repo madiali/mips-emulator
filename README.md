@@ -147,9 +147,11 @@ LED and Sound are not considered special types because they do not serve any spe
   <img src="https://i.imgur.com/IZRknzr.png">
 </p>
 
+For sound, specifically, the original Windows-only [MIPS Emulator](https://github.com/jordanel/mips-emulator) can play sound, so it supports `Sound` as a type in the JSON. Therefore, to test sound, if you are on Windows, we would suggest downloading the original MIPS Emulator and specifying `"type": "Sound"` in the JSON.
+
 ### Additional memory mappings
 
-If you have additional memory mappings in your project, you can create these mappings in the JSON with type `DataMemory` to view the values in the emulator, similar to the Sound mapping shown above. For example, see [rubiks.json](src/test/TestProjects/Rubik's/rubiks.json), which has 7 additional mappings. For example,
+If you have additional memory mappings in your project, you can create those mappings in the JSON with type `DataMemory` to view the values in the emulator, similar to the Sound mapping shown above. For example, see [rubiks.json](src/test/TestProjects/Rubik's/rubiks.json), which has 7 additional mappings. For example,
 
 ```json
 {
@@ -183,4 +185,6 @@ We welcome contributions! See [Contributing](.github/CONTRIBUTING.md).
 
 For more information about the project JSON file (i.e., all possible mapping options, which we support but don't really see a need for), see the original MIPS Emulator's [README](https://github.com/jordanel/mips-emulator).
 
-However, note that many example JSON files in that repository specify type `Sound`, which we do not support and causes our emulator to crash, so do not put `"type": "Sound"` in a JSON file for our emulator. Instead, to test `Sound`, follow the examples shown [above](#basic-setup). Additionally, the original MIPS Emulator supports types `AccelerometerX` and `AccelerometerY`, which are unnecessary. As shown in our example JSON files, just use `Accelerometer` because `Accelerometer == AccelerometerX + AccelerometerY`.
+However, note that many example JSON files in that repository specify type `Sound`, which we do not support and causes our emulator to crash, so do not put `"type": "Sound"` in a JSON file for our emulator. In general, any JSON file that works for this project will work for the original MIPS Emulator. However, a JSON file from the original MIPS Emulator's repository that specifies `"type": "Sound"` will not work in this project.
+
+Also, the original MIPS Emulator supports types `AccelerometerX` and `AccelerometerY`, which are unnecessary. As shown in our example JSON files, just use `Accelerometer` because `Accelerometer == AccelerometerX + AccelerometerY`.
