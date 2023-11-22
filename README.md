@@ -114,11 +114,11 @@ CatsAndDogs
 └── smem.mem
 ```
 
-Here is our default configuration JSON file: [`catsAndDogs.json`](src/test/TestProjects/CatsAndDogs/catsAndDogs.json)
+Our default configuration JSON file is [`catsAndDogs.json`](src/test/TestProjects/CatsAndDogs/catsAndDogs.json). You should download it and modify it, if necessary, for your own project.
 
-You shouldn't need to change many fields in that file, if any, since this file uses the same memory mappings as the ones in the project specification. If your memory files are named differently from `{b,d,i,s}mem.mem`, then change your memory file names, or change the names in the JSON file.
+You shouldn't need to change many fields, if any, since it uses the same memory mappings as the ones in the project specification. If your memory files are named differently from `{b,d,i,s}mem.mem`, then change your memory file names, or change the names in the JSON file.
 
-In the default configuration, the `"type"` fields contain the special types `Keyboard`, `Accelerometer`, etc., to tell the emulator that the values at those memory addresses (specified by the `"startAddr"` and/or `"length"` fields, if necessary) are special and should be used for I/O or other purposes. For example, type `InstructionMemory` tells the emulator to interpret those values as instructions to be executed.
+The `"type"` fields contain the special types `Keyboard`, `Accelerometer`, etc., to tell the emulator that the values at those memory addresses (specified by the `"startAddr"` and/or `"length"` fields, if necessary) are special and should be used for I/O or other purposes. For example, type `InstructionMemory` tells the emulator to interpret those values as instructions to be executed.
 
 ```json
 {
@@ -132,7 +132,7 @@ In the default configuration, the `"type"` fields contain the special types `Key
 
 `catsAndDogs.json` has the special types `InstructionMemory`, `DataMemory`, `BitmapMemory`, `ScreenMemory`, `Keyboard`, and `Accelerometer`.
 
-However, LED and Sound are not considered special types because they do not serve any special purpose (e.g., I/O) in the emulator. That is, the emulator does not show 12 LED's on the screen or play sound (unsupported, as of now). Thus, LED and Sound are mapped with type `DataMemory` at the appropriate memory addresses so that you can at least inspect the values at those memory addresses in the Other Memory tab in the emulator.
+LED and Sound are not considered special types because they do not serve any special purpose (e.g., I/O) in the emulator. That is, the emulator does not show 12 LED's on the screen or play sound (unsupported, as of now). Thus, LED and Sound are mapped with type `DataMemory` at the appropriate memory addresses so that you can at least inspect the values at those memory addresses in the Other Memory tab in the emulator.
 
 ```json
 {
@@ -149,7 +149,7 @@ However, LED and Sound are not considered special types because they do not serv
 
 ### Additional memory mappings
 
-If you have additional memory mappings in your project, you can create these mappings in the JSON with type `DataMemory` to view the values in the emulator, similar to the Sound mapping shown above. For example, see [rubiks.json](src/test/TestProjects/Rubik's/rubiks.json).
+If you have additional memory mappings in your project, you can create these mappings in the JSON with type `DataMemory` to view the values in the emulator, similar to the Sound mapping shown above. For example, see [rubiks.json](src/test/TestProjects/Rubik's/rubiks.json), which has 7 additional mappings. For example,
 
 ```json
 {
@@ -164,10 +164,10 @@ If you have additional memory mappings in your project, you can create these map
 The value(s) would be displayed in the Other Memory tab.
 
 <p align="center">
-  <img src="https://i.imgur.com/kVI5min.png">
+  <img src="https://i.imgur.com/lpIXERi.png">
 </p>
 
-Our emulator does not see nor support any of your Verilog code, of course, so anything handled by Verilog will not show up in the emulator. For example, if you use Verilog to generate random numbers and store them at an address, you shouldn't map that in the JSON because there's no Verilog support.
+Our emulator does not see nor support any of your Verilog code, of course, so anything handled by Verilog will not show up in the emulator. For example, if you use Verilog to generate random numbers and store them at an address, you shouldn't map that in the JSON (except maybe for documentation purposes).
 
 This should be all you need. For advanced mapping options, see [Advanced configuration](#advanced-configuration).
 
