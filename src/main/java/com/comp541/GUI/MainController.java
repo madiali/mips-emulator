@@ -60,7 +60,7 @@ public class MainController implements Initializable {
   // Misc
   @FXML private Label statusLabel;
 
-  public static final Path EXAMPLE_PROJECT_DIR = Paths.get("src/test/ExampleProjects");
+  public static final Path EXAMPLE_PROJECT_DIR = Paths.get("src/test/TestProjects");
 
   /** Constructor with no params is necessary for loader.getController() in AppLauncher. */
   public MainController() {}
