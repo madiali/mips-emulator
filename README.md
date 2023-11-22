@@ -175,7 +175,7 @@ This should be all you need. For advanced mapping options, see [Advanced configu
 
 ## Issues
 
-**Please** report issues with MIPS emulator (e.g., bug report, feature request, usage question) at [Issues](https://github.com/madiali/mips-emulator/issues).
+Please report issues with MIPS emulator (e.g., bug report, feature request, usage question) at [Issues](https://github.com/madiali/mips-emulator/issues).
 
 ## Developer information
 
