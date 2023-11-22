@@ -116,7 +116,7 @@ CatsAndDogs
 
 Here is our default configuration JSON file: [`catsAndDogs.json`](src/test/TestProjects/CatsAndDogs/catsAndDogs.json)
 
-Mostly everything should stay the same since this file uses the same memory mappings as the ones in the ProjectA assignment. If your memory files are named differently from `{b,d,i,s}mem.mem`, then change your memory file names, or change the names in the JSON file.
+You shouldn't need to change many fields in that file, if any, since this file uses the same memory mappings as the ones in the project specification. If your memory files are named differently from `{b,d,i,s}mem.mem`, then change your memory file names, or change the names in the JSON file.
 
 In the default configuration, the `"type"` fields contain the special types `Keyboard`, `Accelerometer`, etc., to tell the emulator that the values at those memory addresses (specified by the `"startAddr"` and/or `"length"` fields, if necessary) are special and should be used for I/O or other purposes. For example, type `InstructionMemory` tells the emulator to interpret those values as instructions to be executed.
 
@@ -127,25 +127,29 @@ In the default configuration, the `"type"` fields contain the special types `Key
     "filepath": "imem.mem",
     "format": "hex"
   }
-},
+}
 ```
 
 `catsAndDogs.json` has the special types `InstructionMemory`, `DataMemory`, `BitmapMemory`, `ScreenMemory`, `Keyboard`, and `Accelerometer`.
 
-However, LED and Sound are not considered special types because they do not serve any special purpose (e.g., I/O) in the emulator. That is, the emulator does not show 12 LED's on the screen or play sound (unsupported, as of now). Thus, LED and Sound are mapped with the type `DataMemory` at the appropriate memory addresses so that you can at least inspect the values at those memory addresses in the Other Memory tab in the emulator.
+However, LED and Sound are not considered special types because they do not serve any special purpose (e.g., I/O) in the emulator. That is, the emulator does not show 12 LED's on the screen or play sound (unsupported, as of now). Thus, LED and Sound are mapped with type `DataMemory` at the appropriate memory addresses so that you can at least inspect the values at those memory addresses in the Other Memory tab in the emulator.
 
 ```json
 {
   "type": "DataMemory",
-  "name": "LED",
-  "startAddr": "0x1003000c",
+  "name": "Sound",
+  "startAddr": "0x10030008",
   "length": 1
-},
+}
 ```
+
+<p align="center">
+  <img src="https://i.imgur.com/IZRknzr.png">
+</p>
 
 ### Additional memory mappings
 
-If you have additional memory mappings in your project, you can create these mappings in the JSON with type `DataMemory` to view the values in the emulator. This would be very similar to the LED mapping shown above. For example, see [rubiks.json](src/test/TestProjects/Rubik's/rubiks.json).
+If you have additional memory mappings in your project, you can create these mappings in the JSON with type `DataMemory` to view the values in the emulator, similar to the Sound mapping shown above. For example, see [rubiks.json](src/test/TestProjects/Rubik's/rubiks.json).
 
 ```json
 {
@@ -154,10 +158,10 @@ If you have additional memory mappings in your project, you can create these map
   "name": "sound_2",
   "startAddr": "0x10000008",
   "length": 1
-},
+}
 ```
 
-The value(s) would be displayed in the Other Memory tab:
+The value(s) would be displayed in the Other Memory tab.
 
 <p align="center">
   <img src="https://i.imgur.com/kVI5min.png">
@@ -179,4 +183,4 @@ We welcome contributions! See [Contributing](.github/CONTRIBUTING.md).
 
 For more information about the project JSON file (i.e., all possible mapping options, which we support but don't really see a need for), see the original MIPS Emulator's [README](https://github.com/jordanel/mips-emulator).
 
-However, note that many example JSON files in that repository have `type: Sound`, which we do not support and causes our emulator to crash, so do not put `type: Sound` in a JSON file for our emulator. Instead, to test `Sound`, follow the examples shown [above](#basic-setup). Additionally, the original MIPS Emulator supports types `AccelerometerX` and `AccelerometerY`, which are unnecessary. As shown in our example JSON files, just use `Accelerometer` because `Accelerometer == AccelerometerX + AccelerometerY`.
+However, note that many example JSON files in that repository specify type `Sound`, which we do not support and causes our emulator to crash, so do not put `"type": "Sound"` in a JSON file for our emulator. Instead, to test `Sound`, follow the examples shown [above](#basic-setup). Additionally, the original MIPS Emulator supports types `AccelerometerX` and `AccelerometerY`, which are unnecessary. As shown in our example JSON files, just use `Accelerometer` because `Accelerometer == AccelerometerX + AccelerometerY`.
