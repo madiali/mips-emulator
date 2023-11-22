@@ -12,6 +12,8 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 /**
@@ -57,6 +59,8 @@ public class MainController implements Initializable {
 
   // Misc
   @FXML private Label statusLabel;
+
+  public static final Path EXAMPLE_PROJECT_DIR = Paths.get("src/test/ExampleProjects");
 
   /** Constructor with no params is necessary for loader.getController() in AppLauncher. */
   public MainController() {}
@@ -242,12 +246,16 @@ public class MainController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     System.out.println(
-        "Load a project configuration JSON file. Examples: https://github.com/madiali/mips-emulator/tree/main/src/test/TestProjects");
+        "Load a project configuration JSON file. Examples: https://github.com/madiali/mips-emulator/tree/main/" + EXAMPLE_PROJECT_DIR.toString().replace("\\", "/"));
     try {
       handleOpen();
     } catch (IOException ioe) {
       throw new IllegalArgumentException(
           "Your JSON file doesn't exist or something else went wrong during initialization");
+    } catch (NullPointerException npe) {
+      System.out.println("No JSON file selected. Please load a required project configuration JSON file next time you run, " +
+              "and examples are at the link above.\nExiting...");
+      System.exit(1);
     }
   }
 }

@@ -14,14 +14,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static com.comp541.GUI.MainController.EXAMPLE_PROJECT_DIR;
 import static org.junit.Assert.*;
 
 public class ProgramLoaderTest {
     private ProgramLoader target;
-    private static final Path TEST_DIR = Paths.get("src/test");
-    private static final Path JUNIT_PROJECT_DIR = TEST_DIR.resolve("ForUnitTestsPlsIgnore");
-    private static final Path EXAMPLE_PROJECT_DIR = TEST_DIR.resolve("TestProjects");
-
+    private static final Path JUNIT_PROJECT_DIR = Paths.get("src/test/ForUnitTestsPlsIgnore");
     @Before
     public void setup() throws IOException {
         File noErrors = new File(JUNIT_PROJECT_DIR.resolve("no_errors.json").toString());
