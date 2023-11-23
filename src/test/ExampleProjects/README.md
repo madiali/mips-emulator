@@ -25,9 +25,7 @@ Cat and dog sprite positions are not randomized when run in the emulator because
 
 [Project demo](https://youtu.be/CWI60TmpJHM)
 
-The black screen at the start of the program is intentional (but likely a bad idea, in retrospect, because a black screen makes it look like my project isn't working).
-
-The controls follow [Rubik's cube notation](https://youtu.be/24eHm4ri8WM).
+These controls follow [Rubik's cube notation](https://youtu.be/24eHm4ri8WM).
 
 ## Face moves
 
@@ -50,13 +48,13 @@ The controls follow [Rubik's cube notation](https://youtu.be/24eHm4ri8WM).
 
 ## Rotations
 
-|      Input      | Action |
-| :-------------: | :----: |
-|        x        |   x    |
-|        y        |   y    |
-|        z        |   z    |
-| accelerometer x |   x    |
-| accelerometer y |   y    |
+|                         Input                         | Action |
+| :---------------------------------------------------: | :----: |
+|                           x                           |   x    |
+|                           y                           |   y    |
+|                           z                           |   z    |
+| accelerometer x (when outside the range $[114,398]$ ) |   x    |
+| accelerometer y (when outside the range $[82,430]$ )  |   y    |
 
 ## Move configuration
 
