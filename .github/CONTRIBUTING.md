@@ -18,13 +18,15 @@ The [.gitattributes](../.gitattributes) specifies `* text=auto eol=lf` to make w
 
 This is a standard [Maven Java project](https://maven.apache.org/), and the `Main` class is [Main.java](../src/main/java/com/comp541/Main.java). We use JavaFX for the GUI, and we use [SceneBuilder](https://gluonhq.com/products/scene-builder/) to do drap & drop GUI development. Our FXML file is at [gui.fxml](../src/main/resources/com/comp541/fxml/gui.fxml). Do not edit this directly; use SceneBuilder.
 
-Our dependencies are listed in [pom.xml](../pom.xml). This project has to work across all OS's on various architectures, and a lot of stuff in that file is necessary for this.
+Dependencies are listed in [pom.xml](../pom.xml). This project has to work across all OS's on various architectures, and a lot of stuff in that file is necessary for this.
+
+Use [Google Java format](https://plugins.jetbrains.com/plugin/8527-google-java-format) to format all code (4 spaces).
 
 ## Build
 
 ### Automatic
 
-Building occurs automatically via a GitHub Action (see [build.yml](workflows/ci.yml)) that uses Maven. As long as users have a compatible Java version (17+, with JavaFX bundled), that JAR should work on all OS's and architectures (x86 and ARM64).
+Building occurs automatically via a GitHub Action (see [build.yml](workflows/ci.yml)) that uses Maven. As long as users have a compatible Java version (17+, with JavaFX bundled), this JAR should work on all OS's and architectures (x86 and ARM64). However, we have in the past encountered compatibility issues with some OS/arch combinations, so it is best to test manually (e.g., on M1 macOS) before releasing.
 
 ### Manual
 
