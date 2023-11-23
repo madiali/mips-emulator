@@ -1,11 +1,11 @@
 package com.comp541.mips.memory;
 
 public interface MemoryUnit {
-  int getMemoryUnit(int index);
+    int getMemoryUnit(int index);
 
-  void setMemoryUnit(int index, int value);
+    void setMemoryUnit(int index, int value);
 
-  int getSize();
+    int getSize();
 
-  int getWordSize();
+    int getWordSize();
 }

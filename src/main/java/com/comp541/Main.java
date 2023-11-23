@@ -3,7 +3,7 @@
 package com.comp541;
 
 public class Main {
-  public static void main(String[] args) {
-    AppLauncher.main(args);
-  }
+    public static void main(String[] args) {
+        AppLauncher.main(args);
+    }
 }

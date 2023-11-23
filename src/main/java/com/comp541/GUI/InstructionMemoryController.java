@@ -16,48 +16,48 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InstructionMemoryController {
-  private static final double ADDRESS_COLUMN_WIDTH = 200;
-  private static final double INSTRUCTION_COLUMN_WIDTH = 300;
+    private static final double ADDRESS_COLUMN_WIDTH = 200;
+    private static final double INSTRUCTION_COLUMN_WIDTH = 300;
 
-  private static Mips mips;
-  private InstructionMemory imem;
-  private static TableView imemTable;
-  private static int wordSizeLog;
+    private static Mips mips;
+    private InstructionMemory imem;
+    private static TableView imemTable;
+    private static int wordSizeLog;
 
-  public InstructionMemoryController(Mips mips, TableView imemTable) {
-    InstructionMemoryController.mips = mips;
-    imem = mips.getInstrMem();
-    InstructionMemoryController.imemTable = imemTable;
-    wordSizeLog = mips.getInstrMem().getWordSizeLog();
-    initializeInstructionMemoryTable();
-  }
-
-  private void initializeInstructionMemoryTable() {
-    TableColumn addressColumn = new TableColumn<>("Relative Address");
-    addressColumn.setCellValueFactory(new MapValueFactory<>("address"));
-    addressColumn.setPrefWidth(ADDRESS_COLUMN_WIDTH);
-    TableColumn instructionColumn = new TableColumn<>("Instruction");
-    instructionColumn.setCellValueFactory(new MapValueFactory<>("instruction"));
-    instructionColumn.setPrefWidth(INSTRUCTION_COLUMN_WIDTH);
-    imemTable.getColumns().addAll(addressColumn, instructionColumn);
-    ObservableList<Map<String, Object>> imemTableItems =
-        FXCollections.<Map<String, Object>>observableArrayList();
-    generateTableCells(imemTableItems);
-    imemTable.getItems().addAll(imemTableItems);
-  }
-
-  private void generateTableCells(ObservableList<Map<String, Object>> imemTableItems) {
-    for (int address = 0; address < imem.getSize(); address += imem.getWordSize()) {
-      Map<String, Object> item = new HashMap<>();
-      item.put("address", String.format("0x%08X", address));
-      item.put("instruction", imem.getInstruction(address).toString());
-      imemTableItems.add(item);
+    public InstructionMemoryController(Mips mips, TableView imemTable) {
+        InstructionMemoryController.mips = mips;
+        imem = mips.getInstrMem();
+        InstructionMemoryController.imemTable = imemTable;
+        wordSizeLog = mips.getInstrMem().getWordSizeLog();
+        initializeInstructionMemoryTable();
     }
-  }
 
-  public static void renderInstructionMemoryTable() {
-    int index = (mips.getPC() & 0xFFFF) >> wordSizeLog;
-    imemTable.scrollTo(index);
-    imemTable.getSelectionModel().select(index);
-  }
+    private void initializeInstructionMemoryTable() {
+        TableColumn addressColumn = new TableColumn<>("Relative Address");
+        addressColumn.setCellValueFactory(new MapValueFactory<>("address"));
+        addressColumn.setPrefWidth(ADDRESS_COLUMN_WIDTH);
+        TableColumn instructionColumn = new TableColumn<>("Instruction");
+        instructionColumn.setCellValueFactory(new MapValueFactory<>("instruction"));
+        instructionColumn.setPrefWidth(INSTRUCTION_COLUMN_WIDTH);
+        imemTable.getColumns().addAll(addressColumn, instructionColumn);
+        ObservableList<Map<String, Object>> imemTableItems =
+                FXCollections.<Map<String, Object>>observableArrayList();
+        generateTableCells(imemTableItems);
+        imemTable.getItems().addAll(imemTableItems);
+    }
+
+    private void generateTableCells(ObservableList<Map<String, Object>> imemTableItems) {
+        for (int address = 0; address < imem.getSize(); address += imem.getWordSize()) {
+            Map<String, Object> item = new HashMap<>();
+            item.put("address", String.format("0x%08X", address));
+            item.put("instruction", imem.getInstruction(address).toString());
+            imemTableItems.add(item);
+        }
+    }
+
+    public static void renderInstructionMemoryTable() {
+        int index = (mips.getPC() & 0xFFFF) >> wordSizeLog;
+        imemTable.scrollTo(index);
+        imemTable.getSelectionModel().select(index);
+    }
 }

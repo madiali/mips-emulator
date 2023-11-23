@@ -27,7 +27,7 @@ Cat and dog sprite positions are not randomized when run in the emulator because
 
 These controls follow [Rubik's cube notation](https://youtu.be/24eHm4ri8WM).
 
-## Face moves
+### Face moves
 
 |  Key  | Action |
 | :---: | :----: |
@@ -38,7 +38,7 @@ These controls follow [Rubik's cube notation](https://youtu.be/24eHm4ri8WM).
 |   f   |   F    |
 |   b   |   B    |
 
-## Slice moves
+### Slice moves
 
 |  Key  | Action |
 | :---: | :----: |
@@ -46,7 +46,7 @@ These controls follow [Rubik's cube notation](https://youtu.be/24eHm4ri8WM).
 |   e   |   E    |
 |   s   |   S    |
 
-## Rotations
+### Rotations
 
 |                         Input                         | Action |
 | :---------------------------------------------------: | :----: |
@@ -56,7 +56,7 @@ These controls follow [Rubik's cube notation](https://youtu.be/24eHm4ri8WM).
 | accelerometer x (when outside the range $[114,398]$ ) |   x    |
 | accelerometer y (when outside the range $[82,430]$ )  |   y    |
 
-## Move configuration
+### Move configuration
 
 |  Key  |                    Action                     |
 | :---: | :-------------------------------------------: |
@@ -67,7 +67,7 @@ These controls follow [Rubik's cube notation](https://youtu.be/24eHm4ri8WM).
 
 w can be composed with any direction 1, 2, or '. Therefore, u, u2, and u' can all be performed.
 
-## Miscellaneous
+### Miscellaneous
 
 |  Key  |         Action         |
 | :---: | :--------------------: |
