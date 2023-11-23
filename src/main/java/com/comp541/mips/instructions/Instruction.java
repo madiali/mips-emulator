@@ -5,5 +5,5 @@ import com.comp541.mips.Registers;
 import com.comp541.mips.memory.MemoryMapper;
 
 public interface Instruction {
-  void execute(ProgramCounter pc, MemoryMapper mem, Registers reg);
+    void execute(ProgramCounter pc, MemoryMapper mem, Registers reg);
 }

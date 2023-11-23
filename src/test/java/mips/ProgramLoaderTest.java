@@ -20,6 +20,7 @@ import static org.junit.Assert.*;
 public class ProgramLoaderTest {
     private ProgramLoader target;
     private static final Path JUNIT_PROJECT_DIR = Paths.get("src/test/ForUnitTestsPlsIgnore");
+
     @Before
     public void setup() throws IOException {
         File noErrors = new File(JUNIT_PROJECT_DIR.resolve("no_errors.json").toString());
