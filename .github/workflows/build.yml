@@ -28,3 +28,9 @@ jobs:
         with:
           name: ${{ github.event.repository.name }}
           path: target/dependency/mips-emulator*dependencies*.jar
+
+  markdown-link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gaurav-nelson/github-action-markdown-link-check@v1
