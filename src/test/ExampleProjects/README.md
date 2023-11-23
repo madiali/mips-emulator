@@ -13,13 +13,13 @@ You can run MIPS Emulator and load either JSON file in these directories to run 
 
 [rubiks.json](Rubik's/rubiks.json) contains 7 additional memory mappings, also specified with type `DataMemory`.
 
-To test MIPS Emulator, controls for these projects are provided:
+To test MIPS Emulator, controls for these projects are provided.
 
 ## CatsAndDogs
 
 Use the accelerometer y slider to move the umbrella.
 
-Cat and dog sprite positions are not randomized when run in the emulator because Madison handled RNG in Verilog. Of course, the emulator cannot simulate anything handled in Verilog.
+Cat and dog sprite positions are not randomized when run in the emulator because Madison handled RNG in Verilog. The emulator cannot simulate Verilog code, of course.
 
 ## Rubik's
 
