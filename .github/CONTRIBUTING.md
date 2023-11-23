@@ -24,7 +24,7 @@ Our dependencies are listed in [pom.xml](../pom.xml). This project has to work a
 
 ### Automatic
 
-Building occurs automatically via a GitHub Action (see [build.yml](workflows/build.yml)) that uses Maven. As long as users have a compatible Java version (17+, with JavaFX bundled), that JAR should work on all OS's and architectures (x86 and ARM64).
+Building occurs automatically via a GitHub Action (see [build.yml](workflows/ci.yml)) that uses Maven. As long as users have a compatible Java version (17+, with JavaFX bundled), that JAR should work on all OS's and architectures (x86 and ARM64).
 
 ### Manual
 
