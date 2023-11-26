@@ -49,7 +49,23 @@
 
     </properties>
 
+    <repositories>
+        <repository>
+            <id>MavenCentral</id>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>MavenSing</id>
+            <url>https://maven.sing-group.org/repository/maven/</url>
+        </repository>
+    </repositories>
     <dependencies>
+        <dependency>
+            <groupId>jfugue</groupId>
+            <artifactId>jfugue</artifactId>
+            <version>5.0.9</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
