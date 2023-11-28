@@ -53,10 +53,23 @@ body:
     validations:
       required: false
   - type: textarea
+    id: json
+    attributes:
+      label: "JSON"
+      description: If applicable, paste your JSON file
+      placeholder: |
+        ```json
+        {
+          "key": "value"
+        }
+        ```
+    validations:
+      required: false
+  - type: textarea
     id: logs
     attributes:
       label: "Logs"
-      description: Copy and paste any relevant log output. This will automatically be formatted, so no need for backticks
+      description: Paste any relevant log output
       render: bash
     validations:
       required: false
@@ -67,10 +80,10 @@ body:
       multiple: true
       options:
         - Windows
-        - Linux
         - macOS
+        - Linux
     validations:
-      required: false
+      required: true
   - type: textarea
     id: context
     attributes:
