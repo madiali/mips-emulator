@@ -48,9 +48,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comp541.GUI.MainController">
+<BorderPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comp541.GUI.MainController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
@@ -68,8 +69,92 @@
                     <bottom>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                             <padding>
-                                <Insets bottom="50.0" left="10.0" right="10.0" top="10.0" />
+                                <Insets bottom="40.0" left="10.0" right="10.0" top="10.0" />
                             </padding>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <Circle fx:id="led0" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                           <Circle fx:id="led1" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                           <Circle fx:id="led2" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                           <Circle fx:id="led3" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                           <Circle fx:id="led4" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                           <Circle fx:id="led5" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                           <Circle fx:id="led6" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                           <Circle fx:id="led7" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                           <Circle fx:id="led8" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                           <Circle fx:id="led9" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                           <Circle fx:id="led10" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                           <Circle fx:id="led11" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                           <Circle fx:id="led12" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                           <Circle fx:id="led13" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                           <Circle fx:id="led14" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                           <Circle fx:id="led15" fill="#39332d" radius="6.0" stroke="BLACK" strokeType="INSIDE">
+                              <HBox.margin>
+                                 <Insets left="5.0" right="5.0" />
+                              </HBox.margin>
+                           </Circle>
+                        </children>
+                     </HBox>
                             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                 <Label text="X " fx:id="xLabel" />
                                 <Slider blockIncrement="1.0" max="511.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#handleXSliderClick" onMouseDragged="#handleXSliderDrag" prefWidth="600.0" showTickLabels="true" value="255.0" fx:id="xSlider" />
