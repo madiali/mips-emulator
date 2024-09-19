@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
+import org.jfugue.player.Player;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +33,7 @@ public class MainController implements Initializable {
     private static InstructionMemoryController instructionMemoryController;
     private static DataMemoryController dataMemoryController;
     private static OtherMemoryController otherMemoryController;
+    private static SoundController soundController;
     private static KeyboardController keyboardController;
     private static boolean isExecuting;
     private static Thread execution;

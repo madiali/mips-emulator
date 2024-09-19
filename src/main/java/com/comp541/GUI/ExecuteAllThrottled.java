@@ -17,6 +17,10 @@ public class ExecuteAllThrottled implements Runnable {
     private final Registers reg;
     private final int smemStartAddr;
     private final int smemEndAddr;
+    private final int soundAddr;
+
+    private static Thread sound;
+
 
     public ExecuteAllThrottled(Mips mips, double clockSpeed) {
         this.mips = mips;
@@ -29,6 +33,12 @@ public class ExecuteAllThrottled implements Runnable {
                         .orElse(null));
         smemStartAddr = screenMemory.getStartAddr();
         smemEndAddr = screenMemory.getEndAddr();
+        MappedMemoryUnit soundMemory =
+                Objects.requireNonNull(mips.getMemory().getMemUnits().stream()
+                    .filter(mappedMemoryUnit -> mappedMemoryUnit.getName().equals("Sound"))
+                    .findFirst()
+                    .orElse(null));
+        soundAddr = soundMemory.getStartAddr();
     }
 
     @Override
@@ -38,6 +48,10 @@ public class ExecuteAllThrottled implements Runnable {
         long instructionsExecuted = 0;
         Stopwatch executionStopwatch = new Stopwatch();
         Stopwatch throttleStopwatch = new Stopwatch();
+
+        SoundController sc = new SoundController(mips);
+        sound = new Thread(sc);
+        sound.start();
 
         while (MainController.getIsExecuting()) {
             long timeElapsed = throttleStopwatch.getTimeElapsed();
@@ -53,6 +67,9 @@ public class ExecuteAllThrottled implements Runnable {
                     // Display rendering condition
                     if (smemStartAddr <= targetAddr && targetAddr <= smemEndAddr) {
                         VgaDisplayBMPController.renderVGA((targetAddr - smemStartAddr) >> 2);
+                    } else if (targetAddr == soundAddr) {
+                        sc.changeNote();
+                        sound.interrupt();
                     }
                 }
                 instructionsExecuted++;
@@ -60,6 +77,15 @@ public class ExecuteAllThrottled implements Runnable {
             } else if (throttleStopwatch.getTimeElapsed() >= 1) {
                 throttleStopwatch.reset();
                 instructionsExecuted = 0;
+            }
+        }
+
+        if (sound != null) {
+            try {
+                sound.interrupt();
+                sound.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
 
