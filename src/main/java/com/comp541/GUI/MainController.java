@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
-import org.jfugue.player.Player;
 
 import java.io.File;
 import java.io.IOException;

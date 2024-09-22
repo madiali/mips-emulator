@@ -44,10 +44,6 @@ public class SoundController implements Runnable {
 
             // Change instrument to 'Lead 1 (Square)'
             channel.programChange(80);
-
-            channel.noteOn(69, STD_VELO);
-            Thread.sleep(5000);
-            channel.noteOff(69);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -74,9 +70,7 @@ public class SoundController implements Runnable {
             return;
         }
         int hz = (int) Math.round(1 / (period / Math.pow(10, 8)));
-        snap(hz);
-
-        // System.out.println("New MIDI: " + midiNote + " New Bend: " + pitchBend);
+        setMidiAndPitch(hz);
     }
 
 
@@ -118,18 +112,19 @@ public class SoundController implements Runnable {
      *             possible MIDI note (21).
      *             For frequencies greater than or equal to 28 Hz, it finds the closest
      *             MIDI note based on the `frequencies[]` array and sets the `midiNote`
-     *             accordingly. The pitch bend is reset to neutral (centered).
+     *             accordingly. Then the pitch bend is calculated as a percentage of bend
+     *             from the closest true MIDI note.
      *
      * Modifies:
      * - `midiNote` to the corresponding MIDI note based on the input frequency.
-     * - `pitchBend` is set to `PITCH_NEUTRAL` before any calculations are done.
+     * - `pitchBend` is set to an appropriate bend to match the frequency.
      *
      * Edge cases:
      * - Frequencies lower than 25 Hz will set `midiNote` to 0 (no valid note).
      * - The algorithm assumes the `frequencies[]` array is pre-sorted in ascending
      *   order and that it corresponds to the note frequencies for MIDI note 21 and above.
      */
-    private void snap(int freq) {
+    private void setMidiAndPitch(int freq) {
         pitchBend = PITCH_NEUTRAL;
         if (freq < 25) {
             midiNote = 0;
@@ -139,9 +134,16 @@ public class SoundController implements Runnable {
             return;
         }
 
-        for (int i = 0; i < frequencies.length - 1; i++) {
+        for (int i = 1; i < frequencies.length - 1; i++) {
             if (freq < (frequencies[i] + frequencies[i+1])/(double)2) {
                 midiNote = i + 21;
+                if (freq < frequencies[i]) {
+                    double percent = (frequencies[i] - freq) / (frequencies[i] - frequencies[i-1]);
+                    pitchBend = (int) Math.round(PITCH_NEUTRAL - (4095.5 * percent));
+                } else if (freq > frequencies[i]) {
+                    double percent = (freq - frequencies[i]) / (frequencies[i+1] - frequencies[i]);
+                    pitchBend = (int) Math.round(PITCH_NEUTRAL + (4095.5 * percent));
+                }
                 return;
             }
         }
