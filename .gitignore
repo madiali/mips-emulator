@@ -5,3 +5,5 @@ target/
 .idea-backup/
 mips-emulator-backup.iml
 .attach*
+*.mem
+ProjectB.json

@@ -44,7 +44,6 @@ public class LedController {
         int ledValue = ledMemory.getMemoryUnit(0) & 0xFFFF;
         boolean [] bitArray = intToBoolArray(ledValue);
 
-        System.out.println("Updating LED to " + ledValue);
         Platform.runLater(() -> {
             for (int i = 0; i < NUM_LEDS; i++) {
                 Color color = bitArray[i] ? LED_GREEN : LED_BLACK;

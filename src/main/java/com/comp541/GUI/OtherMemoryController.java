@@ -38,11 +38,6 @@ public class OtherMemoryController {
             if (mmu.getStartAddr() != dmemMappedStartAddr) {
                 mappedMemoryUnits.add(mmu);
             }
-            if (mmu.getStartAddr() == Integer.parseInt("10030008", 16)) {
-                System.out.println("Sound at 10030008 -------------------");
-                System.out.println(mmu.getName());
-                System.out.println(mmu.getMappedMemoryUnit(0));
-            }
         }
         initializeTabs();
         initializeTableViews();
@@ -99,10 +94,6 @@ public class OtherMemoryController {
                  relativeAddress += mmu.getWordSize()) {
                 Map<String, Object> item = memoryItemsList.get(i).get(relativeAddress / mmu.getWordSize());
                 item.replace("value", String.format("0x%08X", mmu.getMappedMemoryUnit(relativeAddress)));
-//                if (mmu.getStartAddr() == Integer.parseInt("10030008", 16)) {
-//                    System.out.println("Sound Updated");
-//                    System.out.println(mmu.getMappedMemoryUnit(0));
-//                }
             }
             tableViewList.get(i).refresh();
         }
