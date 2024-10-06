@@ -62,9 +62,6 @@ public class MainController implements Initializable {
     // Array to store all the LED circles
     private Circle[] leds;
 
-
-
-
     // Debugging tabs
     @FXML
     private TableView registersTable;
