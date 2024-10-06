@@ -70,6 +70,8 @@ public class ExecuteAllThrottled implements Runnable {
                     } else if (targetAddr == soundAddr) {
                         sc.changeNote();
                         sound.interrupt();
+                    } else if (targetAddr == Integer.parseInt("1003000c", 16)) {
+                        LedController.renderLED();
                     }
                 }
                 instructionsExecuted++;

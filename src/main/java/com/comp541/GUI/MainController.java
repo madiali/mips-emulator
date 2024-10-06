@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -33,6 +34,7 @@ public class MainController implements Initializable {
     private static DataMemoryController dataMemoryController;
     private static OtherMemoryController otherMemoryController;
     private static SoundController soundController;
+    private static LedController ledController;
     private static KeyboardController keyboardController;
     private static boolean isExecuting;
     private static Thread execution;
@@ -53,6 +55,13 @@ public class MainController implements Initializable {
     // Screen
     @FXML
     private GridPane vgaDisplay;
+
+    // LED
+    @FXML
+    private Circle led0, led1, led2, led3, led4, led5, led6, led7, led8, led9, led10, led11, led12, led13, led14, led15;
+
+    // Array to store all the LED circles
+    private Circle[] leds;
 
     // Debugging tabs
     @FXML
@@ -121,6 +130,7 @@ public class MainController implements Initializable {
         instructionMemoryController = new InstructionMemoryController(mips, instructionMemoryTable);
         dataMemoryController = new DataMemoryController(mips, dataMemoryTable);
         otherMemoryController = new OtherMemoryController(mips, otherMemoryTabPane);
+        ledController = new LedController(mips, leds);
         keyboardController = new KeyboardController(mips);
     }
 
@@ -255,6 +265,7 @@ public class MainController implements Initializable {
         RegistersController.renderRegisterTable();
         DataMemoryController.renderDataMemoryTable();
         otherMemoryController.renderAllTables();
+        LedController.renderLED();
     }
 
     /**
@@ -266,6 +277,8 @@ public class MainController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        leds = new Circle[]{led0, led1, led2, led3, led4, led5, led6, led7, led8, led9, led10, led11, led12, led13, led14, led15};
+
         System.out.println(
                 "Load a project configuration JSON file. Examples: https://github.com/madiali/mips-emulator/tree/main/" + EXAMPLE_PROJECT_DIR.toString().replace("\\", "/"));
         try {
