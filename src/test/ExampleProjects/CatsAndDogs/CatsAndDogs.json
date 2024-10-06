@@ -51,11 +51,8 @@
       "length": 1
     },
     {
-      "comment": "Sound's value is shown in the Other Memory tab.",
-      "type": "DataMemory",
-      "name": "Sound",
-      "startAddr": "0x10030008",
-      "length": 1
+      "type": "Sound",
+      "startAddr": "0x10030008"
     }
   ]
 }

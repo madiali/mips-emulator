@@ -3,6 +3,7 @@ module mips.emulator {
     requires javafx.fxml;
     requires org.json;
     requires java.desktop;
+    requires commons.lang;
     exports com.comp541.GUI;
     opens com.comp541.GUI to javafx.fxml;
     exports com.comp541;

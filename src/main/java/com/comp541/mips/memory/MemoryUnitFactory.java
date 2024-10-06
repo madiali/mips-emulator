@@ -8,23 +8,17 @@ package com.comp541.mips.memory;
 
 public class MemoryUnitFactory {
     public MemoryUnit createMemoryUnit(String type, int length, int wordSize) {
-        if (type.equals("InstructionMemory")) {
-            return new InstructionMemory(length, wordSize);
-        } else if (type.equals("DataMemory")) {
-            return new DataMemory(length, wordSize);
-        } else if (type.equals("BitmapMemory")) {
-            return new BitmapMemory(length, wordSize);
-        } else if (type.equals("ScreenMemory")) {
-            return new ScreenMemory(length, wordSize);
-        } else if (type.equals("Keyboard")) {
-            return new Keyboard(length, wordSize);
-        } else if (type.equals("Accelerometer")) {
-            return new Accelerometer(length, wordSize);
-        } else if (type.equals("Sound")) {
-            throw new IllegalArgumentException("We have not yet implemented Sound! Please remove it from your JSON");
-        } else {
-            throw new IllegalArgumentException("Invalid MemoryUnit type provided: " + type);
-        }
+        return switch (type) {
+            case "InstructionMemory" -> new InstructionMemory(length, wordSize);
+            case "DataMemory" -> new DataMemory(length, wordSize);
+            case "BitmapMemory" -> new BitmapMemory(length, wordSize);
+            case "ScreenMemory" -> new ScreenMemory(length, wordSize);
+            case "Keyboard" -> new Keyboard(length, wordSize);
+            case "Accelerometer" -> new Accelerometer(length, wordSize);
+            // TODO: This case should log a message to the user that they shouldn't have provided a length/initFile/wordSize for Sound
+            case "Sound" -> new Sound();
+            default -> throw new IllegalArgumentException("Invalid MemoryUnit type provided: " + type);
+        };
     }
 
     /**
@@ -33,23 +27,19 @@ public class MemoryUnitFactory {
      * @return
      */
     public MemoryUnit createMemoryUnit(String type) {
-        if (type.equals("InstructionMemory")) {
-            throw new IllegalArgumentException(
+        return switch (type) {
+            case "InstructionMemory" -> throw new IllegalArgumentException(
                     "InstructionMemory requires length, initFile, or wordSize in the JSON");
-        } else if (type.equals("DataMemory")) {
-            throw new IllegalArgumentException("DataMemory requires length, initFile, or wordSize in the JSON");
-        } else if (type.equals("BitmapMemory")) {
-            throw new IllegalArgumentException("BitmapMemory requires length, initFile, or wordSize in the JSON");
-        } else if (type.equals("ScreenMemory")) {
-            throw new IllegalArgumentException("ScreenMemory requires length, initFile, or wordSize in the JSON");
-        } else if (type.equals("Keyboard")) {
-            return new Keyboard();
-        } else if (type.equals("Accelerometer")) {
-            return new Accelerometer();
-        } else if (type.equals("Sound")) {
-            throw new IllegalArgumentException("We have not yet implemented Sound! Please remove it from your JSON");
-        } else {
-            throw new IllegalArgumentException("Invalid MemoryUnit type provided in the JSON: " + type);
-        }
+            case "DataMemory" ->
+                    throw new IllegalArgumentException("DataMemory requires length, initFile, or wordSize in the JSON");
+            case "BitmapMemory" ->
+                    throw new IllegalArgumentException("BitmapMemory requires length, initFile, or wordSize in the JSON");
+            case "ScreenMemory" ->
+                    throw new IllegalArgumentException("ScreenMemory requires length, initFile, or wordSize in the JSON");
+            case "Keyboard" -> new Keyboard();
+            case "Accelerometer" -> new Accelerometer();
+            case "Sound" -> new Sound();
+            default -> throw new IllegalArgumentException("Invalid MemoryUnit type provided in the JSON: " + type);
+        };
     }
 }

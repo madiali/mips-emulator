@@ -6,6 +6,7 @@ import com.comp541.mips.instructions.IType.SwInstruction;
 import com.comp541.mips.instructions.Instruction;
 import com.comp541.mips.memory.MappedMemoryUnit;
 import com.comp541.mips.memory.ScreenMemory;
+import com.comp541.mips.memory.Sound;
 
 import java.util.Objects;
 
@@ -18,9 +19,7 @@ public class ExecuteAllThrottled implements Runnable {
     private final int smemStartAddr;
     private final int smemEndAddr;
     private final int soundAddr;
-
     private static Thread sound;
-
 
     public ExecuteAllThrottled(Mips mips, double clockSpeed) {
         this.mips = mips;
@@ -35,7 +34,7 @@ public class ExecuteAllThrottled implements Runnable {
         smemEndAddr = screenMemory.getEndAddr();
         MappedMemoryUnit soundMemory =
                 Objects.requireNonNull(mips.getMemory().getMemUnits().stream()
-                    .filter(mappedMemoryUnit -> mappedMemoryUnit.getName().equals("Sound"))
+                    .filter(mappedMemoryUnit -> mappedMemoryUnit.getMemUnit() instanceof Sound)
                     .findFirst()
                     .orElse(null));
         soundAddr = soundMemory.getStartAddr();
