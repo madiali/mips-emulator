@@ -53,6 +53,8 @@ public class ExecuteAllThrottled implements Runnable {
                     // Display rendering condition
                     if (smemStartAddr <= targetAddr && targetAddr <= smemEndAddr) {
                         VgaDisplayBMPController.renderVGA((targetAddr - smemStartAddr) >> 2);
+                    } else if (targetAddr == Integer.parseInt("1003000c", 16)) {
+                        LedController.renderLED();
                     }
                 }
                 instructionsExecuted++;
