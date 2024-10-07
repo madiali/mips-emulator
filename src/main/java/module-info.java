@@ -4,6 +4,7 @@ module mips.emulator {
     requires org.json;
     requires java.desktop;
     requires commons.lang;
+    requires org.apache.logging.log4j;
     exports com.comp541.GUI;
     opens com.comp541.GUI to javafx.fxml;
     exports com.comp541;
