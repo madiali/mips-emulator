@@ -48,12 +48,17 @@
     },
     {
       "type": "DataMemory",
+      "name": "DataMemory2",
       "startAddr": "0xDEADbeef",
       "length": "0b100",
       "initFile": {
         "filepath": "dmem.mem",
         "format": "bin"
       }
+    },
+    {
+      "type": "Sound",
+      "startAddr": "0x10030008"
     }
   ]
 }

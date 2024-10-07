@@ -51,12 +51,8 @@
       "length": 1
     },
     {
-      "comment": "Sound's value is shown in the Other Memory tab.",
-      "comment2": "The original C# MIPS Emulator supports Sound in the type field and plays the sound. Unfortunately, we don't yet :(",
-      "type": "DataMemory",
-      "name": "Sound",
-      "startAddr": "0x10030008",
-      "length": 1
+      "type": "Sound",
+      "startAddr": "0x10030008"
     }
   ]
 }

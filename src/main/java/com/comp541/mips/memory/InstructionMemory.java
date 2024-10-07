@@ -2,6 +2,8 @@ package com.comp541.mips.memory;
 
 import com.comp541.mips.instructions.Instruction;
 
+import static com.comp541.Main.LOGGER;
+
 public class InstructionMemory implements MemoryUnit {
     private final Instruction[] iMem;
     private final int wordSizeLog;
@@ -60,11 +62,10 @@ public class InstructionMemory implements MemoryUnit {
     /**
      * DO NOT CALL THIS METHOD. The original code throws a NotImplementedException when this method is
      * called. However, we can't throw an Exception here since the method needs to return an integer.
-     * *
      */
     @Override
     public int getMemoryUnit(int pc) {
-        System.out.println(
+        LOGGER.warn(
                 "InstructionMemory.java should throw a NotImplementedException but can't because the method needs to return something...");
         return -1;
     }

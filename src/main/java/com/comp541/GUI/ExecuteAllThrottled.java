@@ -6,8 +6,11 @@ import com.comp541.mips.instructions.IType.SwInstruction;
 import com.comp541.mips.instructions.Instruction;
 import com.comp541.mips.memory.MappedMemoryUnit;
 import com.comp541.mips.memory.ScreenMemory;
+import com.comp541.mips.memory.Sound;
 
 import java.util.Objects;
+
+import static com.comp541.Main.LOGGER;
 
 public class ExecuteAllThrottled implements Runnable {
     private static final double TARGET_CONSTANT = 0.85;
@@ -17,6 +20,8 @@ public class ExecuteAllThrottled implements Runnable {
     private final Registers reg;
     private final int smemStartAddr;
     private final int smemEndAddr;
+    private final int soundAddr;
+    private static Thread sound;
 
     public ExecuteAllThrottled(Mips mips, double clockSpeed) {
         this.mips = mips;
@@ -29,6 +34,12 @@ public class ExecuteAllThrottled implements Runnable {
                         .orElse(null));
         smemStartAddr = screenMemory.getStartAddr();
         smemEndAddr = screenMemory.getEndAddr();
+        MappedMemoryUnit soundMemory =
+                Objects.requireNonNull(mips.getMemory().getMemUnits().stream()
+                    .filter(mappedMemoryUnit -> mappedMemoryUnit.getMemUnit() instanceof Sound)
+                    .findFirst()
+                    .orElse(null));
+        soundAddr = soundMemory.getStartAddr();
     }
 
     @Override
@@ -38,6 +49,10 @@ public class ExecuteAllThrottled implements Runnable {
         long instructionsExecuted = 0;
         Stopwatch executionStopwatch = new Stopwatch();
         Stopwatch throttleStopwatch = new Stopwatch();
+
+        SoundController sc = new SoundController(mips);
+        sound = new Thread(sc);
+        sound.start();
 
         while (MainController.getIsExecuting()) {
             long timeElapsed = throttleStopwatch.getTimeElapsed();
@@ -53,6 +68,9 @@ public class ExecuteAllThrottled implements Runnable {
                     // Display rendering condition
                     if (smemStartAddr <= targetAddr && targetAddr <= smemEndAddr) {
                         VgaDisplayBMPController.renderVGA((targetAddr - smemStartAddr) >> 2);
+                    } else if (targetAddr == soundAddr) {
+                        sc.changeNote();
+                        sound.interrupt();
                     } else if (targetAddr == Integer.parseInt("1003000c", 16)) {
                         LedController.renderLED();
                     }
@@ -65,10 +83,19 @@ public class ExecuteAllThrottled implements Runnable {
             }
         }
 
+        if (sound != null) {
+            try {
+                sound.interrupt();
+                sound.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         long delta = executionStopwatch.getTimeElapsed() / 1000;
-        System.out.println("Time: " + delta + "s");
-        System.out.println("Mips instructions executed: " + totalInstructionsExecuted);
-        System.out.println(
+        LOGGER.info("Time: " + delta + "s");
+        LOGGER.info("Mips instructions executed: " + totalInstructionsExecuted);
+        LOGGER.info(
                 "Throttled clock speed (avg): " + totalInstructionsExecuted / 1000000.0 / delta + " MHz");
     }
 
