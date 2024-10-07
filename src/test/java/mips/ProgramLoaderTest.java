@@ -22,9 +22,14 @@ public class ProgramLoaderTest {
     private static final Path JUNIT_PROJECT_DIR = Paths.get("src/test/ForUnitTestsPlsIgnore");
 
     @Before
-    public void setup() throws IOException {
+    public void setup() {
         File noErrors = new File(JUNIT_PROJECT_DIR.resolve("no_errors.json").toString());
-        target = new ProgramLoader(noErrors);
+        // If this fails, all tests are failed even if they would otherwise pass
+        // But this is fine, ProgramLoader(noErrors) should not fail
+        // And if it does, that's very bad, so it's fine if all these tests fail (attracts attention)
+        try {
+            target = new ProgramLoader(noErrors);
+        } catch (Exception e) { fail(); }
     }
 
     @Test
@@ -39,7 +44,7 @@ public class ProgramLoaderTest {
 
     @Test
     public void rubiks() {
-        File rubiks = new File(EXAMPLE_PROJECT_DIR.resolve("Rubik\'s").resolve("rubiks.json").toString());
+        File rubiks = new File(EXAMPLE_PROJECT_DIR.resolve("Rubik's").resolve("rubiks.json").toString());
         try {
             new ProgramLoader(rubiks);
         } catch (Exception e) {
@@ -96,7 +101,7 @@ public class ProgramLoaderTest {
         try {
             new ProgramLoader(nonexistentMemoryType);
             fail();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
     }
@@ -110,14 +115,15 @@ public class ProgramLoaderTest {
         try {
             new ProgramLoader(invalidMemoryType);
             fail();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
     }
 
     @Test
     public void parsesHexAndBinValues() {
-        MappedMemoryUnit memUnit = target.getMips().getMemory().getMemUnits().get(4);
+        MappedMemoryUnit memUnit = target.getMips().getMemory().getMemUnits().stream().filter(mappedMemoryUnit -> mappedMemoryUnit.getName().equals("DataMemory2")).findFirst().orElse(null);
+        assert memUnit != null;
         assertTrue(memUnit.getMemUnit() instanceof DataMemory);
         // This passes but the startAddr is negative (but sorted correctly, as if it were unsigned, due
         // to MemoryMapper using Integer.compareUnsigned to sort)

@@ -17,7 +17,6 @@ public class MemoryUnitFactory {
             case "ScreenMemory" -> new ScreenMemory(length, wordSize);
             case "Keyboard" -> new Keyboard(length, wordSize);
             case "Accelerometer" -> new Accelerometer(length, wordSize);
-            // TODO: This case should log a message to the user that they shouldn't have provided a length/initFile/wordSize for Sound
             case "Sound" -> {
                 LOGGER.warn("Sound should not have a length, initFile, or wordSize in the JSON, these values will be ignored, and a default Sound unit with size 4 and wordSize 4 will be created");
                 yield new Sound();
