@@ -11,21 +11,21 @@ import com.comp541.mips.memory.Sound;
 import java.util.Objects;
 
 import static com.comp541.Main.LOGGER;
+import static com.comp541.mips.instructions.IType.ITypeInstruction.signExtend;
 
 public class ExecuteAllThrottled implements Runnable {
-    private static final double TARGET_CONSTANT = 0.85;
+    private final double CLOCK_SPEED_MHZ = 12.5;
+    private final long nanosPerInstruction = 1_000_000_000L / (long) (CLOCK_SPEED_MHZ * 1_000_000);
 
     private final Mips mips;
-    private final double clockSpeed;
     private final Registers reg;
     private final int smemStartAddr;
     private final int smemEndAddr;
     private final int soundAddr;
     private static Thread sound;
 
-    public ExecuteAllThrottled(Mips mips, double clockSpeed) {
+    public ExecuteAllThrottled(Mips mips) {
         this.mips = mips;
-        this.clockSpeed = clockSpeed;
         reg = mips.getReg();
         MappedMemoryUnit screenMemory =
                 Objects.requireNonNull(mips.getMemory().getMemUnits().stream()
@@ -44,42 +44,46 @@ public class ExecuteAllThrottled implements Runnable {
 
     @Override
     public void run() {
-        double targetInstrPerMillisec = clockSpeed * 1000000 / 1000 * TARGET_CONSTANT;
-        long totalInstructionsExecuted = 0;
+        long targetInstructionsPerSec = (long) (CLOCK_SPEED_MHZ * 1_000_000);
+        long nanosPerInstruction = 1_000_000_000L / targetInstructionsPerSec;
         long instructionsExecuted = 0;
-        Stopwatch executionStopwatch = new Stopwatch();
-        Stopwatch throttleStopwatch = new Stopwatch();
 
         SoundController sc = new SoundController(mips);
         sound = new Thread(sc);
         sound.start();
 
+        long startTime = System.nanoTime();
+
         while (MainController.getIsExecuting()) {
-            long timeElapsed = throttleStopwatch.getTimeElapsed();
-            if ((throttleStopwatch.getTimeElapsed() != 0)
-                    && (instructionsExecuted <= targetInstrPerMillisec * timeElapsed)) {
-                Instruction nextInstruction = mips.executeNextAndReturnInstruction();
-                totalInstructionsExecuted++;
-                // Rendering logic
-                if (nextInstruction instanceof SwInstruction) {
-                    SwInstruction swInstruction = (SwInstruction) nextInstruction;
-                    int targetAddr =
-                            reg.getRegister(swInstruction.getS()) + signExtend(swInstruction.getImmediate());
-                    // Display rendering condition
-                    if (smemStartAddr <= targetAddr && targetAddr <= smemEndAddr) {
-                        VgaDisplayBMPController.renderVGA((targetAddr - smemStartAddr) >> 2);
-                    } else if (targetAddr == soundAddr) {
-                        sc.changeNote();
-                        sound.interrupt();
-                    } else if (targetAddr == Integer.parseInt("1003000c", 16)) {
-                        LedController.renderLED();
-                    }
+            Instruction nextInstruction = mips.executeNextAndReturnInstruction();
+            instructionsExecuted++;
+
+            // Rendering logic
+            if (nextInstruction instanceof SwInstruction swInstruction) {
+                int targetAddr =
+                        reg.getRegister(swInstruction.getS()) + signExtend(swInstruction.getImmediate());
+                // Display rendering condition
+                if (smemStartAddr <= targetAddr && targetAddr <= smemEndAddr) {
+                    VgaDisplayBMPController.renderVGA((targetAddr - smemStartAddr) >> 2);
+                } else if (targetAddr == soundAddr) {
+                    sc.changeNote();
+                    sound.interrupt();
+                // TODO: Make LED address configurable
+                } else if (targetAddr == Integer.parseInt("1003000c", 16)) {
+                    LedController.renderLED();
                 }
-                instructionsExecuted++;
-                totalInstructionsExecuted++;
-            } else if (throttleStopwatch.getTimeElapsed() >= 1) {
-                throttleStopwatch.reset();
-                instructionsExecuted = 0;
+            }
+
+            // Throttle execution to maintain CLOCK_SPEED_MHZ
+            long elapsedTime = System.nanoTime() - startTime;
+            long sleepTime = nanosPerInstruction - elapsedTime;
+            if (sleepTime > 0) {
+                try {
+                    Thread.sleep(sleepTime / 1_000_000, (int) (sleepTime % 1_000_000));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    Thread.currentThread().interrupt();
+                }
             }
         }
 
@@ -92,20 +96,9 @@ public class ExecuteAllThrottled implements Runnable {
             }
         }
 
-        long delta = executionStopwatch.getTimeElapsed() / 1000;
+        double delta = (double) (System.nanoTime() / startTime) / 1_000_000_000L;
         LOGGER.info("Time: {}s", delta);
-        LOGGER.info("Mips instructions executed: {}", totalInstructionsExecuted);
-        LOGGER.info("Throttled clock speed (avg): {} MHz", totalInstructionsExecuted / 1000000.0 / delta);
-    }
-
-    /**
-     * Taken from mips.instructions.IType. Not importing from there since it's protected there, and
-     * also putting it here shaves off some time. Made it a one-liner to shave off time.
-     *
-     * @param immediate
-     * @return sign-extended immediate
-     */
-    private static int signExtend(int immediate) {
-        return (((immediate >> 15) & 0b1) == 0) ? immediate : (immediate | 0xFFFF0000);
+        LOGGER.info("Mips instructions executed: {}", instructionsExecuted);
+        LOGGER.info("Throttled clock speed (avg): {} MHz", (double) instructionsExecuted / 1_000_000_000L / delta);
     }
 }

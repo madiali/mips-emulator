@@ -60,7 +60,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20230227</version>
+            <version>20231013</version>
             <scope>compile</scope>
         </dependency>
 
@@ -114,13 +114,6 @@
             <artifactId>javafx-graphics</artifactId>
             <version>19</version>
             <scope>compile</scope>
-        </dependency>
-        <!-- This dependency is a normal Maven dependency, here mainly as an example. It brings in other transitive
-         dependencies as well. You can remove it from your project (unless you happen to need to generate test data.  -->
-        <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>1.0.2</version>
         </dependency>
 
         <!-- Modern JavaFX Look and Feel -->
@@ -318,6 +311,7 @@
                             <writeErrorsToLog>true</writeErrorsToLog>
                             <failOnError>true</failOnError>
                             <removeDirectories>${project.build.directory}/installer-work</removeDirectories>
+                            <!--suppress UnresolvedMavenProperty -->
                             <args>@${project.build.directory}/packaging/${os.detected.name}-jpackage.txt</args>
                         </configuration>
                     </execution>

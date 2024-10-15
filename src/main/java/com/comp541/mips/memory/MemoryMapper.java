@@ -15,7 +15,7 @@ public class MemoryMapper implements MemoryUnit {
         this.memUnits.sort((x, y) -> Integer.compareUnsigned(x.getStartAddr(), y.getStartAddr()));
     }
 
-    @Deprecated
+    // Was marked deprecated, but it's still in use so I removed that
     public MemoryMapper(int size) {
         int[] data = new int[size];
         DataMemory dataMem = new DataMemory(data);

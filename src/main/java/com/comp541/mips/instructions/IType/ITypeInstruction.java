@@ -18,7 +18,7 @@ public abstract class ITypeInstruction implements Instruction {
     @Override
     public abstract void execute(ProgramCounter pc, MemoryMapper mem, Registers reg);
 
-    protected static int signExtend(int immediate) {
+    public static int signExtend(int immediate) {
         int sign = (immediate >> 15) & 0b1;
         immediate = (sign == 0) ? immediate : (immediate | 0xFFFF0000);
         return immediate;
