@@ -51,9 +51,6 @@ public class ProgramLoader {
     }
 
     private Mips loadMipsFromFile(File file) throws IOException {
-        // TODO: We have not yet implemented sound but will do so soon (TM)
-        // SoundModule.waveOut.stop();
-
         String json = Files.readString(file.toPath());
         JSONObject project = new JSONObject(json);
 

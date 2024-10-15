@@ -93,10 +93,9 @@ public class ExecuteAllThrottled implements Runnable {
         }
 
         long delta = executionStopwatch.getTimeElapsed() / 1000;
-        LOGGER.info("Time: " + delta + "s");
-        LOGGER.info("Mips instructions executed: " + totalInstructionsExecuted);
-        LOGGER.info(
-                "Throttled clock speed (avg): " + totalInstructionsExecuted / 1000000.0 / delta + " MHz");
+        LOGGER.info("Time: {}s", delta);
+        LOGGER.info("Mips instructions executed: {}", totalInstructionsExecuted);
+        LOGGER.info("Throttled clock speed (avg): {} MHz", totalInstructionsExecuted / 1000000.0 / delta);
     }
 
     /**
