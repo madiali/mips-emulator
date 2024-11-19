@@ -17,8 +17,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
-import static com.comp541.Main.LOGGER;
-
 /**
  * The FXML is tied to this Controller and only this controller. All handler methods tied to FXML
  * components must go in this file.
@@ -289,7 +287,7 @@ public class MainController implements Initializable {
             throw new IllegalArgumentException(
                     "Your JSON file doesn't exist or something else went wrong during initialization");
         } catch (NullPointerException npe) {
-            LOGGER.fatal("No JSON file selected. Please load a required project configuration JSON file next time you run, " +
+            System.out.println("No JSON file selected. Please load a required project configuration JSON file next time you run, " +
                     "and examples are at the link above.\nExiting...");
             System.exit(1);
         }

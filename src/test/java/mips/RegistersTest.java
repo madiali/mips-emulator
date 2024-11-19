@@ -3,7 +3,6 @@ package mips;
 import com.comp541.mips.Registers;
 import org.junit.Test;
 
-import static com.comp541.Main.LOGGER;
 import static org.junit.Assert.assertEquals;
 
 public class RegistersTest {
@@ -25,7 +24,7 @@ public class RegistersTest {
     @Test
     public void testPrint() {
         for (int i = 0; i < 33; i++) {
-            LOGGER.info(Registers.registerToName(i));
+            System.out.println(Registers.registerToName(i));
         }
     }
 }

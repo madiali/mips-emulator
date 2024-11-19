@@ -6,8 +6,6 @@
  */
 package com.comp541.mips.memory;
 
-import static com.comp541.Main.LOGGER;
-
 public class MemoryUnitFactory {
     public MemoryUnit createMemoryUnit(String type, int length, int wordSize) {
         return switch (type) {
@@ -18,7 +16,7 @@ public class MemoryUnitFactory {
             case "Keyboard" -> new Keyboard(length, wordSize);
             case "Accelerometer" -> new Accelerometer(length, wordSize);
             case "Sound" -> {
-                LOGGER.warn("Sound should not have a length, initFile, or wordSize in the JSON, these values will be ignored, and a default Sound unit with size 4 and wordSize 4 will be created");
+                System.out.println("Sound should not have a length, initFile, or wordSize in the JSON, these values will be ignored, and a default Sound unit with size 4 and wordSize 4 will be created");
                 yield new Sound();
             }
             default -> throw new IllegalArgumentException("Invalid MemoryUnit type provided: " + type);

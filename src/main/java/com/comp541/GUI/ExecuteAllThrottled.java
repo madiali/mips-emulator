@@ -10,8 +10,6 @@ import com.comp541.mips.memory.Sound;
 
 import java.util.Objects;
 
-import static com.comp541.Main.LOGGER;
-
 public class ExecuteAllThrottled implements Runnable {
     private static final double TARGET_CONSTANT = 0.85;
 
@@ -93,9 +91,9 @@ public class ExecuteAllThrottled implements Runnable {
         }
 
         long delta = executionStopwatch.getTimeElapsed() / 1000;
-        LOGGER.info("Time: " + delta + "s");
-        LOGGER.info("Mips instructions executed: " + totalInstructionsExecuted);
-        LOGGER.info(
+        System.out.println("Time: " + delta + "s");
+        System.out.println("Mips instructions executed: " + totalInstructionsExecuted);
+        System.out.println(
                 "Throttled clock speed (avg): " + totalInstructionsExecuted / 1000000.0 / delta + " MHz");
     }
 

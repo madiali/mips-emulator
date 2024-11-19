@@ -9,7 +9,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.comp541.Main.LOGGER;
 import static org.junit.Assert.assertEquals;
 
 public class MipsProgramTest {
@@ -54,7 +53,7 @@ public class MipsProgramTest {
             icount++;
         }
 
-        LOGGER.info(dataMemory.getMemoryUnit(0));
+        System.out.println(dataMemory.getMemoryUnit(0));
 
         assertEquals(a * a, dataMemory.getMemoryUnit(0));
     }
