@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 INSTALL_DIR=$HOME/.comp541
-MIPS_EMULATOR=https://github.com/madiali/mips-emulator/releases/latest/download/mips-emulator-1.0.2.jar
+MIPS_EMULATOR=https://github.com/madiali/mips-emulator/releases/latest/download/mips-emulator-1.0.3.jar
 # Must be a version with fx bundled
 JAVA_VER="17.0.9.fx-librca"
 # String after final slash in URL
