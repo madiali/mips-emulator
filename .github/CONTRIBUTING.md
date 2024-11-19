@@ -6,7 +6,7 @@ We welcome contributions! After all, this project started as a port of [another]
 
 For minor fixes (e.g., documentation improvements), feel free to submit a PR directly. If you would like to fix a bug or implement a new feature, please open an [issue](https://github.com/madiali/mips-emulator/issues/new/choose) first, and mention the issue in your PR.
 
-Once you make a PR, your code will be tested and built into a JAR automatically. You can download and test the generated artifact in the [Actions](https://github.com/madiali/mips-emulator/actions) tab. For more information, see [Build](#build).
+Once you make a PR, your code will be tested and built into a JAR automatically. You can download and test the generated artifact in the [Actions](https://github.com/madiali/mips-emulator/actions) tab. For more information, see [Build JAR](#build-jar).
 
 ## Dev setup
 
@@ -22,15 +22,15 @@ Dependencies are listed in [pom.xml](../pom.xml). This project has to work acros
 
 Use [Google Java format](https://plugins.jetbrains.com/plugin/8527-google-java-format) to format all code (4 spaces).
 
-## Build
+## Build JAR
 
 ### Automatic
 
-Building occurs automatically via a GitHub Action (see [build.yml](workflows/ci.yml)) that uses Maven. As long as users have a compatible Java version (17+, with JavaFX bundled), this JAR should work on all OS's and architectures (x86 and ARM64). However, we have in the past encountered compatibility issues with some OS/arch combinations, so it is best to test manually (e.g., on M1 macOS) before releasing.
+The JAR is automatically built via a GitHub Action (see [build.yml](workflows/ci.yml)) that uses Maven. As long as users have a compatible Java version (17+, with JavaFX bundled), this JAR should work on all OS's and architectures (x86 and ARM64). However, we have in the past encountered compatibility issues with some OS/arch combinations, so it is best to test manually (e.g., on M1 macOS) before releasing.
 
 ### Manual
 
-To build manually, go to IntelliJ and click on the Maven tab on the right. The file that we want will be at `target/dependency/mips-emulator-<version>-SNAPSHOT-jar-with-dependencies.jar`. The version is specified in [pom.xml](../pom.xml).
+To build the JAR manually, install `maven` on your system. Then run `mvn package`. The output JAR will be at `target/dependency/mips-emulator-<version>-SNAPSHOT-jar-with-dependencies.jar` and can be run with `java -jar`. The version is specified in [pom.xml](../pom.xml).
 
 ## Deploy
 
